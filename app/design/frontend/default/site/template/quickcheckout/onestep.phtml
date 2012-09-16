@@ -1,0 +1,97 @@
+<?php
+
+$checkUseForShipping = Mage::getSingleton('core/session')->getData('use_for_shipping'); ?>
+<script type="text/javascript">
+countryRegions = <?php echo $this->helper('directory')->getRegionJson() ?>
+</script>
+<div class="main_checkout">
+    <div class="main_header">
+        <h1><?php echo Mage::helper('quickcheckout')->getQuickCheckoutTitle(); ?></h1>
+        <h2><?php echo Mage::helper('quickcheckout')->getQuickCheckoutContent() ?></h2>
+        <?php if(!$this->isCustomerLoggedIn() && Mage::helper('quickcheckout')->getQuickCheckoutConfig('general/enable_login')): ?>
+           
+                    <?php echo $this->getChildHtml('osc-login'); ?>
+              
+        <?php endif; ?>
+       
+    </div>
+    <div id="quickcheckout-ajax-loader" style="display:none;">
+        <div id="quickcheckout-ajax-loader-text"> Loading...</div>
+    </div>
+    
+    <?php $i=0; foreach($this->getSteps() as $_stepId => $_stepInfo): ?>
+        <?php if (!$this->getChild($_stepId) || !$this->getChild($_stepId)->isShow()): continue; endif; ?>
+        <?php if($_stepId == 'login'): ?>
+            <div class="onestepcheckout-<?php echo $_stepId ?>">            
+                <div class="checkout-step-<?php echo $_stepId ?>">
+                    <?php echo $this->getChildHtml($_stepId) ?>
+                </div>
+            </div>
+        <?php else: ?>
+        <?php if($_stepId == 'shipping'): ?>
+            <?php if($checkUseForShipping): ?>
+                <?php $i++; ?>
+            <?php endif; ?>
+        <?php else: ?>
+            <?php $i++ ?>
+        <?php endif; ?>
+        <?php if($_stepId == 'billing'): ?>
+            <form id="onestepcheckout-form" action="" method="post">
+                <div id="os-container" class="clearfix f-fix v-fix">
+                    <div id="os-row">
+                        <div id="os-left" class="f-left left">
+                            <ol class="first">
+        <?php endif; ?>
+        <?php if($_stepId == 'shipping_method' || $i == 2): ?>
+                            </ol>
+                        </div >
+                        <div id="os-right" class="f-left left">
+                            <ol class="">
+        <?php elseif($_stepId == 'review'):?>
+                            </ol>
+                            <div id="os-review" >
+                                <ol class="">
+        <?php endif;?>
+        <?php if($_stepId == 'shipping'): ?>
+                                    <li class="step <?php echo $_stepId ?>" <?php if($checkUseForShipping): ?>style="display:block;"<?php else: ?>style="display:none;"<?php endif; ?> id="shipping-address-form">
+        <?php else: ?>
+                                    <li class="<?php echo $_stepId ?> ">
+        <?php endif; ?>
+                                        <div class="headings quickcheckout-title"  <?php echo "style='". Mage::helper('quickcheckout')->getQuickCheckoutskin() . "'"; ?>>
+                                            <span id="quickcheckout-number" <?php if($_stepId == 'review'): ?>class="step-review"<?php elseif($checkUseForShipping): ?>class="step-<?php echo $i ?>"<?php elseif($_stepId != 'shipping'): ?>class="step-<?php echo $i ?>"<?php endif; ?>></span>
+                                            <h3 <?php echo "style='". Mage::helper('quickcheckout')->getQuickCheckoutHeadingCSS() . "'"; ?>><?php echo $_stepInfo['label'] ?></h3>
+                                        </div>
+                                            <?php echo $this->getChildHtml($_stepId) ?>
+                                    </li>
+        <?php endif; ?>
+    <?php endforeach ?>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="clear"></div>
+            <?php if(Mage::helper('quickcheckout')->getQuickCheckoutConfig('general/enable_coupon')): ?>
+                <?php echo $this->getChildHtml('coupon') ?> 
+            <?php endif; ?>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+var cartupdate = new CartUpdate('<?php echo $this->getUrl('checkout/onestep/cartupdate') ?>');
+    var addaddressb4review='<?php echo $this->getUrl('checkout/onestep/save_Before_Review') ?>';
+    var onestepcheckout = new Onestepcheckout(
+                {
+                    failure: '<?php echo $this->getUrl('checkout/onepage/failure') ?>',
+                    reloadReview: '<?php echo $this->getUrl('checkout/onestep/reloadReview') ?>',
+                    reloadPayment: '<?php echo $this->getUrl('checkout/onestep/reloadPayment') ?>',
+                    success: '<?php echo $this->getUrl('checkout/onepage/success') ?>'
+                }                                      
+            );
+    if($('billing-address-select')) {
+        billing.setAddress($('billing-address-select').value);
+    } else {
+        billing.saveCountry();
+    }
+//]]>
+</script>

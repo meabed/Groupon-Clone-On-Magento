@@ -1,0 +1,17 @@
+<div class="subscribe-email">
+    <form action="" class="subscribe-form" id="subscribe-form">
+        <div class="input-prepend inline">
+            <span class="add-on"><i class="icon-envelope"></i></span><input type="text" size="16" id="prependedInput" class="span2">
+        </div>
+        <div class="btn-group inline">
+            <button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <?php foreach ($this->_cities as $city): ?>
+                <li><a href="#"><?php echo $city['label']?></a></li>
+                <?php endforeach;?>
+            </ul>
+        </div>
+        <a class="btn" href="">Subscribe</a>
+
+    </form>
+</div>

@@ -1,0 +1,36 @@
+  <?php $required=Mage::helper('quickcheckout')->getQuickCheckoutConfig('quickheared/enable_quickheared');?>
+<p class="quickcheckout-agreement-p">
+    <label for="quickcheckout_heared"><?php echo Mage::helper('quickcheckout')->getQuickCheckoutConfig('quickheared/label_quickheared'); ?></label>
+    <select id="quickcheckout_heared" name="quickcheckout_heard" title="<?php echo $this->__(Mage::helper('quickcheckout')->getQuickCheckoutConfig('quickheared/label_quickheared')) ?>" class="<?php if($required=='1'){echo "validate-select";}?>" >
+        <option value=""><?php echo $this->__('Please select an Option') ?></option>
+        <?php
+        if($sources=Mage::helper('quickcheckout')->getQuickCheckoutHeard()):
+        foreach($sources as $_option): ?>
+            <option value="<?php echo $_option ?>"><?php echo $_option ?></option>
+        <?php endforeach;
+            endif;
+        ?>
+        <option value="Others"><?php echo $this->__('Others'); ?></option>
+    </select>
+    <input id="quickcheckout_other" type="text" class="<?php if($required=='1'){echo "required-entry";}?>" value="" name="quickcheckout_other" style="display:none;">
+</p>
+<script type="text/javascript">
+ //<![CDATA[
+    $('quickcheckout_heared').observe('change', function(event){
+        if($('quickcheckout_heared').value=="Others"){
+            $('quickcheckout_other').setStyle({display:"inline"});
+            if($('advice-validate-select-quickcheckout_heared')){
+               $('advice-validate-select-quickcheckout_heared').setStyle({display:"none"});
+               $('quickcheckout_heared').removeClassName('validation-failed');
+           }
+       }else{
+           $('quickcheckout_other').setStyle({display:"none"});
+           if($('advice-required-entry-quickcheckout_other')){
+               $('advice-required-entry-quickcheckout_other').setStyle({display:"none"});
+               $('quickcheckout_other').removeClassName('validation-failed');
+               
+           }
+       }
+    });
+      //]]>
+</script>

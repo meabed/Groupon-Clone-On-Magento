@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <checkout_onestep_index>
+        <reference name="head">
+            <action method="addJs" ifconfig="quickcheckout/general/active"><script>quickcheckout/quickcheckout.js</script></action>
+            <action method="addCss" ifconfig="quickcheckout/general/active"><stylesheet>css/quickcheckout/quickcheckout.css</stylesheet></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="checkout/onepage" name="checkout.onepage" template="quickcheckout/onestep.phtml">
+                <action method="setDummyAddress"/>
+                <block type="checkout/onepage_login" name="checkout.onepage.login" as="osc-login" template="quickcheckout/onestep/login.phtml">
+                    <block type="page/html_wrapper" name="checkout.onepage.login.before" as="login_before">
+                        <action method="setMayBeInvisible"><value>1</value></action>
+                    </block>
+                </block>
+                 <block type="checkout/cart_coupon" name="checkout.cart.coupon" as="coupon" template="quickcheckout/onestep/coupon.phtml"/>
+                <block type="checkout/onepage_billing" name="checkout.onepage.billing" as="billing" template="quickcheckout/onestep/billing.phtml"/>
+                <block type="checkout/onepage_shipping" name="checkout.onepage.shipping" as="shipping" template="quickcheckout/onestep/shipping.phtml"/>
+                <block type="checkout/onepage_shipping_method" name="checkout.onepage.shipping_method" as="shipping_method" template="quickcheckout/onestep/shipping_method.phtml">
+                    <block type="checkout/onepage_shipping_method_available" name="checkout.onepage.shipping_method.available" as="available" template="quickcheckout/onestep/shipping_method/available.phtml"/>
+                </block>
+                <block type="checkout/onepage_payment" name="checkout.onepage.payment" as="payment" template="quickcheckout/onestep/payment.phtml">
+                    <block type="checkout/onepage_payment_methods" name="checkout.payment.methods" as="methods" template="quickcheckout/onestep/payment/methods.phtml">
+                        <action method="setMethodFormTemplate"><method>purchaseorder</method><template>payment/form/purchaseorder.phtml</template></action>
+                    </block>
+                </block>
+                <block type="checkout/onepage_review" name="checkout.onepage.review" as="review" template="quickcheckout/onestep/review.phtml">
+                    <block type="checkout/agreements" name="checkout.onepage.agreements" as="agreements" template="quickcheckout/onestep/agreements.phtml"/>
+                    <block type="core/template" name="checkout.onepage.quickheard" as="quickheard" template="quickcheckout/onestep/quickheard.phtml"/>
+                    <block type="core/template" name="checkout.onepage.billingdetail" as="billingdetail" template="quickcheckout/onestep/billingdetail.phtml"/>
+                    <block type="checkout/onepage_shipping_method_additional" name="checkout.onepage.shipping_method.additional" as="additional" template="quickcheckout/onestep/review/additional.phtml"/>
+                </block>
+            </block>
+        </reference>
+    </checkout_onestep_index>
+    <checkout_onestep_review>
+        <remove name="right"/>
+        <remove name="left"/>
+        <block type="checkout/onepage_review_info" name="root" output="toHtml" template="quickcheckout/onestep/review/info.phtml">
+            <action method="addItemRender"><type>default</type><block>checkout/cart_item_renderer</block><template>quickcheckout/onestep/review/item.phtml</template></action>
+            <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>quickcheckout/onestep/review/item.phtml</template></action>
+            <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>quickcheckout/onestep/review/item.phtml</template></action>
+            <block type="checkout/cart_totals" name="checkout.onepage.review.info.totals" as="totals" template="checkout/onepage/review/totals.phtml"/>
+            <block type="core/text_list" name="checkout.onepage.review.info.items.before" as="items_before"/>
+        </block>
+    </checkout_onestep_review>    
+    <checkout_onestep_paymentmethod>
+        <reference name="root">
+             <block type="checkout/onepage_payment_methods" name="checkout.payment.methods" output="toHtml" as="methods" template="quickcheckout/onestep/payment/methods.phtml">
+                <action method="setMethodFormTemplate"><method>purchaseorder</method><template>payment/form/purchaseorder.phtml</template></action>
+            </block>
+        </reference>
+    </checkout_onestep_paymentmethod>
+    <checkout_onestep_shippingmethod>
+        <reference name="root">
+            <block type="checkout/onepage_shipping_method_available" name="checkout.onepage.shipping_method.available" output="toHtml" as="available" template="quickcheckout/onestep/shipping_method/available.phtml"/>
+        </reference>
+    </checkout_onestep_shippingmethod>
+</layout> 

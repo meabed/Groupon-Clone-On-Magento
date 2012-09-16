@@ -1,0 +1,68 @@
+<div class="onestepcheckout-checkout-method">
+    <a href="javascript:void(0);" onclick="login.show();"><?php echo Mage::helper('quickcheckout')->getQuickCheckoutLogin(); ?></a>
+</div>
+<div id="quickcheckout-login" class="quickcheckout-login" style="visibility:hidden;" onclick="login.hide();"></div>
+<div id="quickcheckout-login-form" style="display:none;">
+    <!--<div id="quickcheckout-login-form" class="login-form">-->
+        <a href="javascript:void(0);" onclick="login.hide();" title="<?php echo $this->__('Close') ?>" class="div_closer"></a>
+          <div id="quickcheckout-login-form-div">
+       <!--<div class="login_dialogBox">-->
+            <h1><?php echo $this->__('Login') ?></h1><br />
+            <div id="inner_loader" class="inner_loader" style="display:none;"></div>
+    	<p><?php echo $this->__('Please login below') ?></p>
+        <div id="quickcheckout-error-message" class="quickcheckout-error-message"></div>
+        <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+	
+	    <form id="login-form" action="<?php echo $this->getPostAction() ?>" method="post">
+		<div class="login_form_div">
+		    <label><?php echo $this->__('Email Address') ?></label>
+		    <input type="text" class="quickcheckout-login-form_input required-entry validate-email" id="login-email" name="login[username]" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" />
+		   
+		
+		    <label><?php echo $this->__('Password') ?></label>
+		      <input type="password" class="quickcheckout-login-form_input low_margin required-entry" id="login-password" name="login[password]" />
+		    
+		   <a  href="#" onclick="toggleit('quickcheckout-login-form-div','quickcheckout-forgotpass-div')"><?php echo $this->__('Forgot your password?') ?></a>
+		
+		    <input type="button" class="log_button mycolor" style="<?php echo Mage::helper('quickcheckout')->getQuickCheckoutbuttonCSS(); ?>" onclick="login.login()" value="<?php echo $this->__('Login'); ?>"/>
+		</div>
+	    </form>
+	</div>
+	
+	<div id="quickcheckout-forgotpass-div" style="display:none;">
+		<h1><?php echo $this->__('Forgot Your Password?') ?></h1>
+		<div id="inner_loader_forgotpass" class="inner_loader" style="display:none;"></div>
+	      <div id="quickcheckout-forgotpass-error-message" class="quickcheckout-error-message"></div>
+        <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+	 <p><?php echo $this->__('Please enter your email below and we will send you a new password.') ?></p>
+	    <form action="" method="post" id="forgotpass-form">
+		<div class="login_form_div">
+		    <label><?php echo $this->__('Email Address') ?></label>
+			<input type="text" name="email" alt="email" id="email_address" class="quickcheckout-login-form_input required-entry validate-email" value="<?php echo $this->htmlEscape($this->getEmailValue()) ?>" />
+		    <p class="back-link"><a href="#" onclick="toggleit('quickcheckout-forgotpass-div','quickcheckout-login-form-div')"><small>&laquo; </small><?php echo $this->__('Back to Login') ?></a></p>
+		    <input type="button" class="log_button mycolor" style="<?php echo Mage::helper('quickcheckout')->getQuickCheckoutbuttonCSS(); ?>" onclick="forgotpass.forgotpass()" value="<?php echo $this->__('Submit'); ?>"/>
+		</div>
+	    </form>
+	  
+	</div>
+</div>
+
+
+<script type="text/javascript">
+//<![CDATA[
+var login_loading_text='<?php echo Mage::helper('quickcheckout')->getQuickCheckoutLoading('login')?Mage::helper('quickcheckout')->getQuickCheckoutLoading('login'):'Validating';?>';
+    var login = new Login('<?php echo $this->getUrl('checkout/onestep/loginPost') ?>');
+    function toggleit(a,b){
+	Element.hide(a)
+	Element.show(b)
+	
+    }
+
+//]]>
+</script>
+  <script type="text/javascript">
+	    //<![CDATA[
+	    var forgot_loading_text='<?php echo Mage::helper('quickcheckout')->getQuickCheckoutLoading('forgotpass')?Mage::helper('quickcheckout')->getQuickCheckoutLoading('forgotpass'):'Reseting Password';?>';
+		var forgotpass = new Forgotpass('<?php echo $this->getUrl('checkout/onestep/forgotpassPost') ?>');
+	    //]]>
+ </script>

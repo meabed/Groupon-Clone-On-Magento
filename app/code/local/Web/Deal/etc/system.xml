@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<config>
+	<sections>
+		<deal translate="label" module="deal">
+			<label>Deal</label>
+			<tab>catalog</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>140</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<config translate="label">
+					<label>Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>0</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+
+					<fields>
+						<debug translate="label">
+							<label>Debug Mode</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</debug>
+						<auto_send translate="label">
+							<label>Auto Send Vouchers</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</auto_send>
+						<main_cat translate="label">
+                            <label>Main Category</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>deal/system_config_source_categories</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </main_cat>
+						<side_deals translate="label">
+							<label># Side Deals</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</side_deals>
+						<multi_cart translate="label">
+							<label># Products Allowed in Cart</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</multi_cart>
+
+
+					</fields>
+				</config>
+			</groups>
+		</deal>
+	</sections>
+	<default>
+		<deal>
+			<config>
+				<multi_cart>4</multi_cart>
+			</config>
+		</deal>
+	</default>
+</config>

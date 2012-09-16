@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+    </default>
+    <migs_index_index>
+        <reference name="content">
+            <block type="migs/index" name="migs" template="migs/ingex.phtml" />
+        </reference>
+    </migs_index_index>
+    <migs_index_success>
+        <reference name="content">
+            <block type="migs/success" name="checkout.success" template="checkout/success.phtml"/>
+        </reference>
+    </migs_index_success>
+    <migs_index_failure>
+        <reference name="content">
+            <block type="migs/failure" name="checkout.failure" template="checkout/onepage/failure.phtml"/>
+        </reference>
+    </migs_index_failure>
+</layout> 

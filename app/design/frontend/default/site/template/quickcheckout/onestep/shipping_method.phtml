@@ -1,0 +1,8 @@
+<div id="checkout-shipping-method-load" style="display:block;">
+    <?php echo $this->getChildHtml('available') ?>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+    var shippingMethod = new ShippingMethod("<?php echo $this->getUrl('checkout/onestep/saveShippingMethod') ?>",true);
+//]]>
+</script>

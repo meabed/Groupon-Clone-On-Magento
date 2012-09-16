@@ -1,0 +1,93 @@
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct();
+$this->getDealInfo();
+?>
+
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+
+<div class="product-view">
+    <div class="product-essential">
+        <script type="text/javascript">
+            function submitform() {
+                document.product_addtocart_form.submit();
+            }
+        </script>
+        <form name="product_addtocart_form" action="<?php echo $this->getSubmitUrl($_product) ?>" method="post"
+              id="product_addtocart_form"<?php if ($_product->getOptions()): ?>
+              enctype="multipart/form-data"<?php endif; ?>>
+            <div class="no-display">
+                <input type="hidden" name="product" value="<?php echo $_product->getId() ?>"/>
+                <input type="hidden" name="related_product" id="related-products-field" value=""/>
+            </div>
+
+            <div class="product-shop">
+                <div class="product-top">
+                    <div class="product-name">
+                        <h1><span>Today's Deal: </span><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+                    </div>
+                    <div class="product-img-box">
+                        <?php echo $this->getChildHtml('media') ?>
+                    </div>
+
+                </div>
+
+                <div class="product-bot">
+                    <div class="product-desc">
+                        <div class="head"><?php echo $this->__('Description');?></div>
+                        <div class="details">
+                            <?php echo $_helper->productAttribute($_product, ($_product->getDescription()), 'description') ?>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </form>
+        <div class="product-mid">
+            <div class="product-highlights">
+                <div class="head"><?php echo $this->__('Highlights');?></div>
+                <div class="details">
+                    <ul>
+                        <?php foreach ($this->highlights as $item): ?>
+                        <li><?php echo $item;?></li>
+                        <?php endforeach;?>
+                    </ul>
+                </div>
+            </div>
+            <div class="product-fineprint">
+                <div class="head"><?php echo $this->__('The Fine Print');?></div>
+                <div class="details">
+                    <ul>
+                        <?php foreach ($this->fineprint as $item): ?>
+                        <li><?php echo $item;?></li>
+                        <?php endforeach;?>
+                    </ul>
+                </div>
+            </div>
+            <div class="product-company">
+                <div class="head"><?php echo $this->__('The Company');?></div>
+                <div class="details">
+                    <?php
+                    if ($_product->getCompany()) {
+                        $block = Mage::getModel('cms/block')->load($_product->getCompany());
+                    } else {
+                        $block = Mage::getModel('cms/block')->load('default_company');
+                    }
+                    echo $block->getContent();
+                    ?>
+                </div>
+            </div>
+
+        </div>
+        <div class="facebook-block">
+            <iframe scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; width:320px; height:460px; background: #FFF;" src="http://www.facebook.com/plugins/likebox.php?id=182345975128091&amp;width=328&amp;connections=20&amp;stream=false&amp;header=true&amp;height=460">
+
+            </iframe>
+        </div>
+    </div>
+
+
+</div>

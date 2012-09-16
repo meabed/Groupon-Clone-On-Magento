@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<customer_account>
+		<!-- Mage_Sales -->
+		<reference name="customer_account_navigation">
+			<action method="addLink" translate="label" module="sales">
+				<name>vouchers</name>
+				<path>voucher/view/history/</path>
+				<label>My Vouchers</label>
+			</action>
+		</reference>
+	</customer_account>
+	<customer_account_index>
+		<reference name="customer_account_dashboard">
+			<block type="voucher/recent" name="customer/account_dashboard_info1"
+				as="info1" template="voucher/recent.phtml"></block>
+		</reference>
+	</customer_account_index>
+	<voucher_view_history translate="label">
+		<label>Customer My Account Voucher History</label>
+		<update handle="customer_account" />
+		<reference name="my.account.wrapper">
+			<block type="voucher/history" name="sales.voucher.history">
+				<block type="core/text_list" name="sales.voucher.history.info"
+					as="info" translate="label">
+					<label>Voucher History Info</label>
+				</block>
+			</block>
+			<block type="customer/account_dashboard" name="customer.account.link.back"
+				template="customer/account/link/back.phtml" />
+		</reference>
+	</voucher_view_history>
+	<voucher_view_code>
+		<reference name="root" output="toHtml">
+			<action method="setTemplate">
+				<template>voucher/no-template.phtml</template>
+			</action>
+			<remove name="header"></remove>
+			<remove name="side.bar"></remove>
+			<remove name="footer"></remove>
+			<remove name="global_notices"></remove>
+			<remove name="left"></remove>
+
+		</reference>
+		<reference name="content">
+			<block type="voucher/voucherInfo" name="voucher.info" as="voucherInfo"
+				translate="lable" template="voucher/voucher.phtml">
+				<label>Voucher Info</label>
+			</block>
+		</reference>
+
+	</voucher_view_code>
+	<voucher_view_download>
+		<reference name="root" output="toHtml">
+			<action method="setTemplate">
+				<template>voucher/no-template.phtml</template>
+			</action>
+			<remove name="header"></remove>
+			<remove name="side.bar"></remove>
+			<remove name="footer"></remove>
+			<remove name="global_notices"></remove>
+			<remove name="left"></remove>
+
+		</reference>
+		<reference name="content">
+			<block type="voucher/voucherInfo" name="voucher.info" as="voucherInfo"
+				translate="lable" template="voucher/voucher.phtml">
+				<label>Voucher Info</label>
+			</block>
+		</reference>
+	</voucher_view_download>
+</layout>

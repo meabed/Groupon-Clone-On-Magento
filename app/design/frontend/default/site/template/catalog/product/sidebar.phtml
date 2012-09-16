@@ -1,0 +1,98 @@
+<?php
+$currentProduct = Mage::registry('current_product');
+$currentProductId = 0;
+$exclude = array();
+if($currentProduct){
+    $exclude[] = $currentProduct->getId();
+}
+?>
+<?php
+$_data = $this->getProducts($exclude);
+$_products = $_data['products'];
+?>
+<?if(count($_data['products'])):?>
+<h2 class="more-deals">More <?php echo  $this->helper('deal')->getProductCategoryName($currentProduct);?> Deals</h2>
+<?php endif;?>
+<?php
+$i = 1;
+foreach ($_products as $_product):
+    $exclude[] = $_product->getId();
+
+    ?>
+<article class="row <?php echo ((($i+1)%3) == 0) ? 'mid':'' ;?>">
+    <section itemtype="http://data-vocabulary.org/Product" itemscope="" class="offer-thumbnail span<?php echo ($i==0) ? '12':'4' ;?> ">
+        <div class="offer-thumbnail-hover">
+            <a href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class=" offer-thumbnail-image-link">
+                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->constrainOnly(TRUE)
+                    ->keepAspectRatio(false)
+                    ->keepFrame(true)->resize(540, 255); ?>" itemprop="image" class="offer-thumbnail-image">
+                <div class="offer-thumbnail-image-overlay"></div>
+            </a>
+            <a itemprop="description" href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class="offer-thumbnail-full-title"><?php echo ($i==0) ? $_product->getNameShort() : $_product->getName(); ?></a>
+            <a href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class="offer-thumbnail-link btn btn-success">View Deal</a>
+        </div>
+        <a href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class="offer-thumbnail-short-title"><?php echo $_product->getShortName();?></a>
+        <span itemprop="brand" href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class="offer-thumbnail-merchant-name"><?php echo $_product->getPriceDesc();?></span>
+        <p class="offer-thumbnail-description">
+            <?php echo substr($_product->getShortDescription(),0,440); ?>
+
+
+        </p>
+        <ul class="offer-thumbnail-numbers">
+            <?php if ($i==0):?>
+            <li class="offer-thumbnail-buy-count"><?php //echo !empty($_data['qty'][$_product->getSku()]) ? $_data['qty'][$_product->getSku()] : '0' ;?>
+                <?php echo $this->helper('deal')->getPriceCurrency($_product->getPrice());?>
+            </li>
+            <?php endif;?>
+            <li class="offer-thumbnail-time-left"><?php echo $this->helper('deal')->getDateDiff($_product->getEndDate(),Mage::getModel('core/date')->date('Y-m-d H:i:s'));?> Left</li>
+        </ul>
+    </section>
+</article>
+
+
+<?php $i++; endforeach;?>
+
+<?php
+$_data = $this->getOtherProducts($exclude);
+$_products = $_data['products'];
+?>
+<?if(count($_data['products'])):?>
+<h2 class="more-deals">More Daily Deals</h2>
+<?php endif;?>
+<?php
+$i = 1;
+foreach ($_products as $_product):
+    if($currentProductId == $_product->getId()){continue;}
+    ?>
+<article class="row <?php echo ((($i+1)%3) == 0) ? 'mid':'' ;?>">
+    <section itemtype="http://data-vocabulary.org/Product" itemscope="" class="offer-thumbnail span<?php echo ($i==0) ? '12':'4' ;?> ">
+        <div class="offer-thumbnail-hover">
+            <a href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class=" offer-thumbnail-image-link">
+                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->constrainOnly(TRUE)
+                    ->keepAspectRatio(false)
+                    ->keepFrame(true)->resize(540, 255); ?>" itemprop="image" class="offer-thumbnail-image">
+                <div class="offer-thumbnail-image-overlay"></div>
+            </a>
+            <a itemprop="description" href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class="offer-thumbnail-full-title"><?php echo ($i==0) ? $_product->getNameShort() : $_product->getName(); ?></a>
+            <a href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class="offer-thumbnail-link btn btn-success">View Deal</a>
+        </div>
+        <a href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class="offer-thumbnail-short-title"><?php echo $_product->getShortName();?></a>
+        <span itemprop="brand" href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class="offer-thumbnail-merchant-name"><?php echo $_product->getPriceDesc();?></span>
+        <p class="offer-thumbnail-description">
+            <?php echo substr($_product->getShortDescription(),0,440); ?>
+
+
+        </p>
+        <ul class="offer-thumbnail-numbers">
+            <?php if ($i==0):?>
+            <li class="offer-thumbnail-buy-count"><?php //echo !empty($_data['qty'][$_product->getSku()]) ? $_data['qty'][$_product->getSku()] : '0' ;?>
+                <?php echo $this->helper('deal')->getPriceCurrency($_product->getPrice());?>
+            </li>
+            <?php endif;?>
+            <li class="offer-thumbnail-time-left"><?php echo $this->helper('deal')->getDateDiff($_product->getEndDate(),Mage::getModel('core/date')->date('Y-m-d H:i:s'));?> Left</li>
+        </ul>
+    </section>
+</article>
+
+
+<?php $i++; endforeach;?>

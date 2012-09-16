@@ -1,0 +1,97 @@
+<?php
+$_product = $_product = $this->getProduct();?>
+<div id="scroller-anchor">
+    <div id="offer-sales-bar" >
+        <div class="container">
+            <div class="row">
+
+                <div class="span3 top-spacer-15">
+                    <a class="font-regular2 font-fancy-medium" href="">
+                        <!--<i class="icon-share-alt icon-pink"></i>-->
+                        Refer a friend, earn $2.72!
+                    </a>
+                </div>
+
+                <div class="span9" id="deal-show-vitals">
+                    <div class="pull-right" id="deal-show-vitals-buy">
+                        <a onclick="submitform();" data-deal_id="<?php echo $_product->getId();?>" href="#" data-toggle="modal" class="btn btn-large btn-teambuy-pink font-large" id="buy-button">
+                            <strong>BUY</strong> <?php echo $this->getPriceCurrency($_product->getPrice()); ?> </a>
+                    </div>
+                    <div id="deal-show-vitals-pricevalue">
+                        <span class="font-regular2">
+                            <strong><?php echo $this->__('Save') . ': ' . (int)((($_product->getOriginalPrice() - $_product->getPrice()) / $_product->getOriginalPrice()) * 100) . '%'; ?></strong>
+                        </span>
+                        <br>
+                        <?php echo $this->__('Value') . ': ' . $this->getPriceCurrency($_product->getOriginalPrice()); ?>
+                        </div>
+                    <div id="deal-show-vitals-numbuys">
+                        <span class="font-regular2">
+                            <strong><?php echo (int)$this->ordered_qty.' '.$this->__('BOUGHT');?></strong>
+                        </span>
+                        <br>
+                        <span class="circles">
+                        <?php if($this->ordered_qty >= $_product->getMinQty()):
+                            for($i=1;$i<=$_product->getMinQty();$i++){?>
+                                <span class="full"></span>
+                                <?php }
+                        else:
+                            for($i=1;$i<=$_product->getMinQty();$i++){?>
+                                <span class="<?php echo $i <= $this->ordered_qty ? 'full': 'empty' ;?>"></span>
+                                <?php }endif;?>
+
+                    </span>
+                    <span class="min">
+                        <?php
+                        $left = (int)$_product->getMinQty() - (int)$this->ordered_qty;
+                        if($left <= 0){
+                            echo $this->__('Minimum of %s Reached',(int)$_product->getMinQty());
+                        }else{
+                            if($left == 1)
+                            {
+                                echo $this->__('Just one more needed!');
+                            }else{
+                                echo $this->__('%s more needed',$left);
+                            }
+                        }
+
+                        ?>
+                    </span>
+                        </div>
+                    <div id="deal-show-vitals-timeleft">
+                        <i class="icon-time"></i>
+                        <span class="font-regular2">
+                            <strong><div class="product-time-left">
+
+                                <div id="countdowncontainer"></div>
+                                <script type="text/javascript">
+                                    var futuredate = new cdtime("countdowncontainer", "<?php echo date('F d, Y 00:00:00', strtotime($_product->getEndDate()));?>")
+                                    futuredate.displaycountdown("days", formatresults)
+                                </script>
+                            </div></strong>
+                        </span>
+                        <br>
+                        <?php echo $this->__('Time Left To Buy');?></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    function sticky_relocate() {
+        var window_top = jQuery(window).scrollTop();
+        var div_top = jQuery('#scroller-anchor').offset().top;
+        if (window_top > div_top)
+        {
+            jQuery('#offer-sales-bar').addClass('stick');
+        }
+        else
+            jQuery('#offer-sales-bar').removeClass('stick');
+    }
+    jQuery(function() {
+        jQuery(window).scroll(sticky_relocate);
+        sticky_relocate();
+    });
+
+</script>

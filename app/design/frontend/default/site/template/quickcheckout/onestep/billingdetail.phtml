@@ -1,0 +1,61 @@
+<br/>
+<div class="left div_detail" id="billing:firstname_detail"></div><div class="left div_detail" id="billing:lastname_detail"></div><br />
+<div class="div_detail" id="billing:company_detail"></div>
+<div class="div_detail" id="billing:email_detail"></div>
+<?php for ($_i=1, $_n=$this->helper('customer/address')->getStreetLines(); $_i<=$_n; $_i++): ?>
+    <div class="div_detail" id="billing:street<?php echo $_i?>_detail"></div>
+<?php endfor ?>
+<div class="div_detail" id="billing:street2_detail"></div>
+<div class="left div_detail" id="billing:city_detail"></div><div class="left div_detail"></div><div class="left div_detail" id="billing:region_id_detail"></div><div class="left div_detail" id="billing:region_detail"></div><div class="left div_detail" id="billing:postcode_detail"></div><br/>
+<div class="div_detail" id="billing:country_id_detail"></div>
+<div class="div_detail" id="billing:telephone_detail"></div>
+<div class="div_detail" id="billing:fax_detail"></div>
+
+<script type="text/javascript">
+ //<![CDATA[
+    $$("#os-left ol li.billing input").each(function(imp){
+        if($(imp.id)!=null){
+            var label='';
+            var labels = document.getElementsByTagName('LABEL');
+            for (var i = 0; i < labels.length; i++) {
+                if (labels[i].htmlFor == imp.id) {
+                    label=labels[i].innerHTML +': ';
+                    label=label.replace('*','').stripTags();
+                }
+            }
+            $(imp.id).observe('change', function(event){
+                if($(imp.id+'_detail')){newlabel=label+$(imp.id).value;
+                      Element.show("quickcheckout_billingdetail");$(imp.id+'_detail').update($(imp.id).value?newlabel:' ');
+                }
+            });
+        }
+    });
+    $$("#os-left ol li.billing select").each(function(imp){
+        if($(imp.id)!=null){
+            var selectlabels = document.getElementsByTagName('LABEL');
+                for (var i = 0; i < selectlabels.length; i++) {
+                    if (selectlabels[i].htmlFor == imp.id) {
+                        selectlabel=selectlabels[i].innerHTML +': ';
+                        selectlabel=selectlabel.replace('*','').stripTags();
+                    }
+                }
+            if($(imp.id+'_detail') && $(imp.id).value){
+                var newselectlabel=selectlabel + $(imp.id).options[$(imp.id).selectedIndex].text;
+                 Element.show("quickcheckout_billingdetail");$(imp.id+'_detail').update(newselectlabel+' ');
+            }
+            $(imp.id).observe('change', function(event){
+                if($(imp.id+'_detail')){
+                    for (var i = 0; i < selectlabels.length; i++) {
+                        if (selectlabels[i].htmlFor == imp.id) {
+                            selectlabel=selectlabels[i].innerHTML +': ';
+                            selectlabel=selectlabel.replace('*','').stripTags();
+                        }
+                    }
+                    newselectlabel=selectlabel + $(imp.id).options[$(imp.id).selectedIndex].text;
+                    Element.show("quickcheckout_billingdetail");$(imp.id+'_detail').update($(imp.id).value?newselectlabel:'');
+                }
+            });
+        }
+    });
+      //]]>
+</script>

@@ -1,0 +1,49 @@
+<div id="checkout-review-load" style="display:block;" class="order">
+    <?php echo $this->getChildHtml('info') ?>
+</div>
+<div id="checkout-review-submit">
+   
+ <?php echo $this->getChildHtml('agreements') ?>
+    <?php if($news=Mage::helper('quickcheckout')->getQuickCheckoutConfig('general/enable_newsletter')): ?>
+        <p class="quickcheckout-agreement-p">  <input <?php if($news =='1'){echo "checked='checked'";}?> type="checkbox" name="is_subscribed" value="1" title="<?php echo $this->__('Sign Up for Newsletter'); ?>" class="checkbox"  id="newsletter" /><label for="newsletter"><?php echo $this->__('Sign Up for Newsletter'); ?></label></p>
+    <?php endif; ?>
+     <?php if(Mage::helper('quickcheckout')->getQuickCheckoutConfig('quickheared/enable_quickheared')): ?>
+       <?php echo $this->getChildHtml('quickheard'); ?>
+    <?php endif; ?>
+    <?php if(Mage::helper('quickcheckout')->getQuickCheckoutConfig('general/enable_comments')): ?>
+        <p class="quickcheckout-agreement-p">
+            <label for="comments"><?php echo Mage::helper('quickcheckout')->getQuickCheckoutConfig('general/label_comments'); ?></label><br />
+            <textarea cols="200" rows="6" name="quickcheckout_comment" value="" title="<?php echo $this->__('Enter Special Comments'); ?>"  id="comments" ></textarea>
+        </p>
+    <?php endif; ?>
+  
+    <div id="onepage-checkout-shipping-method-additional-load">
+        <?php echo $this->getChildHtml('additional') ?>
+    </div>
+      <?php if(Mage::helper('quickcheckout')->getQuickCheckoutConfig('general/enable_detail')): ?>
+        <div class="quickcheckout-agreement-p" id="quickcheckout_billingdetail" style="display:none;">
+            <div class="headings quickcheckout-title"  <?php echo "style='". Mage::helper('quickcheckout')->getQuickCheckoutskin() . "'"; ?>>
+                <span id="quickcheckout-number" class="step-review"></span>
+                <h3 <?php echo "style='". Mage::helper('quickcheckout')->getQuickCheckoutHeadingCSS() . "'"; ?>><?php echo $this->__('Recheck Your Billing Detail') ?></h3>
+            </div>
+            <?php echo $this->getChildHtml('billingdetail') ?>
+        </div>
+    <?php endif; ?>
+    <div class="buttons-set" id="review-buttons-container">
+        <p><?php echo $this->__('Forgot an Item?') ?> <a href="<?php echo $this->getUrl('checkout/cart') ?>"><?php echo $this->__('Edit Your Cart') ?></a></p>
+        <div class="margin-top">
+            <?php if(Mage::helper('quickcheckout')->getQuickCheckoutConfig('general/enable_coupon')): ?>
+            <button type="button" class="left btn btn-success" style="<?php echo Mage::helper('quickcheckout')->getQuickCheckoutbuttonCSS(); ?>"  onclick="coupon.show();" title="<?php echo $this->__('Apply Coupon'); ?>" ><span><span><?php echo $this->__('Apply Coupon') ?></span></span></button>
+           <?php endif; ?>
+            <button type="button" title="<?php echo $this->__('Place Order') ?>" style="<?php echo Mage::helper('quickcheckout')->getQuickCheckoutbuttonCSS(); ?>" class="btn btn-success" onclick="review.save();"><span><span><?php echo $this->__('Place Order') ?></span></span></button>
+        </div>
+    </div>
+    <script type="text/javascript">
+    //<![CDATA[
+        var Review_Loading_Text='<?php echo Mage::helper('quickcheckout')->getQuickCheckoutLoading('review')?Mage::helper('quickcheckout')->getQuickCheckoutLoading('review'):'Updating Review Order Data';?>';
+        var Review_Submitting_Text='<?php echo Mage::helper('quickcheckout')->getQuickCheckoutLoading('order')?Mage::helper('quickcheckout')->getQuickCheckoutLoading('order'):'Submitting Your order Now';?>';
+        var review = new Review('onestepcheckout-form', '<?php echo $this->getUrl('checkout/onestep/saveOrder') ?>', $('checkout-agreements'));
+        var review_url='<?php echo $this->getUrl('checkout/onestep/saveOrder') ?>';
+    //]]>
+    </script>
+</div>

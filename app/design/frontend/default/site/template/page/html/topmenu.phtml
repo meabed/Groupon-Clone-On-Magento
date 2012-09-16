@@ -1,0 +1,13 @@
+
+<div class="top_menu">
+    <div class="wrapper">
+    <ul class="nav nav-pills">
+        <?php if(!empty($this->_subcats)):?>
+        <?php foreach ($this->_subcats as $cat): ?>
+        <li <?php echo $cat['active'] ? 'class="active"': '' ;?>><a href="<?php echo $cat['url']?>"><?php echo $cat['label'];?></a></li>
+        <?php endforeach; ?>
+        <?php endif;?>
+        <li><a href="<?php echo $this->getUrl('past-deals');?>"><?php echo $this->__('Past Deals');?></a></li>
+    </ul>
+</div>
+</div>

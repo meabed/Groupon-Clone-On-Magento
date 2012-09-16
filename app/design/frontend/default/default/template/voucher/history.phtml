@@ -1,0 +1,55 @@
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php $_vouchers = $this->getVouchers(); ?>
+<div class="page-title">
+    <h1><?php echo $this->__('My Vouchers') ?></h1>
+</div>
+<?php echo $this->getPagerHtml(); ?>
+<?php if ($_vouchers->getSize()): ?>
+    <table class="data-table" id="my-vouchers-table">
+        <col width="1"/>
+        <col width="1"/>
+        <col width="1"/>
+        <col width="1"/>
+        <col width="1"/>
+        <col width="1"/>
+        <col width="1"/>
+        <thead>
+        <tr>
+            <th><?php echo $this->__('Order #') ?></th>
+            <th><?php echo $this->__('Date') ?></th>
+            <th><?php echo $this->__('Voucher Code') ?></th>
+            <th><?php echo $this->__('Product Name') ?></th>
+
+            <th><?php echo $this->__('Status') ?></th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($_vouchers as $_voucher): ?>
+        <tr>
+            <td><?php echo $_voucher->getOrderIncrementID() ?></td>
+            <td><span class="nobr"><?php echo $this->formatDate($_voucher->getCreatedAtStoreDate()) ?></span></td>
+            <td><?php echo $_voucher->getDealVoucherCode() ?></td>
+            <td><?php echo $_voucher->getName();?></td>
+
+            <td><em><?php echo ucwords($_voucher->getStatus()) ?></em></td>
+            <td class="a-center">
+                        <span class="nobr">
+                        <a href="<?php echo $this->getViewUrl($_voucher) ?>"><?php echo $this->__('View') ?></a>
+                        </span>
+            </td>
+            <td class="a-center">
+                        <span class="nobr">
+                        <a href="<?php echo $this->getDownloadUrl($_voucher) ?>"><?php echo $this->__('Download') ?></a>
+                        </span>
+            </td>
+        </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<script type="text/javascript">decorateTable('my-vouchers-table');</script>
+<?php echo $this->getPagerHtml(); ?>
+<?php else: ?>
+<p><?php echo $this->__('You have vouchers available.'); ?></p>
+<?php endif ?>

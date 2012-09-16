@@ -1,0 +1,28 @@
+<dl class="sp-methods" id="checkout-payment-method-load">
+<?php foreach ($this->getMethods() as $_method): $_code = $_method->getCode() ?>
+    <dt>
+    <?php if( sizeof($this->getMethods()) > 1 ): ?>
+        <input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" title="<?php echo $this->htmlEscape($_method->getTitle()) ?>" onclick="payment.switchMethod('<?php echo $_code ?>')"<?php if($this->getSelectedMethodCode()==$_code): ?> checked="checked"<?php endif; ?> class="radio validate-one-required-by-name" />
+    <?php else: ?>
+        <span class="no-display"><input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" checked="checked" class="radio" /></span>
+    <?php endif; ?>
+        <label for="p_method_<?php echo $_code ?>"><?php echo $this->getMethodTitle($_method)?$this->getMethodTitle($_method):$_method->getTitle(); ?> <?php echo $this->getMethodLabelAfterHtml($_method) ?></label>
+    </dt>
+    <?php if ($html = $this->getPaymentMethodFormHtml($_method)?$this->getPaymentMethodFormHtml($_method):$this->getChildHtml('payment.method.'.$_code)): ?>
+    <dd>
+        <?php echo $html; ?>
+    </dd>
+    <?php endif; ?>
+<?php endforeach; ?>
+</dl>
+<script type="text/javascript">
+//<![CDATA[
+payment.init();
+//]]>
+</script>
+<script type="text/javascript">
+    //<![CDATA[
+    var ShippingMethods_Loading_Text='<?php echo Mage::helper('quickcheckout')->getQuickCheckoutLoading('ship_method')?Mage::helper('quickcheckout')->getQuickCheckoutLoading('ship_method'):'Updating Shipping Method';?>';
+        $$('#checkout-payment-method-load dt input').invoke('observe', 'click', function(event){payment.savePayment();});
+    //]]>
+</script>

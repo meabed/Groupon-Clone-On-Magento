@@ -1,0 +1,325 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+	<Web translate="label" module="quickcheckout">
+	    <label>Web Extensions</label>
+	    <sort_order>100</sort_order>
+	</Web>
+    </tabs>
+   <sections>
+       <quickcheckout>
+            <label>QuickCheckout</label>
+            <tab>Web</tab>
+             <class>separator-top</class>
+            <frontend_type>text</frontend_type>
+            <sort_order>150</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+		<groups>
+                    <general translate="label">
+                        <label>General</label>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>0</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <fields>
+                            <active translate="label">
+                                <label>Enable Quick Checkout</label>
+                                <frontend_type>select</frontend_type>
+                                <source_model>adminhtml/system_config_source_yesno</source_model>
+                                <sort_order>1</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </active>
+                            <title translate="label">
+                                <label>Quick Checkout Title</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>10</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </title>
+                            <enable_content translate="label">
+                                <label>Enable Quick Checkout Content</label>
+                                <frontend_type>select</frontend_type>
+                                <source_model>adminhtml/system_config_source_yesno</source_model>
+                                <sort_order>20</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </enable_content>
+                            <content translate="label">
+                                <label>Enter Quick Checkout Content</label>
+                                <frontend_type>textarea</frontend_type>
+                                <sort_order>21</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </content>
+			    <enable_detail translate="label">
+                                <label>Enable Billing Detail on Quick Checkout</label>
+                                <frontend_type>select</frontend_type>
+                                <source_model>adminhtml/system_config_source_yesno</source_model>
+                                <sort_order>32</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </enable_detail>
+			    <enable_newsletter translate="label">
+                                <label>Enable NewsLetter Subscription on Quick Checkout</label>
+                                <frontend_type>select</frontend_type>
+                                <source_model>quickcheckout/checkbox</source_model>
+                                <sort_order>31</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </enable_newsletter>
+			    <enable_comments translate="label">
+                                <label>Enable Comments on Quick Checkout</label>
+                                <frontend_type>select</frontend_type>
+                                <source_model>adminhtml/system_config_source_yesno</source_model>
+                                <sort_order>32</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </enable_comments>
+			    <label_comments translate="label">
+                                <label>Label For Comments on Quick Checkout</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>33</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+				<validate>required-entry</validate>
+                            </label_comments>
+			    <enable_cartupdate translate="label">
+                                <label>Allow to change Quantity on Quick Checkout</label>
+                                <frontend_type>select</frontend_type>
+                                <source_model>adminhtml/system_config_source_yesno</source_model>
+                                <sort_order>34</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </enable_cartupdate>
+			     <enable_coupon translate="label">
+                                <label>Enable Coupon on Quick Checkout</label>
+                                <frontend_type>select</frontend_type>
+                                <source_model>adminhtml/system_config_source_yesno</source_model>
+                                <sort_order>35</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </enable_coupon>
+			    <enable_login translate="label">
+                                <label>Enable Login link on Quick Checkout</label>
+                                <frontend_type>select</frontend_type>
+                                <source_model>adminhtml/system_config_source_yesno</source_model>
+                                <sort_order>36</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </enable_login>
+			    <enable_register translate="label">
+                                <label>Enable Customer Registration on Quick Checkout</label>
+                                <frontend_type>select</frontend_type>
+                                <source_model>quickcheckout/checkbox</source_model>
+                                <sort_order>37</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </enable_register>
+                            <login translate="label">
+                                <label>Enter Quick Checkout Login Link Context</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>40</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </login>
+			    <update_country translate="label">
+                               <label>Update Shipping/Payment Methods on Country Change</label>
+                                <frontend_type>select</frontend_type>
+                                <source_model>adminhtml/system_config_source_yesno</source_model>
+                                <sort_order>45</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </update_country>
+			    <update_zip translate="label">
+                               <label>Update Shipping/Payment Methods on Zip/Postal code Change</label>
+                                <frontend_type>select</frontend_type>
+                                <source_model>adminhtml/system_config_source_yesno</source_model>
+                                <sort_order>47</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </update_zip>
+			    <update_state translate="label">
+                               <label>Update Shipping/Payment Methods on State/Province Change</label>
+                                <frontend_type>select</frontend_type>
+                                <source_model>adminhtml/system_config_source_yesno</source_model>
+                                <sort_order>50</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </update_state>
+                        </fields>
+                    </general>
+                    <quickheared>
+			<label>Ask Sources From Customers which Lead Them To Your Site.</label>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>10</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <fields>
+			    <enable_quickheared translate="label">
+                                <label>Enable Quick Heared </label>
+                                <frontend_type>select</frontend_type>
+                                <source_model>quickcheckout/required</source_model>
+                                <sort_order>41</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </enable_quickheared>
+			    <label_quickheared translate="label">
+                                <label>Enter Label For Quick Heared </label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>42</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+				<validate>required-entry</validate>
+                            </label_quickheared>
+			    <options_quickheared translate="label">
+                                <label>Enter The Well Known Sources For Quick Heared </label>
+                                <frontend_type>textarea</frontend_type>
+                                <sort_order>43</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+				<comment><![CDATA[Seperate each option with comma <br/>Example <b>Google,Magazine Advertising,Newspaper</b><br/>Please don't Include the option <b>Others</b> ]]></comment>
+                            </options_quickheared>
+			</fields>
+		    </quickheared>
+		    <css_style translate="label">
+                        <label>Theme</label>
+                        <frontend_type>text</frontend_type>
+                        <comment><![CDATA[Enter Color Code as <b>#000000</b> ]]></comment>
+                        <sort_order>10</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <fields>
+			    <admin>
+				<label>Admin Theme</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>5</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+				<comment><![CDATA[Do not Change this if you don't know how to handle it ]]></comment>
+			    </admin>
+                            <heading translate="label">
+                                <label>Enter Color Code For Tabs Background</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>10</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </heading>
+                            <heading_text translate="label">
+                                <label>Enter CSS Style For Tabs Heading</label>
+                                <frontend_type>textarea</frontend_type>
+                                <comment><![CDATA[Example <b>color:#FFF;font: 18px/28px Trebuchet MS;</b> ]]></comment>
+                                <sort_order>15</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </heading_text>
+                            <button translate="label">
+                                <label>Enter CSS Style For Buttons</label>
+                                <frontend_type>textarea</frontend_type>
+                                <comment><![CDATA[Example <b>color:#000;background: #1474FC;</b> ]]></comment>
+                                <sort_order>20</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </button>
+			    <agreement translate="label">
+                                <label>Enter the width of Agreements Popups</label>
+                                <frontend_type>text</frontend_type>
+				<comment><![CDATA[Enter in pixels. Example <b>200</b> ]]></comment>
+                                <sort_order>30</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </agreement>
+                        </fields>
+                    </css_style>
+                    <ajax_text>
+                        <label>Ajax Loading Message</label>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>20</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <fields>
+                            <login translate="label">
+                                <label>Login Validation</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>1</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </login>
+                            <forgotpass translate="label">
+                                <label>Forgot Password Loading</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>5</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </forgotpass>
+                            <ship_method translate="label">
+                                <label>Shipping Method</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>10</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </ship_method>
+                             <pay_method translate="label">
+                                <label>Payment Method</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>20</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </pay_method>
+                            <review translate="label">
+                                <label>Review Order</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>30</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </review>
+                            <order translate="label">
+                                <label>Order Submission</label>
+                                <frontend_type>text</frontend_type>
+                                <sort_order>40</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </order>
+                        </fields>
+                    </ajax_text>
+		    
+                </groups>
+        </quickcheckout>
+    </sections>
+</config>

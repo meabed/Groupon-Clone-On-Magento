@@ -1,0 +1,47 @@
+
+<div id="quickcheckout-coupon" class="quickcheckout-coupon" style="visibility:hidden;" onclick="coupon.hide();"></div>
+<div id="quickcheckout-coupon-form" style="display:none;">
+    <a href="javascript:void(0);" onclick="coupon.hide();"  class="div_closer"></a>
+    <div id="quickcheckout-coupon-form-div">
+    <h1><?php echo $this->__('Discount Codes') ?></h1><br />
+    <div id="inner_loader_coupon" class="inner_loader" style="display:none;"></div>
+    <p><?php echo $this->__('Enter your coupon code if you have one.') ?></p>
+    <div id="quickcheckout-coupon-message" class="quickcheckout-error-message"></div>
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+        <form id="coupon_form" method="post">
+            <div class="coupon_form_div">
+                <input type="hidden" name="remove" id="remove-coupone" value="0" />
+                <input class="input-text"  id="coupon_code" name="coupon_code" value="<?php echo $this->htmlEscape($this->getCouponCode()) ?>" />
+                <div style="">
+                <input type="button" class="left coup_button mycolor" style="<?php echo Mage::helper('quickcheckout')->getQuickCheckoutbuttonCSS(); ?>" onclick="coupon.coupon(false)" value="<?php echo $this->__('Apply Coupon'); ?>" title="<?php echo $this->__('Apply Coupon'); ?>" />
+                   <input type="button" id="remove_coupon" class="coup_button mycolor" style="<?php echo Mage::helper('quickcheckout')->getQuickCheckoutbuttonCSS(); ?><?php if(!strlen($this->getCouponCode())){echo "display:none";}?>" onclick="coupon.coupon(true)" value="<?php echo $this->__('Cancel Coupon'); ?>" title="<?php echo $this->__('Cancel Coupon'); ?>"/>
+            </div></div>
+        </form>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    //<![CDATA[
+      //  var forgot_loading_text='<?php echo Mage::helper('quickcheckout')->getQuickCheckoutLoading('forgotpass')?Mage::helper('quickcheckout')->getQuickCheckoutLoading('forgotpass'):'Reseting Password';?>';
+        var coupon = new Coupon('<?php echo $this->getUrl('checkout/onestep/couponPost') ?>');
+    //]]>
+    
+</script>
+
+<!--<script type="text/javascript">-->
+<!--//<![CDATA[-->
+<!--var discountForm = new VarienForm('discount-coupon-form');-->
+<!--discountForm.submit = function (isRemove) {-->
+<!--    if (isRemove) {-->
+<!--        $('coupon_code').removeClassName('required-entry');-->
+<!--        $('remove-coupone').value = "1";-->
+<!--    } else {-->
+<!--        $('coupon_code').addClassName('required-entry');-->
+<!--        $('remove-coupone').value = "0";-->
+<!--    }-->
+<!--    return VarienForm.prototype.submit.bind(discountForm)();-->
+<!--}-->
+<!--//]]>-->
+<!--</script>-->
