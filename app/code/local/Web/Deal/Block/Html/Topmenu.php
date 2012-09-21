@@ -19,7 +19,12 @@ class Web_Deal_Block_Html_Topmenu extends Mage_Core_Block_Template
         $mainCat = empty($catCookie) ? (int)Mage::getStoreConfig('deal/config/main_cat') : Mage::getModel('core/cookie')->get('main_cat');
 
         $array = array();
-        $cats = Mage::getModel('catalog/category')->getCollection()->addAttributeToSelect('name')->addFilter('parent_id', $mainCat)->addFilter('level', '3')->load();
+        $cats = Mage::getModel('catalog/category')->getCollection()
+            ->addAttributeToSelect('name')
+            ->addFilter('parent_id', $mainCat)
+            ->addFilter('level', '3')
+            ->addAttributeToFilter('include_in_menu',array('eq'=>1))
+            ->addAttributeToFilter('is_active',array('eq'=>1))->load();
         $i = 0;
         $array = array();
         $active = false;

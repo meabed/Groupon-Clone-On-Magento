@@ -661,7 +661,7 @@ div.sidebar
 }
 div.sidebar h2 {
     color: #6A0948;
-
+    clear: both;
     font-size: 20px;
     line-height: 22px;
     margin-bottom: 15px;

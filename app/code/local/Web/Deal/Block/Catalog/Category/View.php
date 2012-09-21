@@ -24,6 +24,7 @@ class Web_Deal_Block_Catalog_Category_View extends Mage_Catalog_Block_Category_V
             ->addAttributeToSort('sort','ASC')
             ->addAttributeToSort('main_deal','DESC')
             ->addAttributeToFilter('status', array('eq' => Mage_Catalog_Model_Product_Status::STATUS_ENABLED))
+            ->addAttributeToFilter('visibility', array('neq' => Mage_Catalog_Model_Product_Visibility::VISIBILITY_NOT_VISIBLE))
             ->load();
         $skus = array();
         foreach($this->_products as $product)

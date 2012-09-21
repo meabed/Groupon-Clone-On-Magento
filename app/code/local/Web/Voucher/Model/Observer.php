@@ -99,16 +99,20 @@ class Web_Voucher_Model_Observer
         }
 
     }
-    public function _sendVoucherEmail($voucher = false,$order)
+    public function _sendVoucherEmail($voucher = false,$order=false)
     {
         //return ;
         if($this->_productId){
             $_product = Mage::getModel('catalog/product')->load($this->_productId);
         }else if ($voucher){
             $_product = Mage::getModel('catalog/product')->load($voucher->getProductId());
+            if(!$order){
+                $order = Mage::getModel('sales/order')->load($voucher->getOrderId());
+            }
             $this->_order = $order;
             $this->_voucherId = $voucher->getId();
         }
+
         if (!$this->_productPrice) {
             $this->_productPrice = (int)$_product->getPrice();
             $this->_productName = $_product->getName();
