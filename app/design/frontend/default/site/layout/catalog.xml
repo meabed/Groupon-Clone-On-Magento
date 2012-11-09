@@ -173,12 +173,7 @@ Product view
             <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
         </reference>
         <reference name="head">
-            <action method="addJs"><script>varien/product.js</script></action>
-            <action method="addJs"><script>varien/configurable.js</script></action>
 
-            <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/><!--<if/><condition>can_load_calendar_js</condition>--></action>
-            <action method="addItem"><type>js</type><name>calendar/calendar.js</name><!--<params/><if/><condition>can_load_calendar_js</condition>--></action>
-            <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name><!--<params/><if/><condition>can_load_calendar_js</condition>--></action>
         </reference>
         <reference name="top.menu">
             <block type="catalog/product_view" after="catalog.topnav" name="product.top.bar"
@@ -219,7 +214,7 @@ Product view
 
                 <block type="catalog/product_view" name="product.info.options.wrapper" as="product_options_wrapper" template="catalog/product/view/options/wrapper.phtml" translate="label">
                     <label>Info Column Options Wrapper</label>
-                    <block type="core/template" name="options_js" template="catalog/product/view/options/js.phtml"/>
+
                     <block type="catalog/product_view_options" name="product.info.options" as="product_options" template="catalog/product/view/options.phtml">
                         <action method="addOptionRenderer"><type>text</type><block>catalog/product_view_options_type_text</block><template>catalog/product/view/options/type/text.phtml</template></action>
                         <action method="addOptionRenderer"><type>file</type><block>catalog/product_view_options_type_file</block><template>catalog/product/view/options/type/file.phtml</template></action>

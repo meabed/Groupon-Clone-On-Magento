@@ -2,12 +2,6 @@
 class Web_Deal_Block_Catalog_Category_View extends Mage_Catalog_Block_Category_View
 {
     protected $_products;
-    public function _construct()
-    {
-        //echo "X";
-        //echo $this->_products->count();
-
-    }
     public function getProducts()
     {
         $currentCategory = Mage::registry('current_category');

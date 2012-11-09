@@ -3,11 +3,12 @@ class Web_Migs_Model_Info extends Mage_Core_Model_Abstract
 {
     public function _construct()
     {
-        parent::_construct();
-        $this->_init('migs/info');
+        //parent::_construct();
+        //$this->_init('migs/info');
     }
     public static function checkMigsOrders()
     {
+        Mage::log('Cron Ran',0,'cron.txt');
         if(!Mage::getSingleton('migs/paymentMethod')->getConfigData('api_active')){
             return ;
         }

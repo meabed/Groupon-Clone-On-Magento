@@ -73,7 +73,7 @@
         <jobs>
             <web_check_migs_orders>
                 <schedule><cron_expr>*/5 * * * * </cron_expr></schedule>
-                <run><model>migs/migs::checkMigsOrders</model></run>
+                <run><model>migs/info::checkMigsOrders</model></run>
             </web_check_migs_orders>
         </jobs>
     </crontab>
