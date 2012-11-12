@@ -18,8 +18,9 @@ class Web_Deal_Block_Home extends Mage_Core_Block_Template
 
             ->addAttributeToFilter('start_date',array('to'=>Mage::getModel('core/date')->date('Y-m-d H:i:s')))
             ->addAttributeToFilter('end_date',array('from'=>Mage::getModel('core/date')->date('Y-m-d H:i:s')))
-            ->addAttributeToSort('sort','ASC')
             ->addAttributeToSort('main_deal','DESC')
+            ->addAttributeToSort('sort','ASC')
+            ->addAttributeToSort('created_at','DESC')
             ->addAttributeToFilter('status', array('eq' => Mage_Catalog_Model_Product_Status::STATUS_ENABLED))
             ->addAttributeToFilter('visibility', array('neq' => Mage_Catalog_Model_Product_Visibility::VISIBILITY_NOT_VISIBLE))
             ->load();

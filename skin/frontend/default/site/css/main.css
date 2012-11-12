@@ -500,9 +500,20 @@ div.product-highlights {
     display: inline-block;
     background: #ffffff;
     height: 100%;
+    width: 100%;
 
 }
-
+div.product-options
+{
+    background-color: transparent;
+    padding: 0px;
+    margin: 0px;
+    border: none;
+}
+ul.options-list li
+{
+    list-style: none outside none;
+}
 div.product-fineprint {
     -moz-border-radius:  5px;
     -webkit-border-radius:   5px;
@@ -510,7 +521,7 @@ div.product-fineprint {
     border-radius:   5px;
 
     min-height: 200px;
-
+    width: 100%;
     float: right;
     display: inline-block;
     background: #ffffff;
@@ -525,6 +536,11 @@ div.product-bot
     border-radius:   5px;
     width: 100%;
 
+}
+.label, .badge
+{
+    background-color:transparent ;
+    color: #000000;
 }
 div.product-company {
 

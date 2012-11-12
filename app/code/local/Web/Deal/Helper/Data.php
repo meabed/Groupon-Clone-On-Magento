@@ -18,6 +18,9 @@ class Web_Deal_Helper_Data extends Mage_Core_Helper_Abstract
             $url->addFilter('category_id',$catId);
         }
         $rs = $url->setOrder('url_rewrite_id','DESC')->getFirstItem();
+        if(!$rs->getRequestPath()){
+            return $product->getUrlPath();
+        }
         return Mage::getBaseUrl() .$rs->getRequestPath();
 
     }

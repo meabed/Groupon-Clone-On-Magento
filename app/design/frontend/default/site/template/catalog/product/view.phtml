@@ -2,7 +2,9 @@
 <?php $_product = $this->getProduct();
 $this->getDealInfo();
 ?>
-
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
 
 <div class="product-view">
@@ -42,8 +44,18 @@ $this->getDealInfo();
 
                 </div>
             </div>
-        </form>
         <div class="product-mid">
+
+                    <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+            <div class="product-highlights">
+                <div class="head"><?php echo $this->__('Deal Options');?></div>
+                <div class="details">
+                    <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                </div>
+            </div>
+                    <?php endif;?>
+
+
             <div class="product-highlights">
                 <div class="head"><?php echo $this->__('Highlights');?></div>
                 <div class="details">
@@ -79,6 +91,8 @@ $this->getDealInfo();
             </div>
 
         </div>
+        </form>
+
         <div class="facebook-block">
             <iframe scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; width:320px; height:460px; background: #FFF;" src="http://www.facebook.com/plugins/likebox.php?id=182345975128091&amp;width=328&amp;connections=20&amp;stream=false&amp;header=true&amp;height=460">
 
