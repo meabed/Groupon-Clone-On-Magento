@@ -67,7 +67,7 @@ Onestepcheckout.prototype={
                 $("checkout-shipping-method-load")&&Element.hide("checkout-shipping-method-load")
             }
             else{
-                if($("billing:use_for_shipping_yes").checked==true){
+                if($("billing:use_for_shipping_yes") && $("billing:use_for_shipping_yes").checked==true){
                     $("quickcheckout-ajax-loader")&&Element.hide("quickcheckout-ajax-loader");
                 }
                 $("checkout-shipping-method-load")&&Element.show("checkout-shipping-method-load")
