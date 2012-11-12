@@ -30,7 +30,8 @@ class Web_Voucher_Model_Observer
             for ($i = 0; $i < $qty; $i++) {
                 $s = strtoupper(md5(uniqid(rand(), true)));
                 $start = rand(0, strlen($s) - 7);
-                $this->_voucherCode = strtoupper($this->_order->getProtectCode() . '-' . substr($s, $start, 6));
+                //$this->_voucherCode = strtoupper($this->_order->getProtectCode() . '-' . substr($s, $start, 6));
+                $this->_voucherCode = strtoupper(substr($this->_order->getIncrementId(),-5) . '-' . substr($s, $start, 6));
                 $m = Mage::getModel('voucher/vouchers')
                     ->setDealVoucherCode($this->_voucherCode)
                     ->setStoreId($storeId)
