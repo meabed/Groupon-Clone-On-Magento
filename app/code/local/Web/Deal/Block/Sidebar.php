@@ -53,7 +53,11 @@ class Web_Deal_Block_Sidebar extends Mage_Core_Block_Template
     }
     public function getOtherProducts($ex = array())
     {
+        $catCollection = Mage::helper('deal')->getActiveCategories(null);
+        $catIds = $catCollection->getAllIds();
+
         $this->_products = Mage::getModel('catalog/product')->getCollection()
+            ->joinField('category_id','catalog/category_product','category_id','product_id=entity_id',null,'left')
             ->addAttributeToSelect('*')
         //->addAttributeToFilter('main_deal',array('eq'=>'1'))
             ->addAttributeToFilter('start_date',array('to'=>Mage::getModel('core/date')->date('Y-m-d H:i:s')))
@@ -62,6 +66,8 @@ class Web_Deal_Block_Sidebar extends Mage_Core_Block_Template
             ->addAttributeToSort('main_deal','DESC')
             ->addAttributeToFilter('status', array('eq' => Mage_Catalog_Model_Product_Status::STATUS_ENABLED))
             ->addAttributeToFilter('entity_id',array('nin'=>$ex))
+            ->addAttributeToFilter('category_id', array('in' => $catIds))
+
             ->load();
         return array('products'=>$this->_products);
     }

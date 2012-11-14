@@ -1494,4 +1494,8 @@ section.offer-thumbnail {
     z-index: 10000;
     width: 100%;
 }
-
+table#shopping-cart-table tbody tr td a.product-image
+{
+    display: block;
+    width: 75px;
+}
