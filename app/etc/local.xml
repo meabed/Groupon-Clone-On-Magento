@@ -41,9 +41,9 @@
             <default_setup>
                 <connection>
                     <host><![CDATA[localhost]]></host>
-                    <username><![CDATA[root]]></username>
-                    <password><![CDATA[meabed]]></password>
-                    <dbname><![CDATA[dg]]></dbname>
+                    <username><![CDATA[dealgobb_tariq]]></username>
+                    <password><![CDATA[PimplyForeGeneraApathy]]></password>
+                    <dbname><![CDATA[dealgobb_dg_magento]]></dbname>
                     <initStatements><![CDATA[SET NAMES utf8]]></initStatements>
                     <model><![CDATA[mysql4]]></model>
                     <type><![CDATA[pdo_mysql]]></type>
