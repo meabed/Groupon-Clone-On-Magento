@@ -1499,3 +1499,11 @@ table#shopping-cart-table tbody tr td a.product-image
     display: block;
     width: 75px;
 }
+.col2-left-layout .col-main
+{
+    width: 750px;
+}
+.col2-left-layout div.sidebar
+{
+    width: 195px;
+}
