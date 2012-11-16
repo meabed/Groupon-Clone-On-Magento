@@ -22,7 +22,7 @@ class Phoenix_CashOnDelivery_Model_Quote_Total extends Mage_Sales_Model_Quote_Ad
 {
     public function collect(Mage_Sales_Model_Quote_Address $address)
     {
-        if ($address->getAddressType() == 'shipping') {
+        if ($address->getAddressType() == 'billing') {
             return $this;
         }
         $address->setBaseCodFee(0);
