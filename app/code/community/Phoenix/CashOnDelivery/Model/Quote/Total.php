@@ -22,11 +22,6 @@ class Phoenix_CashOnDelivery_Model_Quote_Total extends Mage_Sales_Model_Quote_Ad
 {
     public function collect(Mage_Sales_Model_Quote_Address $address)
     {
-        $loggedIn = Mage::helper('customer')->isLoggedIn();
-        if($loggedIn){$add = 'shipping';}else{$add = 'billing';}
-        if($address->getAddressType() == $address){
-            return $this;
-        }
         $address->setBaseCodFee(0);
         $address->setCodFee(0);
         $address->setCodTaxAmount(0);
@@ -44,6 +39,8 @@ class Phoenix_CashOnDelivery_Model_Quote_Total extends Mage_Sales_Model_Quote_Ad
         }
 
         $items = $address->getAllItems();
+        //print_r($address->getAddressType());
+        //print_r(count($items));
         if (!count($items)) {
             //return $this;
         }
@@ -51,6 +48,7 @@ class Phoenix_CashOnDelivery_Model_Quote_Total extends Mage_Sales_Model_Quote_Ad
         $baseTotal = $address->getBaseGrandTotal();        
 
         $baseCodFee = $paymentMethod->getAddressCodFee($address);
+
         if (!$baseCodFee > 0 ) {
             return $this;
         }

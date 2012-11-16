@@ -34,6 +34,7 @@ class Web_QuickCheckout_OnestepController extends Mage_Checkout_OnepageControlle
         )));
         $this->getOnepage()->initCheckout();
         if (!Mage::getSingleton('customer/session')->isLoggedIn()) {
+            //$this->getOnepage()->saveCheckoutMethod(Mage_Sales_Model_Quote::CHECKOUT_METHOD_GUEST);
             $this->getOnepage()->saveCheckoutMethod(Mage_Sales_Model_Quote::CHECKOUT_METHOD_GUEST);
         }
         $this->loadLayout();

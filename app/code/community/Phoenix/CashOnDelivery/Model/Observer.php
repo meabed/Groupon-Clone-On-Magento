@@ -26,7 +26,8 @@ class Phoenix_CashOnDelivery_Model_Observer extends Mage_Core_Model_Abstract
      *
      */
     public function sales_quote_collect_totals_after(Varien_Event_Observer $observer) 
-    {        
+    {
+
         $quote = $observer->getEvent()->getQuote();
         $data = $observer->getInput();
         $quote->setCodFee(0);
@@ -34,11 +35,11 @@ class Phoenix_CashOnDelivery_Model_Observer extends Mage_Core_Model_Abstract
         $quote->setCodTaxAmount(0);
         $quote->setBaseCodTaxAmount(0);
         foreach ($quote->getAllAddresses() as $address) {
-            $quote->setCodFee((float) $quote->getCodFee() + $address->getCodFee());
-            $quote->setBaseCodFee((float) $quote->getBaseCodFee() + $address->getBaseCodFee());
+            $quote->setCodFee((float) $quote->getCodFee() + $address->getCodFee()/2);
+            $quote->setBaseCodFee((float) $quote->getBaseCodFee() + $address->getBaseCodFee()/2);
 
-            $quote->setCodTaxAmount((float) $quote->getCodTaxAmount() + $address->getCodTaxAmount());
-            $quote->setBaseCodTaxAmount((float) $quote->getBaseCodTaxAmount() + $address->getBaseCodTaxAmount());
+            $quote->setCodTaxAmount((float) $quote->getCodTaxAmount() + $address->getCodTaxAmount()/2);
+            $quote->setBaseCodTaxAmount((float) $quote->getBaseCodTaxAmount() + $address->getBaseCodTaxAmount()/2);
         }
     }
 
