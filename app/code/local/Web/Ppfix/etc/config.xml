@@ -14,6 +14,7 @@
                 <rewrite>
                     <cart>Web_Ppfix_Model_Cart</cart>
                     <standard>Web_Ppfix_Model_Standard</standard>
+                    <config>Web_Ppfix_Model_Config</config>
                 </rewrite>
             </paypal>
         </models>

@@ -1,6 +1,10 @@
 <?php
 
 class Web_Ppfix_Helper_Data extends Mage_Core_Helper_Abstract {
+    public function getCurrencyArray()
+    {
+        return explode(',',self::getConfig('extra_currencies'));
+    }
     public static function getSupportedCurrency()
     {
         return array('AUD', 'CAD', 'CZK', 'DKK', 'EUR', 'HKD', 'HUF', 'ILS', 'JPY', 'MXN',
