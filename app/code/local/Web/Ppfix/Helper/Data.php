@@ -30,12 +30,6 @@ class Web_Ppfix_Helper_Data extends Mage_Core_Helper_Abstract {
     {
         $state = self::getConfig('active');
         if(!$state){return ;}
-        $currentMerchant = Mage::getStoreConfig('paypal/general/business_account');
-        $ppMerchant = self::getConfig('business_account');
-        if($currentMerchant != $ppMerchant){
-            $config = new Mage_Core_Model_Config();
-            $config->saveConfig('paypal/general/business_account', $ppMerchant , 'default', 0);
-        }
         return $state;
 
     }

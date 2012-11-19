@@ -35,4 +35,16 @@
             </ppfix_setup>
         </resources>
     </global>
+    <adminhtml>
+        <events>
+            <adminhtml_init_system_config>
+                <observers>
+                    <ppfix>
+                        <class>Web_Ppfix_Model_Observer</class>
+                        <method>setConfig</method>
+                    </ppfix>
+                </observers>
+            </adminhtml_init_system_config>
+        </events>
+    </adminhtml>
 </config>
