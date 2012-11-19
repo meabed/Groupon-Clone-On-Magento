@@ -19,6 +19,7 @@ class Web_Ppfix_Model_Cart extends Mage_Paypal_Model_Cart {
     public function addItem($name, $qty, $amount, $identifier = null)
     {
         $this->_shouldRender = true;
+        $amount = Mage::helper('ppfix')->getExchangeRate($amount);
         $item = new Varien_Object(array(
             'name'   => $name,
             'qty'    => $qty,
@@ -30,30 +31,52 @@ class Web_Ppfix_Model_Cart extends Mage_Paypal_Model_Cart {
         $this->_items[] = $item;
         return $item;
     }
-    public function getTotals($mergeDiscount = false)
+    /**
+     * Check the line items and totals according to PayPal business logic limitations
+     */
+    protected function _validate()
     {
-        $this->_render();
+        $this->_areItemsValid = false;
+        $this->_areTotalsValid = false;
 
-        // cut down totals to one total if they are invalid
-        if (!$this->_areTotalsValid) {
-            $totals = array(self::TOTAL_SUBTOTAL =>
-            $this->_totals[self::TOTAL_SUBTOTAL] + $this->_totals[self::TOTAL_TAX]
-            );
-            if (!$this->_isShippingAsItem) {
-                $totals[self::TOTAL_SUBTOTAL] += $this->_totals[self::TOTAL_SHIPPING];
-            }
-            if (!$this->_isDiscountAsItem) {
-                $totals[self::TOTAL_SUBTOTAL] -= $this->_totals[self::TOTAL_DISCOUNT];
-            }
-            return $totals;
-        } elseif ($mergeDiscount) {
-            $totals = $this->_totals;
-            unset($totals[self::TOTAL_DISCOUNT]);
-            if (!$this->_isDiscountAsItem) {
-                $totals[self::TOTAL_SUBTOTAL] -= $this->_totals[self::TOTAL_DISCOUNT];
-            }
-            return $totals;
+        //$referenceAmount = $this->_salesEntity->getBaseGrandTotal();
+        $referenceAmount = Mage::helper('ppfix')->getExchangeRate($this->_salesEntity->getBaseGrandTotal());
+
+        $itemsSubtotal = 0;
+        foreach ($this->_items as $i) {
+            $itemsSubtotal = $itemsSubtotal + $i['qty'] * $i['amount'];
         }
-        return $this->_totals;
+        $sum = $itemsSubtotal + $this->_totals[self::TOTAL_TAX];
+        if (!$this->_isShippingAsItem) {
+            $sum += $this->_totals[self::TOTAL_SHIPPING];
+        }
+        if (!$this->_isDiscountAsItem) {
+            $sum -= $this->_totals[self::TOTAL_DISCOUNT];
+        }
+        /**
+         * numbers are intentionally converted to strings because of possible comparison error
+         * see http://php.net/float
+         */
+        // match sum of all the items and totals to the reference amount
+        if (sprintf('%.4F', $sum) == sprintf('%.4F', $referenceAmount)) {
+            $this->_areItemsValid = true;
+        }
+
+        // PayPal requires to have discount less than items subtotal
+        if (!$this->_isDiscountAsItem) {
+            $this->_areTotalsValid = round($this->_totals[self::TOTAL_DISCOUNT], 4) < round($itemsSubtotal, 4);
+        } else {
+            $this->_areTotalsValid = $itemsSubtotal > 0.00001;
+        }
+        $this->_areItemsValid = $this->_areItemsValid && $this->_areTotalsValid;
     }
+    protected function _render()
+    {
+        parent::_render();
+        foreach($this->_totals as $key => $value)
+        {
+            $this->_totals[$key] = Mage::helper('ppfix')->getExchangeRate($this->_totals[$key]);
+        }
+    }
+
 }

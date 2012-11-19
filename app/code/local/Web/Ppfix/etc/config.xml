@@ -12,27 +12,27 @@
             </web_ppfix>
             <paypal>
                 <rewrite>
-                    <config>Web_Ppfix_Model_Config</config>
                     <cart>Web_Ppfix_Model_Cart</cart>
+                    <standard>Web_Ppfix_Model_Standard</standard>
                 </rewrite>
             </paypal>
         </models>
         <blocks>
-            <web_ppfix>
+            <ppfix>
                 <class>Web_Ppfix_Block</class>
-            </web_ppfix>
+            </ppfix>
         </blocks>
         <helpers>
-            <web_ppfix>
+            <ppfix>
                 <class>Web_Ppfix_Helper</class>
-            </web_ppfix>
+            </ppfix>
         </helpers>
         <resources>
-            <web_ppfix_setup>
+            <ppfix_setup>
                 <setup>
                     <module>Web_Ppfix</module>
                 </setup>
-            </web_ppfix_setup>
+            </ppfix_setup>
         </resources>
     </global>
 </config>
