@@ -88,7 +88,7 @@ class Web_Voucher_Model_Observer
     {
         $order = $observer->getObject();
         $incrementId = $order->getIncrementId();
-        if(!in_array($order->getStatus(),explode(',',Mage::getStoreConfig('voucher_options/configs/order_status_save'))) ){
+        if(!in_array($order->getStatus(),explode(',',Mage::getStoreConfig('voucher_options/configs/order_status_admin'))) ){
             return;
         }
         $vouchers = Mage::getModel('voucher/vouchers')->getCollection()->addFieldToFilter('order_increment_id',$incrementId);
