@@ -86,7 +86,7 @@ class Web_Voucher_Model_Observer
     }
     public function sendVoucherOnStatusChange(Varien_Event_Observer $observer)
     {
-        $order = $observer->getObject();
+        $order = $observer->getDataObject();
         $incrementId = $order->getIncrementId();
         if(!in_array($order->getStatus(),explode(',',Mage::getStoreConfig('voucher_options/configs/order_status_admin'))) ){
             return;
