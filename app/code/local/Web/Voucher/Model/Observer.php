@@ -58,11 +58,9 @@ class Web_Voucher_Model_Observer
     public function emptyCart($observer)
     {
         $nProducts = (int)Mage::getStoreConfig('deal/config/multi_cart');
-
         if ($nProducts == 0) {
             return;
         }
-
         //Mage::log('Called');
         //$productId = $observer->getEvent()->getProduct()->getId();
         $cartHelper = Mage::helper('checkout/cart');
@@ -84,6 +82,19 @@ class Web_Voucher_Model_Observer
             for ($j = 0; $j < $nProducts ; $j++) {
                 $cartHelper->getCart()->removeItem($itemIds[$j])->save();
             }
+        }
+    }
+    public function sendVoucherOnStatusChange(Varien_Event_Observer $observer)
+    {
+        $order = $observer->getObject();
+        $incrementId = $order->getIncrementId();
+        if(!in_array($order->getStatus(),explode(',',Mage::getStoreConfig('voucher_options/configs/order_status_save'))) ){
+            return;
+        }
+        $vouchers = Mage::getModel('voucher/vouchers')->getCollection()->addFieldToFilter('order_increment_id',$incrementId);
+        foreach ($vouchers as $voucher)
+        {
+            $this->_sendVoucherEmail($voucher,$order);
         }
     }
     public function senOrderVouchersEamil($observer)

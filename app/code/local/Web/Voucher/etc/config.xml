@@ -76,6 +76,17 @@
                 </voucher>
             </updates>
         </layout>
+        <events>
+            <sales_order_save_after>
+                <observers>
+                    <auto_send_voucher_status>
+                        <type>model</type>
+                        <class>voucher/observer</class>
+                        <method>sendVoucherOnStatusChange</method>
+                    </auto_send_voucher_status>
+                </observers>
+            </sales_order_save_after>
+        </events>
     </adminhtml>
     <global>
         <rewrite>
