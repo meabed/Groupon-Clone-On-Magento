@@ -98,6 +98,15 @@ class Web_Deal_Helper_Data extends Mage_Core_Helper_Abstract
             ->addAttributeToFilter('is_active',array('eq'=>1));
         return $cats;
     }
+    public function getCompany($key = '')
+    {
+        if ($key) {
+            $block = Mage::getModel('cms/block')->load($key);
+        } else {
+            $block = Mage::getModel('cms/block')->load('default_company');
+        }
+        return $block->getContent();
+    }
 
 }
 	 

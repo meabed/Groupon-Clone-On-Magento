@@ -137,7 +137,10 @@ class Web_Voucher_Model_Observer
             'customerEmail' => $customerEmail,
             'voucherCode' => $this->_voucherCode,
             'productPrice' => $this->_productPrice,
-            'productName' => $this->_productName);
+            'productName' => $this->_productName,
+            'product' => $_product,
+            'company'=> Mage::helper('deal')->getCompany($_product->getCompany()),
+            );
         $translate = Mage::getSingleton('core/translate');
         $mail = Mage::getSingleton('core/email_template')
             ->sendTransactional($templateId, $sender, $recepientEmail, $recepientName, $vars, $storeId);

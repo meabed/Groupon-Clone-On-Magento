@@ -81,12 +81,7 @@ $this->getDealInfo();
                 <div class="head"><?php echo $this->__('The Company');?></div>
                 <div class="details">
                     <?php
-                    if ($_product->getCompany()) {
-                        $block = Mage::getModel('cms/block')->load($_product->getCompany());
-                    } else {
-                        $block = Mage::getModel('cms/block')->load('default_company');
-                    }
-                    echo $block->getContent();
+                        echo Mage::helper('deal')->getCompany($_product->getCompany());
                     ?>
                 </div>
             </div>
