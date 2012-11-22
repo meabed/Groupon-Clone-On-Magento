@@ -123,6 +123,7 @@ class Web_Voucher_Model_Observer
             }
             $this->_order = $order;
             $this->_voucherId = $voucher->getId();
+            $this->_voucherCode = $voucher->getDealVoucherCode();
         }
 
         if (!$this->_productPrice) {
