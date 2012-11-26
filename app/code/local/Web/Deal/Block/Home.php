@@ -27,7 +27,11 @@ class Web_Deal_Block_Home extends Mage_Core_Block_Template
             ->addAttributeToFilter('category_id', array('in' => $catIds));
         $idxs = array_unique($this->_products->getAllIds());
         $this->_products = Mage::getModel('catalog/product')->getCollection()
+            ->addAttributeToSelect('*')
             ->addFieldToFilter('entity_id',array('in'=>$idxs))
+            ->addAttributeToSort('main_deal','DESC')
+            ->addAttributeToSort('sort','ASC')
+            ->addAttributeToSort('created_at','DESC')
             ->load();
 
         $skus = array();
