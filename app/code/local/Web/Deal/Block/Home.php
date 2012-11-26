@@ -24,8 +24,12 @@ class Web_Deal_Block_Home extends Mage_Core_Block_Template
             ->addAttributeToSort('created_at','DESC')
             ->addAttributeToFilter('status', array('eq' => Mage_Catalog_Model_Product_Status::STATUS_ENABLED))
             ->addAttributeToFilter('visibility', array('neq' => Mage_Catalog_Model_Product_Visibility::VISIBILITY_NOT_VISIBLE))
-            ->addAttributeToFilter('category_id', array('in' => $catIds))
+            ->addAttributeToFilter('category_id', array('in' => $catIds));
+        $idxs = array_unique($this->_products->getAllIds());
+        $this->_products = Mage::getModel('catalog/product')->getCollection()
+            ->addFieldToFilter('entity_id',array('in'=>$idxs))
             ->load();
+
         $skus = array();
         foreach($this->_products as $product)
         {
