@@ -144,13 +144,16 @@ class Web_Voucher_Model_Observer
         $recepientName = $customerName;
 
         $storeId = Mage::app()->getStore()->getId();
-
+        $highlights = explode("\n",$_product->getHighlights());
+        $fineprint = explode("\n",$_product->getFinePrint());
         $vars = array('customerName' => $customerName,
             'customerEmail' => $customerEmail,
             'voucherCode' => $this->_voucherCode,
             'productPrice' => $this->_productPrice,
             'productName' => $this->_productName,
             'product' => $_product,
+            '$ighlights' => $highlights,
+            'fineprint' => $fineprint,
             'company'=> Mage::helper('deal')->getCompany($_product->getCompany()),
             );
         $translate = Mage::getSingleton('core/translate');
