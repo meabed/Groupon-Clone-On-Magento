@@ -152,7 +152,7 @@ class Web_Voucher_Model_Observer
             'productPrice' => $this->_productPrice,
             'productName' => $this->_productName,
             'product' => $_product,
-            '$ighlights' => $highlights,
+            'highlights' => $highlights,
             'fineprint' => $fineprint,
             'company'=> Mage::helper('deal')->getCompany($_product->getCompany()),
             );
