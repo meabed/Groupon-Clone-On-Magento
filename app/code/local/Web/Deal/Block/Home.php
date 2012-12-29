@@ -33,7 +33,6 @@ class Web_Deal_Block_Home extends Mage_Core_Block_Template
             ->addAttributeToSort('sort','ASC')
             ->addAttributeToSort('created_at','DESC')
             ->load();
-
         $skus = array();
         foreach($this->_products as $product)
         {

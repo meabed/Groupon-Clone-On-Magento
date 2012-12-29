@@ -2,6 +2,11 @@
 
 class Web_Ppfix_Helper_Data extends Mage_Core_Helper_Abstract
 {
+    public static function getBaseCurrency()
+    {
+        $baseCurrencyCode = Mage::app()->getStore()->getBaseCurrencyCode();
+        return $baseCurrencyCode;
+    }
     public function getCurrencyArray()
     {
         return explode(',', self::getConfig('extra_currencies'));
@@ -15,7 +20,7 @@ class Web_Ppfix_Helper_Data extends Mage_Core_Helper_Abstract
 
     public static function shouldConvert()
     {
-        return self::isActive() && !in_array(Mage::app()->getStore()->getCurrentCurrencyCode(), self::getSupportedCurrency());
+        return self::isActive() && !in_array(Mage::app()->getStore()->getCurrentCurrencyCode(), self::getSupportedCurrency()) && !in_array(self::getBaseCurrency(),self::getSupportedCurrency());
     }
 
     public static function getConfig($name = '')
