@@ -1,0 +1,361 @@
+#container {	width:282px;padding:10px;margin:0 auto;height:250px;}
+#products_example {width:282px;height:250px;position:relative;}
+/*
+	Slideshow
+*/
+#products {height: 248px;margin-left: 26px;width: 255px;}
+/*
+	Slides container
+	Important:
+	Set the width of your slides container
+	Set to display none, prevents content flash
+*/
+.slides_control a{left: 287px!important;}
+.slides_control {height: 243px!important;}
+#products .slides_container {
+	width: 225px!important;
+	overflow:hidden;
+	float:left;
+	position:relative;
+	border:1px solid #dfdfdf;
+	display:none;
+}
+/*
+	Each slide
+	Important:
+	Set the width of your slides
+	If height not specified height will be set by the slide content
+	Set to display block
+*/
+.slides_container a {
+	display: block;
+    height: 325px;
+    width: 285px;
+}
+/*
+	Next/prev buttons
+*/
+#products .next,#products .prev {
+	position:absolute;
+	top:127px;
+	left:0;
+	width:21px;
+	height:0;
+	padding-top:21px;
+	overflow:hidden;
+	display:block;
+	z-index:101;
+}
+#products .prev {background:url(arrow-prev.png);}
+#products .next {left:260px;background:url(arrow-next.png);}
+.pagination {
+	background: none repeat scroll 0 0 #DFDFDF;
+    border-radius: 5px 5px 5px 5px;
+    padding: 5px;
+    margin:0 auto;
+	height:48px;
+}
+.product-img-box{height: 370px;}
+.pagination li {float:left;margin:2px 4px;list-style:none;}
+.pagination li a {
+	display:block;
+	width:55px;
+	height:41px;
+	margin:1px;
+	float:left;
+	background:#f9f9f9;
+}
+.pagination li.current a {border:1px solid #7f7f7f;margin:0;}
+.prdouctbackground{background-color:#FFFFFF;}
+/* css for product and edit product*/
+.textcolor {
+    color: #0899C9;
+    font-size: 20px;
+    height: 35px;
+    margin-left: 20px;
+    margin-top: 15px;
+}
+.starimp {
+    background: url("requiredStar.png") no-repeat scroll 0 0 transparent;
+    height: 12px;
+    width: 12px;
+}	
+.headingbg {
+    background: url("backgdd.PNG") repeat scroll 0 0 transparent;
+    font-size: 18px;
+    font-weight: bolder;
+    padding: 3px;
+	margin: 0;
+}
+.headingbgpage {
+    background: url("backgdd.PNG") repeat scroll 0 0 transparent;
+    margin-left: 20px;
+    width: 94%;
+}
+.more {
+    background: none repeat scroll 0 0 #09AEE7;
+    border: medium none;
+    border-radius: 12px 12px 12px 12px;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    width: 30px;
+}
+.less {
+    background: none repeat scroll 0 0 #09AEE7;
+    border: medium none;
+    border-radius: 12px 12px 12px 12px;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    width: 35px;
+}
+.morenew {
+     background: none repeat scroll 0 0 #09AEE7;
+    border: medium none;
+    border-radius: 13px 13px 13px 13px;
+    box-shadow: 2px 1px #C2C2C2;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    height: 26px;
+    margin: 10px;
+    text-align: center;
+    width: 15%;
+}
+.headingbgon {
+    background: url("backgdd.PNG") repeat scroll 0 0 transparent;
+    font-size: 18px;
+    font-weight: bolder;
+    height: 42px;
+    width: 655px;
+}
+.headingbging {background: url("backgdd.PNG") repeat scroll 0 0 transparent;}
+.headingbgedit {
+    background: url("editbackgdd.PNG") repeat scroll 0 0 transparent;
+    font-size: 18px;
+    font-weight: bolder;
+}
+.rightgapedithead {display: block;font-weight: bold;}
+.rightgapeditblue {
+    color: #0798C8;
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+}
+.tablepostion {margin-left: 35px;margin-right: 40px;width: 91%;}
+.tablepostionedit {margin-left: 20px;width: 94%;}
+.rightgap {
+    display: block;
+    float: left;
+    text-align: right;
+    width: 110px;
+}
+.rightgapedit {display: block;margin-top: 20px;text-align: center;}
+.tdpadfirst {padding: 4px;width:150px;}	
+.tdpadfirstedit {padding: 4px;width: 54px;}
+.tdpadfirsteditheadingupper {padding: 4px;width: 54px;}	   
+.tdpadsec {padding: 4px;	width:420px;}	   
+.btn {
+    background: none repeat scroll 0 0 #09AEE7;
+    border: medium none;
+    border-radius: 13px 13px 13px 13px;
+    box-shadow: 2px 1px #C2C2C2;
+    color: white;
+    height: 26px;
+    margin: 10px;
+	cursor: pointer;
+    width: 15%;
+}
+.widthinput{width:99%;}
+.widthinput1{width:98%;}
+.buttonarea{ background: url("backgdd.PNG") repeat scroll 0 0 transparent;height:45px;}
+.widthmultiselect{width:100%;}
+.tbodyingedit tr {
+    border: 2px solid #F5F5F5;
+    float: left;
+    height: 42px;
+    width: 644px;
+}
+tr.ex2:hover {background-color:#DDF3FA;
+	border-bottom: 2px solid #6EC4E5 !important;
+    border-left: 2px solid #6EC4E5 !important;
+    border-right: 2px solid #6EC4E5 !important;
+	border-top: 2px solid #6EC4E5 !important;
+}
+.tbodyingedit {width: 644px;}
+#tbodying tr{display: block;float: left;width: 600px;}
+/* css for dashboard */
+.maindash {margin-top: 15px;padding: 5px;}
+.headingbgdash {display: block;float: left;font-size: 18px;font-weight: bolder;}
+.textcolordash {
+     color: #0899C9;
+    font-size: 15px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+.salesmonth {
+     border: 5px solid #ECECEC;
+    border-radius: 5px 5px 5px 5px;
+    height: 60px;
+    margin: 6px;
+    width: auto;
+}
+.todaydash {
+   border-right: 1px solid #ECECEC;
+    float: left;
+    font-size: 20px;
+    margin: 15px;
+    text-align: center;
+    width: 185px;
+}
+.weekdash {
+     border-right: 1px solid #ECECEC;
+    float: left;
+    font-size: 20px;
+    margin: 15px;
+    text-align: center;
+    width: 185px;
+}
+.monthdash {
+    float: left;
+    font-size: 20px;
+    margin: 15px;
+    text-align: center;
+    width: 185px;
+}
+.orderdproduct {
+    border: 5px solid #ECECEC;
+    border-radius: 5px 5px 5px 5px;
+    height: auto;
+    margin: 6px;
+    width: auto;
+}
+.tablepostioneditdash {width: 100%;}
+#tbodyingeditdash tr {
+    border-bottom: 1px solid #F5F5F5;
+    border-left: 1px solid #F5F5F5;
+    border-right: 1px solid #F5F5F5;
+    display: block;
+    float: left;
+    width: auto;
+}
+.tdpadfirsteditheadingdash {
+    background: url("backgddd.PNG") repeat scroll 0 0 transparent;
+    padding: 4px;
+    width: 213px;
+}
+.rightgapeditheadedit {display: block;font-weight: bold;margin-top: 5px;}
+.rightgapeditheadprice {
+    display: block;
+    float: right;
+    font-weight: bold;
+    margin-right: 30px;
+    margin-top: 20px;
+}
+.dd {
+    display: block;
+    float: left;
+    line-height: 22px;
+    margin-left: 3px;
+    margin-top: 6px;
+}
+.textcolordashdiv {
+    color: #0899C9;
+    display: block;
+    float: left;
+    font-size: 15px;
+    margin: 5px;
+}
+.textcolorpro {color: #0899C9;display: block;float: left;}
+.textcolorproalter {color: #0899C9;display: block;margin-top: 5px;}
+.textcolorproalter1 {
+    color: #0899C9;
+    display: block;
+    margin-top: 5px;
+	margin: 10px;
+}
+.status {
+    background-color: purple;
+    border-radius: 7px 7px 7px 7px;
+    color: white;
+    text-align: center;
+    width: 125px;
+}
+.review {
+    border: 5px solid #ECECEC;
+    border-radius: 5px 5px 5px 5px;
+    height: auto;
+    margin: 6px;
+    width: auto;
+}
+.reviewtable {padding: 5px;width: 100%;}
+.reviewtablethleft{width:53%;}
+.statusapp {
+    background: none repeat scroll 0 0 green;
+    border-radius: 4px 4px 4px 4px;
+    color: white;
+    display: block;
+    float: left;
+    margin-left: 70%;
+    text-align: center;
+    width: 78px;
+}
+.statussunapp {
+    background: none repeat scroll 0 0 red;
+    border-radius: 4px 4px 4px 4px;
+    color: white;
+    display: block;
+    float: left;
+    margin-left: 70%;
+    text-align: center;
+    width: 78px;
+}
+#prolimit {
+    background: none repeat scroll 0 0 #09AEE7;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 2px 1px #C2C2C2;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    width: 55px;
+}
+.we{width:300px;}
+.me{width:300px;}
+.headpro{margin-left:17px}
+.ground{width: 100%;}
+.headingback {
+    background: url("backgdd.PNG") repeat scroll 0 0 transparent;
+    font-size: 14px;
+   height: 26px;
+    padding: 3px;
+}
+.tdpadfirstedit a{cursor: pointer;}
+.headingbackindex {
+    background: url("backgdd.PNG") repeat scroll 0 0 transparent;
+    float: left;
+    font-size: 14px;
+    height: 26px;
+    margin: 0;
+    padding: 12px 0 0 15px;
+}
+#skuavail{display:none;background: none repeat scroll 0 0 #FBFAF6;}
+#skuavail img {float: left;height: 25px;width: 25px;}
+
+#skuavail span {
+    color: #637E12;
+    display: block;
+    float: left;
+    padding-left: 5px;
+    padding-top: 3px;
+}
+#skunotavail{display:none;background: none repeat scroll 0 0 #FBFAF6;}
+#skunotavail img {float: left;height: 20px;}
+#skunotavail span {
+    color: #DA4747;
+    display: block;
+    float: left;
+    padding-left: 5px;
+    padding-top: 3px;
+}

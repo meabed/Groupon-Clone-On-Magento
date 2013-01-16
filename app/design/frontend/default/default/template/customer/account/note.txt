@@ -1,0 +1,1 @@
+here we use navigation.phtml to override the magento navigation file

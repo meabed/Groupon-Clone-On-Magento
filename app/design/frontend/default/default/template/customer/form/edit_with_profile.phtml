@@ -1,0 +1,295 @@
+ <style>
+  .input-box{
+	display:inline-block;
+  }
+.group-select input,.group-select select,
+.group-select textarea{
+	background-color: #FFFFFF;
+	border: 1px solid #CCCCCC;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+	transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+	border-radius: 4px 4px 4px 4px;
+	color: #555555;
+	display: inline-block;
+	font-size: 14px;
+	height: 20px;
+	line-height: 20px;
+	margin-bottom: 10px;
+	padding: 4px 6px;
+	vertical-align: top;
+  }
+  .group-select input[type="file"]
+  {
+	width:200px;
+  }
+  .field
+  {
+	margin-top:10px;
+  }
+.input-box
+  {
+  font-weight:600;
+  width:400px;
+  }
+  .group-select textarea
+  {
+    height: 100px;
+  }
+  .group-select select
+  {
+   height: 28px;
+  }
+.group-select input.input-text:focus,.group-select textarea:focus
+{
+	border-color: rgba(82, 168, 236, 0.8);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+	outline: 0 none;
+}
+label
+{
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 600;
+	vertical-align: top;
+	width: 180px;
+}
+fieldset
+{
+	background-color: #F5F5F5;
+	border: 1px solid #E3E3E3;
+	border-radius: 4px 4px 4px 4px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+	margin-bottom: 20px;
+	min-height: 20px;
+	padding: 19px;
+}
+button
+{
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	background-color: #F5F5F5;
+	background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+	background-repeat: repeat-x;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #A2A2A2;
+	border-image: none;
+	border-radius: 4px 4px 4px 4px;
+	border-style: solid;
+	border-width: 1px;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+	color: #333333;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 14px;
+	line-height: 20px;
+	margin-bottom: 0;
+	padding: 4px 12px;
+	text-align: center;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	vertical-align: middle;
+	float:right;
+}
+
+h4.legend {
+	border-bottom: 1px solid #777777;
+	color: #777777;
+	letter-spacing: 1px;
+	margin-bottom: 15px;
+	padding-bottom: 5px;
+}
+#shortprofile{
+	left: 184px;
+    overflow: auto;
+    position: relative;
+    top: -25px;
+    width: 380px;
+
+}
+td[align="center"]
+{
+	text-align:center;
+}
+fieldset.group-select div.field div.input-box div
+{
+	border-radius:0px 0px 4px 4px;
+} 
+
+fieldset.group-select div.field div.input-box div.nicEdit-panelContain
+{
+	border-radius:4px 4px 0px 0px;
+}
+  </style>
+
+<?php
+
+?>
+<div class="page-head">
+    <h3><?php echo $this->__('Edit Account Information') ?></h3>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<form action="<?php echo $this->getUrl('customer/account/editPost') ?>" method="post" id="form-validate">
+<fieldset class="group-select">
+    <?php echo $this->getBlockHtml('formkey')?>
+    <h4 class="legend"><?php echo $this->__('Account Information') ?></h4>
+    <ul>
+        <li>
+            <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getCustomer())->toHtml() ?></li>
+        <li>
+            <div class="input-box">
+            <label for="email"><?php echo $this->__('Email Address') ?> <span class="required">*</span></label>
+            <input type="text" name="email" id="email" value="<?php echo $this->htmlEscape($this->getCustomer()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="required-entry validate-email input-text" />
+            </div>
+        </li>
+
+<?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
+<?php if ($_dob->isEnabled()): ?>
+        <li><?php echo $_dob->setDate($this->getCustomer()->getDob())->toHtml() ?></li>
+<?php endif ?>
+<?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
+<?php if ($_taxvat->isEnabled()): ?>
+        <li><?php echo $_taxvat->setTaxvat($this->getCustomer()->getTaxvat())->toHtml() ?></li>
+<?php endif ?>
+    </ul>
+	
+	<p><input type="checkbox" name="change_password" id="change_password" value="1" onclick="setPasswordForm(this.checked)" title="<?php echo $this->__('Change Password') ?>"<?php if($this->getCustomer()->getChangePassword()==1): ?> checked="checked"<?php endif; ?> /> <label for="change_password"><?php echo $this->__('Change Password') ?></label>
+	</p>
+	<fieldset class="group-select" style="display:none">
+	    <h4 class="legend"><?php echo $this->__('Change Password') ?></h4>
+	    <ul>
+	        <li>
+	            <div class="input-box">
+	                <label for="current_password"><?php echo $this->__('Current Password') ?></label>
+	                <input type="password" class="input-text" name="current_password" id="current_password" />
+	            </div>
+	        </li>
+	        <li>
+	            <div class="input-box">
+	                <label for="password"><?php echo $this->__('New Password') ?></label>
+	                <input type="password" class="validate-password input-text" name="password" id="password" />
+	            </div>
+	            <div class="input-box">
+	                <label for="confirmation"><?php echo $this->__('Confirm New Password') ?></label>
+	                <input type="password" class="validate-cpassword input-text" name="confirmation" id="confirmation" />
+	            </div>
+	        </li>
+	    </ul>
+	</fieldset>
+	<div class="button-set" style="margin:0">
+		<p class="required"><?php echo $this->__('* Required Fields') ?></p>
+	    <button type="submit" class="form-button"><span><?php echo $this->__('Save Account Information') ?></span></button>
+	</div>
+</fieldset>
+</form>
+
+<form action="<?php echo $this->getUrl('customer/account/editProfile') ?>" enctype="multipart/form-data" method="post" id="form-validate">
+<fieldset class="group-select">
+    <?php echo $this->getBlockHtml('formkey')?>
+    <h4 class="legend"><?php echo $this->__('Profile') ?></h4>
+    <table width="100%">
+    	<tr>
+    		<td>
+				<ul>
+			        <li>
+			            <div class="input-box">
+			            <label for="nickname"><?php echo $this->__('Screen name') ?></label>
+			            <input type="text" name="nickname" id="nickname" value="<?php echo $this->htmlEscape($this->getCustomer()->getNickname()) ?>" title="<?php echo $this->__('Screen name') ?>" class="input-text" />
+			            </div>
+			        </li>
+			        <li>
+			            <div class="input-box">
+			            <label for="gender"><?php echo $this->__('Gender') ?></label>
+			            <?php echo $this->getGenderHtmlSelect('male', 'gender', 'gender', 'Gender') ?>
+			            </div>
+			        </li>
+			        <li>
+			            <div class="input-box">
+			            <label for="shortprofile"><?php echo $this->__('Short profile') ?></label>
+						<textarea name="shortprofile" id="shortprofile" style="width:375px; overflow: auto;" cols="1" rows="3"  ><?php echo $this->htmlEscape($this->getCustomer()->getShortprofile()) ?></textarea>
+			            </div>
+			        </li>
+			        <li>
+			            <div class="input-box">
+			            <!-- <h4>File Upload</h4> -->
+			            <label for="file"><?php echo $this->__('Avatar') ?></label>
+			            <input type="file" name="avatar" style="height:25px;" size="33"><br clear="all"/>
+			            </div>
+			        </li>
+			    </ul>
+    		</td>
+    		<td width="40%" align="center">
+    			<?php echo $this->getAvatar($this->getCustomer()->getId()); ?>
+    		</td>
+    	<tr>
+    </table>
+
+
+	<div class="button-set" style="margin:0">
+	    <button type="submit" class="form-button"><span><?php echo $this->__('Save Profile') ?></span></button>
+	</div>
+</fieldset>
+</form>
+
+<?php 
+	/****** here i code for mysql prefix *****/
+	$mysqlprefix=Mage::getStoreConfig('partners/partners_options/mysqlprefix');
+	$mysqlprefixlen=strlen(Mage::getStoreConfig('partners/partners_options/mysqlprefix'));
+	/****** end here i code for mysql prefix *****/
+	$write = Mage::getSingleton('core/resource')->getConnection('core_write'); // for connectivity in write mode
+	$user=Mage::getSingleton('customer/session')->getCustomer()->getId();
+	$readresult=$write->query("select * from ".$mysqlprefix."customerpartner_entity_datapayment where userid = '$user'");
+	$row = $readresult->fetch();
+?>
+<form action="<?php echo $this->getUrl('customer/account/payment') ?>" enctype="multipart/form-data" method="post" id="form-validate">
+	<fieldset class="group-select">
+		<?php echo $this->getBlockHtml('formkey')?>
+		<h4 class="legend"><?php echo $this->__('Payment Mode') ?></h4>
+		
+					<ul>
+						<li>
+							<div class="input-box">
+							<label for="paymentsource"><?php echo $this->__('Payment Details') ?></label>
+							<textarea name="paymentsource" id="paymentsource" title="payment source" cols="1" rows="3" style="width:375px; overflow: auto;" ><?php echo $row['paymentsource']; ?></textarea>
+							</div>
+						</li>
+						<li>
+							<div class="input-box">
+							<input type="hidden" name="userid" id="userid" value="<?php echo Mage::getSingleton('customer/session')->getCustomer()->getId(); ?>" title="userid" class="input-text"  />
+							</div>
+						</li>
+					</ul>
+				
+		<div class="button-set" style="margin:0">
+			<button type="submit" class="form-button"><span><?php echo $this->__('Save Payment') ?></span></button>
+		</div>
+	</fieldset>
+</form>
+<style>
+.len{width:375px;}
+</style>
+
+<a href="<?php echo $this->getBackUrl() ?>" class="left">&laquo; <?php echo $this->__('Back') ?></a>
+
+<script type="text/javascript">
+//<![CDATA[
+    var dataForm = new VarienForm('form-validate', true);
+    function setPasswordForm(arg){
+        if(arg){
+            $('current_password').up(3).show();
+            $('current_password').addClassName('required-entry');
+            $('password').addClassName('required-entry');
+            $('confirmation').addClassName('required-entry');
+
+        }else{
+            $('current_password').up(3).hide();
+            $('current_password').removeClassName('required-entry');
+            $('password').removeClassName('required-entry');
+            $('confirmation').removeClassName('required-entry');
+        }
+    }
+    <?php if($this->getCustomer()->getChangePassword()): ?>
+        setPasswordForm(true);
+    <?php endif; ?>
+//]]>
+</script>

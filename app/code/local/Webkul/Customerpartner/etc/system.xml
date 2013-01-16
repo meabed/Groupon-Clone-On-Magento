@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+	<config>
+		<sections>
+			<partners>
+			<class>separator-top</class>
+            <label>Customers Partners</label>
+            <tab>customer</tab>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+				<groups>
+					<partners_options translate="label" module="customerpartner">
+						<label>Options</label>
+						<frontend_type>text</frontend_type>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+							<fields>
+								<percent translate="label">
+									<label>Percent per product sale</label>
+									<frontend_type>text</frontend_type>
+									<sort_order>1</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>1</show_in_store>
+								</percent>
+							</fields>
+							<fields>
+								<mysqlprefix translate="label">
+									<label>Enter MySQL Prefix</label>
+									<frontend_type>text</frontend_type>
+									<sort_order>2</sort_order>
+									<show_in_default>1</show_in_default>
+									<show_in_website>1</show_in_website>
+									<show_in_store>1</show_in_store>
+									<comment>Please Enter the MySQL Database Prefix If You Used In Your Database</comment>	
+								</mysqlprefix>
+							</fields>
+					</partners_options>
+				</groups>
+			</partners>
+		</sections>
+	</config>

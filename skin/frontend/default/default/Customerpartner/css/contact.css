@@ -1,0 +1,36 @@
+/* Remove this when pasting into your Stylesheet! */
+
+html, body { border: 0; margin: 0; padding: 0; }
+body { font: 62.5% "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif; min-width: 100%; min-height: 101%; color: #666; background:#eee; }
+
+/* END Remove This */
+
+#contact p, label, legend { font: 1.5em "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif; }
+
+#contact h1 { margin: 10px 0 10px; font-size: 24px; color: #333333; }
+#contact hr { color: inherit; height: 0; margin: 6px 0 6px 0; padding: 0; border: 1px solid #d9d9d9; border-style: none none solid; }
+
+#contact { display: block; width: 500px; margin: 10px auto; padding: 5px; border: 1px solid #cbcbcb; background-color: #FFF; -webkit-border-radius:5px;  }
+
+/* Form style */
+
+#contact label { display: inline-block; float: left; height: 26px; line-height: 26px; width: 155px; font-size: 1.5em; -webkit-border-radius:5px; }
+#contact input, textarea, select { width: 280px; margin: 0; padding: 5px; color: #666; background: #f5f5f5; border: 1px solid #ccc; margin: 5px 0; font:1.5em "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif; webkit-border-radius:5px; }
+#contact input:focus, textarea:focus, select:focus { border: 1px solid #999; background-color: #fff; color:#333; }
+#contact input.submit {font-size: 26px; font-weight:bold; border-radius: 5px; -moz-border-radius: 5px; float:right; width: 160px; height:50px; border:none; cursor: pointer;  background:#00AADD; color:#fff; }
+#contact input.submit:hover { background:#444; }
+#contact input[type="submit"][disabled] { background:#888; }
+#contact fieldset { padding:20px; border:1px solid #eee; -webkit-border-radius:5px; -moz-border-radius:5px; }
+#contact legend { padding:7px 10px; font-weight:bold; color:#000; border:1px solid #eee; -webkit-border-radius:5px; -moz-border-radius:5px; margin-bottom:0 !important; margin-bottom:20px; }
+
+#contact span.required{ font-size: 13px; color: #ff0000; } /* Select the colour of the * if the field is required. */
+
+#message { margin: 10px 0; padding: 0; }
+
+.error_message { display: block; height: 22px; line-height: 22px; background: #FBE3E4 url('../assets/error.gif') no-repeat 10px center; padding: 3px 10px 3px 35px; color:#8a1f11;border: 1px solid #FBC2C4; -webkit-border-radius:5px; }
+
+.loader { padding: 0 10px; }
+
+#contact #success_page h1 { background: url('../assets/success.gif') left no-repeat; padding-left:22px; }
+
+acronym { border-bottom:1px dotted #ccc; }

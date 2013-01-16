@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<config>
+   <modules>
+      <Webkul_Customerprofile>
+         <version>2.0.0</version>
+      </Webkul_Customerprofile>
+   </modules>
+
+   <global>
+
+        <rewrite>
+            <!-- Rewrite OnePage Success action -->
+			<webkul_customerprofile_account>
+                <from><![CDATA[#^/customer/account/editProfile(.*)#]]></from>
+                <to>customerprofile/account/editProfile</to>
+			</webkul_customerprofile_account>
+        </rewrite>
+
+		<blocks>
+			<customer>
+				<rewrite>
+					<form_edit>Webkul_Customerprofile_Block_Form_Edit</form_edit>
+					<profile>Webkul_Customerprofile_Block_Profile</profile>
+				</rewrite>
+			</customer>
+		</blocks>
+
+		<models>
+			<customerprofile>
+				<rewrite>
+					<gendertype>Webkul_Customerprofile_Model_Gendertype</gendertype>
+					<uploadimage>Webkul_Customerprofile_Model_Uploadimage</uploadimage>
+					<resizeimage>Webkul_Customerprofile_Model_Resizeimage</resizeimage>
+					<uploadzip>Webkul_Customerprofile_Model_Uploadzip</uploadzip>
+					<uploadzipsample>Webkul_Customerprofile_Model_Uploadzipsample</uploadzipsample>
+				</rewrite>
+			</customerprofile>
+      	</models>
+
+		<resources>
+		    <customerprofile_setup>
+		       <setup>
+		          <module>Webkul_Customerprofile</module>
+		          <class>Mage_Customer_Model_Entity_Setup</class>
+		       </setup>
+		       <connection>
+		          <use>core_setup</use>
+		       </connection>
+		    </customerprofile_setup>
+
+		    <customerprofile_write>
+		       <connection>
+		          <use>core_write</use>
+		       </connection>
+		    </customerprofile_write>
+
+		    <customerprofile_read>
+		       <connection>
+		          <use>core_read</use>
+		       </connection>
+		    </customerprofile_read>
+
+		</resources>
+
+        <!--<fieldsets>
+            <customer_account>
+                <prefix><create>1</create><update>1</update><name>1</name></prefix>
+                <firstname><create>1</create><update>1</update><name>1</name></firstname>
+                <middlename><create>1</create><update>1</update><name>1</name></middlename>
+                <lastname><create>1</create><update>1</update><name>1</name></lastname>
+                <suffix><create>1</create><update>1</update><name>1</name></suffix>
+                <email><create>1</create><update>1</update></email>
+                <password><create>1</create></password>
+                <confirmation><create>1</create></confirmation>
+                <dob><create>1</create><update>1</update></dob>
+                <taxvat><create>1</create><update>1</update></taxvat>
+
+                <nickname><profileupdate>1</profileupdate></nickname>
+                <gender><profileupdate>1</profileupdate></gender>
+                <shortprofile><profileupdate>1</profileupdate></shortprofile>
+
+            </customer_account>
+        </fieldsets>-->
+
+	</global>
+
+	<frontend>
+
+    	<routers>
+            <Webkul_Customerprofile>
+                <use>standard</use>
+                <args>
+                    <module>Webkul_Customerprofile</module>
+                    <frontName>customerprofile</frontName>
+                </args>
+            </Webkul_Customerprofile>
+			<!-- line to override controller of frontend for register new user-->
+			<customer>
+				<args>
+                    <modules>
+						<Webkul_Customerprofile before="Mage_Customer">Webkul_Customerprofile</Webkul_Customerprofile>
+					</modules>
+                </args>
+            </customer>
+        </routers>
+
+
+		<layout>
+		    <updates>
+		        <customerprofile module="Webkul_Customerprofile">
+		            <file>customerprofile.xml</file>
+		        </customerprofile>
+		    </updates>
+		</layout>
+
+        <translate>
+            <modules>
+                <Webkul_Customerprofile>
+                    <files>
+                        <default>Webkul_Customerprofile.csv</default>
+                    </files>
+                </Webkul_Customerprofile>
+            </modules>
+        </translate>
+
+    </frontend>
+
+</config>

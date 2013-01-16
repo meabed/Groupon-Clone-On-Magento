@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+
+	<!--<catalog_product_view>
+		<reference name="product.info">
+		    <action method="setTemplate"><template>catalog/product/view_partner.phtml</template></action>
+	    </reference>
+    </catalog_product_view>-->
+    <customer_account>
+		<reference name="customer_account_navigation">
+			<!-- active any one to make that type product -->
+			<!-- active this part of xml to make start from index page from their you can select any 3 type product -->
+			<!--
+			<action method="addLink" translate="label" module="customerpartner"><name>partnerproducts</name><path>customerpartner/partnerproducts/index</path><label>New Products</label></action>-->
+			<!-- active this part of xml to make simple product -->
+			
+			<action method="addLink" translate="label" module="customerpartner"><name>partnerproducts</name><path>customerpartner/partnerproducts/simpleproduct</path><label>New Products</label></action>
+			
+			<!-- active this part of xml to make virtual product -->
+			<!--
+			<action method="addLink" translate="label" module="customerpartner"><name>partnerproducts</name><path>customerpartner/partnerproducts/virtualproduct</path><label>New Products</label></action>
+			-->
+			<!-- active this part of xml to make downloadable product -->
+			<!--
+			<action method="addLink" translate="label" module="customerpartner"><name>partnerproducts</name><path>customerpartner/partnerproducts/downloadproduct</path><label>New Products</label></action>
+			-->
+			
+			<action method="addLink" translate="label" module="customerpartner"><name>myproductslist</name><path>customerpartner/partnerproducts/myproductslist</path><label>My Products List</label></action>
+			<action method="addLink" translate="label" module="customerpartner"><name>mydashboard</name><path>customerpartner/partnerproducts/mydashboard</path><label>My Dashboard</label></action>
+	    </reference>
+	</customer_account>
+	
+    <customer_account_products>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="customerpartner/partnerproducts" name="customer_partnerproducts" template="customer/products.phtml"/>
+        </reference>
+    </customer_account_products>
+	<customer_account_simpleproduct>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="customerpartner/partnerproducts" name="customer_simpleproduct" template="customer/simpleproduct.phtml"/>
+        </reference>
+    </customer_account_simpleproduct>
+	<customer_account_virtualproduct>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="customerpartner/partnerproducts" name="customer_virtualproduct" template="customer/virtualproduct.phtml"/>
+        </reference>
+    </customer_account_virtualproduct>
+	<customer_account_downloadableproduct>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="customerpartner/partnerproducts" name="customer_downloadproduct" template="customer/downloadableproduct.phtml"/>
+        </reference>
+    </customer_account_downloadableproduct>
+	<customer_account_simpleproductedit>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="customerpartner/editpartnerproducts" name="customer_editpartnerproducts" template="customer/editsimpleproduct.phtml"/>
+        </reference>
+    </customer_account_simpleproductedit>
+	<customer_account_virtualproductedit>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="customerpartner/editpartnerproducts" name="customer_editpartnerproducts" template="customer/editvirtualproduct.phtml"/>
+        </reference>
+    </customer_account_virtualproductedit>
+	<customer_account_downloadableproductedit>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="customerpartner/editpartnerproducts" name="customer_editpartnerproducts" template="customer/editdownloadableproduct.phtml"/>
+        </reference>
+    </customer_account_downloadableproductedit>
+	
+	<customer_account_productlist>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="customerpartner/partnerproducts" name="customer_myproductslist" template="customer/myproductlist.phtml"/>
+        </reference>
+    </customer_account_productlist>
+	<customer_account_dashboard>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="customerpartner/partnerproducts" name="customer_ashboard" template="customer/mydashboard.phtml"/>
+        </reference>
+    </customer_account_dashboard>
+
+    <customer_account_productsedit>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="customerpartner/editpartnerproducts" name="customer_editpartnerproducts" template="customer/editproducts.phtml"/>
+        </reference>
+    </customer_account_productsedit>
+	
+	<customer_account_productseditapprove>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="customerpartner/editapprovepartnerproducts" name="customer_editapprovepartnerproducts" template="customer/editapproveproducts.phtml"/>
+        </reference>
+    </customer_account_productseditapprove>
+	
+    <customerprofile_account_view>
+		<reference name="customer_profile">
+		    <action method="setTemplate"><template>customer/partner_profile.phtml</template></action>
+	    </reference>
+    </customerprofile_account_view>
+
+
+</layout>

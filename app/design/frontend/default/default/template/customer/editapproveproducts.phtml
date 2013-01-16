@@ -1,0 +1,133 @@
+<?php
+
+	echo $this->getMessagesBlock()->getGroupedHtml();
+	$product = $this->getProduct();
+
+?>
+<?php
+					$write = Mage::getSingleton('core/resource')->getConnection('core_write');
+					$querydata=$write->query("SELECT * FROM customerpartner_entity_data where customerpartnerproductid='".$product['entity_id']."'");
+					$rowdata=$querydata->fetch();
+					#echo $rowdata['sku'];
+
+?>
+<?php 
+							$productcity = Mage::getModel('catalog/product');
+							$attribute=$productcity->getResource()->getAttribute("city");
+							if($attribute->usesSource())
+							{
+							$options = $attribute->getSource()->getAllOptions(false);
+							foreach($options as $opt)
+							  { print_r($opt);
+							  }
+							}
+?>
+<div class="page-head">
+	<table width="100%" >
+		<tr>
+			<td><h3 style="background: #E1E1E1;border: 2px solid red;height: 36px;padding: 15px;width:65px;"><?php echo $this->__('Edit my product') ?></h3></td>
+		</tr>
+	</table>
+</div>
+
+<form action="<?php echo $this->getUrl('customer/products/editApprove') ?>" enctype="multipart/form-data" method="post" id="form-customer-product-editApprove">
+<input type="hidden" name="productid" value="<?=$product['product_id']?>" />
+<fieldset class="group-select" >
+
+	<div id="customerpartner-products">
+	    <ul>
+	        <li>
+	            <div class="input-box">
+	                <label for="name"><?php echo $this->__('Name') ?></label> <span class="required">*</span><br/>
+	                <input type="name" class="input-text required-entry" name="name" id="name" value="<?=$product['name']?>" style="border: 1px solid red;width:375px;"/>
+	            </div>
+	        </li>
+	        <li>
+	            <div class="input-box">
+	                <label for="description"><?php echo $this->__('Description') ?></label> <span class="required">*</span><br/>
+	                <textarea name="description" class="required-entry" id="description" style="border: 1px solid red;width:375px; overflow: auto;" cols="1" rows="3"><?=$product['description']?></textarea>
+	            </div>
+	        </li>
+	        <li>
+	            <div class="input-box">
+	                <label for="short_description"><?php echo $this->__('Short description') ?></label> <span class="required">*</span><br/>
+	                <textarea name="short_description" id="short_description" style="border: 1px solid red;width:375px; overflow: auto;" cols="1" rows="3" class="required-entry"><?=$product['short_description']?></textarea>
+	            </div>
+	        </li>
+			
+			
+			
+
+
+			
+	        <li>
+	            <div class="input-box">
+	                <label for="price"><?php echo $this->__('Price') ?></label> <span class="required">*</span><br/>
+	                <input style="border: 1px solid red;" type="price" class="input-text required-entry" name="price" id="price" value="<?=$product['price']?>"/>
+	            </div>
+	        </li>
+	        <li>
+	            <div class="input-box">
+	                <label for="stock"><?php echo $this->__('Stock') ?></label> <span class="required">*</span><br/>
+	                <input style="border: 1px solid red;" type="stock" class="input-text required-entry" name="stock" id="stock" value="<?=$product['stock']?>"/>
+	            </div>
+	        </li>
+	        <li>
+	            <div class="input-box">
+	                <label for="weight"><?php echo $this->__('Weight') ?></label> <span class="required">*</span><br/>
+	                <input style="border: 1px solid red;" type="weight" class="input-text required-entry" name="weight" id="weight" value="<?=$product['weight']?>"/>
+	            </div>
+	        </li>
+	        <li>
+	            <div class="input-box">
+	            <!-- <h4>File Upload</h4> -->
+	            <label for="file"><?php echo $this->__('Images') ?></label><br />
+	            <?
+	            $images = $this->getImages();
+	            foreach( $images as $image) {
+	            	echo $image." ";
+	            }
+	            ?>
+	            <input type="file" name="images1" size="33"><br clear="all"/>
+				<a href="#" onClick="showOtherImage(); return false;">Add other image</a><br />
+	            <div id="otherimages"></div>
+	            </div>
+	        </li>
+
+	   </ul>
+
+	</div>
+	<div class="button-set">
+	    <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+	    <button type="submit" class="form-button"><span><?php echo $this->__('Save') ?></span></button>
+	</div>
+</fieldset>
+</form>
+<!--
+end new product
+-->
+
+<div class="button-set">
+    <a href="<?php echo $this->getBackUrl() ?>" class="left">&laquo; <?php echo $this->__('Back') ?></a>
+</div>
+<script type="text/javascript">
+	var newCustomerProductForm = new VarienForm('form-customer-product-editPost', true);
+
+	var i=2;
+	function showOtherImage() {
+		var newdiv = document.createElement('div');
+		newdiv.setAttribute("id","childDiv"+i);
+		newdiv.innerHTML = "<input type='file' name='images"+i+"' /><a href=\"javascript:;\" onclick=\"removeEvent('childDiv"+i+"')\">Remove</a>";
+		var ni = document.getElementById('otherimages');
+		ni.appendChild(newdiv);
+		i++;
+	}
+
+	function removeEvent(divNum)
+	{
+		var d = document.getElementById('otherimages');
+		var olddiv = document.getElementById(divNum);
+		d.removeChild(olddiv);
+		i--;
+	}
+</script>
