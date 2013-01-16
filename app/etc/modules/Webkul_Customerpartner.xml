@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+         <Webkul_Customerpartner>
+            <active>true</active>
+            <codePool>local</codePool>
+ 			<depends>
+                <Webkul_Customerprofile />
+            </depends>
+		</Webkul_Customerpartner>
+     </modules>
+</config>

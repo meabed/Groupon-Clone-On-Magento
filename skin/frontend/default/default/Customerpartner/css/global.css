@@ -156,17 +156,7 @@
 .tdpadfirstedit {padding: 4px;width: 54px;}
 .tdpadfirsteditheadingupper {padding: 4px;width: 54px;}	   
 .tdpadsec {padding: 4px;	width:420px;}	   
-.btn {
-    background: none repeat scroll 0 0 #09AEE7;
-    border: medium none;
-    border-radius: 13px 13px 13px 13px;
-    box-shadow: 2px 1px #C2C2C2;
-    color: white;
-    height: 26px;
-    margin: 10px;
-	cursor: pointer;
-    width: 15%;
-}
+
 .widthinput{width:99%;}
 .widthinput1{width:98%;}
 .buttonarea{ background: url("backgdd.PNG") repeat scroll 0 0 transparent;height:45px;}
