@@ -9,6 +9,8 @@ if (typeof jQuery == 'undefined')
 <script type="text/javascript">
   bkLib.onDomLoaded(function() {
         new nicEditor({fullPanel : true}).panelInstance('description');
+        new nicEditor({fullPanel : true}).panelInstance('highlight');
+        new nicEditor({fullPanel : true}).panelInstance('fineprint');
         new nicEditor({fullPanel : true}).panelInstance('short_description');
   });
 </script>
@@ -24,16 +26,20 @@ if (typeof jQuery == 'undefined')
 		$name = (isset($_SESSION['new_products_errors']['name'])) ? $_SESSION['new_products_errors']['name'] : '';
 		$description = (isset($_SESSION['new_products_errors']['description'])) ? $_SESSION['new_products_errors']['description'] : '';
 		$short_description = (isset($_SESSION['new_products_errors']['short_description'])) ? $_SESSION['new_products_errors']['short_description'] : '';
+		$highlight = (isset($_SESSION['new_products_errors']['highlight'])) ? $_SESSION['new_products_errors']['highlight'] : '';
+		$fineprint = (isset($_SESSION['new_products_errors']['fineprint'])) ? $_SESSION['new_products_errors']['fineprint'] : '';
 		$price = (isset($_SESSION['new_products_errors']['price'])) ? $_SESSION['new_products_errors']['price'] : '';
-		$weight = (isset($_SESSION['new_products_errors']['weight'])) ? $_SESSION['new_products_errors']['weight'] : '';
+		//$weight = (isset($_SESSION['new_products_errors']['weight'])) ? $_SESSION['new_products_errors']['weight'] : '';
 		$stock = (isset($_SESSION['new_products_errors']['stock'])) ? $_SESSION['new_products_errors']['stock'] : '';unset($_SESSION['new_products_errors']);
 	} else {
 		$style="display:block;";
 		$name = '';
 		$description = '';
 		$short_description = '';
+        $highlight ='';
+        $fineprint ='';
 		$price = '';
-		$weight = '';
+		//$weight = '';
 		$stock = '';
 		$sku = '';
 		}
@@ -96,6 +102,22 @@ if (typeof jQuery == 'undefined')
 								<textarea name="short_description" id="short_description" rows="5" cols="75" class="required-entry input-text"><?php echo $short_description?></textarea>
 							</td>
 						</tr>
+                    <tr>
+                        <td class="tdpadfirst">
+                            <label for="highlight" class="rightgap"><?php echo $this->__('Highlights :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        </td>
+                        <td class="tdpadsec">
+                            <textarea name="highlight" id="highlight" rows="5" cols="75" class="required-entry input-text"><?php echo $highlight?></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdpadfirst">
+                            <label for="fineprint" class="rightgap"><?php echo $this->__('Fine Print :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        </td>
+                        <td class="tdpadsec">
+                            <textarea name="fineprint" id="fineprint" rows="5" cols="75" class="required-entry input-text"><?php echo $fineprint;?></textarea>
+                        </td>
+                    </tr>
 						<tr>
 							<td class="tdpadfirst">
 								<label for="sku" class="rightgap"><?php echo $this->__('SKU :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -122,14 +144,14 @@ if (typeof jQuery == 'undefined')
 								<input type="stock" class=" required-entry widthinput" name="stock" id="stock" value="<?php echo $stock?>"/>
 							</td>
 						</tr>
-						<tr>
+						<!--<tr>
 							<td class="tdpadfirst">
 								<label for="weight" class="rightgap"><?php echo $this->__('Weight :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
 							</td>
 							<td class="tdpadsec">
-								<input type="weight" class=" required-entry widthinput" name="weight" id="weight" value="<?php echo $weight?>"/>
+								<input type="weight" class=" required-entry widthinput" name="weight" id="weight" value="<?php //echo $weight?>"/>
 							</td>
-						</tr>
+						</tr>-->
 						<tr>
 							<td class="tdpadfirst">
 								<label for="file" class="rightgap"><?php echo $this->__('Image') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>

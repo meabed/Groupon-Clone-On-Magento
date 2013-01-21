@@ -15,63 +15,63 @@ if (typeof jQuery == 'undefined'){
 			<div id="paging_container7">
 				<div class="page_navigation"></div>
 				<p class="headingbg">Product Information</p>
-				<table class="tablepostionedit">
-					<thead class="tbodyingedit">
+				<table class="" id="one-column-emphasis">
+					<thead class="">
 						<tr>										
-							<th class="tdpadfirsteditheadingupper">
-								<label for="name" class="rightgapedithead"><?php echo $this->__('Product Name')?></label> 
+							<th class="">
+								<label for="name" class="head"><?php echo $this->__('Product Name')?></label> 
 							</th>
-							<th class="tdpadfirsteditheadingupper">
-								<label for="name"  class="rightgapedithead"><?php echo $this->__('Image')?></label> 
+							<th class="">
+								<label for="name"  class="head"><?php echo $this->__('Image')?></label> 
 							</th>
-							<th class="tdpadfirsteditheadingupper">
-								<label for="name"  class="rightgapedithead"><?php echo $this->__('Price')?></label> 
+							<th class="">
+								<label for="name"  class="head"><?php echo $this->__('Price')?></label> 
 							</th>
-							<th class="tdpadfirsteditheadingupper">
-								<label for="name" class="rightgapedithead"><?php echo $this->__('Weight')?></label> 
+							<th class="">
+								<label for="name" class="head"><?php echo $this->__('Weight')?></label> 
 							</th>
-							<th class="tdpadfirsteditheadingupper">
-								<label for="name" class="rightgapedithead"><?php echo $this->__('Stock')?></label> 
+							<th class="">
+								<label for="name" class="head"><?php echo $this->__('Stock')?></label> 
 							</th>
-							<th class="tdpadfirsteditheadingupper">
-								<label for="name" class="rightgapedithead"><?php echo $this->__('Status')?></label> 
+							<th class="">
+								<label for="name" class="head"><?php echo $this->__('Status')?></label> 
 							</th>
-							<th class="tdpadfirsteditheadingupper">
-								<label for="name" class="rightgapedithead"><?php echo $this->__('Qty. Sold')?></label> 
+							<th class="">
+								<label for="name" class="head"><?php echo $this->__('Qty. Sold')?></label> 
 							</th>
-							<th class="tdpadfirsteditheadingupper">
-								<label for="name" class="rightgapedithead"><?php echo $this->__('Earned')?></label> 
+							<th class="">
+								<label for="name" class="head"><?php echo $this->__('Earned')?></label> 
 							</th>
-							<th class="tdpadfirsteditheadingupper">
-								<label for="name" class="rightgapedithead"><?php echo $this->__('Owned')?></label> 
+							<th class="">
+								<label for="name" class="head"><?php echo $this->__('Owned')?></label> 
 							</th>
-							<th class="tdpadfirsteditheadingupper">
-								<label for="name" class="rightgapedithead"><?php echo $this->__('Action')?></label> 
+							<th class="">
+								<label for="name" class="head"><?php echo $this->__('Action')?></label> 
 							</th>
 						</tr>	
 					</thead>
-					<tbody class="tbodyingedit content">
+					<tbody class="">
 						<?php 		
 									$checkeven=0;
 									$i=0;
 									foreach ($products as $p){?>
 										<tr class="<?php if($checkeven%2==0)echo 'even-prod';else echo 'odd-prod';?> ex2">
-											<td class="tdpadfirstedit"><label for="name" class="rightgapeditblue"><?php ((strlen($p['name'])) > 7) ? substr($p['name'], 0, 7)."..." : $p['name'];  ?>
+											<td class=""><label for="name" class="blue"><?php ((strlen($p['name'])) > 7) ? substr($p['name'], 0, 7)."..." : $p['name'];  ?>
 											<?php $l=strlen($p['name']); if($l>7){ echo substr($p['name'],0,7)."..";}else {echo $p['name'];} ?>
 											</label></td>
 											<?php if($p['image']){?>
-												<td class="tdpadfirstedit"><img src="<?php echo $p['image']?>" width="45px" height="35px" /></td>			
+												<td class=""><img src="<?php echo $p['image']?>" width="45px" height="35px" /></td>			
 											<?php
 											}
 											else{
 											?>
-												<td class="tdpadfirstedit"><label for="name" class="rightgapedit">Pending</label></td>
+												<td class=""><label for="name" class="">Pending</label></td>
 											<?php
 											}
 											?>
-											<td class="tdpadfirstedit"><label for="name" class="rightgapedit"><?php echo Mage::app()->getStore()->formatPrice($p['price'])?></label></td>
-											<td class="tdpadfirstedit"><label for="name" class="rightgapedit"><?php echo sprintf("%01.2f", $p['weight'])?></label></td>
-											<td class="tdpadfirstedit"><label for="name" class="rightgapedit"><?php echo $p['stock']?></label></td>
+											<td class=""><label for="name" class=""><?php echo Mage::app()->getStore()->formatPrice($p['price'])?></label></td>
+											<td class=""><label for="name" class=""><?php echo sprintf("%01.2f", $p['weight'])?></label></td>
+											<td class=""><label for="name" class=""><?php echo $p['stock']?></label></td>
 												<?php
 												if($p['product_id']==0) {
 													
@@ -82,23 +82,23 @@ if (typeof jQuery == 'undefined'){
 															$row = $readresult->fetch();
 															#echo $row['producttype'];
 														?>
-													<td  class="tdpadfirstedit"><label for="name" class="rightgapedit">pending</label></td>
-													<td  class="tdpadfirstedit"><label for="name" class="rightgapedit">pending</label></td>
-													<td  class="tdpadfirstedit"><label for="name" class="rightgapedit">pending</label></td>
-													<td  class="tdpadfirstedit"><label for="name" class="rightgapedit">pending</label></td>
-													<td style="text-align:center;" class="tdpadfirstedit"><label for="name" class="rightgapedit"><a title="Edit" onclick="editme('<?php echo $p['entity_id']; ?>','<?php echo $row['producttype']; ?>')"><img src="<?php echo $this->getSkinUrl('customerurlpic/edit.gif'); ?>" /></a></label></td>	
+													<td  class=""><label for="name" class="">pending</label></td>
+													<td  class=""><label for="name" class="">pending</label></td>
+													<td  class=""><label for="name" class="">pending</label></td>
+													<td  class=""><label for="name" class="">pending</label></td>
+													<td style="text-align:center;" class=""><label for="name" class=""><a title="Edit" onclick="editme('<?php echo $p['entity_id']; ?>','<?php echo $row['producttype']; ?>')"><img src="<?php echo $this->getSkinUrl('customerurlpic/edit.gif'); ?>" /></a></label></td>	
 												<?php
 												} else
 												{
 												?>
-													<td class="tdpadfirstedit"><label for="name" class="rightgapedit">approved</label></td>
+													<td class=""><label for="name" class="">approved</label></td>
 													<?php
 													$QtyandEarned = $this->getQtySoldandEarned($p['entity_id']);
 													?>
-													<td align="center" class="tdpadfirstedit"><label for="name" class="rightgapedit"><?php echo $QtyandEarned['qtySold']?></label></td>
-													<td align="center" class="tdpadfirstedit"><label for="name" class="rightgapedit"><?php echo Mage::app()->getStore()->formatPrice($QtyandEarned['earned'])?></label></td>
-													<td align="center" class="tdpadfirstedit"><label for="name" class="rightgapedit"><?php echo Mage::app()->getStore()->formatPrice($QtyandEarned['owed'])?></label></td>
-													<td style="text-align:center;" class="tdpadfirstedit"><label class="rightgapedit"></label></td>
+													<td align="center" class=""><label for="name" class=""><?php echo $QtyandEarned['qtySold']?></label></td>
+													<td align="center" class=""><label for="name" class=""><?php echo Mage::app()->getStore()->formatPrice($QtyandEarned['earned'])?></label></td>
+													<td align="center" class=""><label for="name" class=""><?php echo Mage::app()->getStore()->formatPrice($QtyandEarned['owed'])?></label></td>
+													<td style="text-align:center;" class=""><label class=""></label></td>
 												<?php
 												}
 												?>

@@ -12,6 +12,8 @@ if (typeof jQuery == 'undefined')
         
         new nicEditor({fullPanel : true}).panelInstance('description');
         new nicEditor({fullPanel : true}).panelInstance('short_description');
+      new nicEditor({fullPanel : true}).panelInstance('highlight');
+      new nicEditor({fullPanel : true}).panelInstance('fineprint');
        
   });
   //]]>
@@ -28,6 +30,7 @@ else
 				<?php
 				echo $this->getMessagesBlock()->getGroupedHtml();
 				$product = $this->getProduct();
+                $_product = Mage::getModel('catalog/product')->load($product['entity_id']);
 				?>
 				<?php		
 							/****** here i code for mysql prefix *****/
@@ -102,6 +105,25 @@ else
 												<textarea name="short_description" id="short_description" rows="5" cols="75" class="required-entry input-text"><?php echo $product['short_description']?></textarea>
 											</td>
 										</tr>
+
+                                        <tr>
+                                            <td class="tdpadfirst">
+                                                <label for="highlight" class="rightgap"><?php echo $this->__('Highlights :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            </td>
+                                            <td class="tdpadsec">
+                                                <textarea name="highlight" id="highlight" rows="5" cols="75" class="required-entry input-text"><?php echo $_product->getHighlights();?></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdpadfirst">
+                                                <label for="fineprint" class="rightgap"><?php echo $this->__('Fine Print :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            </td>
+                                            <td class="tdpadsec">
+                                                <textarea name="fineprint" id="fineprint" rows="5" cols="75" class="required-entry input-text"><?php echo $_product->getFinePrint();?></textarea>
+                                            </td>
+                                        </tr>
+
+
 										<tr>
 											<td class="tdpadfirst">
 												<label for="sku" class="rightgap"><?php echo $this->__('SKU :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>

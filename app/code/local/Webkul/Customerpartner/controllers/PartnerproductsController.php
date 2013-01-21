@@ -1002,9 +1002,11 @@ class Webkul_Customerpartner_PartnerproductsController extends Mage_Customer_Acc
 								->getFirstItem();
 					$product->setName($this->getRequest()->getParam('name'));
 					$product->setDescription($this->getRequest()->getParam('description'));
+					$product->setHighlights($this->getRequest()->getParam('highlight'));
+					$product->setFinePrint($this->getRequest()->getParam('fineprint'));
 					$product->setShortDescription($this->getRequest()->getParam('short_description'));
 					$product->setPrice($this->getRequest()->getParam('price'));
-					$product->setWeight($this->getRequest()->getParam('weight'));
+					$product->setWeight(0);
 					$product->setStock($this->getRequest()->getParam('stock'));
 					$write = Mage::getSingleton('core/resource')->getConnection('core_write');
 					$sku=$this->getRequest()->getParam('sku');
