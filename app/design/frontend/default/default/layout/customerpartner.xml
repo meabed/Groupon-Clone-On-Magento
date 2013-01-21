@@ -15,12 +15,10 @@
 			<action method="addLink" translate="label" module="customerpartner"><name>partnerproducts</name><path>customerpartner/partnerproducts/index</path><label>New Products</label></action>-->
 			<!-- active this part of xml to make simple product -->
 			
-			<action method="addLink" translate="label" module="customerpartner"><name>partnerproducts</name><path>customerpartner/partnerproducts/simpleproduct</path><label>New Products</label></action>
+			<!--<action method="addLink" translate="label" module="customerpartner"><name>partnerproducts</name><path>customerpartner/partnerproducts/simpleproduct</path><label>New Products</label></action>-->
 			
 			<!-- active this part of xml to make virtual product -->
-			<!--
 			<action method="addLink" translate="label" module="customerpartner"><name>partnerproducts</name><path>customerpartner/partnerproducts/virtualproduct</path><label>New Products</label></action>
-			-->
 			<!-- active this part of xml to make downloadable product -->
 			<!--
 			<action method="addLink" translate="label" module="customerpartner"><name>partnerproducts</name><path>customerpartner/partnerproducts/downloadproduct</path><label>New Products</label></action>

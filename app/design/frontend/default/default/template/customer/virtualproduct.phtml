@@ -60,8 +60,10 @@ if (typeof jQuery == 'undefined')
 							</td>
 							<td class="tdpadsec">
 								<select id="category" class="myinput-text required-entry widthinput" name="category"   >
-									<?php $_helper = Mage::helper('catalog/category'); ?>
-												<?php $_categories = $_helper->getStoreCategories() ;?>
+									<?php //$_helper = Mage::helper('catalog/category');
+                                    $_helper = Mage::helper('deal');
+                                    ?>
+												<?php $_categories = $_helper->getActiveCategories() ;?>
 												<?php if (count($_categories) > 0): ?>
 												<?php foreach($_categories as $_category): ?>
 														<option  name="<?php  echo $_category['entity_id']?>" value="<?php  echo $_category['entity_id']?>"><?php echo $_category->getName();?></option>

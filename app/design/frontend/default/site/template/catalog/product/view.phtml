@@ -60,9 +60,9 @@ $this->getDealInfo();
                 <div class="head"><?php echo $this->__('Highlights');?></div>
                 <div class="details">
                     <ul>
-                        <?php foreach ($this->highlights as $item): ?>
+                        <?php if(is_array($this->highlights)): foreach ($this->highlights as $item): ?>
                         <li><?php echo $item;?></li>
-                        <?php endforeach;?>
+                        <?php endforeach;endif;?>
                     </ul>
                 </div>
             </div>
@@ -70,9 +70,9 @@ $this->getDealInfo();
                 <div class="head"><?php echo $this->__('The Fine Print');?></div>
                 <div class="details">
                     <ul>
-                        <?php foreach ($this->fineprint as $item): ?>
+                        <?php  if(is_array($this->fineprint)): foreach ($this->fineprint as $item): ?>
                         <li><?php echo $item;?></li>
-                        <?php endforeach;?>
+                        <?php endforeach;endif;?>
                     </ul>
                 </div>
             </div>

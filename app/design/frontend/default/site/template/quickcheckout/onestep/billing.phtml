@@ -191,7 +191,7 @@
     $('billing-address-select') && billing.newAddress(!$('billing-address-select').value);
 
     var billingRegionUpdater = new RegionUpdater('billing:country_id', 'billing:region', 'billing:region_id', countryRegions, undefined, 'billing:postcode');
-    var reg='<?php if($reg){echo $reg;} ?>';
+    var reg='<?php if(isset($reg) && $reg){echo $reg;} ?>';
     if(reg=='1'){
         new Ajax.Request('<?php echo $this->getUrl('checkout/onestep/switchMethod'); ?>',{
             parameters:{method:'register'},
