@@ -2,7 +2,7 @@
 <config>
     <modules>
          <Webkul_Customerpartner>
-            <active>true</active>
+            <active>false</active>
             <codePool>local</codePool>
  			<depends>
                 <Webkul_Customerprofile />
