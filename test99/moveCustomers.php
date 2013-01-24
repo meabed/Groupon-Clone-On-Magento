@@ -1,7 +1,7 @@
 <?php
 $_magePathNew = '../app/Mage.php';
 
-$_magePath = '/home/dealgobb/dealgobbler.com/html/Mage.php';
+$_magePath = '/home/dealgobb/dealgobbler.com/html/app/Mage.php';
 
 include_once($_magePath);
 
