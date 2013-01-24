@@ -9,7 +9,11 @@ include_once($_magePath);
 
 Mage::app();
 
-$customers = Mage::getModel('customer/customer')->getCollection();
+$customers = Mage::getModel('customer/customer')->getCollection()->load();
+
+foreach ($customers as $c)
+{
+    $carr['firstname'] = $cu-
+}
 
 
-echo $customers->getSize();
