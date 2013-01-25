@@ -13,7 +13,7 @@ $customers = Mage::getModel('customer/customer')->getCollection()->load();
 
 foreach ($customers as $c)
 {
-    $carr['firstname'] = $cu-
+    //$carr['firstname'] = $cu-
 }
 
 
