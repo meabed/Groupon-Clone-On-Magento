@@ -30,6 +30,7 @@ else
 				<?php
 				echo $this->getMessagesBlock()->getGroupedHtml();
 				$product = $this->getProduct();
+        print_r($product);
                 $_product = Mage::getModel('catalog/product')->load($product['entity_id']);
 				?>
 				<?php		
@@ -86,7 +87,7 @@ else
 												<label for="name" class="rightgap"><?php echo $this->__('Product Name :')?></label> <span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
 											</td>
 											<td class="tdpadsec">
-												<input type="name" class="required-entry widthinput" name="name" id="name" value="<?php echo $product['name']?>" />
+												<input type="text" class="required-entry widthinput" name="name" id="name" value="<?php echo $product['name']?>" />
 											</td>
 										</tr>
 										<tr>
@@ -111,7 +112,7 @@ else
                                                 <label for="highlight" class="rightgap"><?php echo $this->__('Highlights :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                             </td>
                                             <td class="tdpadsec">
-                                                <textarea name="highlight" id="highlight" rows="5" cols="75" class="required-entry input-text"><?php echo $_product->getHighlights();?></textarea>
+                                                <textarea name="highlight" id="highlight" rows="5" cols="75" class="required-entry input-text"><?php echo $product['highlights'];?></textarea>
                                             </td>
                                         </tr>
                                         <tr>
@@ -119,7 +120,7 @@ else
                                                 <label for="fineprint" class="rightgap"><?php echo $this->__('Fine Print :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                             </td>
                                             <td class="tdpadsec">
-                                                <textarea name="fineprint" id="fineprint" rows="5" cols="75" class="required-entry input-text"><?php echo $_product->getFinePrint();?></textarea>
+                                                <textarea name="fineprint" id="fineprint" rows="5" cols="75" class="required-entry input-text"><?php echo $product['fine_print'];?></textarea>
                                             </td>
                                         </tr>
 
@@ -129,18 +130,25 @@ else
 												<label for="sku" class="rightgap"><?php echo $this->__('SKU :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
 											</td>
 											<td class="tdpadsec">
-												<input name="sku" id="sku" class=" required-entry widthinput" value="<?php echo $rowdata['sku']?>"/>
+												<input type="text" name="sku" id="sku" class=" required-entry widthinput" value="<?php echo $rowdata['sku']?>"/>
 												<div id="skuavail" ><img src="<?php echo $this->getSkinUrl('customerurlpic/available.png'); ?>"/><span>SKU Available</span></div>
 												<div id="skunotavail" ><img src="<?php echo $this->getSkinUrl('customerurlpic/x-mark.jpg'); ?>"/><span>SKU Already Exist</span></div>
 											</td>
 										</tr>
-										
+                                        <tr>
+                                            <td class="tdpadfirst">
+                                                <label for="original_price" class="rightgap"><?php echo $this->__('Price :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span><br><small> Before discount </small>
+                                            </td>
+                                            <td class="tdpadsec">
+                                                <input type="text" class=" required-entry widthinput" name="original_price" id="original_price" value="<?php echo $product['original_price']?>"/>
+                                            </td>
+                                        </tr>
 										<tr>
 											<td class="tdpadfirst">
-												<label for="price" class="rightgap"><?php echo $this->__('Price :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+												<label for="price" class="rightgap"><?php echo $this->__('Price :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span><br><small> after discount </small>
 											</td>
 											<td class="tdpadsec">
-												<input type="price" class=" required-entry widthinput" name="price" id="price" value="<?php echo $product['price']?>"/>
+												<input type="text" class=" required-entry widthinput" name="price" id="price" value="<?php echo $product['price']?>"/>
 											</td>
 										</tr>
 										<tr>
@@ -148,9 +156,35 @@ else
 												<label for="stock" class="rightgap"><?php echo $this->__('Stock :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
 											</td>
 											<td class="tdpadsec">
-												<input type="stock" class=" required-entry widthinput" name="stock" id="stock" value="<?php echo $product['stock']?>"/>
+												<input type="text" class=" required-entry widthinput" name="stock" id="stock" value="<?php echo $product['stock']?>"/>
 											</td>
 										</tr>
+                                        <tr>
+                                            <td class="tdpadfirst">
+                                                <label for="start_date" class="rightgap"><?php echo $this->__('Start Date :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            </td>
+                                            <td class="tdpadsec">
+                                                <input type="text" class=" required-entry widthinput" name="start_date" id="start_date" value="<?php echo $product['start_date']?>"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdpadfirst">
+                                                <label for="end_date" class="rightgap"><?php echo $this->__('End Date :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            </td>
+                                            <td class="tdpadsec">
+                                                <input type="text" class=" required-entry widthinput" name="end_date" id="end_date" value="<?php echo $product['end_date']?>"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdpadfirst">
+                                                <label for="voucher_date" class="rightgap"><?php echo $this->__('Voucher Valid till :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            </td>
+                                            <td class="tdpadsec">
+                                                <input type="text" class=" required-entry widthinput" name="voucher_date" id="voucher_date" value="<?php echo $product['voucher_date']?>"/>
+                                            </td>
+                                        </tr>
+                                        <!--
+
 										<tr>
 											<td class="tdpadfirst">
 												<label for="weight" class="rightgap"><?php echo $this->__('Weight :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -158,7 +192,7 @@ else
 											<td class="tdpadsec">
 												<input type="weight" class=" required-entry widthinput" name="weight" id="weight"  value="<?php echo $product['weight']?>"/>
 											</td>
-										</tr>
+										</tr>-->
 										<tr>
 											<td class="tdpadfirst">
 												<label for="file" class="rightgap"><?php echo $this->__('Image') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>

@@ -13,11 +13,18 @@ class Webkul_Customerpartner_Model_Customerpartner extends Varien_Object
 		$product->setName($args['name']);
 		$product->setDescription($args['description']);
 		$product->setShortDescription($args['short_description']);
+        $product->setHighlights($args['highlight']);
+        $product->setFinePrint($args['fineprint']);
+        $product->setOriginalPrice($args['original_price']);
+        $product->setStartDate($args['start_date']);
+        $product->setEndDate($args['end_date']);
+        $product->setVoucherDate($args['voucher_date']);
 		$product->setPrice($args['price']);
 		$product->setStock($args['stock']);
 		$product->setWeight($args['weight']);
 		$product->setCustomerId($args['customer_id']);
 		$product->setProductId(0);
+        //print_r($args);exit;
 		$product->save();
 
 		return $product->getId();

@@ -1006,7 +1006,7 @@ class Webkul_Customerpartner_PartnerproductsController extends Mage_Customer_Acc
 					$product->setFinePrint($this->getRequest()->getParam('fineprint'));
 					$product->setShortDescription($this->getRequest()->getParam('short_description'));
 					$product->setPrice($this->getRequest()->getParam('price'));
-					$product->setWeight(0);
+					$product->setWeight($this->getRequest()->getParam('weight'));
 					$product->setStock($this->getRequest()->getParam('stock'));
 					$write = Mage::getSingleton('core/resource')->getConnection('core_write');
 					$sku=$this->getRequest()->getParam('sku');
@@ -1073,7 +1073,14 @@ class Webkul_Customerpartner_PartnerproductsController extends Mage_Customer_Acc
 					$product->setDescription($this->getRequest()->getParam('description'));
 					$product->setShortDescription($this->getRequest()->getParam('short_description'));
 					$product->setPrice($this->getRequest()->getParam('price'));
-					$product->setWeight($this->getRequest()->getParam('weight'));
+                    $product->setHighlights($this->getRequest()->getParam('highlight'));
+                    $product->setFinePrint($this->getRequest()->getParam('fineprint'));
+                    $product->setOriginalPrice($this->getRequest()->getParam('original_price'));
+                    $product->setStartDate($this->getRequest()->getParam('start_date'));
+                    $product->setEndDate($this->getRequest()->getParam('end_date'));
+                    $product->setVoucherDate($this->getRequest()->getParam('voucher_date'));
+                    //$product->setData('fine_print',$this->getRequest()->getParam('description'));
+					$product->setWeight(0);
 					$product->setStock($this->getRequest()->getParam('stock'));
 					$write = Mage::getSingleton('core/resource')->getConnection('core_write');
 					$sku=$this->getRequest()->getParam('sku');
@@ -1085,7 +1092,9 @@ class Webkul_Customerpartner_PartnerproductsController extends Mage_Customer_Acc
 					#$querydata=$write->query("update customerpartner_entity_data set sku='".$sku."' where customerpartnerproductid='".$id."'");
 					#$querydata=$write->query("update customerpartner_entity_data set category='".$category."' where customerpartnerproductid='".$id."'");
 					$product->save();
-					if ( $_FILES[images][name]!='' && count($_FILES) > 0 ) {
+                    //print_r($product->getData());exit();
+
+                    if ( $_FILES[images][name]!='' && count($_FILES) > 0 ) {
 						if (is_dir(Mage::getBaseDir().'/media/customersproducts/'.$id)) {			
 							foreach (new DirectoryIterator(Mage::getBaseDir().'/media/customersproducts/'.$id) as $fileInfo) {
 								if($fileInfo->isFile()){			
@@ -1206,12 +1215,53 @@ class Webkul_Customerpartner_PartnerproductsController extends Mage_Customer_Acc
 						$data[$code] = $value;
 					}
 				break;
+                case 'highlight':
+                    if (trim($value) == '' ) {
+                        $errors[] = 'HighLights has to be completed';
+                    } else {
+                        $data[$code] = $value;
+                    }
+                break;
+                case 'fineprint':
+                    if (trim($value) == '' ) {
+                        $errors[] = 'Fineprint has to be completed';
+                    } else {
+                        $data[$code] = $value;
+                    }
+                break;
+                case 'start_date':
+                    if (trim($value) == '' ) {
+                        $errors[] = 'Start Date has to be completed';
+                    } else {
+                        $data[$code] = $value;
+                    }
+                    break;
+                case 'end_date':
+                    if (trim($value) == '' ) {
+                        $errors[] = 'End Date has to be completed';
+                    } else {
+                        $data[$code] = $value;
+                    }
+                    break;
+                case 'voucher_date':
+                    if (trim($value) == '' ) {
+                        $errors[] = 'Voucher Validity has to be completed';
+                    } else {
+                        $data[$code] = $value;
+                    }
+                    break;
 				case 'price':
 					if ( !preg_match("/^([0-9])+?[0-9.]*$/",$value) ) {
 						$errors[] = 'Price should contain only decimal numbers';
 					} else {
 						$data[$code] = $value;
 					}
+                case 'original_price':
+                    if ( !preg_match("/^([0-9])+?[0-9.]*$/",$value) ) {
+                        $errors[] = 'Original Price should contain only decimal numbers';
+                    } else {
+                        $data[$code] = $value;
+                    }
 				case 'weight':
 					if ( !preg_match("/^([0-9])+?[0-9.]*$/",$value) ) {
 						$errors[] = 'Weight should contain only decimal numbers';

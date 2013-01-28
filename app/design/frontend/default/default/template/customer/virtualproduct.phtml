@@ -29,6 +29,7 @@ if (typeof jQuery == 'undefined')
 		$highlight = (isset($_SESSION['new_products_errors']['highlight'])) ? $_SESSION['new_products_errors']['highlight'] : '';
 		$fineprint = (isset($_SESSION['new_products_errors']['fineprint'])) ? $_SESSION['new_products_errors']['fineprint'] : '';
 		$price = (isset($_SESSION['new_products_errors']['price'])) ? $_SESSION['new_products_errors']['price'] : '';
+        $original_price = (isset($_SESSION['new_products_errors']['original_price'])) ? $_SESSION['new_products_errors']['original_price'] : '';
 		//$weight = (isset($_SESSION['new_products_errors']['weight'])) ? $_SESSION['new_products_errors']['weight'] : '';
 		$stock = (isset($_SESSION['new_products_errors']['stock'])) ? $_SESSION['new_products_errors']['stock'] : '';unset($_SESSION['new_products_errors']);
 	} else {
@@ -38,6 +39,7 @@ if (typeof jQuery == 'undefined')
 		$short_description = '';
         $highlight ='';
         $fineprint ='';
+        $original_price = '';
 		$price = '';
 		//$weight = '';
 		$stock = '';
@@ -83,7 +85,7 @@ if (typeof jQuery == 'undefined')
 								<label for="name" class="rightgap"><?php echo $this->__('Product Name :')?></label> <span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
 							</td>
 							<td class="tdpadsec">
-								<input type="name" class="required-entry widthinput" name="name" id="name" />
+								<input type="text" class="required-entry widthinput" name="name" id="name" />
 							</td>
 						</tr>
 						<tr>
@@ -123,17 +125,25 @@ if (typeof jQuery == 'undefined')
 								<label for="sku" class="rightgap"><?php echo $this->__('SKU :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
 							</td>
 							<td class="tdpadsec">
-								<input name="sku" id="sku" class=" required-entry widthinput" />
+								<input type="text" name="sku" id="sku" class=" required-entry widthinput" />
 								<div id="skuavail" ><img src="<?php echo $this->getSkinUrl('customerurlpic/available.png'); ?>"/><span>SKU Available</span></div>
 								<div id="skunotavail" ><img src="<?php echo $this->getSkinUrl('customerurlpic/x-mark.jpg'); ?>"/><span>SKU Already Exist</span></div>
 							</td>
 						</tr>
+                    <tr>
+                        <td class="tdpadfirst">
+                            <label for="original_price" class="rightgap"><?php echo $this->__('Original Price :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        </td>
+                        <td class="tdpadsec">
+                            <input type="text" class=" required-entry widthinput" name="original_price" id="original_price" value="<?php echo $original_price?>"/>
+                        </td>
+                    </tr>
 						<tr>
 							<td class="tdpadfirst">
 								<label for="price" class="rightgap"><?php echo $this->__('Price :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
 							</td>
 							<td class="tdpadsec">
-								<input type="price" class=" required-entry widthinput" name="price" id="price" value="<?php echo $price?>"/>
+								<input type="text" class=" required-entry widthinput" name="price" id="price" value="<?php echo $price?>"/>
 							</td>
 						</tr>
 						<tr>
@@ -141,7 +151,7 @@ if (typeof jQuery == 'undefined')
 								<label for="stock" class="rightgap"><?php echo $this->__('Stock :') ?></label><span class="required starimp">&nbsp;&nbsp;&nbsp;&nbsp;</span>
 							</td>
 							<td class="tdpadsec">
-								<input type="stock" class=" required-entry widthinput" name="stock" id="stock" value="<?php echo $stock?>"/>
+								<input type="text" class=" required-entry widthinput" name="stock" id="stock" value="<?php echo $stock?>"/>
 							</td>
 						</tr>
 						<!--<tr>
