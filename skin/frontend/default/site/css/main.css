@@ -352,6 +352,7 @@ div.footer {
 div.product-view div.product-name h1 {
     font-size: 17px !important;
     font-weight: normal !important;
+    line-height: 27px;
 }
 
 div.product-view div.product-name h1 span {
@@ -628,8 +629,8 @@ div.product-mid {
 
 div.facebook-block {
     width: 33%;
-    margin: 0px 0px 0px 20px;
-    float: left;
+    margin: 0px 5px 0px 20px;
+    float: right;
 }
 
 div.product-highlights div.head {
