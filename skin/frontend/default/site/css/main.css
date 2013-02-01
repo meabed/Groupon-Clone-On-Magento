@@ -629,8 +629,16 @@ div.product-mid {
 
 div.facebook-block {
     width: 33%;
-    margin: 0px 5px 0px 20px;
+    margin: 0px 0px 0px 20px;
     float: right;
+    text-align: center;
+}
+div.ded_c {
+    width: 33%;
+    margin: 0px 0px 0px 20px;
+    float: right;
+    text-align: center;
+
 }
 
 div.product-highlights div.head {
