@@ -283,7 +283,11 @@ div.footer {
 button.button span {
     color: #942068;
 }
+div.product-desc div.details h3
+{
+    color: #942068;
 
+}
 label {
     display: inline-block;
 }
