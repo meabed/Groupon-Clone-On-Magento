@@ -21,7 +21,7 @@ $_product = $_product = $this->getProduct();?>
 
                 <div class="span9" id="deal-show-vitals">
                     <div class="pull-right" id="deal-show-vitals-buy">
-                        <a onclick="submitform();" data-deal_id="<?php echo $_product->getId();?>" href="#" data-toggle="modal" class="btn btn-large btn-teambuy-pink font-large" id="buy-button">
+                        <a onclick="submitform();" data-deal_id="<?php echo $_product->getId();?>" href="#" data-toggle="modal" class="btn btn-large btn-teambuy-pink font-large btn-success" id="buy-button">
                             <strong>BUY</strong> <?php echo $this->getPriceCurrency($_product->getPrice()); ?> </a>
                     </div>
                     <div id="deal-show-vitals-pricevalue">
