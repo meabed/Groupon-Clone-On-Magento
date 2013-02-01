@@ -628,6 +628,9 @@ div.product-fineprint div.head {
 }
 div.product-l
 {
+    width: 34%;
+}
+div.product-mid {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     -khtml-border-radius: 5px;
@@ -636,21 +639,17 @@ div.product-l
     margin-bottom: 20px;
     background: #ffffff;
     margin-left: 19px;
-    width: 34%;
-}
-div.product-mid {
-
     width: 100%;
 }
 
 div.facebook-block {
-    width: 33%;
+    width: 100%;
     margin: 0px 0px 0px 20px;
     float: right;
     text-align: center;
 }
 div.ded_c {
-    width: 33%;
+    width: 100%;
     margin: 0px 0px 0px 20px;
     float: right;
     text-align: center;
