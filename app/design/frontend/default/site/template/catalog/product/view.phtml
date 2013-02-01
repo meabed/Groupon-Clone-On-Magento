@@ -96,7 +96,11 @@ $this->getDealInfo();
         <div class="product-company">
             <div class="details">
                 <?php
-                echo Mage::helper('deal')->getCompany('ded_complience');
+                $block = Mage::getModel('cms/block')->load('ded_complience');
+                if($block)
+                {
+                    echo $block->getContent();
+                }
                 ?>
             </div>
         </div>
