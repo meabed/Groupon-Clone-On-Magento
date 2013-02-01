@@ -1851,3 +1851,7 @@ table#shopping-cart-table tbody tr td a.product-image {
 .col2-left-layout div.sidebar {
     width: 195px;
 }
+button.btn-checkout span span
+{
+    color: white;
+}
