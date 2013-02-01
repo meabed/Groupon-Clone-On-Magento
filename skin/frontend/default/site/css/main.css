@@ -334,7 +334,7 @@ div.footer {
 
 .product-view .product-name {
     background: #B7E3FC;
-    color: #575757;
+    color: #000000;
 
     -moz-border-radius: 5px 5px 0px 0px;
     -webkit-border-radius: 5px 5px 0px 0px;
@@ -348,7 +348,14 @@ div.footer {
     margin: 0px;
 
 }
-
+a#buy-button
+{
+    color: #ffffff;
+}
+a#buy-button:hover
+{
+    color: #942068;
+}
 div.product-view div.product-name h1 {
     font-size: 17px !important;
     font-weight: normal !important;
