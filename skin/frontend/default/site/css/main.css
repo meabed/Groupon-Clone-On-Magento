@@ -629,6 +629,8 @@ div.product-fineprint div.head {
 div.product-l
 {
     width: 34%;
+    float: right;
+    margin-bottom: 20px;
 }
 div.product-mid {
     -moz-border-radius: 5px;
@@ -638,7 +640,6 @@ div.product-mid {
     float: left;
     margin-bottom: 20px;
     background: #ffffff;
-    margin-left: 19px;
     width: 100%;
 }
 
