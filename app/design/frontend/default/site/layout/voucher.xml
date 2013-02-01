@@ -1,6 +1,14 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
 	<customer_account>
+        <reference name="customer_account_navigation">
+            <action method="removeLink"><name>OAuth Customer Tokens</name></action>
+            <action method="removeLink"><name>billing_agreements</name></action>
+            <action method="removeLink"><name>recurring_profiles</name></action>
+            <action method="removeLink"><name>tags</name></action>
+            <action method="removeLink"><name>downloadable_products</name></action>
+            <action method="removeLink"><name>reviews</name></action>
+        </reference>
 		<!-- Mage_Sales -->
 		<reference name="customer_account_navigation">
 			<action method="addLink" translate="label" module="sales">
