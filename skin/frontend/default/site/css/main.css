@@ -306,7 +306,7 @@ div#os-container h3.product-name {
     font-size: 12px;
 }
 
-.shadow, div.product-bot, div.product-mid, div.product-top, div.side_products, div.product_sidebar .blocktitle {
+.shadow, div.product-bot, div.product-l, div.product-top, div.side_products, div.product_sidebar .blocktitle {
 
     -webkit-border-radius: 8px 8px 0 0;
     -moz-border-radius: 8px 8px 0 0;
@@ -626,8 +626,8 @@ div.product-fineprint div.head {
     color: #942068;
 
 }
-
-div.product-mid {
+div.product-l
+{
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     -khtml-border-radius: 5px;
@@ -637,6 +637,10 @@ div.product-mid {
     background: #ffffff;
     margin-left: 19px;
     width: 34%;
+}
+div.product-mid {
+
+    width: 100%;
 }
 
 div.facebook-block {
