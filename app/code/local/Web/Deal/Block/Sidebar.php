@@ -60,7 +60,7 @@ class Web_Deal_Block_Sidebar extends Mage_Core_Block_Template
         $catCollection = Mage::helper('deal')->getActiveCategories(null);
         $catIds = $catCollection->getAllIds();
 
-        $this->_productsIds = Mage::getModel('catalog/product')->getCollection()
+        $this->_products = Mage::getModel('catalog/product')->getCollection()
             ->joinField('category_id','catalog/category_product','category_id','product_id=entity_id',null,'left')
             ->addAttributeToSelect('*')
         //->addAttributeToFilter('main_deal',array('eq'=>'1'))
