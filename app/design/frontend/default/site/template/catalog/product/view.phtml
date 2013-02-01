@@ -24,7 +24,9 @@ $this->getDealInfo();
             <div class="product-view product-shop">
                 <div class="product-top">
                     <div class="product-name">
-                        <h1><span>Today's Deal: </span><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+                        <h1>
+                            <span>Today's Deal: </span><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+                        </h1>
                     </div>
                     <div class="product-img-box">
                         <?php echo $this->getChildHtml('media') ?>
@@ -47,65 +49,66 @@ $this->getDealInfo();
 
                 <div class="product-mid">
 
-                    <?php if ($_product->isSaleable() && $this->hasOptions()):?>
-            <div class="product-highlights">
-                <div class="head"><?php echo $this->__('Deal Options');?></div>
-                <div class="details">
-                    <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
-                    <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
-                </div>
-            </div>
+                    <?php if ($_product->isSaleable() && $this->hasOptions()): ?>
+                    <div class="product-highlights">
+                        <div class="head"><?php echo $this->__('Deal Options');?></div>
+                        <div class="details">
+                            <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                            <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+                        </div>
+                    </div>
                     <?php endif;?>
 
 
-            <div class="product-highlights">
-                <div class="head"><?php echo $this->__('Highlights');?></div>
-                <div class="details">
-                    <ul>
-                        <?php if(is_array($this->highlights)): foreach ($this->highlights as $item): ?>
-                        <li><?php echo $item;?></li>
-                        <?php endforeach;endif;?>
-                    </ul>
+                    <div class="product-highlights">
+                        <div class="head"><?php echo $this->__('Highlights');?></div>
+                        <div class="details">
+                            <ul>
+                                <?php if (is_array($this->highlights)): foreach ($this->highlights as $item): ?>
+                                <li><?php echo $item;?></li>
+                                <?php endforeach;endif;?>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="product-fineprint">
+                        <div class="head"><?php echo $this->__('The Fine Print');?></div>
+                        <div class="details">
+                            <ul>
+                                <?php  if (is_array($this->fineprint)): foreach ($this->fineprint as $item): ?>
+                                <li><?php echo $item;?></li>
+                                <?php endforeach;endif;?>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="product-company">
+                        <div class="head"><?php echo $this->__('The Company');?></div>
+                        <div class="details">
+                            <?php
+                            echo Mage::helper('deal')->getCompany($_product->getCompany());
+                            ?>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="product-fineprint">
-                <div class="head"><?php echo $this->__('The Fine Print');?></div>
-                <div class="details">
-                    <ul>
-                        <?php  if(is_array($this->fineprint)): foreach ($this->fineprint as $item): ?>
-                        <li><?php echo $item;?></li>
-                        <?php endforeach;endif;?>
-                    </ul>
-                </div>
-            </div>
-            <div class="product-company">
-                <div class="head"><?php echo $this->__('The Company');?></div>
-                <div class="details">
-                    <?php
-                        echo Mage::helper('deal')->getCompany($_product->getCompany());
-                    ?>
-                </div>
-            </div>
-            <div class="facebook-block">
-                <iframe scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; width:320px; height:460px; background: #FFF;" src="http://www.facebook.com/plugins/likebox.php?id=182345975128091&amp;width=328&amp;connections=20&amp;stream=false&amp;header=true&amp;height=460">
 
-                </iframe>
-            </div>
-            <div class="ded_c">
-                <div class="details">
-                    <?php
-                    $block = Mage::getModel('cms/block')->load('ded_complience');
-                    if($block)
-                    {
-                        echo $block->getContent();
-                    }
-                    ?>
+                <div class="facebook-block">
+                    <iframe scrolling="no" frameborder="0" allowtransparency="true"
+                            style="border:none; overflow:hidden; width:320px; height:460px; background: #FFF;"
+                            src="http://www.facebook.com/plugins/likebox.php?id=182345975128091&amp;width=328&amp;connections=20&amp;stream=false&amp;header=true&amp;height=460">
+
+                    </iframe>
+                </div>
+                <div class="ded_c">
+                    <div class="details">
+                        <?php
+                        $block = Mage::getModel('cms/block')->load('ded_complience');
+                        if ($block) {
+                            echo $block->getContent();
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
-            </div>
-        </div>
         </form>
-
 
 
     </div>
