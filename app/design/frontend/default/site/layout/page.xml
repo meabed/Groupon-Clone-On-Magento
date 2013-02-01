@@ -61,7 +61,7 @@ Default layout, loads most of the pages
                 <action method="addItem"><type>skin_css</type><name>css/main.css</name></action>
                 <action method="addItem"><type>skin_css</type><name>css/anythingslider.css</name></action>
                 <action method="addItem"><type>skin_js</type><name>js/bootstrap.min.js</name></action>
-                <action method="addItem"><type>skin_js</type><name>js/jquery.anythingslider.min.js</name></action>
+                <!--<action method="addItem"><type>skin_js</type><name>js/jquery.anythingslider.min.js</name></action>-->
                 <action method="addItem"><type>skin_js</type><name>js/timer.js</name></action>
 
                 <action method="addItem"><type>js</type><name>lib/ds-sleight.js</name><params/><if>lt IE 7</if></action>

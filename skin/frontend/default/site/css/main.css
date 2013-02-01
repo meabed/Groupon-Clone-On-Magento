@@ -54,6 +54,7 @@ h2 {
     background-image: url("../img/body_bg.gif");
     background-position: center top;
     background-repeat: repeat-x;
+    min-width: 970px;
 }
 
 .header .links li {
