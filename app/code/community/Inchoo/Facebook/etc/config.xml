@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @category    Inchoo
+ * @package     Inchoo_Facebook
+ * @author      Ivan Weiler <ivan.weiler@gmail.com>
+ * @copyright   Inchoo (http://inchoo.net)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Inchoo_Facebook>
+             <version>1.0.0</version>
+        </Inchoo_Facebook>
+    </modules>
+    
+    <global>
+        <models>
+            <inchoo_facebook>
+                <class>Inchoo_Facebook_Model</class>
+            </inchoo_facebook>
+        </models>
+		<resources>
+			<inchoo_facebook_setup>
+				<setup>
+	               <module>Inchoo_Facebook</module>
+	               <class>Mage_Customer_Model_Entity_Setup</class>
+				</setup>
+				<connection>
+                    <use>core_setup</use>
+                </connection>
+			</inchoo_facebook_setup>
+		</resources>
+		<blocks>
+			<inchoo_facebook>
+                <class>Inchoo_Facebook_Block</class>
+            </inchoo_facebook>
+        </blocks>
+        <helpers>
+			<inchoo_facebook>
+                <class>Inchoo_Facebook_Helper</class>
+            </inchoo_facebook>
+        </helpers>
+    </global>
+    
+    <frontend>
+		<routers>
+            <inchoo_facebook>
+                <use>standard</use>
+                <args>
+                    <module>Inchoo_Facebook</module>
+                    <frontName>inchoo_facebook</frontName>
+                </args>
+            </inchoo_facebook>
+        </routers>
+		<layout>
+            <updates>
+                <inchoo_facebook module="Inchoo_Facebook">
+                    <file>inchoo/facebook.xml</file>
+                </inchoo_facebook>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Inchoo_Facebook>
+                    <files>
+                        <default>Inchoo_Facebook.csv</default>
+                    </files>
+                </Inchoo_Facebook>
+            </modules>
+        </translate>
+    </frontend>
+    
+    <adminhtml>
+        <translate>
+            <modules>
+                <Inchoo_Facebook>
+                    <files>
+                        <default>Inchoo_Facebook.csv</default>
+                    </files>
+                </Inchoo_Facebook>
+            </modules>
+        </translate>    
+    </adminhtml>
+    
+    <default>
+    	<customer>
+    		<facebook>
+    			<locale>en_US</locale>
+    		</facebook>
+    	</customer>
+    </default>
+    
+</config>
