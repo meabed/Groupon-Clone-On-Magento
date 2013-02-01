@@ -645,7 +645,7 @@ div.product-mid {
 
 div.facebook-block {
     width: 100%;
-    margin: 0px 0px 0px 20px;
+    margin: 0px 0px 0px 5px;
     float: right;
     text-align: center;
 }
@@ -1708,7 +1708,7 @@ section.offer-thumbnail {
 }
 
 .font-regular2 {
-    font-size: 1.3em;
+    font-size: 15px;
     display: inline-block;
 }
 
