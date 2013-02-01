@@ -17,7 +17,7 @@ class Web_Deal_Block_Sidebar extends Mage_Core_Block_Template
     public function getProducts($ex = array())
     {
         if($this->_category){
-            $this->_catproductsIds = Mage::getModel('catalog/product')->getCollection()
+            $this->_catproducts = Mage::getModel('catalog/product')->getCollection()
 
                 ->addAttributeToSelect('*')
               //->addAttributeToFilter('main_deal',array('eq'=>'1'))
@@ -29,9 +29,9 @@ class Web_Deal_Block_Sidebar extends Mage_Core_Block_Template
                 ->addAttributeToFilter('entity_id',array('nin'=>$ex))
                 ->addAttributeToFilter('status', array('eq' => Mage_Catalog_Model_Product_Status::STATUS_ENABLED))
                 ->getAllIds();
-            $this->_catproducts = Mage::getModel('catalog/product')->getCollection()
-                                    ->addFieldToFilter('entity_id',array('in'=>array_unique($this->_catproductsIds)))
-                                    ->load();
+//            $this->_catproducts = Mage::getModel('catalog/product')->getCollection()
+//                                    ->addFieldToFilter('entity_id',array('in'=>array_unique($this->_catproductsIds)))
+//                                    ->load();
         }
 
 
@@ -53,7 +53,7 @@ class Web_Deal_Block_Sidebar extends Mage_Core_Block_Template
         {
             $qtyData[$qty->getSku()] = (int) $qty->getOrderedQty();
         }*/
-        return array('products'=>$this->_catproducts);
+        return array('products'=>array_unique($this->_catproducts));
     }
     public function getOtherProducts($ex = array())
     {
@@ -73,9 +73,9 @@ class Web_Deal_Block_Sidebar extends Mage_Core_Block_Template
             ->addAttributeToFilter('category_id', array('in' => $catIds))
             ->getAllIds();
 
-        $this->_products = Mage::getModel('catalog/product')->getCollection()
-            ->addFieldToFilter('entity_id',array('in'=>array_unique($this->_productsIds)))
-            ->load();
-        return array('products'=>$this->_products);
+//        $this->_products = Mage::getModel('catalog/product')->getCollection()
+//            ->addFieldToFilter('entity_id',array('in'=>array_unique($this->_productsIds)))
+//            ->load();
+        return array('products'=>array_unique($this->_products));
     }
 }
