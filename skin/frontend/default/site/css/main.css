@@ -9,7 +9,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 11px;
+    font-size: 12px;
 
 }
 
@@ -306,7 +306,7 @@ div#os-container h3.product-name {
     font-size: 12px;
 }
 
-.shadow, div.product-bot, div.product-l, div.product-top, div.side_products, div.product_sidebar .blocktitle {
+.shadow, div.product-bot, div.product-mid, div.product-top, div.side_products, div.product_sidebar .blocktitle {
 
     -webkit-border-radius: 8px 8px 0 0;
     -moz-border-radius: 8px 8px 0 0;
@@ -651,7 +651,7 @@ div.facebook-block {
 }
 div.ded_c {
     width: 100%;
-    margin: 0px 0px 0px 20px;
+    margin: 0px 0px 0px 0px;
     float: right;
     text-align: center;
 
