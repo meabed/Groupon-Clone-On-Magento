@@ -24,9 +24,9 @@ foreach ($_products as $_productId):
     <section itemtype="http://data-vocabulary.org/Product" itemscope="" class="offer-thumbnail span<?php echo ($i==0) ? '12':'4' ;?> ">
         <div class="offer-thumbnail-hover">
             <a href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class=" offer-thumbnail-image-link">
-                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->constrainOnly(TRUE)
+                <img src="<?php echo $this->getSkinUrl('images/loader.gif'); ?>" class="lazy" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->constrainOnly(TRUE)
                     ->keepAspectRatio(false)
-                    ->keepFrame(true)->resize(540, 255); ?>" itemprop="image" class="offer-thumbnail-image">
+                    ->keepFrame(true)->resize(540, 255); ?>" itemprop="image" class="offer-thumbnail-image lazy">
                 <div class="offer-thumbnail-image-overlay"></div>
             </a>
             <a itemprop="description" href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class="offer-thumbnail-full-title"><?php echo ($i==0) ? $_product->getNameShort() : $_product->getName(); ?></a>
@@ -70,9 +70,9 @@ foreach ($_products as $_productId):
     <section itemtype="http://data-vocabulary.org/Product" itemscope="" class="offer-thumbnail span<?php echo ($i==0) ? '12':'4' ;?> ">
         <div class="offer-thumbnail-hover">
             <a href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class=" offer-thumbnail-image-link">
-                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->constrainOnly(TRUE)
+                <img src="<?php echo $this->getSkinUrl('images/loader.gif'); ?>" class="lazy" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->constrainOnly(TRUE)
                     ->keepAspectRatio(false)
-                    ->keepFrame(true)->resize(540, 255); ?>" itemprop="image" class="offer-thumbnail-image">
+                    ->keepFrame(true)->resize(540, 255); ?>" itemprop="image" class="offer-thumbnail-image lazy">
                 <div class="offer-thumbnail-image-overlay"></div>
             </a>
             <a itemprop="description" href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class="offer-thumbnail-full-title"><?php echo ($i==0) ? $_product->getNameShort() : $_product->getName(); ?></a>

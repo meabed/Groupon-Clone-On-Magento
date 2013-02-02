@@ -32,11 +32,3 @@
     <?php echo $this->getChildHtml() ?>
     <div class="footerBottomBg">&nbsp;</div>
 </div>
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        jQuery('#shopping-cart-table input.qty').live('focus',function(){
-            jQuery('button.btn-update').addClass('btn-warning');
-            jQuery('button.btn-update > span > span').css('color','white');
-        });
-    });
-</script>
