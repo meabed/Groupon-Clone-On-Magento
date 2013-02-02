@@ -8,6 +8,7 @@
             <action method="removeLink"><name>tags</name></action>
             <action method="removeLink"><name>downloadable_products</name></action>
             <action method="removeLink"><name>reviews</name></action>
+            <action method="removeLink"><name>newsletter</name></action>
         </reference>
 		<!-- Mage_Sales -->
 		<reference name="customer_account_navigation">

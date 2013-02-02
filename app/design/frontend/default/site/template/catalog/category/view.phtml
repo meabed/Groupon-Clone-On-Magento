@@ -9,7 +9,7 @@ foreach ($_products as $_product):
     <section itemtype="http://data-vocabulary.org/Product" itemscope="" class="offer-thumbnail span<?php echo ($i==0) ? '12':'4' ;?> ">
         <div class="offer-thumbnail-hover">
             <a href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class=" offer-thumbnail-image-link">
-                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->constrainOnly(TRUE)
+                <img class="lazy" src="<?php echo $this->getSkinUrl('images/loader.gif'); ?>" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->constrainOnly(TRUE)
                     ->keepAspectRatio(false)
                     ->keepFrame(true)->resize(540, 255); ?>" itemprop="image" class="offer-thumbnail-image">
                 <div class="offer-thumbnail-image-overlay"></div>
