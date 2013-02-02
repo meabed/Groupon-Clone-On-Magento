@@ -1,12 +1,12 @@
 <?php
 $_product = $_product = $this->getProduct();?>
 <div id="scroller-anchor">
-    <div id="offer-sales-bar" >
+    <div id="offer-sales-bar">
         <div class="container">
             <div class="row">
 
                 <div class="span3 top-spacer-10">
-                        <!-- AddThis Button BEGIN -->
+                    <!-- AddThis Button BEGIN -->
                     <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
                         <a class="addthis_button_preferred_1"></a>
                         <a class="addthis_button_preferred_2"></a>
@@ -14,13 +14,16 @@ $_product = $_product = $this->getProduct();?>
                         <a class="addthis_button_preferred_4"></a>
                     </div>
                     <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
-                    <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5056415b60ca6661"></script>
-                        <!-- AddThis Button END -->
+                    <script type="text/javascript"
+                            src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5056415b60ca6661"></script>
+                    <!-- AddThis Button END -->
                 </div>
 
                 <div class="span9" id="deal-show-vitals">
                     <div class="pull-right" id="deal-show-vitals-buy">
-                        <a onclick="submitform();" data-deal_id="<?php echo $_product->getId();?>" href="#" data-toggle="modal" class="btn btn-large btn-teambuy-pink font-large btn-success" id="buy-button">
+                        <a onclick="submitform();" data-deal_id="<?php echo $_product->getId();?>" href="#"
+                           data-toggle="modal" class="btn btn-large btn-teambuy-pink font-large btn-success"
+                           id="buy-button">
                             <strong>BUY</strong> <?php echo $this->getPriceCurrency($_product->getPrice()); ?> </a>
                     </div>
                     <div id="deal-show-vitals-pricevalue">
@@ -29,20 +32,22 @@ $_product = $_product = $this->getProduct();?>
                         </span>
                         <br>
                         <?php echo $this->__('Value') . ': ' . $this->getPriceCurrency($_product->getOriginalPrice()); ?>
-                        </div>
+                    </div>
                     <div id="deal-show-vitals-numbuys">
                         <span class="font-regular2">
-                            <strong><?php echo (int)$this->ordered_qty.' '.$this->__('BOUGHT');?></strong>
+                            <strong><?php echo (int)$this->ordered_qty . ' ' . $this->__('BOUGHT');?></strong>
                         </span>
                         <br>
                         <span class="circles">
-                        <?php if($this->ordered_qty >= $_product->getMinQty()):
-                            for($i=1;$i<=$_product->getMinQty();$i++){?>
+                        <?php if ($this->ordered_qty >= $_product->getMinQty()):
+                            for ($i = 1; $i <= $_product->getMinQty(); $i++) {
+                                ?>
                                 <span class="full"></span>
-                                <?php }
-                        else:
-                            for($i=1;$i<=$_product->getMinQty();$i++){?>
-                                <span class="<?php echo $i <= $this->ordered_qty ? 'full': 'empty' ;?>"></span>
+                                <?php
+                            } else:
+                            for ($i = 1; $i <= $_product->getMinQty(); $i++) {
+                                ?>
+                                <span class="<?php echo $i <= $this->ordered_qty ? 'full' : 'empty';?>"></span>
                                 <?php }endif;?>
 
                     </span>
@@ -50,32 +55,33 @@ $_product = $_product = $this->getProduct();?>
                     <span class="min">
                         <?php
                         $left = (int)$_product->getMinQty() - (int)$this->ordered_qty;
-                        if($left <= 0){
-                            echo $this->__('Minimum of %s Reached',(int)$_product->getMinQty());
-                        }else{
-                            if($left == 1)
-                            {
+                        if ($left <= 0) {
+                            echo $this->__('Minimum of %s Reached', (int)$_product->getMinQty());
+                        } else {
+                            if ($left == 1) {
                                 echo $this->__('Just one more needed!');
-                            }else{
-                                echo $this->__('%s more needed',$left);
+                            } else {
+                                echo $this->__('%s more needed', $left);
                             }
                         }
 
                         ?>
                     </span>
                     -->
-                        </div>
+                    </div>
                     <div id="deal-show-vitals-timeleft">
                         <i class="icon-time"></i>
                         <span class="font-regular2">
-                            <strong><div class="product-time-left">
+                            <strong>
+                                <div class="product-time-left">
 
-                                <div id="countdowncontainer"></div>
-                                <script type="text/javascript">
-                                    var futuredate = new cdtime("countdowncontainer", "<?php echo date('F d, Y 00:00:00', strtotime($_product->getEndDate()));?>")
-                                    futuredate.displaycountdown("days", formatresults)
-                                </script>
-                            </div></strong>
+                                    <div id="countdowncontainer"></div>
+                                    <script type="text/javascript">
+                                        var futuredate = new cdtime("countdowncontainer", "<?php echo date('F d, Y 00:00:00', strtotime($_product->getEndDate()));?>")
+                                        futuredate.displaycountdown("days", formatresults)
+                                    </script>
+                                </div>
+                            </strong>
                         </span>
                         <br>
                         <?php echo $this->__('Time Left To Buy');?></div>
@@ -90,14 +96,16 @@ $_product = $_product = $this->getProduct();?>
     function sticky_relocate() {
         var window_top = jQuery(window).scrollTop();
         var div_top = jQuery('#scroller-anchor').offset().top;
-        if (window_top > div_top)
-        {
+        if (window_top > div_top) {
             jQuery('#offer-sales-bar').addClass('stick');
         }
         else
             jQuery('#offer-sales-bar').removeClass('stick');
     }
-        jQuery(window).scroll(sticky_relocate);
+    jQuery('body').scroll(function() {
         sticky_relocate();
+    });
+    //jQuery(window).scroll(sticky_relocate);
+    sticky_relocate();
 
 </script>
