@@ -102,7 +102,7 @@ $_product = $_product = $this->getProduct();?>
         else
             jQuery('#offer-sales-bar').removeClass('stick');
     }
-    jQuery('body').scroll(function() {
+    jQuery(document).scroll(function() {
         sticky_relocate();
     });
     //jQuery(window).scroll(sticky_relocate);
