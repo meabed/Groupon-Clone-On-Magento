@@ -856,7 +856,17 @@ section.offer-thumbnail.span12 a.offer-thumbnail-link {
     bottom: 10px;
     right: 10px;
 }
-
+.btn-remove2
+{
+    background-image: url("../img/glyphicons-halflings.png");
+    background-position: -312px 0;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 14px;
+    line-height: 14px;
+    vertical-align: text-top;
+    width: 14px;
+}
 section.offer-thumbnail.span12 a.offer-thumbnail-link:hover {
 
 }
