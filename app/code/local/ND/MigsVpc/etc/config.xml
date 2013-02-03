@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * ND MigsVpc payment gateway
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so you can be sent a copy immediately.
+ *
+ * Original code copyright (c) 2008 Irubin Consulting Inc. DBA Varien
+ *
+ * @category   Fontis
+ * @package    ND_MigsVpc
+ * @copyright  Copyright (c) 2010 ND MigsVpc
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <ND_MigsVpc>
+            <version>0.0.1</version>
+        </ND_MigsVpc>
+    </modules>
+    <global>
+        <models>
+            <migsvpc>
+                <class>ND_MigsVpc_Model</class>
+            </migsvpc>
+        </models>
+        <helpers>
+            <migsvpc>
+                <class>ND_MigsVpc_Helper</class>
+            </migsvpc>
+        </helpers>
+        <resources>
+            <migsvpc_setup>
+                <setup>
+                    <module>ND_MigsVpc</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </migsvpc_setup>
+            <migsvpc_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </migsvpc_write>
+            <migsvpc_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </migsvpc_read>
+        </resources>
+        <blocks>
+            <migsvpc><class>ND_MigsVpc_Block</class></migsvpc>
+        </blocks>        
+    </global>
+    <frontend>
+        <secure_url>
+            <migsvpc_server>/migsvpc/server</migsvpc_server>
+        </secure_url>
+        <secure_url>
+            <migsvpc_merchantnew>/migsvpc/merchantnew</migsvpc_merchantnew>
+        </secure_url>
+        <routers>
+            <migsvpc>
+                <use>standard</use>
+                <args>
+                    <module>ND_MigsVpc</module>
+                    <frontName>migsvpc</frontName>
+                </args>
+            </migsvpc>
+        </routers>
+        <translate>
+            <modules>
+                <ND_MigsVpc>
+                    <files>
+                        <default>ND_MigsVpc.csv</default>
+                    </files>
+                </ND_MigsVpc>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <migsvpc>
+                    <file>migsvpc.xml</file>
+                </migsvpc>
+            </updates>
+        </layout>
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <ND_MigsVpc>
+                    <files>
+                        <default>ND_MigsVpc.csv</default>
+                    </files>
+                </ND_MigsVpc>
+            </modules>
+        </translate>
+    </adminhtml>
+    <default>
+        <payment>            
+            <migsvpc_server>
+                <merchant_id backend_model="adminhtml/system_config_backend_encrypted"/>                
+                <model>migsvpc/server</model>
+                <title>MigsVpc Server</title>
+                <order_status>processing</order_status>
+                <allowspecific>0</allowspecific>
+            </migsvpc_server>
+            <migsvpc_merchant>
+                <merchant_id backend_model="adminhtml/system_config_backend_encrypted"/>
+                <model>migsvpc/merchant</model>
+                <title>MigsVpc 3D-Secure</title>
+                <order_status>processing</order_status>
+                <allowspecific>0</allowspecific>
+            </migsvpc_merchant>
+            <migsvpc_merchantnew>
+                <merchant_id backend_model="adminhtml/system_config_backend_encrypted"/>
+                <model>migsvpc/merchantnew</model>
+                <title>MigsVpc 3D-Secure</title>
+                <order_status>processing</order_status>
+                <allowspecific>0</allowspecific>
+            </migsvpc_merchantnew>
+        </payment>
+    </default>
+</config>
