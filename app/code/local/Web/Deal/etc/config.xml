@@ -23,7 +23,7 @@
             </updates>
         </layout>
         <events>
-            <checkout_cart_product_add_after>
+            <checkout_cart_save_before>
                 <observers>
                     <disable_add_expired_products>
                         <type>model</type>
@@ -31,7 +31,7 @@
                         <method>disableAddToCart</method>
                     </disable_add_expired_products>
                 </observers>
-            </checkout_cart_product_add_after>
+            </checkout_cart_save_before>
         </events>
     </frontend>
     <global>
