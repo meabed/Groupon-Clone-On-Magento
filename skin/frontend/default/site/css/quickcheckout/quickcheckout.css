@@ -34,7 +34,7 @@ div.c { clear:both; width:100%; height:0px}
 
 .main_header h2 { float:left; width:100%; color:#434343; padding:5px 0 16px;}
 
-.main_header a  { /*float:left;*/  text-decoration:underline; color:#5e8dbc; clear:both; margin-bottom:10px; *white-space:nowrap; *padding-bottom:10px;}
+.main_header a  { /*float:left;*/ font-size: 15px;  text-decoration:underline; color:#5e8dbc; clear:both; margin-bottom:10px; *white-space:nowrap; *padding-bottom:10px;}
 
 .main_header a:hover { color:#666; text-decoration:none}
 
