@@ -46,7 +46,7 @@
     </div>
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <?php echo $this->getChildHtml('form_before') ?>
-    <form action="<?php echo $this->getUrl('checkout/cart/updatePost') ?>" method="post">
+    <form action="<?php echo $this->getUrl('checkout/cart/updatePost') ?>" method="post" id="updateForm">
         <fieldset>
             <table id="shopping-cart-table" class="data-table cart-table">
                 <col width="1" />
@@ -163,9 +163,10 @@
 </div>
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery('#shopping-cart-table input.qty').live('focus',function(){
-            jQuery('button.btn-update').addClass('btn-warning');
-            jQuery('button.btn-update > span > span').css('color','white');
+        jQuery('#shopping-cart-table input.qty').live('change',function(){
+            jQuery('form#updateForm').submit();
+            //jQuery('button.btn-update').addClass('btn-warning');
+            //jQuery('button.btn-update > span > span').css('color','white');
         });
     });
 </script>
