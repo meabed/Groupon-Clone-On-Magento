@@ -30,10 +30,8 @@ class Web_Migs_IndexController extends Mage_Checkout_Controller_Action
                     $md5HashData .= $value;
                 }
             }
-            Mage::log('HERE  '.$vpc_Txn_Secure_Hash.'==='.md5($md5HashData),0,'paym.txt');
             if (strtoupper($vpc_Txn_Secure_Hash) != strtoupper(md5($md5HashData)))
             {
-                Mage::log('HERE11  '.$vpc_Txn_Secure_Hash.'==='.md5($md5HashData),0,'paym.txt');
                 $errorExists = true;
             }
         } else
