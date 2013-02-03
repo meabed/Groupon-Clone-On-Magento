@@ -91,6 +91,7 @@ $expired = Mage::helper('deal')->isProductExpired($_product->getId());
                                     <?php if ($expired): ?>
                                     <div id="countdowncontainer"><?php echo Mage::helper('deal')->__('Sorry, this deal has already expired')?></div>
                                     <?php else: ?>
+                                    <div id="countdowncontainer"></div>
                                     <script type="text/javascript">
                                         var futuredate = new cdtime("countdowncontainer", "<?php echo date('F d, Y 00:00:00', strtotime($_product->getEndDate()));?>")
                                         futuredate.displaycountdown("days", formatresults)
