@@ -114,7 +114,7 @@ class Web_Deal_Helper_Data extends Mage_Core_Helper_Abstract
             ->addFieldToFilter('entity_id', array('eq' => $pid))
             ->addAttributeToFilter('end_date', array('gteq' => $fromDateTime))
             ->getSize();
-        if(count($product) > 0)
+        if($product > 0)
         {
             return false;
         }
