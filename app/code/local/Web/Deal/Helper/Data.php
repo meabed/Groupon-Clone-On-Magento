@@ -107,6 +107,19 @@ class Web_Deal_Helper_Data extends Mage_Core_Helper_Abstract
         }
         return $block->getContent();
     }
+    public function isProductExpired($pid = null)
+    {
+        $fromDateTime = Mage::getModel('core/date')->date();
+        $product = Mage::getModel('catalog/product')->getCollection()
+            ->addFieldToFilter('entity_id', array('eq' => $pid))
+            ->addAttributeToFilter('end_date', array('gteq' => $fromDateTime))
+            ->getFirstItem();
+        echo $product->getSelect()->__toString();
+        if($product && $product->getId())
+        {
+            return false;
+        }
+        return true;
+    }
 
 }
-	 
