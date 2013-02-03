@@ -113,9 +113,8 @@ class Web_Deal_Helper_Data extends Mage_Core_Helper_Abstract
         $product = Mage::getModel('catalog/product')->getCollection()
             ->addFieldToFilter('entity_id', array('eq' => $pid))
             ->addAttributeToFilter('end_date', array('gteq' => $fromDateTime))
-            ->getFirstItem();
-        echo $product->getSelect()->__toString();
-        if($product && $product->getId())
+            ->getSize();
+        if(count($product) > 0)
         {
             return false;
         }
