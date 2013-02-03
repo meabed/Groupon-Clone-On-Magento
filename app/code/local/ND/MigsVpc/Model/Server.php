@@ -242,10 +242,11 @@ class ND_MigsVpc_Model_Server extends Mage_Payment_Model_Method_Abstract
     public function afterSuccessOrder($response)
     {
         $order = Mage::getModel('sales/order');
+
+        $order->loadByIncrementId($response['vpc_OrderInfo']);
         if($order->getState() == Mage_Sales_Model_Order::STATE_COMPLETE || $order->getStatus() == Mage_Sales_Model_Order::STATE_COMPLETE ){
             return false;
         }
-        $order->loadByIncrementId($response['vpc_OrderInfo']);
         $paymentInst = $order->getPayment()->getMethodInstance();
         //$paymentInst->setTransactionId($response['vpc_TransactionNo']); 
         $paymentInst->setStatus(self::STATUS_APPROVED)
