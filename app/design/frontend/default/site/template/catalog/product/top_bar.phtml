@@ -1,5 +1,7 @@
 <?php
-$_product = $_product = $this->getProduct();?>
+$_product = $_product = $this->getProduct();
+$expired = Mage::helper('deal')->isProductExpired($productId);
+?>
 <div id="scroller-anchor">
     <div id="offer-sales-bar">
         <div class="container">
@@ -20,12 +22,21 @@ $_product = $_product = $this->getProduct();?>
                 </div>
 
                 <div class="span9" id="deal-show-vitals">
+                    <?php if ($expired): ?>
+                    <div class="pull-right" id="deal-show-vitals-buy">
+                        <a data-deal_id="<?php echo $_product->getId();?>" href="#"
+                           data-toggle="modal" class="btn btn-large btn-teambuy-pink font-large"
+                           id="buy-button-disabled">
+                            <strong>SOLD OUT</strong> </a>
+                    </div>
+                    <? else: ?>
                     <div class="pull-right" id="deal-show-vitals-buy">
                         <a onclick="submitform();" data-deal_id="<?php echo $_product->getId();?>" href="#"
                            data-toggle="modal" class="btn btn-large btn-teambuy-pink font-large btn-success"
                            id="buy-button">
                             <strong>BUY</strong> <?php echo $this->getPriceCurrency($_product->getPrice()); ?> </a>
                     </div>
+                    <?php endif;?>
                     <div id="deal-show-vitals-pricevalue">
                         <span class="font-regular2">
                             <strong><?php echo $this->__('Save') . ': ' . (int)((($_product->getOriginalPrice() - $_product->getPrice()) / $_product->getOriginalPrice()) * 100) . '%'; ?></strong>
@@ -33,6 +44,7 @@ $_product = $_product = $this->getProduct();?>
                         <br>
                         <?php echo $this->__('Value') . ': ' . $this->getPriceCurrency($_product->getOriginalPrice()); ?>
                     </div>
+                    <?php if (!$expired): ?>
                     <div id="deal-show-vitals-numbuys">
                         <span class="font-regular2">
                             <strong><?php echo (int)$this->ordered_qty . ' ' . $this->__('BOUGHT');?></strong>
@@ -54,37 +66,43 @@ $_product = $_product = $this->getProduct();?>
                         <!--
                     <span class="min">
                         <?php
-                        $left = (int)$_product->getMinQty() - (int)$this->ordered_qty;
-                        if ($left <= 0) {
-                            echo $this->__('Minimum of %s Reached', (int)$_product->getMinQty());
-                        } else {
-                            if ($left == 1) {
-                                echo $this->__('Just one more needed!');
+                            $left = (int)$_product->getMinQty() - (int)$this->ordered_qty;
+                            if ($left <= 0) {
+                                echo $this->__('Minimum of %s Reached', (int)$_product->getMinQty());
                             } else {
-                                echo $this->__('%s more needed', $left);
+                                if ($left == 1) {
+                                    echo $this->__('Just one more needed!');
+                                } else {
+                                    echo $this->__('%s more needed', $left);
+                                }
                             }
-                        }
 
-                        ?>
+                            ?>
                     </span>
                     -->
                     </div>
-                    <div id="deal-show-vitals-timeleft">
-                        <i class="icon-time"></i>
+                    <?php endif;?>
+                <div id="deal-show-vitals-timeleft">
+                    <i class="icon-time"></i>
                         <span class="font-regular2">
                             <strong>
                                 <div class="product-time-left">
 
-                                    <div id="countdowncontainer"></div>
+                                    <?php if ($expired): ?>
+                                    <div id="countdowncontainer"><?php echo Mage::helper('deal')->__('Sorry, this deal has already expired')?></div>
+                                    <?php else: ?>
                                     <script type="text/javascript">
                                         var futuredate = new cdtime("countdowncontainer", "<?php echo date('F d, Y 00:00:00', strtotime($_product->getEndDate()));?>")
                                         futuredate.displaycountdown("days", formatresults)
                                     </script>
+                                    <?endif;?>
                                 </div>
                             </strong>
                         </span>
-                        <br>
-                        <?php echo $this->__('Time Left To Buy');?></div>
+                    <br>
+                    <?php if (!$expired): ?>
+                    <?php echo $this->__('Time Left To Buy'); ?></div>
+                        <?php endif;?>
                 </div>
 
             </div>
@@ -102,7 +120,7 @@ $_product = $_product = $this->getProduct();?>
         else
             jQuery('#offer-sales-bar').removeClass('stick');
     }
-    jQuery(document).scroll(function() {
+    jQuery(document).scroll(function () {
         sticky_relocate();
     });
     //jQuery(window).scroll(sticky_relocate);

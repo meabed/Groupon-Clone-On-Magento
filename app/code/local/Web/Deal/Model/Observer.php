@@ -7,7 +7,7 @@ class Web_Deal_Model_Observer
         if(Mage::helper('deal')->isProductExpired($productId))
         {
             Mage::throwException(
-                Mage::helper('deal')->__('Sorry the Deal is already expired')
+                Mage::helper('deal')->__('Sorry, this deal has already expired')
             );
             return false;
         }
