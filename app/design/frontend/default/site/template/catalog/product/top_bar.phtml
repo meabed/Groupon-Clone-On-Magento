@@ -1,6 +1,6 @@
 <?php
 $_product = $_product = $this->getProduct();
-$expired = Mage::helper('deal')->isProductExpired($productId);
+$expired = Mage::helper('deal')->isProductExpired($_product->getId());
 ?>
 <div id="scroller-anchor">
     <div id="offer-sales-bar">
