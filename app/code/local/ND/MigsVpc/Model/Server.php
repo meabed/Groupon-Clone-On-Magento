@@ -277,7 +277,12 @@ class ND_MigsVpc_Model_Server extends Mage_Payment_Model_Method_Abstract
                     ->setTxnType(Mage_Sales_Model_Order_Payment_Transaction::TYPE_CAPTURE);
         $transaction->save();
         $order_status = Mage::helper('core')->__('Payment is successful.');
-        $order->setState(Mage_Sales_Model_Order::STATE_COMPLETE,false,$order_status);
+        //$order->setState(Mage_Sales_Model_Order::STATE_COMPLETE,true,$order_status);
+        $order->setData('state', "complete");
+        $order->setStatus("complete");
+        $history = $order->addStatusHistoryComment('Order marked as complete automatically.', false);
+        $history->setIsCustomerNotified(false);
+        $order->save();
         //$order->addStatusToHistory(Mage_Sales_Model_Order::STATE_PROCESSING, $order_status);
         $order->save();
         return true;
