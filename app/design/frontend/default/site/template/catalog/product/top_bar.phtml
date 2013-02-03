@@ -50,17 +50,17 @@ $expired = Mage::helper('deal')->isProductExpired($productId);
                             <strong><?php echo (int)$this->ordered_qty . ' ' . $this->__('BOUGHT');?></strong>
                         </span>
                         <br>
-                        <span class="circles">
+                    <span class="circles">
                         <?php if ($this->ordered_qty >= $_product->getMinQty()):
-                            for ($i = 1; $i <= $_product->getMinQty(); $i++) {
-                                ?>
-                                <span class="full"></span>
-                                <?php
-                            } else:
-                            for ($i = 1; $i <= $_product->getMinQty(); $i++) {
-                                ?>
-                                <span class="<?php echo $i <= $this->ordered_qty ? 'full' : 'empty';?>"></span>
-                                <?php }endif;?>
+                        for ($i = 1; $i <= $_product->getMinQty(); $i++) {
+                            ?>
+                            <span class="full"></span>
+                            <?php
+                        } else:
+                        for ($i = 1; $i <= $_product->getMinQty(); $i++) {
+                            ?>
+                            <span class="<?php echo $i <= $this->ordered_qty ? 'full' : 'empty';?>"></span>
+                            <?php }endif;?>
 
                         </span>
                         <!--
@@ -80,10 +80,11 @@ $expired = Mage::helper('deal')->isProductExpired($productId);
                             ?>
                     </span>
                     -->
+                    </div>
                     <?php endif;?>
                 </div>
-                <div id="deal-show-vitals-timeleft">
-                    <i class="icon-time"></i>
+            <div id="deal-show-vitals-timeleft">
+                <i class="icon-time"></i>
                         <span class="font-regular2">
                             <strong>
                                 <div class="product-time-left">
@@ -99,15 +100,15 @@ $expired = Mage::helper('deal')->isProductExpired($productId);
                                 </div>
                             </strong>
                         </span>
-                    <br>
-                    <?php if (!$expired): ?>
-                    <?php echo $this->__('Time Left To Buy'); ?></div>
+                <br>
+                <?php if (!$expired): ?>
+                <?php echo $this->__('Time Left To Buy'); ?></div>
                         <?php endif;?>
-                </div>
-
             </div>
+
         </div>
     </div>
+</div>
 
 </div>
 <script type="text/javascript">
