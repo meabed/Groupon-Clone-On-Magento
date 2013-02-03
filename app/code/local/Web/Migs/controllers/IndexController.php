@@ -13,7 +13,7 @@ class Web_Migs_IndexController extends Mage_Checkout_Controller_Action
             $this->__failure();
             return;
         }
-        $SECURE_SECRET = Mage::getStoreConfig('secure_secret');
+        $SECURE_SECRET = Mage::getStoreConfig('payment/migs/secure_secret');
         $vpc_Txn_Secure_Hash = $request->getParam('vpc_SecureHash');
         
         $errorExists = false;
