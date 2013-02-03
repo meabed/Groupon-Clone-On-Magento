@@ -5,11 +5,9 @@ class Web_Deal_Model_Observer
     {
         $cart = $observer->getEvent()->getCart();
         $items = $cart->getItems();
-        foreach ($items as $item)
-        {
-            $product = Mage::getModel('catalog/product')->load($item->getProductId());
-            echo $product->getEndDate().'--';
-        }
+        $productId = Mage::app()->getRequest()->getParam('product');
+        $product = Mage::getModel('catalog/product')->load($productId);
+        echo $product->getEndDate().'--';
         exit();
     }
 }
