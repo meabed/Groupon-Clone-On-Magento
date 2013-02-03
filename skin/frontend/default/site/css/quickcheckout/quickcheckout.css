@@ -130,7 +130,7 @@ div.c { clear:both; width:100%; height:0px}
 .shipping_method label {  color:#474747; vertical-align:top; *vertical-align:middle !important;}
 
 
-.payment { float:right; border:1px dashed #D8D8D8;/* padding:15px 0 10px 15px; width:225px;*/  padding: 10px;width: 44%; -moz-border-radius:8px; -webkit-border-radius:8px; border-radius:8px; margin:10px 0 0 15px;}
+.payment { float:right; border:1px dashed #D8D8D8;/* padding:15px 0 10px 15px; width:225px;*/  padding: 10px;width: 94%; -moz-border-radius:8px; -webkit-border-radius:8px; border-radius:8px; margin:10px 0 0 15px;}
 
 .payment h3 {  /*float:left;*/ /*width:90%; */text-transform:uppercase; color:#942068; padding:0 0 2px 28px; margin:0px 0 15px 4px}
 
