@@ -38,7 +38,10 @@ class ND_MigsVpc_ServerController extends ND_MigsVpc_Controller_Abstract
         }
         elseif($responseParams['vpc_TxnResponseCode']=='0')
         {            
-            Mage::getModel('migsvpc/server')->afterSuccessOrder($responseParams);
+            if(!Mage::getModel('migsvpc/server')->afterSuccessOrder($responseParams)){
+                $this->_redirect('checkout/cart');
+                return ;
+            }
             //Mage::getSingleton('core/session')->addSuccess(Mage::helper('core')->__($responseParams['vpc_Message']));
             $this->_redirect('checkout/onepage/success');
             return;
