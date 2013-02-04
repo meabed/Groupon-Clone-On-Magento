@@ -6,6 +6,10 @@
  * @author Mage World <support@mage-world.com>
  */
  ?>
+<?php $credit = Mage::helper('credit')->getCreditByCustomer();
+if($credit > 0):
+?>
+
 <?php if(version_compare(Mage::getVersion(),'1.4.0.1','>=')):?>
 <form id="discount-credit-form" action="<?php echo $this->getUrl('credit/checkout_cart/creditPost') ?>" method="post">
     <div class="discount">
@@ -15,7 +19,6 @@
         	<!--<label><?php //echo Mage::helper('credit')->__('Credit/Money Rate: <b>%s</b> cre = <b>%s</b>',$rate[0],Mage::helper('credit')->formatMoney($rate[1])) ?>
 
             </label><br />-->
-            <?php $credit = Mage::helper('credit')->getCreditByCustomer() ?>
             <?php $money = Mage::helper('credit')->exchangeCreditToMoney($credit);?>
             <?php $rate = Mage::helper('credit')->getCreditRate()?>
             <label><?php echo $this->__('Your Credits: %s', Mage::helper('credit')->formatMoney($money)) ?></label><br>
@@ -86,4 +89,5 @@ creditForm.submit = function (isRemove) {
 }
 </script>
 </div>
+<?php endif;?>
 <?php endif;?>
