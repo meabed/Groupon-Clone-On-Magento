@@ -22,6 +22,7 @@ class Web_Voucher_ViewController extends Mage_Core_Controller_Front_Action
 
     protected function _loadValidVoucher($voucherCode = null)
     {
+        echo $voucherCode;exit();
         if (null === $voucherCode) {
             $voucherCode = $this->getRequest()->getParam('code');
         }
@@ -29,7 +30,6 @@ class Web_Voucher_ViewController extends Mage_Core_Controller_Front_Action
             $this->_forward('noRoute');
             return false;
         }
-
         $voucherId = Mage::getModel('voucher/vouchers')->getCollection()
             ->addFieldToSelect('*')
             ->addFieldToFilter('deal_voucher_code', $voucherCode)
