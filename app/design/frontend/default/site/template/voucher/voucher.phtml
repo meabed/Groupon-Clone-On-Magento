@@ -8,7 +8,7 @@ $dealPrice = (int)$_product->getDealPrice();
 $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
 ?>
 <style type="text/css">
-    
+
     :focus {
         outline: 0 !important;
     }
@@ -31,7 +31,7 @@ $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
         <td valign="top" width="680"
             style="font-weight: normal; font-size: 100%; font-family:Arial; outline: 0; width: 680px; padding: 3px; background: transparent; border: 0; text-align: left; margin: 0;">
             <table cellspacing="0" border="0" cellpadding="0"
-                   style="font-size: 100%; font-family:Arial; border-collapse: separate; outline: 0; border: 0; border-spacing: 0; padding: 0; margin: 0;">
+                   style="font-size: 100%; font-family:Arial; border-collapse: separate; outline: 0; border: 0; border-spacing: 0; padding: 0; margin: 0;width: 680px;">
                 <tr>
                     <td colspan="2" style="height: 40px;">
                         <span style="color: #1f2178; cursor:pointer;" onclick="javascript:window.print()">
@@ -48,7 +48,7 @@ $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
                 <tr>
                     <td colspan="2">
                         <table cellspacing="0" border="0" cellpadding="0"
-                               style="font-size: 100%; font-family:Arial; border-collapse: separate; outline: 0; border: 1px dashed #aaa; border-spacing: 0; padding: 0; margin: 0;">
+                               style="font-size: 100%; font-family:Arial; border-collapse: separate; outline: 0; border: 1px dashed #aaa; border-spacing: 0; padding: 0; margin: 0;width: 680px">
 
                             <tr style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background-color: #C6E9FC;">
                                 <td style="width: 320px; border-bottom: 1px dashed #aaa; padding: 5px 5px 5px 15px;">
@@ -69,10 +69,10 @@ $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
                                         <tr>
                                             <td style="padding: 15px;">
 
-                                                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize(246, 165);?>"
+                                                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize(316, 165);?>"
                                                      border="0" height="165"
                                                      alt="A stunning full day sailing adventure around the breathtaking mountains and magnificent bays of Fujairah!"
-                                                     width="246"
+                                                     width="316"
                                                      style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background: transparent;"/>
 
                                             </td>
@@ -91,7 +91,10 @@ $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2" style="padding: 0 15px;"><?php echo $_product->getMerchantName();?> <br/><?php echo $_product->getMerchantAddress();?> <br> Tel: <?php echo $_product->getMerchantPhone();?>
+                                            <td colspan="2"
+                                                style="padding: 0 15px;"><?php echo $_product->getMerchantName();?>
+                                                <br/><?php echo $_product->getMerchantAddress();?> <br>
+                                                Tel: <?php echo $_product->getMerchantPhone();?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -103,23 +106,24 @@ $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
                                                         <td width="260"
                                                             style="vertical-align: top; padding: 0 10px 0 10px;">
                                                             <h2 style="margin: 0; padding: 0 0 10px;">Highlights</h2>
-                                                            <span><ul>
-                                                                <?php $list = explode("\n", $_product->getHighlights());
-                                                                foreach ($list as $item):?>
-                                                                    <li><?php echo trim($item);?></li>
-                                                                    <?php endforeach;?>
-                                                            </ul></span>
+                                                            <span>
+                                                                <ul style="list-style:outside disc;">
+                                                                    <?php $list = explode("\n", $_product->getHighlights());
+                                                                    foreach ($list as $item):?>
+                                                                        <li><?php echo trim($item);?></li>
+                                                                        <?php endforeach;?>
+                                                                </ul></span>
                                                         </td>
                                                         <td width="310" style="vertical-align: top;">
                                                             <h2 style="margin: 0; padding: 0 0 10px;">The fine
                                                                 print</h2>
                                                             <span>
-                                                                <ul>
-                                                                    <?php $list = explode("\n", $_product->getBuyTerms());
+                                                                <ul style="list-style:outside disc;">
+                                                                    <?php $list = explode("\n", $_product->getHighlights());
                                                                     foreach ($list as $item):?>
                                                                         <li><?php echo trim($item);?></li>
                                                                         <?php endforeach;?>
-                                                                    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('product_terms')->toHtml()?>
+                                                                    <?php //echo $this->getLayout()->createBlock('cms/block')->setBlockId('product_terms')->toHtml()?>
                                                                 </ul>
                                                             </span>
                                                         </td>
