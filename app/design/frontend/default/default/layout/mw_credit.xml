@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	
+	<!-- create menu link for credit in customer account -->
+	<customer_account translate="label">        
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="credit" ifconfig="credit/config/enabled"><name>credit</name><path>credit/</path><label>My Credits</label></action>
+        </reference>
+    </customer_account>
+    <!-- create menu link for credit in customer account -->
+    
+    <customer_account_index>
+		<reference name="customer_account_dashboard">
+			<action method="setTemplate" ifconfig="credit/config/enabled">
+				<template>mw_credit/customer/account/dashboard.phtml</template>
+			</action>
+			<block type="core/template" name="customer_account_credit_info" as="credit_info" template="mw_credit/customer/account/credit/info.phtml"/>			
+		</reference>
+	</customer_account_index>
+
+    <credit_index_index>
+		<update handle="customer_account"/>
+		<reference name="head">
+    		<!--<action method="addJs"><script>mw_credit/jquery.js</script></action>-->
+    		<action method="addJs"><script>mw_credit/noConflict.js</script></action>
+    		<action method="addJs"><script>mw_credit/toggleHistory.js</script></action>
+    	</reference>
+        <reference name="content">
+        	<block type="core/template" name="customer_credit_dashboard" template="mw_credit/customer/account/credit.phtml">
+	            <block type="core/template" name="customer_credit_info" as="credit_info" template="mw_credit/customer/account/credit/info.phtml"/>
+				<block type="credit/credit_transaction" name="customer_credit_transaction" as="transaction" template="mw_credit/customer/account/credit/transaction.phtml"/>
+	            <block type="core/template" name="customer_credit_send" as="send" template="mw_credit/customer/account/credit/send.phtml"/>
+	        </block>
+        </reference>
+    </credit_index_index>
+	
+	<credit_index_giftfriend>
+		<update handle="credit_index_index"/>
+    </credit_index_giftfriend>
+	
+<!-- checkout cart -->
+    <checkout_cart_index>
+	    <reference name="checkout.cart">
+	    	<action method="setCartTemplate" ifconfig="credit/config/enabled"><value>mw_credit/checkout/cart.phtml</value></action>
+            <action method="chooseTemplate" ifconfig="credit/config/enabled"/>
+	    	<block type="core/template" name="credit.checkout.cart.credit" as="credit" template="mw_credit/checkout/cart/credit.phtml"/>
+	    </reference><!--
+	    <reference name="checkout.cart.totals">
+	    	<action method="setTemplate" ifconfig="credit/config/enabled"><template>mw_credit/checkout/cart/totals.phtml</template></action>
+	    	<block type="core/template" name="credit.checkout.cart.totals.credit" as="credit" template="mw_credit/checkout/cart/totals/credit.phtml"/>
+	    </reference>
+    --></checkout_cart_index><!--
+ 
+    <checkout_onepage_review>
+    	<reference name="checkout.onepage.review.info.totals">
+    		<action method="setTemplate" ifconfig="credit/config/enabled"><template>mw_credit/checkout/onepage/review/totals.phtml</template></action>
+    		<block type="core/template" name="credit.checkout.onepage.review.info.totals.credit" as="credit" template="mw_credit/checkout/onepage/review/totals/credit.phtml"/>
+    	</reference>
+    </checkout_onepage_review>
+--><!-- checkout cart -->
+
+<!-- order cart -->
+    <sales_order_view translate="label">
+   	 	<reference name="order_totals">
+    		<action method="setTemplate" ifconfig="credit/config/enabled"><template>mw_credit/sales/order/totals.phtml</template></action>
+    		<block type="core/template" name="credit.checkout.onepage.review.info.totals.credit" as="credit" template="mw_credit/sales/order/totals/credit.phtml" after="-"/>
+    	</reference>
+    </sales_order_view>
+  
+    <sales_email_order_items>
+    	<reference name="order_totals">
+    		<action method="setTemplate" ifconfig="credit/config/enabled"><template>mw_credit/sales/order/totals.phtml</template></action>
+    		<block type="core/template" name="credit.checkout.onepage.review.info.totals.credit" as="credit" template="mw_credit/sales/order/totals/email_credit.phtml"/>
+    	</reference>
+    </sales_email_order_items>
+<!-- order cart -->
+	
+</layout> 

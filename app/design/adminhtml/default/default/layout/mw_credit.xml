@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <credit_adminhtml_credit_index>
+        <reference name="content">
+            <block type="credit/adminhtml_credit" name="credit" />
+        </reference>
+    </credit_adminhtml_credit_index>
+    <adminhtml_system_config_edit>
+    	<reference name="head">
+    		<action method="addJs"><script>mw_credit/jquery.js</script></action>
+    		<action method="addJs"><script>mw_credit/noConflict.js</script></action>
+    		<action method="addJs"><script>mw_credit/configValidate.js</script></action>
+    	</reference>
+    </adminhtml_system_config_edit>
+	 <adminhtml_sales_order_view>
+		<reference name="order_totals">
+    		<action method="setTemplate" ifconfig="credit/config/enabled"><template>mw_credit/sales/order/totals.phtml</template></action>
+    		<block type="core/template" name="credit.checkout.onepage.review.info.totals.credit" as="credit" template="mw_credit/sales/order/totals/credit.phtml" after="-"/>
+    	</reference>
+	 
+	  </adminhtml_sales_order_view>
+</layout>

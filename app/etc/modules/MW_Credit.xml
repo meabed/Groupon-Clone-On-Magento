@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <MW_Credit>
+            <active>true</active>
+            <codePool>local</codePool>
+        </MW_Credit>
+	</modules>
+</config>

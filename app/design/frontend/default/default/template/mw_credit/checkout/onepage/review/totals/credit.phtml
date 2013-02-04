@@ -1,0 +1,16 @@
+<?php 
+/**
+ *
+ * @category   MW
+ * @package    MW_Credit
+ * @author Mage World <support@mage-world.com>
+ */
+ ?>
+<?php $credit = Mage::helper('credit')->getCreditByCheckout()?>
+<?php if($credit):?>
+	<?php $money = Mage::helper('credit')->exchangeCreditToMoney($credit);?>
+	<tr>
+	    <td colspan="3" class="a-right" colspan="1">Credit</td>
+	    <td class="a-right"><span class="price"><?php echo Mage::helper('credit')->formatMoney(-$money)?></span></td>
+	</tr>
+<?php endif;?>

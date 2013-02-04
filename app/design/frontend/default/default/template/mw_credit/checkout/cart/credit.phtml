@@ -1,0 +1,83 @@
+<?php 
+/**
+ *
+ * @category   MW
+ * @package    MW_Credit
+ * @author Mage World <support@mage-world.com>
+ */
+ ?>
+<?php if(version_compare(Mage::getVersion(),'1.4.0.1','>=')):?>
+<form id="discount-credit-form" action="<?php echo $this->getUrl('credit/checkout_cart/creditPost') ?>" method="post">
+    <div class="discount">
+        <h2><?php echo $this->__('Credit Cart') ?></h2>
+        <div class="discount-form">
+        <?php $rate = Mage::helper('credit')->getCreditRate();?>
+        	<label><?php echo Mage::helper('credit')->__('Credit/Money Rate: <b>%s</b> cre = <b>%s</b>',$rate[0],Mage::helper('credit')->formatMoney($rate[1])) ?></label><br />
+            <label for="credit_code"><?php echo $this->__('Enter your credit cart number if you have.') ?></label>
+            <input type="hidden" name="removeCredit" id="remove-credit" value="0" />
+            <div class="input-box">
+                <input class="input-text" id="credit_value" name="credit_value" value="<?php echo $this->htmlEscape(Mage::helper('credit')->getCreditByCheckout()) ?>" />
+            </div>
+			<?php $guest_credit=Mage::helper('credit')->getGuestCredit();if(!empty($guest_credit)):?>
+			<label class="guest_credit" style="color: red;font-style:italic;">This credit will applied after you logined </label>
+			<?php endif;?>
+            <div class="buttons-set">
+                <button type="button" title="<?php echo $this->__('Apply Credit') ?>" class="button" onclick="creditForm.submit(false)" value="<?php echo $this->__('Apply Credit') ?>"><span><span><?php echo $this->__('Apply Credit') ?></span></span></button>
+                <?php if(strlen(Mage::helper('credit')->getCreditByCheckout())): ?>
+                    &nbsp; <button type="button" title="<?php echo $this->__('Cancel Credit') ?>" class="button" onclick="creditForm.submit(true)" value="<?php echo $this->__('Cancel Credit') ?>"><span><span><?php echo $this->__('Cancel Credit') ?></span></span></button>
+                <?php endif;?>
+            </div>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+var creditForm = new VarienForm('discount-credit-form');
+creditForm.submit = function (isRemove) {
+    if (isRemove) {
+        $('credit_value').removeClassName('required-entry');
+        $('remove-credit').value = "1";
+    } else {
+        $('credit_value').addClassName('required-entry validate-digits');
+        $('remove-credit').value = "0";
+    }
+    return VarienForm.prototype.submit.bind(creditForm)();
+}
+//]]>
+</script>
+<?php else:?>
+<div class="discount-codes box">
+    <form id="discount-credit-form" action="<?php echo $this->getUrl('credit/checkout_cart/creditPost') ?>" method="post">
+    <fieldset>
+    <h4><?php echo $this->__('Credit Cart') ?></h4>
+    <?php $rate = Mage::helper('credit')->getCreditRate();?>
+    <label><?php echo Mage::helper('credit')->__('Credit/Money Rate: <b>%s</b> cre = <b>%s</b>',$rate[0],Mage::helper('credit')->formatMoney($rate[1])) ?></label><br />
+    <p><?php echo $this->__('Enter your credit cart number if you have.') ?></p>
+    <input type="hidden" name="removeCredit" id="remove-credit" value="0"/>
+    
+    <?php if(!strlen(Mage::helper('credit')->getCreditByCheckOut())): ?>
+    <div class="left" style="padding-bottom:5px;"><input class="input-text left" id="credit_value" name="credit_value" value="<?php echo $this->htmlEscape(Mage::helper('credit')->getCreditByCheckOut()) ?>" /></div>
+    <div class="left">&nbsp;<button class="form-button-alt" onclick="creditForm.submit(false)" type="button" value="<?php echo $this->__('Apply Credit') ?>"><span><?php echo $this->__('Apply Credit') ?></span></button></div>
+    <?php else: ?>
+    <div style="padding-bottom:5px;"><input class="input-text" id="credit_value" name="credit_value" value="<?php echo $this->htmlEscape(Mage::helper('credit')->getCreditByCheckOut()) ?>" style="width:207px;" /></div>
+    <button class="form-button-alt" onclick="creditForm.submit(false)" type="button"  value="<?php echo $this->__('Apply Credit') ?>"><span><?php echo $this->__('Apply Credit') ?></span></button>&nbsp;<button class="form-button-alt" type="button" onclick="creditForm.submit(true)" value="<?php echo $this->__('Cancel Credit') ?>"><span><?php echo $this->__('Cancel Credit') ?></span></button>
+    <?php endif;?>
+    
+    <div class="clear"></div>
+    </fieldset>
+</form>
+<script type="text/javascript">
+var creditForm = new VarienForm('discount-credit-form');
+creditForm.submit = function (isRemove) {
+    if (isRemove) {
+        $('credit_value').removeClassName('required-entry');
+        $('remove-credit').value = "1";
+    } else {
+        $('credit_value').addClassName('required-entry validate-digits');
+        $('remove-credit').value = "0";
+    }
+    return VarienForm.prototype.submit.bind(creditForm)();
+}
+</script>
+</div>
+<?php endif;?>

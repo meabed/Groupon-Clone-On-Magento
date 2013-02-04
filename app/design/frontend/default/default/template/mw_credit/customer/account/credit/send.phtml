@@ -1,0 +1,99 @@
+<?php
+/**
+ *
+ * @category   MW
+ * @package    MW_Credit
+ * @author Mage World <support@mage-world.com>
+ */
+?>
+<form action="<?php echo $this->getUrl('credit/index/send') ?>" id="sponsorship" method="post">
+  
+	<div class="fieldset recipient_options group-select">
+        <h2 class="legend"><?php echo $this->__('Send Credit To Friend') ?></h2>
+		
+		<div class="fieldset recipient_options">
+			<ul class="form-list" id="recipient_options">
+				<!-- add here -->
+			</ul>
+		</div>
+       
+        <div id="max_recipient_message" style="display:none">
+			<?php echo $this->__('Maximum %d email addresses allowed.', Mage::helper('credit')->getMaxRecipients()) ?>
+        </div>
+        
+        <?php if(Mage::helper('credit')->enabledCapcha()):?>
+        <div class="form-list left">
+			<img id="siimage" align="left" src="<?php echo trim($this->getUrl('credit/index/image'),"/")."?sid=".time(); ?>" />
+	        <a style="border-style: none;" href="#" title="Refresh Image" 
+	           onclick="document.getElementById('siimage').src = '<?php echo trim($this->getUrl('credit/index/image'),"/"); ?>?sid=' + Math.random(); return false">
+	        	<img src="<?php echo $this->getSkinUrl('mw_credit/images/refresh.gif')?>" alt="Reload Image" border="0" onclick="this.blur()" align="bottom" /></a>
+	       	<br />
+			<label class="required" for="capcha"><em>*</em><?php echo Mage::helper('credit')->__('Security Code:');?></label>
+		  	<div class="input-box"><input type="text" class="input-text required-entry" title="Validate Code" name="code" id="capcha"></div>
+        </div>
+        <?php endif;?>
+		
+		<div id="add_recipient_button" class="right">
+			<button class="button    form-button" onclick="add_recipient('','');" type="button"><span><?php echo $this->__('Add Recipient') ?></span></button>
+		</div>
+			
+        <div style="clear:both"></div>
+	</div>
+	
+		<div class="buttons-set button-set">
+			<p class="back-link left"><a href="<?php echo Mage::helper('credit')->getBackUrl() ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+        	<p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        	<button class="button    form-button" type="submit"><span><?php echo $this->__('Send') ?></span></button>
+    	</div>
+
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var i=1;
+    var recipCount  = 1;
+    var maxRecip    = <?php echo Mage::helper('credit')->getMaxRecipients() ?>;
+	//var maxRecip	= 3;
+	var sponsorship = new VarienForm('sponsorship', true); // validate form
+	
+    function remove_recipient(i){
+		$('recipient_email'+i).up(2).remove();
+        recipCount = recipCount-1;
+        if(recipCount<=maxRecip && maxRecip != 0) {
+            $('add_recipient_button').show();
+            $('max_recipient_message').hide();
+        }
+        return false;
+    }
+
+    function add_recipient(email,credit){
+    	if(maxRecip == 0 || recipCount<=maxRecip)
+    	{
+	        ul = $('recipient_options');
+	        var li_mail = Element.extend(document.createElement("LI"));
+	        li_mail.addClassName('addElement');
+
+			li_mail.innerHTML  =  '<div class="left"><label for="recipient_email" class="required"><em>*<\/em><?php echo $this->__('Email Address:') ?><\/label><br />'
+								+ '<div style="width:250px"><input name="contacts['+i+'][email]" value="'+email+'" title="<?php echo $this->__('Email Address') ?>" id="recipient_email'+i+'" type="text" class="input-text required-entry validate-email" style="width:250px;" /><\/div><\/div>';
+	        li_mail.innerHTML +=  '<div class="right"><label for="recipient_credit" class="required"><em>*<\/em><?php echo $this->__('Number Credit:') ?><\/label><br />'
+								+ '<div style="width:250px"><input name="contacts['+i+'][credit]" type="text" class="input-text required-entry validate-digits" id="recipient_credit'+i+'" value="'+credit+'" style="width:250px;" /><\/div><\/div>';
+	        li_mail.innerHTML += '<button style="margin-top:10px" class="button form-button right" onclick="remove_recipient('+i+');" type="button"><span><?php echo $this->__('Remove Recipient') ?><\/span><\/button>';
+	        
+			i++;
+	        recipCount++;
+	        if(recipCount>maxRecip && maxRecip != 0) {
+	            $('add_recipient_button').hide();
+	            $('max_recipient_message').show();
+	        }
+	
+	        ul.appendChild(li_mail);
+    	}
+    	else
+    	{
+            $('add_recipient_button').hide();
+            $('max_recipient_message').show();
+    	}
+    }
+
+    add_recipient('','');
+//]]>
+</script>

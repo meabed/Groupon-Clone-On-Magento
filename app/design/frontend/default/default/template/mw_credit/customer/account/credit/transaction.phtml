@@ -1,0 +1,42 @@
+<?php
+/**
+ *
+ * @category   MW
+ * @package    MW_Credit
+ * @author Mage World <support@mage-world.com>
+ */
+?>
+<div id="toggleSection">
+<?php $_credits = $this->getCreditHistory(); ?>
+<?php if($_credits->getSize()): ?>
+	<?php echo $this->getPagerHtml(); ?>
+	<table class="data-table" id="my-credits-table">
+	    <thead>
+	        <tr>
+				<th style="text-align: center;"><?php echo $this->__('Date') ?></th>
+				<th><?php echo $this->__('Type of Transaction') ?></th>
+				<th><?php echo $this->__('Transaction Details') ?></th>
+	            <th><?php echo $this->__('Start Balance') ?></th>
+				<th><?php echo $this->__('Ending Transaction') ?></th>
+				<th><?php echo $this->__('Amount') ?></th>
+				<th><?php echo $this->__('Status') ?></th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <?php foreach ($_credits as $_credit): ?>
+	            <tr style="text-align:left">
+	                <td style="width: 90px;"><?php echo $this->formatDate($_credit->getCreatedTime())." ".$this->formatTime($_credit->getCreatedTime())?></td>
+					<td><em><?php echo $this->getTypeLabel($_credit->getTypeTransaction())?></em></td>
+					<td><?php echo $this->getTransactionDetail($_credit->getTypeTransaction(),$_credit->getTransactionDetail())?></td>
+					<td class="a-right"><?php echo $_credit->getBeginningTransaction(); ?></td>
+					<td class="a-right"><?php echo $_credit->getEndTransaction(); ?></td>
+	            	<td style="text-align: center;"><?php echo $_credit->getAmount()?></td>
+	            	<td style="text-align: center;"><?php echo $this->getStatusText($_credit->getStatus());?></td>
+	            </tr>
+	        <?php endforeach; ?>
+	    </tbody>
+	</table>
+	<?php echo $this->getPagerHtml(); ?>
+	<script type="text/javascript">decorateTable('my-credits-table')</script>
+<?php endif ?>
+</div>

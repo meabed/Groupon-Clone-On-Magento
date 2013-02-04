@@ -1,0 +1,26 @@
+<?php
+/**
+ *
+ * @category   MW
+ * @package    MW_Credit
+ * @author Mage World <support@mage-world.com>
+ */
+?>
+<?php $credit = Mage::helper('credit')->getCreditByCustomer() ?>
+<?php $money = Mage::helper('credit')->exchangeCreditToMoney($credit);?>
+<?php $rate = Mage::helper('credit')->getCreditRate()?>
+<div class="col2-set">
+	<div class="col-1">
+		<div class="credit_info">
+		    <p class="amount"><?php echo $this->__('Your Credits: [ <strong>%s</strong> ] (credits) = <strong>%s</strong>', $credit,Mage::helper('credit')->formatMoney($money)) ?></p>
+		    <p class="amount"><?php echo $this->__('Credit / Monetary Rate: <strong>%s</strong>(cre) = <strong>%s</strong>',$rate[0],Mage::helper('credit')->formatMoney($rate[1]) ) ?></p>
+		</div> 
+    </div>
+</div>
+
+
+<script type="text/javascript">
+//<![CDATA[
+    var exchangeForm = new VarienForm('frm_exchange_credit', true);
+    //]]>
+</script>
