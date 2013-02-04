@@ -15,6 +15,10 @@
         	<!--<label><?php //echo Mage::helper('credit')->__('Credit/Money Rate: <b>%s</b> cre = <b>%s</b>',$rate[0],Mage::helper('credit')->formatMoney($rate[1])) ?>
 
             </label><br />-->
+            <?php $credit = Mage::helper('credit')->getCreditByCustomer() ?>
+            <?php $money = Mage::helper('credit')->exchangeCreditToMoney($credit);?>
+            <?php $rate = Mage::helper('credit')->getCreditRate()?>
+            <label><?php echo $this->__('Your Credits: [ <strong>%s</strong> ] (credits) = <strong>%s</strong>', $credit,Mage::helper('credit')->formatMoney($money)) ?></label><br>
             <label for="credit_value"><?php echo $this->__('Enter amount of store credit you want to use.') ?></label>
             <input type="hidden" name="removeCredit" id="remove-credit" value="0" />
             <div class="input-box">
