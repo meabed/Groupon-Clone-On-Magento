@@ -139,15 +139,16 @@
         <div class="col2-set">
             <div class="col-1">
                 <?php echo $this->getChildHtml('crosssell') ?>
+                <?php /*********************************************************************/?>
+                <?php echo $this->getChildHtml('credit');?>
+                <?php echo $this->getChildHtml('rewardpoints') ?>
+                <?php /*********************************************************************/?>
             </div>
             <div class="col-2">
                 <?php /* Extensions placeholder */ ?>
                 <?php echo $this->getChildHtml('checkout.cart.extra') ?>
                 <?php echo $this->getChildHtml('coupon') ?>
-                <?php /*********************************************************************/?>
-                <?php echo $this->getChildHtml('credit');?>
-                <?php echo $this->getChildHtml('rewardpoints') ?>
-                <?php /*********************************************************************/?>
+
                 <?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif; ?>
             </div>
         </div>
