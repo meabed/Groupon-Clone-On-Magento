@@ -60,6 +60,7 @@ class Web_Voucher_ViewController extends Mage_Core_Controller_Front_Action
         var_dump($customerId);
         var_dump($storeId);
         var_dump($voucher->getStoreId());
+        exit();
         if ($voucher->getId() && $voucher->getCustomerId() && ($voucher->getCustomerId() == $customerId)
             && ($voucher->getStoreId() == $storeId)
         ) {
