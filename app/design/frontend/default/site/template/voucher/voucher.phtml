@@ -6,6 +6,7 @@ $home_url = Mage::helper('core/url')->getHomeUrl();
 $price = (int)$_product->getPrice();
 $dealPrice = (int)$_product->getDealPrice();
 $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
+$company = Mage::helper('deal')->getCompany($_product->getCompany());
 ?>
 <style type="text/css">
 
@@ -84,16 +85,15 @@ $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
 
                                                 <p style="font-weight: bold; font-size: 20px; font-family:Arial; margin: 0;">
                                                     Voucher Value: <?php echo (int)$_product->getOriginalPrice() . ' ' . $currency_code;?></p>
-
+                                                <br>
                                                 <p style="font-weight: bold; font-family:Arial; margin: 0;">Voucher is
                                                     valid from <?php echo date('Y-m-d',strtotime($_product->getVoucherDate()));?> to <?php echo date('Y-m-d',strtotime($_order->getCreatedAt()));?></p>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td colspan="2"
-                                                style="padding: 0 15px;"><?php echo $_product->getMerchantName();?>
-                                                <br/><?php echo $_product->getMerchantAddress();?> <br>
-                                                Tel: <?php echo $_product->getMerchantPhone();?>
+                                                style="padding: 0 15px;">
+                                                <?php strip_tags($company,'<br>');?>
                                             </td>
                                         </tr>
                                         <tr>
