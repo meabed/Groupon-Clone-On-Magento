@@ -76,7 +76,7 @@ $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
                                                      style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background: transparent;"/>
 
                                             </td>
-                                            <td style="padding: 5px 15px 0 0; vertical-align: top;">
+                                            <td style="padding: 5px 15px 0 0; vertical-align: top;" rowspan="2">
                                                 <br>
 
                                                 <h2 style="font-size: 14px; font-family:Arial;"><?php echo $_product->getVoucherTitle();?></h2>
@@ -95,20 +95,16 @@ $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2"
-                                                style="padding: 0 15px;"><?php echo $_product->getCompanyName();?>
+                                            <td
+                                                style="padding: 0 15px;"><?php echo $_product->getCompanyName();?><br/>
                                                 <?php if ($_product->getCompanyAddress()): ?>
-
-                                                    <br/><?php echo $_product->getCompanyAddress(); ?> <br>
+                                                    <?php echo $_product->getCompanyAddress(); ?> <br>
                                                     <?php endif;?>
-
                                                 <?php if ($_product->getCompanyEmail()): ?>
-                                                    <br/><?php echo $_product->getCompanyEmail(); ?> <br>
+                                                    <?php echo $_product->getCompanyEmail(); ?> <br>
                                                     <?php endif;?>
                                                 <?php if ($_product->getCompanyContact()): ?>
-
-                                                    Tel: <?php echo $_product->getCompanyContact(); ?>
-
+                                                    Tel: <?php echo $_product->getCompanyContact(); ?><br/>
                                                     <?php endif;?>
                                             </td>
                                         </tr>
