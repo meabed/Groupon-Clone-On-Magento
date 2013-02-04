@@ -14,9 +14,8 @@ class Web_Voucher_Block_History extends Mage_Core_Block_Template
         $vouchers->getSelect()
                 ->joinLeft(array('orders' => $ordersTable), 'main_table.order_id=orders.entity_id', array('orders.customer_firstname', 'orders.customer_lastname', 'order_status' => 'orders.status'))
                 ->where('orders.customer_id = ' . Mage::getSingleton('customer/session')->getCustomer()->getId())
-                ->order('main_table.created_at', 'desc')
-                ->order('main_table.order_id', 'desc');
-
+                ->order(array('main_table.created_at desc','main_table.order_id desc'));
+        echo $vouchers->getSelect()->__toString();
         $this->setVouchers($vouchers);
         
         Mage::app()->getFrontController()->getAction()->getLayout()->getBlock('root')->setHeaderTitle(Mage::helper('voucher')->__('My Vouchers'));
