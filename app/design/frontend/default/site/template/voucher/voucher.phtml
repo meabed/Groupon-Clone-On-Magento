@@ -1,12 +1,13 @@
 <?php
-$_product = $this->getProduct();
-$_order = $this->getOrder();
 $_voucher = $this->getVoucher();
-$home_url = Mage::helper('core/url')->getHomeUrl();
-$price = (int)$_product->getPrice();
-$dealPrice = (int)$_product->getDealPrice();
-$currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
-?>
+$_order = $this->getOrder();
+if ($_voucher->getId() <= 71387):
+    $_product = $this->getProduct();
+    $home_url = Mage::helper('core/url')->getHomeUrl();
+    $price = (int)$_product->getPrice();
+    $dealPrice = (int)$_product->getDealPrice();
+    $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
+    ?>
 <style type="text/css">
 
     :focus {
@@ -96,7 +97,8 @@ $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
                                         </tr>
                                         <tr>
                                             <td
-                                                style="padding: 0 15px;"><?php echo $_product->getCompanyName();?><br/>
+                                                    style="padding: 0 15px;"><?php echo $_product->getCompanyName();?>
+                                            <br/>
                                                 <?php if ($_product->getCompanyAddress()): ?>
                                                     <?php echo $_product->getCompanyAddress(); ?> <br>
                                                     <?php endif;?>
@@ -184,3 +186,20 @@ $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
 
     </tbody>
 </table>
+<? else: ?>
+<?php
+    try {
+        $dbh = new PDO('mysql:host=localhost;dbname=dealgobb_dg_subscriptions', 'dealgobb_tariq', 'PimplyForeGeneraApathy');
+        foreach ($dbh->query('SELECT * from dealcoupons where couponcode = "'.$_voucher->getDealVoucherCode().'"') as $row) {
+            print_r($row);
+        }
+        $dbh = null;
+    } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        die();
+    }
+
+
+
+    ?>
+<?endif; ?>
