@@ -1,7 +1,7 @@
 <?php
 $_voucher = $this->getVoucher();
 $_order = $this->getOrder();
-if ($_voucher->getId() <= 71387):
+if ($_voucher->getId() > 71387):
     $_product = $this->getProduct();
     $home_url = Mage::helper('core/url')->getHomeUrl();
     $price = (int)$_product->getPrice();
