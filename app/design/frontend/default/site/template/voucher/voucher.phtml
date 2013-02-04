@@ -6,7 +6,8 @@ $home_url = Mage::helper('core/url')->getHomeUrl();
 $price = (int)$_product->getPrice();
 $dealPrice = (int)$_product->getDealPrice();
 $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
-echo $company = Mage::helper('deal')->getCompany($_product->getCompany());
+echo $_product->getCompany();
+$company = Mage::helper('deal')->getCompany($_product->getCompany());
 ?>
 <style type="text/css">
 
