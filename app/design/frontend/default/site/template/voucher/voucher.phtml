@@ -77,11 +77,10 @@ $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
 
                                             </td>
                                             <td style="padding: 5px 15px 0 0; vertical-align: top;">
-                                                <h2 style="font-size: 14px; font-family:Arial;">Voucher
-                                                    for <?php echo $_product->getName();?></h2>
+                                                <br>
+                                                <h2 style="font-size: 14px; font-family:Arial;"><?php echo $_product->getVoucherTitle();?></h2>
 
-                                                <p>A stunning full day sailing adventure around the breathtaking
-                                                    mountains and magnificent bays of Fujairah!</p>
+                                                <p><?php echo $_product->getShortDescription();?></p>
 
                                                 <p style="font-weight: bold; font-size: 20px; font-family:Arial; margin: 0;">
                                                     Voucher Value: <?php echo $price . ' ' . $currency_code;?></p>
