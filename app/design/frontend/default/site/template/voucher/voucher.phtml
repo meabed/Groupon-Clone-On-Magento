@@ -6,7 +6,6 @@ $home_url = Mage::helper('core/url')->getHomeUrl();
 $price = (int)$_product->getPrice();
 $dealPrice = (int)$_product->getDealPrice();
 $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
-$company = Mage::helper('deal')->getCompany($_product->getCompany());
 ?>
 <style type="text/css">
 
@@ -79,21 +78,34 @@ $company = Mage::helper('deal')->getCompany($_product->getCompany());
                                             </td>
                                             <td style="padding: 5px 15px 0 0; vertical-align: top;">
                                                 <br>
+
                                                 <h2 style="font-size: 14px; font-family:Arial;"><?php echo $_product->getVoucherTitle();?></h2>
 
                                                 <p><?php echo $_product->getShortDescription();?></p>
 
                                                 <p style="font-weight: bold; font-size: 20px; font-family:Arial; margin: 0;">
-                                                    Voucher Value: <?php echo (int)$_product->getOriginalPrice() . ' ' . $currency_code;?></p>
+                                                    Voucher
+                                                    Value: <?php echo (int)$_product->getOriginalPrice() . ' ' . $currency_code;?></p>
                                                 <br>
+
                                                 <p style="font-weight: bold; font-family:Arial; margin: 0;">Voucher is
-                                                    valid from <?php echo date('Y-m-d',strtotime($_product->getVoucherDate()));?> to <?php echo date('Y-m-d',strtotime($_order->getCreatedAt()));?></p>
+                                                    valid
+                                                    from <?php echo date('Y-m-d', strtotime($_product->getVoucherDate()));?>
+                                                    to <?php echo date('Y-m-d', strtotime($_order->getCreatedAt()));?></p>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td colspan="2"
-                                                style="padding: 0 15px;">
-                                                <?php strip_tags($company,'<br>');?>
+                                                style="padding: 0 15px;"><?php echo $_product->getCompanyName();?>
+                                                <?php if ($_product->getCompanyEmail()): ?>
+
+                                                    <br/><?php echo $_product->getCompanyAddress(); ?> <br>
+                                                    <?php endif;?>
+
+                                                <?php if ($_product->getCompanyEmail()): ?>
+                                                    <br/><?php echo $_product->getCompanyEmail(); ?> <br>
+                                                    <?php endif;?>
+                                                Tel: <?php echo $_product->getCompanyContact();?>
                                             </td>
                                         </tr>
                                         <tr>
