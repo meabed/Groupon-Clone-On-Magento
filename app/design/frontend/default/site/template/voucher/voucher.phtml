@@ -97,7 +97,7 @@ $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
                                         <tr>
                                             <td colspan="2"
                                                 style="padding: 0 15px;"><?php echo $_product->getCompanyName();?>
-                                                <?php if ($_product->getCompanyEmail()): ?>
+                                                <?php if ($_product->getCompanyAddress()): ?>
 
                                                     <br/><?php echo $_product->getCompanyAddress(); ?> <br>
                                                     <?php endif;?>
@@ -105,7 +105,11 @@ $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
                                                 <?php if ($_product->getCompanyEmail()): ?>
                                                     <br/><?php echo $_product->getCompanyEmail(); ?> <br>
                                                     <?php endif;?>
-                                                Tel: <?php echo $_product->getCompanyContact();?>
+                                                <?php if ($_product->getCompanyContact()): ?>
+
+                                                    Tel: <?php echo $_product->getCompanyContact(); ?>
+
+                                                    <?php endif;?>
                                             </td>
                                         </tr>
                                         <tr>
