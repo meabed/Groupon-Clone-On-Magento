@@ -22,7 +22,6 @@ class Web_Voucher_ViewController extends Mage_Core_Controller_Front_Action
 
     protected function _loadValidVoucher($voucherCode = null)
     {
-        echo $voucherCode;exit();
         if (null === $voucherCode) {
             $voucherCode = $this->getRequest()->getParam('code');
         }
@@ -30,6 +29,7 @@ class Web_Voucher_ViewController extends Mage_Core_Controller_Front_Action
             $this->_forward('noRoute');
             return false;
         }
+
         $voucherId = Mage::getModel('voucher/vouchers')->getCollection()
             ->addFieldToSelect('*')
             ->addFieldToFilter('deal_voucher_code', $voucherCode)
@@ -54,13 +54,6 @@ class Web_Voucher_ViewController extends Mage_Core_Controller_Front_Action
     {
         $customerId = Mage::getSingleton('customer/session')->getCustomerId();
         $storeId    = Mage::app()->getStore()->getId();
-        var_dump($voucher->getCustomerId());
-        var_dump($voucher->getId());
-        var_dump($voucher->getCustomerId());
-        var_dump($customerId);
-        var_dump($storeId);
-        var_dump($voucher->getStoreId());
-        exit();
         if ($voucher->getId() && $voucher->getCustomerId() && ($voucher->getCustomerId() == $customerId)
             && ($voucher->getStoreId() == $storeId)
         ) {
