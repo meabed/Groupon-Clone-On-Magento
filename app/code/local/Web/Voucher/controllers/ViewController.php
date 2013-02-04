@@ -54,6 +54,12 @@ class Web_Voucher_ViewController extends Mage_Core_Controller_Front_Action
     {
         $customerId = Mage::getSingleton('customer/session')->getCustomerId();
         $storeId    = Mage::app()->getStore()->getId();
+        var_dump($voucher->getCustomerId());
+        var_dump($voucher->getId());
+        var_dump($voucher->getCustomerId());
+        var_dump($customerId);
+        var_dump($storeId);
+        var_dump($voucher->getStoreId());
         if ($voucher->getId() && $voucher->getCustomerId() && ($voucher->getCustomerId() == $customerId)
             && ($voucher->getStoreId() == $storeId)
         ) {
