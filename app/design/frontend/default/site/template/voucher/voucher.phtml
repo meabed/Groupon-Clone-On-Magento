@@ -83,7 +83,7 @@ $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
                                                 <p><?php echo $_product->getShortDescription();?></p>
 
                                                 <p style="font-weight: bold; font-size: 20px; font-family:Arial; margin: 0;">
-                                                    Voucher Value: <?php echo $_product->getPrice() . ' ' . $currency_code;?></p>
+                                                    Voucher Value: <?php echo (int)$_product->getOriginalPrice() . ' ' . $currency_code;?></p>
 
                                                 <p style="font-weight: bold; font-family:Arial; margin: 0;">Voucher is
                                                     valid from <?php echo date('Y-m-d',strtotime($_product->getVoucherDate()));?> to <?php echo date('Y-m-d',strtotime($_order->getCreatedAt()));?></p>
