@@ -96,6 +96,7 @@ class Web_Voucher_Block_Adminhtml_Voucher_Grid extends Mage_Adminhtml_Block_Widg
                                               'align' => 'left',
                                               'width' => '80px',
                                               'index' => 'order_status',
+                                              'filter_index' => 'orders.status'
 
                                          ));
 
