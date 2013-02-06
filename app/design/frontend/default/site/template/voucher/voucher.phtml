@@ -182,10 +182,8 @@ if ($_voucher->getId() > 71387):
             $q = 'SELECT * FROM `magentocatalog_product_entity_media_gallery` a left join  magentocatalog_product_entity_media_gallery_value c on c.value_id = a.value_id where entity_id = :deal_id and disabled != 1 order by position ASC limit 1';
             $sth = $dbh->prepare($q);
             $sth->bindParam(':deal_id',$row['deal_id']);
-            $sth->execute();
             $rs = $sth->fetchAll(PDO::FETCH_ASSOC);
             print_r($rs);
-            echo $row['deal_id'];
             foreach ( $rs as $k)
             {
                 print_r($k);
