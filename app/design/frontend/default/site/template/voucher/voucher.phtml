@@ -182,7 +182,11 @@ if ($_voucher->getId() > 71387):
         foreach ( $rs as $row) {
             $q = 'SELECT * FROM magentocatalog_product_entity_media_gallery a left join  magentocatalog_product_entity_media_gallery_value c on c.value_id = a.value_id where entity_id = '.$row['deal_id'].' and disabled != 1 order by position ASC limit 1';
             $img = $dbx->query($q);
-            print_r($img);
+            $aimg = array();
+            foreach($img as $image)
+            {
+                $aimg[] = $row;
+            }
             ?>
         <style type="text/css">
 
@@ -246,7 +250,7 @@ if ($_voucher->getId() > 71387):
                                                 <tr>
                                                     <td style="padding: 15px;">
 
-                                                        <img src="<?php echo '//www.dealgobbler.com/media/catalog/product/'.$img['0'];?>"
+                                                        <img src="<?php echo '//www.dealgobbler.com/media/catalog/product/'.$aimg['0'];?>"
                                                              border="0" height="165"
                                                              alt=""
                                                              width="325"
