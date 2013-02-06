@@ -178,7 +178,9 @@ if ($_voucher->getId() > 71387):
     try {
         $dbh = new PDO('mysql:host=localhost;dbname=dealgobb_dg_subscriptions', 'dealgobb_tariq', 'PimplyForeGeneraApathy');
         foreach ($dbh->query('SELECT * from dealcoupons where couponcode = "' . $_voucher->getDealVoucherCode() . '"') as $row) {
+            echo "SELECT * FROM `magentocatalog_product_entity_media_gallery` where entity_id = ".$row['deal_id'];
             $img = $dbh->query("SELECT * FROM `magentocatalog_product_entity_media_gallery` where entity_id = ".$row['deal_id']);
+            print_r($img);
             ?>
 
 
