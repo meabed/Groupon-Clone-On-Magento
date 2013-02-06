@@ -173,6 +173,7 @@ if ($_voucher->getId() > 71387):
 </table>
 <? else: ?>
 <?php
+    $_product = Mage::getModel('catalog/product');
     try {
         $dbh = new PDO('mysql:host=localhost;dbname=dealgobb_dg_subscriptions', 'dealgobb_tariq', 'PimplyForeGeneraApathy');
         foreach ($dbh->query('SELECT * from dealcoupons where couponcode = "' . $_voucher->getDealVoucherCode() . '"') as $row) {
@@ -243,7 +244,7 @@ if ($_voucher->getId() > 71387):
                                                 <tr>
                                                     <td style="padding: 15px;">
 
-                                                        <img src="<?php echo $row['product_image']?>"
+                                                        <img src="<?php echo urldecode($row['product_image']);?>"
                                                              border="0" height="165"
                                                              alt=""
                                                              width="325"
