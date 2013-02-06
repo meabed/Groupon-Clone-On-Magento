@@ -179,12 +179,13 @@ if ($_voucher->getId() > 71387):
         $dbh = new PDO('mysql:host=localhost;dbname=dealgobb_dg_subscriptions', 'dealgobb_tariq', 'PimplyForeGeneraApathy');
         $rs = $dbh->query('SELECT * from dealcoupons where couponcode = "' . $_voucher->getDealVoucherCode() . '"');
         foreach ( $rs as $row) {
-            echo $q = 'SELECT * FROM `magentocatalog_product_entity_media_gallery` a left join  magentocatalog_product_entity_media_gallery_value c on c.value_id = a.value_id where entity_id = :deal_id and disabled != 1 order by position ASC limit 1';
-
+            $q = 'SELECT * FROM `magentocatalog_product_entity_media_gallery` a left join  magentocatalog_product_entity_media_gallery_value c on c.value_id = a.value_id where entity_id = :deal_id and disabled != 1 order by position ASC limit 1';
             $sth = $dbh->prepare($q);
             $sth->bindParam(':deal_id',$row['deal_id']);
             $sth->execute();
-            foreach ($sth->fetchAll(PDO::FETCH_ASSOC) as $k)
+            $rs = $sth->fetchAll(PDO::FETCH_ASSOC);
+            print_r($rs);
+            foreach ( $rs as $k)
             {
                 print_r($k);
             }
