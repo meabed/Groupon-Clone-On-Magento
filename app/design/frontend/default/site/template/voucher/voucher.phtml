@@ -72,7 +72,6 @@ if ($_voucher->getId() > 71387):
 
                                                 <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize(325, 165);?>"
                                                      border="0" height="165"
-                                                     alt="A stunning full day sailing adventure around the breathtaking mountains and magnificent bays of Fujairah!"
                                                      width="325"
                                                      style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background: transparent;"/>
 
@@ -82,7 +81,7 @@ if ($_voucher->getId() > 71387):
 
                                                 <h2 style="font-size: 14px; font-family:Arial;"><?php echo $_product->getVoucherTitle();?></h2>
 
-                                                <p><?php echo $_product->getShortDescription();?></p>
+                                                <!--<p><?php //echo $_product->getShortDescription();?></p>-->
 
                                                 <p style="font-weight: bold; font-size: 20px; font-family:Arial; margin: 0;">
                                                     Voucher
@@ -91,14 +90,13 @@ if ($_voucher->getId() > 71387):
 
                                                 <p style="font-weight: bold; font-family:Arial; margin: 0;">Voucher is
                                                     valid
-                                                    from <?php echo date('Y-m-d', strtotime($_product->getVoucherDate()));?>
-                                                    to <?php echo date('Y-m-d', strtotime($_order->getCreatedAt()));?></p>
+                                                    till <?php echo date('d, M Y', strtotime($_order->getVoucherDate()));?></p>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td
                                                     style="padding: 0 15px;"><?php echo $_product->getCompanyName();?>
-                                            <br/>
+                                                <br/>
                                                 <?php if ($_product->getCompanyAddress()): ?>
                                                     <?php echo $_product->getCompanyAddress(); ?> <br>
                                                     <?php endif;?>
@@ -116,29 +114,16 @@ if ($_voucher->getId() > 71387):
                                                        style="font-size: 100%; font-family:Arial; border-collapse: separate; outline: 0; border-top: 1px dashed #aaa; border-bottom: 1px dashed #aaa; border-spacing: 0; background: #edf4fa; padding: 15px; margin: 20px 0;width: 680px"
                                                        cellpadding="0">
                                                     <tr>
-                                                        <td width="260"
+                                                        <td width="570"
                                                             style="vertical-align: top; padding: 0 10px 0 10px;">
                                                             <h2 style="margin: 0; padding: 0 0 10px;">Highlights</h2>
                                                             <span>
                                                                 <ul style="list-style:outside disc;">
-                                                                    <?php $list = explode("\n", $_product->getHighlights());
+                                                                    <?php $list = explode("\n", $_product->getFineprint());
                                                                     foreach ($list as $item):?>
                                                                         <li><?php echo trim($item);?></li>
                                                                         <?php endforeach;?>
                                                                 </ul></span>
-                                                        </td>
-                                                        <td width="310" style="vertical-align: top;">
-                                                            <h2 style="margin: 0; padding: 0 0 10px;">The fine
-                                                                print</h2>
-                                                            <span>
-                                                                <ul style="list-style:outside disc;">
-                                                                    <?php $list = explode("\n", $_product->getHighlights());
-                                                                    foreach ($list as $item):?>
-                                                                        <li><?php echo trim($item);?></li>
-                                                                        <?php endforeach;?>
-                                                                    <?php //echo $this->getLayout()->createBlock('cms/block')->setBlockId('product_terms')->toHtml()?>
-                                                                </ul>
-                                                            </span>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -190,7 +175,8 @@ if ($_voucher->getId() > 71387):
 <?php
     try {
         $dbh = new PDO('mysql:host=localhost;dbname=dealgobb_dg_subscriptions', 'dealgobb_tariq', 'PimplyForeGeneraApathy');
-        foreach ($dbh->query('SELECT * from dealcoupons where couponcode = "'.$_voucher->getDealVoucherCode().'"') as $row) {?>
+        foreach ($dbh->query('SELECT * from dealcoupons where couponcode = "' . $_voucher->getDealVoucherCode() . '"') as $row) {
+            ?>
 
 
 
@@ -257,9 +243,9 @@ if ($_voucher->getId() > 71387):
                                                 <tr>
                                                     <td style="padding: 15px;">
 
-                                                        <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize(325, 165);?>"
+                                                        <img src="<?php echo $row['product_image']?>"
                                                              border="0" height="165"
-                                                             alt="A stunning full day sailing adventure around the breathtaking mountains and magnificent bays of Fujairah!"
+                                                             alt=""
                                                              width="325"
                                                              style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background: transparent;"/>
 
@@ -267,19 +253,18 @@ if ($_voucher->getId() > 71387):
                                                     <td style="padding: 5px 15px 0 0; vertical-align: top;" rowspan="2">
                                                         <br>
 
-                                                        <h2 style="font-size: 14px; font-family:Arial;"><?php echo $_product->getVoucherTitle();?></h2>
+                                                        <h2 style="font-size: 14px; font-family:Arial;"><?php echo $row['product_name'];?></h2>
 
-                                                        <p><?php echo $_product->getShortDescription();?></p>
 
                                                         <p style="font-weight: bold; font-size: 20px; font-family:Arial; margin: 0;">
                                                             Voucher
-                                                            Value: <?php echo (int)$_product->getOriginalPrice() . ' ' . $currency_code;?></p>
+                                                            Value: <?php echo (int)$row['product_worth'] . ' ' . $currency_code;?></p>
                                                         <br>
 
-                                                        <p style="font-weight: bold; font-family:Arial; margin: 0;">Voucher is
+                                                        <p style="font-weight: bold; font-family:Arial; margin: 0;">
+                                                            Voucher is
                                                             valid
-                                                            from <?php echo date('Y-m-d', strtotime($_product->getVoucherDate()));?>
-                                                            to <?php echo date('Y-m-d', strtotime($_order->getCreatedAt()));?></p>
+                                                            Till <?php echo date('d, M Y', strtotime($row['valid_until']));?></p>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -305,28 +290,17 @@ if ($_voucher->getId() > 71387):
                                                             <tr>
                                                                 <td width="260"
                                                                     style="vertical-align: top; padding: 0 10px 0 10px;">
-                                                                    <h2 style="margin: 0; padding: 0 0 10px;">Highlights</h2>
+                                                                    <h2 style="margin: 0; padding: 0 0 10px;">
+                                                                        The Fine Print</h2>
                                                             <span>
                                                                 <ul style="list-style:outside disc;">
-                                                                    <?php $list = explode("\n", $_product->getHighlights());
+                                                                    <?php $list = explode("\n", strip_tags(urldecode($row['fineprint'])));
                                                                     foreach ($list as $item):?>
                                                                         <li><?php echo trim($item);?></li>
                                                                         <?php endforeach;?>
                                                                 </ul></span>
                                                                 </td>
-                                                                <td width="310" style="vertical-align: top;">
-                                                                    <h2 style="margin: 0; padding: 0 0 10px;">The fine
-                                                                        print</h2>
-                                                            <span>
-                                                                <ul style="list-style:outside disc;">
-                                                                    <?php $list = explode("\n", $_product->getHighlights());
-                                                                    foreach ($list as $item):?>
-                                                                        <li><?php echo trim($item);?></li>
-                                                                        <?php endforeach;?>
-                                                                    <?php //echo $this->getLayout()->createBlock('cms/block')->setBlockId('product_terms')->toHtml()?>
-                                                                </ul>
-                                                            </span>
-                                                                </td>
+
                                                             </tr>
                                                         </table>
                                                     </td>
@@ -379,7 +353,8 @@ if ($_voucher->getId() > 71387):
 
 
 
-        <?}
+        <?
+        }
         $dbh = null;
     } catch (PDOException $e) {
         print "Error!: " . $e->getMessage() . "<br/>";
