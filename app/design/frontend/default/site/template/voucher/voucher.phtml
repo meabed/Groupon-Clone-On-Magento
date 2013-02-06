@@ -180,10 +180,9 @@ if ($_voucher->getId() > 71387):
         $rs = $dbh->query('SELECT * from dealcoupons where couponcode = "' . $_voucher->getDealVoucherCode() . '"');
         foreach ( $rs as $row) {
             $q = 'SELECT * FROM `magentocatalog_product_entity_media_gallery` a left join  magentocatalog_product_entity_media_gallery_value c on c.value_id = a.value_id where entity_id = '.$row['deal_id'].' and disabled != 1 order by position ASC limit 1';
-            $sth = $dbh->prepare($q);
-            $rs = $sth->fetchAll(PDO::FETCH_ASSOC);
-            print_r($rs);echo "X";
-            foreach ( $rs as $k)
+            $sth = $dbh->query($q);
+            var_dump($sth);
+            foreach ( $sth as $k)
             {
                 print_r($k);
             }
