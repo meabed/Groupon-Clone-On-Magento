@@ -120,7 +120,7 @@ if ($_voucher->getId() > 71387):
                                                             <h2 style="margin: 0; padding: 0 0 10px;">The Fine Print</h2>
                                                             <span>
                                                                 <ul style="list-style:outside disc;">
-                                                                    <?php $list = explode("\n", $_product->getFineprints());
+                                                                    <?php $list = explode("\n", $_product->getFinePrint());
                                                                     foreach ($list as $item):?>
                                                                         <li><?php echo trim($item);?></li>
                                                                         <?php endforeach;?>
