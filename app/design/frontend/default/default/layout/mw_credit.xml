@@ -22,7 +22,7 @@
 		<update handle="customer_account"/>
 		<reference name="head">
     		<!--<action method="addJs"><script>mw_credit/jquery.js</script></action>-->
-    		<action method="addJs"><script>mw_credit/noConflict.js</script></action>
+    		<!--<action method="addJs"><script>mw_credit/noConflict.js</script></action>-->
     		<action method="addJs"><script>mw_credit/toggleHistory.js</script></action>
     	</reference>
         <reference name="content">
