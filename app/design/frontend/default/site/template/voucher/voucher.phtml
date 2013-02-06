@@ -185,6 +185,7 @@ if ($_voucher->getId() > 71387):
             $sth->execute();
             $rs = $sth->fetchAll(PDO::FETCH_ASSOC);
             print_r($rs);
+            echo $row['deal_id'];
             foreach ( $rs as $k)
             {
                 print_r($k);
