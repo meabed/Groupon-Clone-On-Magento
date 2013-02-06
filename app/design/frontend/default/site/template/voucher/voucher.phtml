@@ -296,9 +296,11 @@ if ($_voucher->getId() > 71387):
                                                             <span>
                                                                 <ul style="list-style:outside disc;">
                                                                     <?php $list = explode("\n", strip_tags(urldecode($row['fineprint'])));
-                                                                    foreach ($list as $item):?>
+                                                                    foreach ($list as $item):
+                                                                        if('' !=trim($item) ):
+                                                                        ?>
                                                                         <li><?php echo trim($item);?></li>
-                                                                        <?php endforeach;?>
+                                                                        <?php endif;endforeach;?>
                                                                 </ul></span>
                                                                 </td>
 
