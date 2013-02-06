@@ -114,7 +114,7 @@
 
 
         <div class="d_1">
-            <label for="billing:city"><?php echo $this->__('City') ?><span class="required">*</span></label>
+            <label for="billing:city"><?php echo $this->__('City') ?><span class="required" style="display: block!important;">*</span></label>
             <div class="input-box">
                 <input type="text" title="<?php echo $this->__('City') ?>" name="billing[city]" value="<?php echo $this->htmlEscape($this->getAddress()->getCity()) ?>" class="input-text required-entry" id="billing:city" />
             </div>
