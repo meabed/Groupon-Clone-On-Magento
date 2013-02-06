@@ -57,7 +57,7 @@
             <?php endif ?>
     </li>
     <li class="d_3">
-        <label for="billing:street1"><?php echo $this->__('Location') ?><span class="required">*</span></label>
+        <label for="billing:street1"><?php echo $this->__('Address') ?><span class="required">*</span></label>
         <div class="input-box">
             <input type="text" title="<?php echo $this->__('Street Address') ?>" name="billing[street][]" id="billing:street1" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet(1)) ?>" class="input-text required-entry" />
         </div>
