@@ -244,7 +244,7 @@ if ($_voucher->getId() > 71387):
                                                 <tr>
                                                     <td style="padding: 15px;">
 
-                                                        <img src="<?php echo urldecode($row['product_image']);?>"
+                                                        <img src="<?php echo $row['product_image'];?>"
                                                              border="0" height="165"
                                                              alt=""
                                                              width="325"
@@ -254,7 +254,7 @@ if ($_voucher->getId() > 71387):
                                                     <td style="padding: 5px 15px 0 0; vertical-align: top;" rowspan="2">
                                                         <br>
 
-                                                        <h2 style="font-size: 14px; font-family:Arial;"><?php echo $row['product_name'];?></h2>
+                                                        <h2 style="font-size: 14px; font-family:Arial;"><?php echo urldecode($row['product_name']);?></h2>
 
 
                                                         <p style="font-weight: bold; font-size: 20px; font-family:Arial; margin: 0;">
