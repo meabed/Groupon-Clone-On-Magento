@@ -21,7 +21,9 @@
     <credit_index_index>
 		<update handle="customer_account"/>
 		<reference name="head">
-
+    		<!--<action method="addJs"><script>mw_credit/jquery.js</script></action>-->
+    		<action method="addJs"><script>mw_credit/noConflict.js</script></action>
+    		<action method="addJs"><script>mw_credit/toggleHistory.js</script></action>
     	</reference>
         <reference name="content">
         	<block type="core/template" name="customer_credit_dashboard" template="mw_credit/customer/account/credit.phtml">
