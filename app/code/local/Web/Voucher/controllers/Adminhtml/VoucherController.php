@@ -104,6 +104,35 @@ class Web_Voucher_Adminhtml_VoucherController extends Mage_Adminhtml_Controller_
         }
         $this->_redirect('*/*/index');
     }
+    public function massPrintAction()
+    {
+        $voucherIds = $this->getRequest()->getParam('voucher');
+        if (!is_array($voucherIds)) {
+            Mage::getSingleton('adminhtml/session')->addError($this->__('Please select item(s)'));
+        } else {
+            try {
+                $voucherModel = Mage::getModel('voucher/vouchers');
+                foreach ($voucherIds as $voucherId) {
+                    $voucher = $voucherModel->load($voucherId);
+                    $auth = strtoupper(md5(strtoupper($voucher->getDealVoucherCode()).'213@#$%^$DFSfwer@!#'.$voucher->getOrderId()));
+                    $url = Mage::getUrl('voucher/view/downloadadmin',array('code'=>$voucher->getDealVoucherCode(),'auth'=> $auth));
+                    file_get_contents($url);
+                    $urls[] = $url;
+                   // Mage::getModel('voucher/observer')->_sendVoucherEmail($voucher);
+                    //$voucher->setIsSent($voucher->getIsSent()+1)->save();
+                }
+                $string = join(' ',array_unique($urls));
+                $fname = Mage::getBaseDir('media').DS.'vouchers'.DS.md5($string).'.pdf';
+                $r = exec(Mage::getBaseDir('lib').DS.'wkhtmltopdf '.$string.' '.$fname);
+                $this->_getSession()->addSuccess(
+                    $this->__('Total of %d vouchers(s) generated '.$fname, count($voucherIds))
+                );
+            } catch (Exception $e) {
+                $this->_getSession()->addError($e->getMessage());
+            }
+        }
+        $this->_redirect('*/*/index');
+    }
 
     public function massStatusAction()
     {

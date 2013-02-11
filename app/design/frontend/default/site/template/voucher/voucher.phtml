@@ -3,7 +3,7 @@ $_voucher = $this->getVoucher();
 $_order = $this->getOrder();
 $home_url = Mage::helper('core/url')->getHomeUrl();
 $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
-if ($_voucher->getId() > 71387):
+if ($_voucher->getProductId() > 1):
     $_product = $this->getProduct();
     $price = (int)$_product->getPrice();
     $dealPrice = (int)$_product->getDealPrice();
