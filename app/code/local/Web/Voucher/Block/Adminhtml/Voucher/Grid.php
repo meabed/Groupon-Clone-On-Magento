@@ -14,6 +14,7 @@ class Web_Voucher_Block_Adminhtml_Voucher_Grid extends Mage_Adminhtml_Block_Widg
     {
         $storeId = Mage::app()->getStore()->getId();
         $ordersTable = Mage::getSingleton('core/resource')->getTableName('sales/order');
+        $paymentTable = Mage::getSingleton('core/resource')->getTableName('sales/order_payment');
         $addressTable = Mage::getSingleton('core/resource')->getTableName('sales/order_address');
         $productTable = Mage::getResourceModel('catalog/product_flat')->getFlatTableName(1);
         //        $productTable = Mage::getSingleton('core/resource')->getTableName('catalog/product_flat').'_1';
@@ -21,6 +22,8 @@ class Web_Voucher_Block_Adminhtml_Voucher_Grid extends Mage_Adminhtml_Block_Widg
         $collection->getSelect()->columns(new Zend_Db_Expr("CONCAT(orders.customer_firstname, ' ',orders.customer_lastname) AS billing_name"));
         $collection->getSelect()
             ->joinLeft(array('orders' => $ordersTable), 'main_table.order_id=orders.entity_id', array('orders.customer_firstname', 'orders.customer_lastname', 'order_status' => 'orders.status'));
+        $collection->getSelect()
+            ->joinLeft(array('payment' => $paymentTable), 'main_table.order_id=payment.parent_id', array('method'));
         $collection->getSelect()
             ->joinLeft(array('address' => $addressTable), 'orders.billing_address_id=address.entity_id', array('caddress'=>'CONCAT(address.street,"\n",address.city,"\n",address.telephone)'));
         $collection->getSelect()
@@ -97,7 +100,15 @@ class Web_Voucher_Block_Adminhtml_Voucher_Grid extends Mage_Adminhtml_Block_Widg
             'type' => 'options',
             'options' => Mage::getModel('voucher/vouchers')->getStatuses()
         ));
+        $this->addColumn('method', array(
 
+            'header' => Mage::helper('voucher')->__('Method'),
+            'align' => 'left',
+            'width' => '80px',
+            'index' => 'method',
+            'filter_index' => 'method'
+
+        ));
         $this->addColumn('order_status', array(
 
             'header' => Mage::helper('voucher')->__('Order Status'),
