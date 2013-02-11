@@ -84,8 +84,10 @@ $this->getDealInfo();
                         <div class="head"><?php echo $this->__('The Company');?></div>
                         <div class="details">
                             <div class="small_Image"><img
-                                    src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'company_logo')->constrainOnly(TRUE)->keepAspectRatio(false)->keepFrame(true)->resize(200);?>"/>
+                                    src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'company_logo')->constrainOnly(TRUE)->keepAspectRatio(true)->resize(200);?>"/>
                             </div>
+                            <br>
+
                             <address>
                                 <strong><?php echo $_helper->productAttribute($_product, ($_product->getCompanyName()), 'company_name'); ?></strong>
                                 <br>
@@ -99,9 +101,10 @@ $this->getDealInfo();
                                 <br>
                                 Web:
                                 <strong><?php echo $_helper->productAttribute($_product, ($_product->getCompanyWeb()), 'company_web'); ?></strong>
-                                <br>
-                                <strong><?php echo $_helper->productAttribute($_product, ($_product->getCompanyLocation()), 'company_location'); ?></strong>
                             </address>
+
+                            <br>
+                                <strong><?php echo $_helper->productAttribute($_product, ($_product->getCompanyLocation()), 'company_location'); ?></strong>
                             <?php
                             //echo Mage::helper('deal')->getCompany($_product->getCompany());
                             ?>
