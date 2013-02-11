@@ -91,7 +91,8 @@ $this->getDealInfo();
                             <address>
                                 <strong><?php echo $_helper->productAttribute($_product, ($_product->getCompanyName()), 'company_name'); ?></strong>
                                 <br>
-                                <strong><?php echo $_helper->productAttribute($_product, ($_product->getCompanyAddress()), 'company_address'); ?></strong>
+                                <br>
+                                Address: <?php echo $_helper->productAttribute($_product, ($_product->getCompanyAddress()), 'company_address'); ?>
                                 <br>
                                 Tel:
                                 <strong><?php echo $_helper->productAttribute($_product, ($_product->getCompanyContact()), 'company_contact'); ?></strong>
