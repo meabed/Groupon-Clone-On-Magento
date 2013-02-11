@@ -22,11 +22,11 @@ class Web_Voucher_Block_Adminhtml_Voucher_Grid extends Mage_Adminhtml_Block_Widg
         $collection->getSelect()
             ->joinLeft(array('orders' => $ordersTable), 'main_table.order_id=orders.entity_id', array('orders.customer_firstname', 'orders.customer_lastname', 'order_status' => 'orders.status'));
         $collection->getSelect()
-            ->joinLeft(array('address' => $addressTable), 'orders.billing_address_id=address.entity_id', array("CONCAT(address.street,'<br>',address.city,'<br>',address.telephone)"=>'caddress'));
+            ->joinLeft(array('address' => $addressTable), 'orders.billing_address_id=address.entity_id', array('caddress'=>"CONCAT(address.street,'<br>',address.city,'<br>',address.telephone)"));
         $collection->getSelect()
             ->joinLeft(array('product' => $productTable), 'main_table.product_id = product.entity_id', array('name'));
         $this->setCollection($collection);
-
+        //echo $collection->getSelect()->__toString();exit();
         $this->addExportType('*/*/exportCsv', Mage::helper('voucher')->__('CSV'));
 
         return parent::_prepareCollection();
