@@ -66,7 +66,8 @@ class Web_Voucher_Block_Adminhtml_Voucher_Grid extends Mage_Adminhtml_Block_Widg
         $this->addColumn('caddress', array(
             'header' => Mage::helper('voucher')->__('Address'),
             'align' => 'left',
-            'index' => 'caddress'
+            'index' => 'caddress',
+            'filter' => false,
         ));
         $this->addColumn('created_at', array(
             'header' => Mage::helper('voucher')->__('Creation Time'),
