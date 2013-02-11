@@ -158,7 +158,7 @@ class Web_Voucher_Block_Adminhtml_Voucher_Grid extends Mage_Adminhtml_Block_Widg
             'url' => $this->getUrl('*/*/massSend', array('_current' => true)),
         ));
         $this->getMassactionBlock()->addItem('print', array(
-            'label' => Mage::helper('voucher')->__('Print'),
+            'label' => Mage::helper('voucher')->__('Download'),
             'url' => $this->getUrl('*/*/massPrint', array('_current' => true)),
         ));
         return $this;
