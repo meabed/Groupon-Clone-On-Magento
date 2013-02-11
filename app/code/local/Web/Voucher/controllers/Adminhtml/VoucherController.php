@@ -116,8 +116,8 @@ class Web_Voucher_Adminhtml_VoucherController extends Mage_Adminhtml_Controller_
                     $voucher = $voucherModel->load($voucherId);
                     $auth = strtoupper(md5(strtoupper($voucher->getDealVoucherCode()).'213@#$%^$DFSfwer@!#'.$voucher->getOrderId()));
                     $url = Mage::getUrl('voucher/view/downloadadmin',array('code'=>$voucher->getDealVoucherCode(),'auth'=> $auth));
-                    file_get_contents($url);
-                    $urls[] = $url;
+                    $urlx = file_get_contents($url);
+                    $urls[] = $urlx;
                    // Mage::getModel('voucher/observer')->_sendVoucherEmail($voucher);
                     //$voucher->setIsSent($voucher->getIsSent()+1)->save();
                 }
