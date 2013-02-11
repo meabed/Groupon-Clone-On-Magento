@@ -22,7 +22,7 @@ class Web_Voucher_Block_Adminhtml_Voucher_Grid extends Mage_Adminhtml_Block_Widg
         $collection->getSelect()
             ->joinLeft(array('orders' => $ordersTable), 'main_table.order_id=orders.entity_id', array('orders.customer_firstname', 'orders.customer_lastname', 'order_status' => 'orders.status'));
         $collection->getSelect()
-            ->joinLeft(array('address' => $addressTable), 'orders.billing_address_id=address.entity_id', array('address.street', 'address.city', 'address.phone'));
+            ->joinLeft(array('address' => $addressTable), 'orders.billing_address_id=address.entity_id', array("CONCAT(address.street,'<br>',address.city,'<br>',address.telephone)"=>'address.caddress'));
         $collection->getSelect()
             ->joinLeft(array('product' => $productTable), 'main_table.product_id = product.entity_id', array('name'));
         $this->setCollection($collection);
@@ -62,6 +62,11 @@ class Web_Voucher_Block_Adminhtml_Voucher_Grid extends Mage_Adminhtml_Block_Widg
             'header' => Mage::helper('voucher')->__('Bill to Name'),
             'align' => 'left',
             'index' => 'billing_name'
+        ));
+        $this->addColumn('caddress', array(
+            'header' => Mage::helper('voucher')->__('Address'),
+            'align' => 'left',
+            'index' => 'caddress'
         ));
         $this->addColumn('created_at', array(
             'header' => Mage::helper('voucher')->__('Creation Time'),
