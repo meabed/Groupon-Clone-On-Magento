@@ -1864,3 +1864,10 @@ button.btn-checkout span span
 {
     color: white;
 }
+form#newsletter-validate-detail .input-prepend .validation-advice
+{
+    width: 229px;
+    margin-bottom: 10px;
+    text-align: left;
+
+}
