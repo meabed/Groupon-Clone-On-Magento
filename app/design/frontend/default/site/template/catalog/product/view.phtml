@@ -83,8 +83,22 @@ $this->getDealInfo();
                     <div class="product-company">
                         <div class="head"><?php echo $this->__('The Company');?></div>
                         <div class="details">
+                            <div class="small_Image"><img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'company_logo' )->constrainOnly(TRUE)->keepAspectRatio(false)->keepFrame(true)->resize(200);?>"/></div>
+                            <address>
+                                <strong><?php echo $_helper->productAttribute($_product, ($_product->getCompanyName()), 'company_name'); ?></strong>
+                                <br>
+                                <strong><?php echo $_helper->productAttribute($_product, ($_product->getCompanyAddress()), 'company_address'); ?></strong>
+                                <br>
+                                Tel: <strong><?php echo $_helper->productAttribute($_product, ($_product->getCompanyContact()), '04465920'); ?></strong>
+                                <br>
+                                Email: <strong><?php echo $_helper->productAttribute($_product, ($_product->getCompanyEmail()), 'support@dealgobbler.com'); ?></strong>
+                                <br>
+                                Web: <strong><?php echo $_helper->productAttribute($_product, ($_product->getCompanyWeb()), 'http://www.dealgobbler.com'); ?></strong>
+                                <br>
+                                <strong><?php echo $_helper->productAttribute($_product, ($_product->getCompanyLocation()), 'location'); ?>
+                            </address>
                             <?php
-                            echo Mage::helper('deal')->getCompany($_product->getCompany());
+                            //echo Mage::helper('deal')->getCompany($_product->getCompany());
                             ?>
                         </div>
                     </div>
