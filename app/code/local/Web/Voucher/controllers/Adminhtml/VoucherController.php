@@ -123,10 +123,10 @@ class Web_Voucher_Adminhtml_VoucherController extends Mage_Adminhtml_Controller_
                 }
                 $string = join(' ',array_unique($urls));
                 $fname = Mage::getBaseDir('media').DS.'vouchers'.DS.md5($string).'.pdf';
-                $cmd = Mage::getBaseDir('lib').DS.'wkhtmltopdf '.$string.' '.$fname;
+                $cmd = Mage::getBaseDir('lib').DS.'wkhtmltopdf --load-error-handling '.$string.' '.$fname;
                 $r = exec($cmd);
                 $this->_getSession()->addSuccess(
-                    $this->__('Total of %d vouchers(s) generated '.$cmd. '--' .md5($string).'.pdf' , count($voucherIds))
+                    $this->__('Total of %d vouchers(s) generated '.$cmd. ' -- ' .md5($string).'.pdf' , count($voucherIds))
                 );
             } catch (Exception $e) {
                 $this->_getSession()->addError($e->getMessage());
