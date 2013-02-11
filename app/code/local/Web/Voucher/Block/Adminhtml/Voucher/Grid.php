@@ -5,8 +5,8 @@ class Web_Voucher_Block_Adminhtml_Voucher_Grid extends Mage_Adminhtml_Block_Widg
     {
         parent::__construct();
         $this->setId('voucher_grid');
-        $this->setDefaultSort('entity_id');
-        $this->setDefaultDir('ASC');
+        $this->setDefaultSort('updated_at');
+        $this->setDefaultDir('DESC');
         $this->setSaveParametersInSession(true);
     }
 
