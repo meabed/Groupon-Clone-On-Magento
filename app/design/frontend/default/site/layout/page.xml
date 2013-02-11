@@ -81,7 +81,7 @@ Default layout, loads most of the pages
                     <label>Navigation Bar</label>
                     <block type="deal/html_topmenu" name="catalog.topnav" template="page/html/topmenu.phtml"/>
                 </block>
-                <block type="deal/subscribe" name="top.subscribe" as="topSubscribe" translate="label" template="page/html/email.subscribe.phtml" />
+                <block type="newsletter/subscribe" name="top.subscribe" as="topSubscribe" translate="label" template="page/html/email.subscribe.phtml" />
 
                 <block type="page/html_wrapper" name="top.container" as="topContainer" translate="label">
                     <label>Page Header</label>
