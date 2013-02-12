@@ -50,6 +50,11 @@
             <deal>
                 <class>Web_Deal_Block</class>
             </deal>
+            <adminhtml>
+                <rewrite>
+                    <catalog_product_grid>Web_Deal_Block_Adminhtml_Catalog_Product_Grid</catalog_product_grid>
+                </rewrite>
+            </adminhtml>
         </blocks>
         <models>
             <deal>
