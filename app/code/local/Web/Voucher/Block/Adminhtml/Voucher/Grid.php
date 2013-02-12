@@ -88,6 +88,7 @@ class Web_Voucher_Block_Adminhtml_Voucher_Grid extends Mage_Adminhtml_Block_Widg
             'type' => 'date',
             'default' => '--',
             'index' => 'updated_at',
+            'filter_index' => 'main_table.updated_at',
         ));
 
 
