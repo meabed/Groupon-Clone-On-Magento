@@ -57,7 +57,7 @@ class Web_QuickCheckout_Helper_Data extends Mage_Core_Helper_Abstract
                 return $data;
              }
              else{
-                return 'Already registered? Please log in below.';
+                return 'Already registered? Click to login.';
              }
        
     }
