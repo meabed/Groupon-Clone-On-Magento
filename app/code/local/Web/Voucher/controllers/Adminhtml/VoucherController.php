@@ -116,7 +116,11 @@ class Web_Voucher_Adminhtml_VoucherController extends Mage_Adminhtml_Controller_
                     $voucher = $voucherModel->load($voucherId);
                     $auth = strtoupper(md5(strtoupper($voucher->getDealVoucherCode()).'213@#$%^$DFSfwer@!#'.$voucher->getOrderId()));
                     $url = Mage::getUrl('voucher/view/downloadadmin',array('code'=>$voucher->getDealVoucherCode(),'auth'=> $auth));
-                    $urlx = file_get_contents($url);
+                    $opts = array('http' => array('header'=> 'Cookie: ' . $_SERVER['HTTP_COOKIE']."\r\n"));
+                    $context = stream_context_create($opts);
+                    $contents = file_get_contents($url, false, $context);
+                    $urlx = $contents;
+                    //$urlx = file_get_contents($url);
                     var_dump($url);
                     var_dump($urlx);
                     var_dump($http_response_header);
