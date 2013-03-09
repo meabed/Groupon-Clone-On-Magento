@@ -6,8 +6,6 @@ class Web_Voucher_Helper_Data extends Mage_Core_Helper_Abstract
 
         //$voucherCode = $this->getRequest()->getParam('code');
         //$auth = strtoupper($this->getRequest()->getParam('auth'));
-        echo $voucherCode;
-        echo $auth;
         $cS = '';
         $voucherId = Mage::getModel('voucher/vouchers')->getCollection()
             ->addFieldToSelect('*')
@@ -39,6 +37,7 @@ class Web_Voucher_Helper_Data extends Mage_Core_Helper_Abstract
                 return;
             }
         }
+        echo $fname;
         return $fname;
         //exit();
     }
