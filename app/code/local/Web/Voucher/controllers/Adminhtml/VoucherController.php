@@ -134,7 +134,7 @@ class Web_Voucher_Adminhtml_VoucherController extends Mage_Adminhtml_Controller_
                 $cmd = Mage::getBaseDir('lib').DS.'wkhtmltopdf '.$string.' '.$fname;
                 $r = exec($cmd);
                 $this->_getSession()->addSuccess(
-                    $this->__('Total of %d vouchers(s) generated <a href=">'.Mage::getUrl(). '/media/vouchers/' .md5($string).'.pdf">Here</a>' , count($voucherIds))
+                    $this->__('Total of %d vouchers(s) generated <a href="'.Mage::getBaseUrl(). '/media/vouchers/' .md5($string).'.pdf">Here</a>' , count($voucherIds))
                 );
             } catch (Exception $e) {
                 $this->_getSession()->addError($e->getMessage());
