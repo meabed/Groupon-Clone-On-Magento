@@ -117,14 +117,14 @@ class Web_Voucher_Adminhtml_VoucherController extends Mage_Adminhtml_Controller_
                     $auth = strtoupper(md5(strtoupper($voucher->getDealVoucherCode()).'213@#$%^$DFSfwer@!#'.$voucher->getOrderId()));
                     $url = Mage::getUrl('voucher/view/downloadadmin',array('code'=>$voucher->getDealVoucherCode(),'auth'=> $auth));
                     $client = new Zend_Http_Client();
-                    echo $response = $client->setUri($url)->request(Zend_Http_Client::HEAD);
+                    $response = $client->setUri($url)->request();
 
                     //$urlx = file_get_contents($url);
                     $urls[] = $response;
                    // Mage::getModel('voucher/observer')->_sendVoucherEmail($voucher);
                     //$voucher->setIsSent($voucher->getIsSent()+1)->save();
                 }
-                //print_r($urls);
+                print_r($urls);exit;
                 $string = join(' ',array_unique($urls));
                 $fname = Mage::getBaseDir('media').DS.'vouchers'.DS.md5($string).'.pdf';
                 $cmd = Mage::getBaseDir('lib').DS.'wkhtmltopdf '.$string.' '.$fname;
