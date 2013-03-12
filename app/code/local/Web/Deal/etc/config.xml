@@ -126,14 +126,14 @@
     </adminhtml>
     <crontab>
         <jobs>
-            <Web_Voucher_sendvouchers>
+            <Web_Voucher_autorenew>
                 <schedule>
                     <cron_expr>5 0 * * *</cron_expr>
                 </schedule>
                 <run>
                     <model>Web_Deal_Model_Observer::renewDeal</model>
                 </run>
-            </Web_Voucher_sendvouchers>
+            </Web_Voucher_autorenew>
         </jobs>
     </crontab>
 </config>
