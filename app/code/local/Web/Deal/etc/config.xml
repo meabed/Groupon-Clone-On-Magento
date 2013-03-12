@@ -124,4 +124,16 @@
             </updates>
         </layout>
     </adminhtml>
+    <crontab>
+        <jobs>
+            <Web_Voucher_sendvouchers>
+                <schedule>
+                    <cron_expr>5 0 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>Web_Deal_Model_Observer::renewDeal</model>
+                </run>
+            </Web_Voucher_sendvouchers>
+        </jobs>
+    </crontab>
 </config>
