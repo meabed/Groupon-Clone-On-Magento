@@ -22,7 +22,7 @@
 
             <th><?php echo $this->__('Status') ?></th>
             <th>&nbsp;</th>
-            <th>&nbsp;</th>
+            <!--<th>&nbsp;</th>-->
         </tr>
         </thead>
         <tbody>
@@ -36,14 +36,15 @@
             <td><em><?php echo ucwords($_voucher->getStatus()) ?></em></td>
             <td class="a-center">
                         <span class="nobr">
-                        <a href="<?php echo $this->getViewUrl($_voucher) ?>"><?php echo $this->__('View') ?></a>
+                        <a href="<?php echo $this->getViewUrl($_voucher) ?>" target="_blank"><?php echo $this->__('View') ?></a>
                         </span>
             </td>
+            <?php /* Removed by VD - 18 feb 2013. Uncomment L25 for colum.
             <td class="a-center">
                         <span class="nobr">
                         <a href="<?php echo $this->getDownloadUrl($_voucher) ?>"><?php echo $this->__('Download') ?></a>
                         </span>
-            </td>
+            </td> */?>
         </tr>
             <?php endforeach; ?>
         </tbody>
@@ -51,5 +52,5 @@
 <script type="text/javascript">decorateTable('my-vouchers-table');</script>
 <?php echo $this->getPagerHtml(); ?>
 <?php else: ?>
-<p><?php echo $this->__('You have vouchers available.'); ?></p>
+<p class="alert alert-error"><?php echo $this->__('Oops. You have no vouchers available. If you have placed a recent order using Credit Card or PayPal, please check back within 5 minutes.'); ?> <br> <?php echo $this->__('If you have placed an order using Cash on Delivery (COD), you will recieve your voucher within 2 working days.'); ?></p>
 <?php endif ?>

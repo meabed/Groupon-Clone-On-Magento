@@ -16,6 +16,7 @@ class Web_Voucher_Block_History extends Mage_Core_Block_Template
                 ->where('orders.customer_id = ' . Mage::getSingleton('customer/session')->getCustomer()->getId())
                 ->where('main_table.customer_id = ' . Mage::getSingleton('customer/session')->getCustomer()->getId())
                 ->order(array('main_table.created_at desc','main_table.order_id desc'));
+        $vouchers->addFieldToFilter('orders.status',array('eq'=>'complete')); // VD
         //echo $vouchers->getSelect()->__toString();
         $this->setVouchers($vouchers);
         

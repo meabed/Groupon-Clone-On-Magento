@@ -27,7 +27,7 @@
 <div class="page-title">
     <h1><?php echo Mage::helper('customer')->__('You are now logged out') ?></h1>
 </div>
-<p><?php echo Mage::helper('customer')->__('You have logged out and will be redirected to our homepage in 5 seconds.') ?></p>
+<p class="alert alert-success"><i class="icon-ok"></i>&nbsp;&nbsp;<?php echo Mage::helper('customer')->__('You have logged out and will be <b>redirected</b> to the main deal page in 5 seconds.') ?></p>
 <script type="text/javascript">
 //<![CDATA[
     setTimeout(function(){ location.href = '<?php echo $this->getUrl() ?>'},5000);

@@ -93,7 +93,15 @@ $expired = Mage::helper('deal')->isProductExpired($_product->getId());
                                     <?php else: ?>
                                     <div id="countdowncontainer"></div>
                                     <script type="text/javascript">
-                                        var futuredate = new cdtime("countdowncontainer", "<?php echo date('F d, Y 00:00:00', strtotime($_product->getEndDate()));?>")
+					<?php
+						// Calculate the absolute seconds difference here on the server
+						$end_date = strtotime($_product->getEndDate());
+						$todate = time();
+						$sec_diff = ($end_date - $todate);
+					?>
+					var target_cs_time = new Date().getTime() + <?php echo $sec_diff; ?> * 1000;
+                                        // var futuredate = new cdtime("countdowncontainer", "<?php echo date('F d, Y 00:00:00', strtotime($_product->getEndDate()));?>")
+                                        var futuredate = new cdtime("countdowncontainer", target_cs_time);
                                         futuredate.displaycountdown("days", formatresults)
                                     </script>
                                     <?endif;?>

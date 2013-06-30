@@ -53,9 +53,7 @@ if ($_voucher->getProductId() > 1):
 
                             <tr style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background-color: #C6E9FC;">
                                 <td style="width: 320px; border-bottom: 1px dashed #aaa; padding: 5px 5px 5px 15px;">
-                                    <img src="<?php echo $this->getSkinUrl('img/logo.png')?>" border="0"
-                                         height="75"
-                                         alt="Dealgobbler.com - <?php echo $home_url;?>" width="316"
+                                    <img src="<?php echo $this->getSkinUrl('img/logo.png')?>" border="0" alt="Dealgobbler.com - <?php echo $home_url;?>" width="250" height="75"
                                          style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background: transparent;"/>
                                 </td>
                                 <td style="width: 230px; text-align: right; border-bottom: 1px dashed #aaa;">
@@ -68,44 +66,39 @@ if ($_voucher->getProductId() > 1):
                                     <table cellspacing="0" border="0" cellpadding="0"
                                            style="font-size: 100%; font-family:Arial; border-collapse: separate; outline: 0; border: 0; border-spacing: 0; padding: 0; margin: 0;">
                                         <tr>
-                                            <td style="padding: 15px;">
+                                            <td style="padding: 15px; width:325px">
 
-                                                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize(325, 165);?>"
-                                                     border="0" height="165"
-                                                     width="325"
+                                                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize(325, 165);?>" border="0" height="165" width="325"
                                                      style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background: transparent;"/>
 
                                             </td>
                                             <td style="padding: 5px 15px 0 0; vertical-align: top;" rowspan="2">
                                                 <br>
-
-                                                <h2 style="font-size: 14px; font-family:Arial;"><?php echo $_product->getVoucherTitle();?></h2>
-
+                                                <h2 style="font-size: 14px; font-family:Arial; line-height: 22px;"><?php echo $_product->getVoucherTitle();?></h2>
                                                 <!--<p><?php //echo $_product->getShortDescription();?></p>-->
                                                 <br>
-
                                                 <p style="font-weight: bold; font-size: 20px; font-family:Arial; margin: 0;">
                                                     Voucher
                                                     Value: <?php echo (int)$_product->getOriginalPrice() . ' ' . $currency_code;?></p>
-                                                <br>
-
                                                 <p style="font-weight: bold; font-family:Arial; margin: 0;">Voucher is
                                                     valid
-                                                    till <?php echo date('d, M Y', strtotime($_order->getVoucherDate()));?></p>
+                                                    till    <?php echo date('d, M Y', strtotime($_order->getVoucherDate()));?></p>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td
-                                                    style="padding: 0 15px;"><?php echo $_product->getCompanyName();?>
+                                            <td style="padding: 0 15px;" colspan='2'>
+											<?php if ($_product->getCompanyName()):?>
+											<strong>To use or book your voucher contact <?php echo $_product->getCompanyName();?>:</strong><br>
+											<?php endif;?>
                                                 <br/>
                                                 <?php if ($_product->getCompanyAddress()): ?>
                                                     <?php echo $_product->getCompanyAddress(); ?> <br>
                                                     <?php endif;?>
                                                 <?php if ($_product->getCompanyEmail()): ?>
-                                                    <?php echo $_product->getCompanyEmail(); ?> <br>
+                                                    <strong><?php echo $_product->getCompanyEmail(); ?></strong> <br>
                                                     <?php endif;?>
                                                 <?php if ($_product->getCompanyContact()): ?>
-                                                    Tel: <?php echo $_product->getCompanyContact(); ?><br/>
+                                                    Tel: <strong><?php echo $_product->getCompanyContact(); ?></strong><br/>
                                                     <?php endif;?>
                                             </td>
                                         </tr>
@@ -116,10 +109,10 @@ if ($_voucher->getProductId() > 1):
                                                        cellpadding="0">
                                                     <tr>
                                                         <td width="570"
-                                                            style="vertical-align: top; padding: 0 10px 0 10px;">
+                                                            style="vertical-align: top; padding: -1 10px 0 10px;">
                                                             <h2 style="margin: 0; padding: 0 0 10px;">The Fine Print</h2>
                                                             <span>
-                                                                <ul style="list-style:outside disc;">
+                                                                <ul style="list-style:inside disc;">
                                                                     <?php $list = explode("\n", $_product->getFinePrint());
                                                                     foreach ($list as $item):?>
                                                                         <li><?php echo trim($item);?></li>
@@ -132,33 +125,36 @@ if ($_voucher->getProductId() > 1):
                                         </tr>
                                         <tr>
 
-                                            <td style="padding: 0 15px 15px 15px;">
-                                                <b>This is how you use it:</b>
+                                            <td style="padding: 0 15px 15px 15px;" colspan='2'>
+                                                <b>How to use this voucher:</b>
                                                 <ul style="margin: 0pt; padding: 10px 0 0 18px;">
+                                                    <?php if ($_product->getCompanyName()):?>
+													<li style="list-style: decimal outside none; margin: 0pt; padding: 0pt;">
+                                                        Call and make an appointment with <?php echo $_product->getCompanyName();?>.
+                                                    </li>
+													<?php endif;?>
+													<?php if ($_product->getCompanyEmail()): ?>
                                                     <li style="list-style: decimal outside none; margin: 0pt; padding: 0pt;">
-                                                        Print out the voucher
+                                                        If required email a copy of this voucher to <?php echo $_product->getCompanyEmail();?>
+                                                    </li>
+													<?php endif;?>
+                                                    <li style="list-style: decimal outside none; margin: 0pt; padding: 0pt;">
+                                                        Dont forget to bring your voucher before visiting <?php echo $_product->getCompanyName();?>.
                                                     </li>
                                                     <li style="list-style: decimal outside none; margin: 0pt; padding: 0pt;">
-                                                        Make an appointment with the provider
+                                                        Enjoy the dealgobbler experience!
                                                     </li>
-                                                    <li style="list-style: decimal outside none; margin: 0pt; padding: 0pt;">
-                                                        Dont forget to bring your voucher
-                                                    </li>
-                                                    <li style="list-style: decimal outside none; margin: 0pt; padding: 0pt;">
-                                                        Use your voucher and enjoy
-                                                    </li>
-
                                                 </ul>
                                             </td>
                                             <td style="text-align: right; vertical-align: bottom; padding: 15px;"></td>
                                         </tr>
-                                        <tr>
+                                        <!--<tr>
                                             <td colspan="2">
                                                 <img src="<?php echo $this->getSkinUrl('images/voucher_footer_en.png')?>"
                                                      border="0" height="" alt="" width=""
                                                      style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; background: transparent;"/>
                                             </td>
-                                        </tr>
+                                        </tr>-->
 
                                     </table>
                                 </td>
@@ -233,9 +229,7 @@ if ($_voucher->getProductId() > 1):
 
                                     <tr style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background-color: #C6E9FC;">
                                         <td style="width: 320px; border-bottom: 1px dashed #aaa; padding: 5px 5px 5px 15px;">
-                                            <img src="<?php echo $this->getSkinUrl('img/logo.png')?>" border="0"
-                                                 height="75"
-                                                 alt="Dealgobbler.com - <?php echo $home_url;?>" width="316"
+                                            <img src="<?php echo $this->getSkinUrl('img/logo.png')?>" border="0" width="250" height="75" alt="Dealgobbler.com - <?php echo $home_url;?>" 
                                                  style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background: transparent;"/>
                                         </td>
                                         <td style="width: 230px; text-align: right; border-bottom: 1px dashed #aaa;">
@@ -248,7 +242,7 @@ if ($_voucher->getProductId() > 1):
                                             <table cellspacing="0" border="0" cellpadding="0"
                                                    style="width: 100%;font-size: 100%; font-family:Arial; border-collapse: separate; outline: 0; border: 0; border-spacing: 0; padding: 0; margin: 0;">
                                                 <tr>
-                                                    <td style="padding: 15px;">
+                                                    <td style="padding: 15px; width:258px">
 
                                                         <img src="<?php echo '//www.dealgobbler.com/media/catalog/product/'.$aimg['0']['value'];?>"
                                                              border="0" height="165"
@@ -301,7 +295,7 @@ if ($_voucher->getProductId() > 1):
                                                                     <h2 style="margin: 0; padding: 0 0 10px;">
                                                                         The Fine Print</h2>
                                                             <span>
-                                                                <ul style="list-style:outside disc;">
+                                                                <ul style="list-style:inside disc;">
                                                                     <?php $list = explode("\n", strip_tags(urldecode($row['fineprint'])));
                                                                     foreach ($list as $item):
                                                                         if('' !=trim($item) ):
@@ -329,19 +323,19 @@ if ($_voucher->getProductId() > 1):
                                                                 Dont forget to bring your voucher
                                                             </li>
                                                             <li style="list-style: decimal outside none; margin: 0pt; padding: 0pt;">
-                                                                Use your voucher and enjoy
+                                                                Enjoy the dealgobbler experience :)
                                                             </li>
 
                                                         </ul>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <!--<tr>
                                                     <td colspan="2">
                                                         <img src="<?php echo $this->getSkinUrl('images/voucher_footer_en.png')?>"
                                                              border="0" height="" alt="" width=""
                                                              style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; background: transparent;"/>
                                                     </td>
-                                                </tr>
+                                                </tr>-->
 
                                             </table>
                                         </td>

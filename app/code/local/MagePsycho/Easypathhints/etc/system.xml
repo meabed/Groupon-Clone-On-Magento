@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category   MagePsycho
+ * @package    MagePsycho_Easypathhints
+ * @author     info@magepsycho.com
+ * @website    http://www.magepsycho.com 
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ -->
+<config>
+    <tabs>
+        <magepychoall translate="label" module="easypathhints">
+            <label>MagePsycho Extensions</label>
+            <sort_order>400</sort_order>
+        </magepychoall>
+    </tabs>
+    <sections>
+        <magepychoinfo translate="label" module="easypathhints">
+			<label>Info</label>
+			<tab>magepychoall</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>99999999999</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+                <info>
+                    <frontend_model>easypathhints/system_config_info</frontend_model>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </info>
+			</groups>
+		</magepychoinfo>
+        
+        <easypathhints module="easypathhints">
+            <label>Easy Template Path Hints</label>
+            <tab>magepychoall</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1200</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <option translate="label">
+                    <label>General Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <code translate="label">
+                            <label>Access Code</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[If access code is used then you need to add query string as:<br />http://magento-url/any-page<strong>?tp=1&code=code-entered-above</strong> in order to turn on the template path hints. Else you can simply use <strong>?tp=1</strong>.<br /> Note that this technique works well both for frontend and admin part.]]></comment>
+                        </code>
+                    </fields>
+                </option>
+            </groups>
+        </easypathhints>
+    </sections>
+</config>

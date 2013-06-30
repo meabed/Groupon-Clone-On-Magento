@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category   MagePsycho
+ * @package    MagePsycho_Easypathhints
+ * @author     info@magepsycho.com
+ * @website    http://www.magepsycho.com
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ -->
+<config>
+    <modules>
+        <MagePsycho_Easypathhints>
+            <version>0.2.0</version>
+        </MagePsycho_Easypathhints>
+    </modules>
+    <global>
+        <models>
+            <easypathhints>
+                <class>MagePsycho_Easypathhints_Model</class>
+            </easypathhints>
+        </models>
+        <blocks>
+            <easypathhints>
+                <class>MagePsycho_Easypathhints_Block</class>
+            </easypathhints>
+        </blocks>
+        <helpers>
+            <easypathhints>
+                <class>MagePsycho_Easypathhints_Helper</class>
+            </easypathhints>
+        </helpers>
+		<events>
+			<core_block_abstract_to_html_after>
+				<observers>
+					<easypathhints_core_block_abstract_to_html_after>
+						<class>easypathhints/observer</class>
+						<method>setTemplatePathHints</method>
+					</easypathhints_core_block_abstract_to_html_after>
+				</observers>
+			</core_block_abstract_to_html_after>
+		</events>
+    </global>
+    <frontend>
+        <routers>
+            <easypathhints>
+                <use>standard</use>
+                <args>
+                    <module>MagePsycho_Easypathhints</module>
+                    <frontName>easypathhints</frontName>
+                </args>
+            </easypathhints>
+        </routers>
+    </frontend>
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <magepychoinfo>
+											<title>MagePsycho - All</title>
+										</magepychoinfo>
+                                        <easypathhints>
+                                            <title>Easy Path Hints Area</title>
+                                        </easypathhints>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+    <default>
+        <easypathhints>
+            <option>
+                <active>1</active>
+                <code>magento</code>
+            </option>
+        </easypathhints>
+    </default>
+</config>

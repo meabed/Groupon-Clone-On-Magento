@@ -129,12 +129,12 @@ class Web_Voucher_ViewController extends Mage_Core_Controller_Front_Action
             //$page->rotate(($pageWidth/2), ($pageHeight/2), 1);
             $font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
             $logoImage = Zend_Pdf_Image::imageWithPath(Mage::getDesign()->getSkinBaseDir() . '/images/logo_small_en.jpg');
-            $footerImage = Zend_Pdf_Image::imageWithPath(Mage::getDesign()->getSkinBaseDir() . '/images/voucher_footer_en.png');
+            //$footerImage = Zend_Pdf_Image::imageWithPath(Mage::getDesign()->getSkinBaseDir() . '/images/voucher_footer_en.png'); //VD
             $productImage = Zend_Pdf_Image::imageWithPath(Mage::getBaseDir() . '/media/catalog/product' . $_product->getVoucherImage());
-            $footerImageHeight = $footerImage->getPixelHeight();
-            $footerImageWidth = $footerImage->getPixelWidth();
-            $logoImageHeight = 47;
-            $logoImageWidth = 316;
+            //$footerImageHeight = $footerImage->getPixelHeight();  //VD
+            //$footerImageWidth = $footerImage->getPixelWidth();  //VD
+            $logoImageHeight = 75;  //VDEdit
+            $logoImageWidth = 250;  //VDEdit
             $tableWidth = 568;
             $startPoint = ($pageWidth - $tableWidth) / 2;
             $endPoint = $startPoint + $tableWidth;
@@ -157,7 +157,7 @@ class Web_Voucher_ViewController extends Mage_Core_Controller_Front_Action
                 ->drawRectangle($startPoint + 2, $topPoint - $logoImageHeight - 2, $endPoint, $topPoint);
 
             $page->drawImage($logoImage, $startPoint, $topPoint - $logoImageHeight - 1, $startPoint + $logoImageWidth, $topPoint);
-            $page->drawImage($footerImage, $startPoint + 2, $botPoint, $startPoint + $footerImageWidth - 20, $botPoint + $footerImageHeight);
+            //$page->drawImage($footerImage, $startPoint + 2, $botPoint, $startPoint + $footerImageWidth - 20, $botPoint + $footerImageHeight);
 
             $page->drawImage($productImage, $startPoint + 7, $topPoint - 55 - $productImage->getPixelHeight(), $startPoint + 7 + 246, $topPoint - 55 - $productImage->getPixelHeight() + 165);
 
@@ -188,10 +188,8 @@ class Web_Voucher_ViewController extends Mage_Core_Controller_Front_Action
             }
             //
 
-
             $pdf->pages[0] = ($page);
             $pdf->save(Mage::getBaseDir() . '/media/vouchers/' . $voucherCode . '.pdf');
-
             $this->getResponse()
                 ->clearHeaders()
                 ->setHeader('content-type:', 'Application/pdf')
