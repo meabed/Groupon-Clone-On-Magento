@@ -16,7 +16,7 @@ $this->getDealInfo();
         </script>
         <form name="product_addtocart_form" action="<?php echo $this->getSubmitUrl($_product) ?>" method="post"
               id="product_addtocart_form"<?php if ($_product->getOptions()): ?>
-              enctype="multipart/form-data"<?php endif; ?>>
+            enctype="multipart/form-data"<?php endif; ?>>
             <div class="no-display">
                 <input type="hidden" name="product" value="<?php echo $_product->getId() ?>"/>
                 <input type="hidden" name="related_product" id="related-products-field" value=""/>
@@ -36,7 +36,7 @@ $this->getDealInfo();
 
                 <div class="product-bot">
                     <div class="product-desc">
-                        <div class="head"><?php echo $this->__('Description');?></div>
+                        <div class="head"><?php echo $this->__('Description'); ?></div>
                         <div class="details">
                             <?php echo $_helper->productAttribute($_product, ($_product->getDescription()), 'description') ?>
                         </div>
@@ -50,41 +50,42 @@ $this->getDealInfo();
                 <div class="product-mid">
 
                     <?php if ($_product->isSaleable() && $this->hasOptions()): ?>
-                    <div class="product-highlights">
-                        <div class="head"><?php echo $this->__('Deal Options');?></div>
-                        <div class="details">
-                            <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
-                            <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+                        <div class="product-highlights">
+                            <div class="head"><?php echo $this->__('Deal Options'); ?></div>
+                            <div class="details">
+                                <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                                <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+                            </div>
                         </div>
-                    </div>
-                    <?php endif;?>
+                    <?php endif; ?>
 
 
                     <div class="product-highlights">
-                        <div class="head"><?php echo $this->__('Highlights');?></div>
+                        <div class="head"><?php echo $this->__('Highlights'); ?></div>
                         <div class="details">
                             <ul>
                                 <?php if (is_array($this->highlights)): foreach ($this->highlights as $item): ?>
-                                <li><?php echo $item;?></li>
-                                <?php endforeach;endif;?>
+                                    <li><?php echo $item; ?></li>
+                                <?php endforeach;endif; ?>
                             </ul>
                         </div>
                     </div>
                     <div class="product-fineprint">
-                        <div class="head"><?php echo $this->__('The Fine Print');?></div>
+                        <div class="head"><?php echo $this->__('The Fine Print'); ?></div>
                         <div class="details">
                             <ul>
-                                <?php  if (is_array($this->fineprint)): foreach ($this->fineprint as $item): ?>
-                                <li><?php echo $item;?></li>
-                                <?php endforeach;endif;?>
+                                <?php if (is_array($this->fineprint)): foreach ($this->fineprint as $item): ?>
+                                    <li><?php echo $item; ?></li>
+                                <?php endforeach;endif; ?>
                             </ul>
                         </div>
                     </div>
                     <div class="product-company">
-                        <div class="head"><?php echo $this->__('The Company');?></div>
+                        <div class="head"><?php echo $this->__('The Company'); ?></div>
                         <div class="details">
                             <div class="small_Image"><img
-                                    src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'company_logo')->constrainOnly(TRUE)->keepAspectRatio(true)->resize(200);?>"/>
+                                    src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'company_logo')->constrainOnly(true)
+                                        ->keepAspectRatio(true)->resize(200); ?>"/>
                             </div>
                             <br>
 
@@ -105,7 +106,7 @@ $this->getDealInfo();
                             </address>
 
                             <br>
-                                <strong><?php echo $_helper->productAttribute($_product, ($_product->getCompanyLocation()), 'company_location'); ?></strong>
+                            <strong><?php echo $_helper->productAttribute($_product, ($_product->getCompanyLocation()), 'company_location'); ?></strong>
                             <?php
                             //echo Mage::helper('deal')->getCompany($_product->getCompany());
                             ?>
