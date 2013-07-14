@@ -23,11 +23,11 @@ body.catalog-product-view {
 }
 
 .footer-container {
-    min-height: 576px;
-    background-image: url("../img/cityscapes_retro_DUBAI_V2_RGB_960.png");
+    background-image: url("../img/foot-bg.png");
     background-position: center top;
     background-repeat: no-repeat;
-    margin-top: -280px;
+    margin-top: -100px;
+    min-height: 313px;
 }
 
 h1.logo {
