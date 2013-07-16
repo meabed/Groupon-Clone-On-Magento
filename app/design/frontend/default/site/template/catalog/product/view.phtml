@@ -83,13 +83,12 @@ $this->getDealInfo();
                     <div class="product-company">
                         <div class="head"><?php echo $this->__('The Company'); ?></div>
                         <div class="details">
-                            <?php if($this->helper('catalog/image')->init($this->getProduct(), 'company_logo')):?>
                             <div class="small_Image"><img
                                     src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'company_logo')->constrainOnly(true)
                                         ->keepAspectRatio(true)->resize(200); ?>"/>
                             </div>
-                            <?php endif;?>
                             <br>
+
                             <address>
                                 <strong><?php echo $_helper->productAttribute($_product, ($_product->getCompanyName()), 'company_name'); ?></strong>
                                 <br>

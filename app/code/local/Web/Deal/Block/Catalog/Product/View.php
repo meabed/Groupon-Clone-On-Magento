@@ -11,10 +11,29 @@ class Web_Deal_Block_Catalog_Product_View extends Mage_Catalog_Block_Product_Vie
             ->addAttributeToFilter('entity_id', $this->getProduct()->getId())
             ->setOrder('ordered_qty', 'desc')
             ->getFirstItem();
-        $this->ordered_qty = $_productCollection->ordered_qty;
+        $this->ordered_qty = (int)$_productCollection->ordered_qty;
     }
     public function getPriceCurrency($price = 0)
     {
-        return Mage::app()->getStore()->getCurrentCurrencyCode() . ' ' . Mage::helper('core')->currency($price, false);
+        return Mage::helper('core')->currency($price, false).' '. Mage::app()->getStore()->getCurrentCurrencyCode() ;
     }
+    public function getParentCat()
+    {
+        $catIds = $this->getProduct()->getCategoryIds();
+        if(!count($catIds))
+        {
+            return false;
+        }
+        $_cat = Mage::getModel('catalog/category')->getCollection()
+            ->addFieldToFilter('entity_id',array('in'=>$catIds))
+            ->addFieldToFilter('level','3')
+            ->getFirstItem();
+        if($_cat)
+        {
+            return Mage::getModel('catalog/category')->load($_cat->getId());
+        }
+        return false;
+    }
+
+
 }
