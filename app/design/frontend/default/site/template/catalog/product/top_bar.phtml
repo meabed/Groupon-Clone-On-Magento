@@ -32,7 +32,7 @@ $expired = Mage::helper('deal')->isProductExpired($_product->getId());
                     <? else: ?>
                     <div class="pull-right" id="deal-show-vitals-buy">
                         <a onclick="submitform();" data-deal_id="<?php echo $_product->getId();?>" href="#"
-                           data-toggle="modal" class="btn btn-large btn-teambuy-pink font-large btn-success"
+                           data-toggle="modal" class="btn btn-large btn-g font-large"
                            id="buy-button">
                             <strong>BUY</strong> <?php echo $this->getPriceCurrency($_product->getPrice()); ?> </a>
                     </div>
@@ -76,7 +76,6 @@ $expired = Mage::helper('deal')->isProductExpired($_product->getId());
                                     echo $this->__('%s more needed', $left);
                                 }
                             }
-
                             ?>
                     </span>
                     -->
