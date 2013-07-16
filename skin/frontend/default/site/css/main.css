@@ -276,11 +276,11 @@ div.footer {
 }
 
 button.button span {
-    color: #942068;
+    color: #444444;
 }
 div.product-desc div.details h3
 {
-    color: #942068;
+    color: #444444;
 
 }
 label {
@@ -1995,7 +1995,7 @@ form#newsletter-validate-detail .input-prepend .validation-advice
 .btn-g {
     color: #FFFFFF;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-    background-color: #A8B04C;
+    background-color: #A8B04C!important;
     *background-color: #A8B04C;
     background-image: -moz-linear-gradient(top, #B3C02E, #A8B04C);
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#B3C02E), to(#A8B04C));
@@ -2009,6 +2009,7 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 .btn-g:hover,
+.btn-g:focus,
 .btn-g:active,
 .btn-g.active,
 .btn-g.disabled,

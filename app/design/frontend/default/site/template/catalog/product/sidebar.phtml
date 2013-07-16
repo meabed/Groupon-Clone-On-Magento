@@ -16,42 +16,61 @@ $_products = $_data['products'];
 <?php
 $i = 1;
 foreach ($_products as $_productId):
-    $exclude[] = $_productId;
-    $_product = Mage::getModel('catalog/product')->load($_productId);
-
+    $_product = Mage::getSingleton('catalog/product')->load($_productId);
+    Mage::register('product', $_product,true);
+    $_block = Mage::getBlockSingleton('Web_Deal_Block_Catalog_Product_View');
+    $_block->getDealInfo();
+    $cat = $_block->getParentCat();
+    $url = $this->helper('deal')->getFullProductUrl($_product);
+    $discount = (int) (($_product->getOriginalPrice() - $_product->getPrice()) / $_product->getOriginalPrice() * 100);
+    $end_date = strtotime($_product->getEndDate());
+    $toDate = time();
+    $sec_diff = ($end_date - $toDate);
+    $time = Mage::helper('deal')->secondsToTime($sec_diff);
     ?>
-<article class="row <?php echo ((($i+1)%3) == 0) ? 'mid':'' ;?>">
-    <section itemtype="http://data-vocabulary.org/Product" itemscope="" class="offer-thumbnail span<?php echo ($i==0) ? '12':'4' ;?> ">
-        <div class="offer-thumbnail-hover">
-            <a href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class=" offer-thumbnail-image-link">
-                <img src="<?php echo $this->getSkinUrl('images/loader.gif'); ?>" class="lazy" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->constrainOnly(TRUE)
+    <div id="deal-<?php echo $_product->getId();?>" class="deal">
+        <h3>
+            <a class="view" href="<?php echo $url;?>"><?php echo $_product->getShortName();?></a>
+        </h3>
+
+        <div class="pre photo"><a href="<?php echo $url;?>"><img class="lazy" src="<?php echo $this->getSkinUrl('images/deals-loader.gif'); ?>" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->constrainOnly(TRUE)
                     ->keepAspectRatio(false)
-                    ->keepFrame(true)->resize(540, 255); ?>" itemprop="image" class="offer-thumbnail-image lazy">
-                <div class="offer-thumbnail-image-overlay"></div>
-            </a>
-            <a itemprop="description" href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class="offer-thumbnail-full-title"><?php echo ($i==0) ? $_product->getNameShort() : $_product->getName(); ?></a>
-            <a href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class="offer-thumbnail-link btn btn-success">View Deal</a>
+                    ->keepFrame(true)->resize(320, 205); ?>""></a></div>
+
+        <div class="price-info">
+            <div><span class="title">Discount</span><span class="value"> <?php echo $discount;?>%</span></div>
+            <div><span class="title">Value</span><span class="value"><?php echo $_block->getPriceCurrency($_product->getOriginalPrice());?></span></div>
+            <div><span class="title">Price</span><span class="value"> <?php echo $_block->getPriceCurrency($_product->getPrice());?></span></div>
         </div>
-        <a href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class="offer-thumbnail-short-title"><?php echo $_product->getShortName();?></a>
-        <span itemprop="brand" href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class="offer-thumbnail-merchant-name"><?php echo $_product->getPriceDesc();?></span>
-        <p class="offer-thumbnail-description">
-            <?php echo substr($_product->getShortDescription(),0,440); ?>
 
 
-        </p>
-        <ul class="offer-thumbnail-numbers">
-            <?php if ($i==0):?>
-            <li class="offer-thumbnail-buy-count"><?php //echo !empty($_data['qty'][$_product->getSku()]) ? $_data['qty'][$_product->getSku()] : '0' ;?>
-                <?php echo $this->helper('deal')->getPriceCurrency($_product->getPrice());?>
-            </li>
-            <?php endif;?>
-            <li class="offer-thumbnail-time-left"><?php echo $this->helper('deal')->getDateDiff($_product->getEndDate(),Mage::getModel('core/date')->date('Y-m-d H:i:s'));?> Left</li>
-        </ul>
-    </section>
-</article>
+        <div class="extra" style="">
 
+            <div class="btns">
+                <a href="javascript:void(0);" class="btn btn-g" style="margin-top:30px"><i class="icon-shopping-cart icon-white"></i> Buy </a>
+                <div class="clr"></div>
+                <a href="<?php echo $url;?>" class="btn btn-g btn-small" style=""><i class="icon-eye-open icon-white"></i> View </a>
 
-<?php $i++; endforeach;?>
+            </div>
+
+            <div class="countdown">
+                Remaining
+                <div id="remaining-<?php echo $sec_diff;?>>" class="hasCountdown"><span class="countdown_row countdown_show3"><span class="countdown_section"><span class="countdown_amount"><?php echo $time['d'];?></span><br>Days</span><span class="countdown_section"><span class="countdown_amount"><?php echo $time['h'];?></span><br>Hours</span><span class="countdown_section"><span class="countdown_amount"><?php echo $time['m'];?></span><br>Minutes</span></span></div>
+            </div>
+
+            <div class="bought"><?php echo $_block->ordered_qty;?> bought this deal
+                <div class="clr"></div>
+
+                <a href="javascript:void(0);" class="btn btn-g btn-small"><i class="icon-heart icon-white"></i></a>
+                <a href="javascript:void(0);" class="btn btn-g btn-small"><i class="icon-share icon-white"></i></a>
+
+                <a href="<?php echo $cat->getUrl();?>" class="btn btn-g btn-small"><i class="icon-tag icon-white"></i> <?php echo $cat->getName();?> </a>
+
+            </div>
+
+        </div>
+    </div>
+    <?php $i++; endforeach; ?>
 
 <?php
 $_data = $this->getOtherProducts($exclude);
@@ -63,38 +82,58 @@ $_products = $_data['products'];
 <?php
 $i = 1;
 foreach ($_products as $_productId):
-    if($currentProductId == $_productId){continue;}
-    $_product = Mage::getModel('catalog/product')->load($_productId);
+    $_product = Mage::getSingleton('catalog/product')->load($_productId);
+    Mage::register('product', $_product,true);
+    $_block = Mage::getBlockSingleton('Web_Deal_Block_Catalog_Product_View');
+    $_block->getDealInfo();
+    $cat = $_block->getParentCat();
+    $url = $this->helper('deal')->getFullProductUrl($_product);
+    $discount = (int) (($_product->getOriginalPrice() - $_product->getPrice()) / $_product->getOriginalPrice() * 100);
+    $end_date = strtotime($_product->getEndDate());
+    $toDate = time();
+    $sec_diff = ($end_date - $toDate);
+    $time = Mage::helper('deal')->secondsToTime($sec_diff);
     ?>
-<article class="row <?php echo ((($i+1)%3) == 0) ? 'mid':'' ;?>">
-    <section itemtype="http://data-vocabulary.org/Product" itemscope="" class="offer-thumbnail span<?php echo ($i==0) ? '12':'4' ;?> ">
-        <div class="offer-thumbnail-hover">
-            <a href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class=" offer-thumbnail-image-link">
-                <img src="<?php echo $this->getSkinUrl('images/loader.gif'); ?>" class="lazy" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->constrainOnly(TRUE)
+    <div id="deal-<?php echo $_product->getId();?>" class="deal">
+        <h3>
+            <a class="view" href="<?php echo $url;?>"><?php echo $_product->getShortName();?></a>
+        </h3>
+
+        <div class="pre photo"><a href="<?php echo $url;?>"><img class="lazy" src="<?php echo $this->getSkinUrl('images/deals-loader.gif'); ?>" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->constrainOnly(TRUE)
                     ->keepAspectRatio(false)
-                    ->keepFrame(true)->resize(540, 255); ?>" itemprop="image" class="offer-thumbnail-image lazy">
-                <div class="offer-thumbnail-image-overlay"></div>
-            </a>
-            <a itemprop="description" href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class="offer-thumbnail-full-title"><?php echo ($i==0) ? $_product->getNameShort() : $_product->getName(); ?></a>
-            <a href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class="offer-thumbnail-link btn btn-success">View Deal</a>
+                    ->keepFrame(true)->resize(320, 205); ?>""></a></div>
+
+        <div class="price-info">
+            <div><span class="title">Discount</span><span class="value"> <?php echo $discount;?>%</span></div>
+            <div><span class="title">Value</span><span class="value"><?php echo $_block->getPriceCurrency($_product->getOriginalPrice());?></span></div>
+            <div><span class="title">Price</span><span class="value"> <?php echo $_block->getPriceCurrency($_product->getPrice());?></span></div>
         </div>
-        <a href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class="offer-thumbnail-short-title"><?php echo $_product->getShortName();?></a>
-        <span itemprop="brand" href="<?php echo $this->helper('deal')->getFullProductUrl($_product);?>" class="offer-thumbnail-merchant-name"><?php echo $_product->getPriceDesc();?></span>
-        <p class="offer-thumbnail-description">
-            <?php echo substr($_product->getShortDescription(),0,440); ?>
 
 
-        </p>
-        <ul class="offer-thumbnail-numbers">
-            <?php if ($i==0):?>
-            <li class="offer-thumbnail-buy-count"><?php //echo !empty($_data['qty'][$_product->getSku()]) ? $_data['qty'][$_product->getSku()] : '0' ;?>
-                <?php echo $this->helper('deal')->getPriceCurrency($_product->getPrice());?>
-            </li>
-            <?php endif;?>
-            <li class="offer-thumbnail-time-left"><?php echo $this->helper('deal')->getDateDiff($_product->getEndDate(),Mage::getModel('core/date')->date('Y-m-d H:i:s'));?> Left</li>
-        </ul>
-    </section>
-</article>
+        <div class="extra" style="">
 
+            <div class="btns">
+                <a href="javascript:void(0);" class="btn btn-g" style="margin-top:30px"><i class="icon-shopping-cart icon-white"></i> Buy </a>
+                <div class="clr"></div>
+                <a href="<?php echo $url;?>" class="btn btn-g btn-small" style=""><i class="icon-eye-open icon-white"></i> View </a>
 
-<?php $i++; endforeach;?>
+            </div>
+
+            <div class="countdown">
+                Remaining
+                <div id="remaining-<?php echo $sec_diff;?>>" class="hasCountdown"><span class="countdown_row countdown_show3"><span class="countdown_section"><span class="countdown_amount"><?php echo $time['d'];?></span><br>Days</span><span class="countdown_section"><span class="countdown_amount"><?php echo $time['h'];?></span><br>Hours</span><span class="countdown_section"><span class="countdown_amount"><?php echo $time['m'];?></span><br>Minutes</span></span></div>
+            </div>
+
+            <div class="bought"><?php echo $_block->ordered_qty;?> bought this deal
+                <div class="clr"></div>
+
+                <a href="javascript:void(0);" class="btn btn-g btn-small"><i class="icon-heart icon-white"></i></a>
+                <a href="javascript:void(0);" class="btn btn-g btn-small"><i class="icon-share icon-white"></i></a>
+
+                <a href="<?php echo $cat->getUrl();?>" class="btn btn-g btn-small"><i class="icon-tag icon-white"></i> <?php echo $cat->getName();?> </a>
+
+            </div>
+
+        </div>
+    </div>
+    <?php $i++; endforeach; ?>
