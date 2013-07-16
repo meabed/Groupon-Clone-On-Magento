@@ -72,7 +72,7 @@ Supported layout update handles (special):
 
         <reference name="root">
             <action method="setTemplate">
-                <template>page/1column.phtml</template>
+                <template>page/1column-product-list.phtml</template>
             </action>
         </reference>
         <reference name="content">
@@ -133,7 +133,7 @@ Supported layout update handles (special):
 
         <reference name="root">
             <action method="setTemplate">
-                <template>page/1column.phtml</template>
+                <template>page/1column-product-list.phtml</template>
             </action>
         </reference>
         <reference name="content">
@@ -504,7 +504,7 @@ Supported layout update handles (special):
 
         <reference name="root">
             <action method="setTemplate">
-                <template>page/1column.phtml</template>
+                <template>page/1column-product-list.phtml</template>
             </action>
         </reference>
         <reference name="content">

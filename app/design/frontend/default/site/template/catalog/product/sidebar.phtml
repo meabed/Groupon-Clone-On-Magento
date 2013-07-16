@@ -16,7 +16,7 @@ $_products = $_data['products'];
 <?php
 $i = 1;
 foreach ($_products as $_productId):
-    $_product = Mage::getSingleton('catalog/product')->load($_productId);
+    $_product = Mage::getModel('catalog/product')->load($_productId);
     Mage::register('product', $_product,true);
     $_block = Mage::getBlockSingleton('Web_Deal_Block_Catalog_Product_View');
     $_block->getDealInfo();
@@ -82,7 +82,7 @@ $_products = $_data['products'];
 <?php
 $i = 1;
 foreach ($_products as $_productId):
-    $_product = Mage::getSingleton('catalog/product')->load($_productId);
+    $_product = Mage::getModel('catalog/product')->load($_productId);
     Mage::register('product', $_product,true);
     $_block = Mage::getBlockSingleton('Web_Deal_Block_Catalog_Product_View');
     $_block->getDealInfo();

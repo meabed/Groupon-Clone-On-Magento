@@ -132,29 +132,34 @@ ul.nav-pills {
 }
 
 .nav-tabs > li > a {
-    color: #942068;
+    color: #444444;
     background: #FFFFFF;
     font-weight: bold;
 }
 
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover {
-    background: #942068;
+    background: #444444;
     color: #FFFFFF;
     border-color: #942068 #942068 transparent;
 
 }
 
 a {
-    color: #000000;
+    color: #444444;
 }
 
 .nav > li > a:hover {
     background: #B1BD29;
     color: #FFFFFF;
 }
+.nav > li > a:hover, .nav > li > a:focus
+{
+    background: #B1BD29;
+}
 
-a:hover {
-    color: #631945;
+a:hover, a:focus{
+    color: #444444;
+
 }
 
 .fieldset .legend {
@@ -201,7 +206,6 @@ div.footerTopBg, div.footerBottomBg {
     overflow: hidden;
     width: 100%;
 }
-
 
 div.copyrightNotice {
     color: #0A81D2;
@@ -278,11 +282,12 @@ div.footer {
 button.button span {
     color: #444444;
 }
-div.product-desc div.details h3
-{
+
+div.product-desc div.details h3 {
     color: #444444;
 
 }
+
 label {
     display: inline-block;
 }
@@ -312,7 +317,7 @@ div#os-container h3.product-name {
 
 }
 
-section.offer-thumbnail, div.account-login .col2-set .col-1, div.account-login .col2-set .col-2, div.fieldset, div.main_checkout {
+section.offer-thumbnail, div.account-login .col2-set .col-1, div.account-login .col2-set .col-2, div.fieldset {
 
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
@@ -345,17 +350,19 @@ div.footer {
     font-size: 17px;
     font-weight: normal;
     min-height: 56px;
+    max-height: 113px;
     padding: 2px 12px 5px 12px;
     margin: 0px;
 
 }
-a#buy-button
-{
+
+a#buy-button {
     color: #ffffff;
 }
-a#buy-button:hover
-{
+
+a#buy-button:hover {
 }
+
 div.product-view div.product-name h1 {
     font-size: 18px !important;
     font-weight: normal !important;
@@ -373,8 +380,12 @@ div.product-view div.product-name h1 span {
 
 .main-container {
     margin-top: 15px;
-}
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 0 5px #666666;
 
+}
 .product-view {
     border: none;
 
@@ -588,7 +599,7 @@ div.product-desc div.head {
     -webkit-border-radius: 5px 0 0 0;
     -khtml-border-radius: 5px 0 0 0;
     border-radius: 5px 0 0 0;
-    background: url("../images/vert-spirit.jpg") repeat-x 0 -240px ;
+    background: url("../images/vert-spirit.jpg") repeat-x 0 -240px;
     font-size: 17px;
     padding: 10px 10px 10px 10px;
 
@@ -601,7 +612,7 @@ div.product-company div.head {
     -webkit-border-radius: 0 5px 0 0;
     -khtml-border-radius: 0 5px 0 0;
     border-radius: 0 5px 0 0;
-    background: url("../images/vert-spirit.jpg") repeat-x 0 -240px ;
+    background: url("../images/vert-spirit.jpg") repeat-x 0 -240px;
 
     font-size: 17px;
     padding: 10px 10px 10px 10px;
@@ -615,7 +626,7 @@ div.product-fineprint div.head {
     -webkit-border-radius: 0 5px 0 0;
     -khtml-border-radius: 0 5px 0 0;
     border-radius: 0 5px 0 0;
-    background: url("../images/vert-spirit.jpg") repeat-x 0 0px ;
+    background: url("../images/vert-spirit.jpg") repeat-x 0 0px;
 
     font-size: 17px;
     padding: 10px 10px 10px 10px;
@@ -623,12 +634,13 @@ div.product-fineprint div.head {
     color: #ffffff;
 
 }
-div.product-l
-{
+
+div.product-l {
     width: 34%;
     float: right;
     margin-bottom: 20px;
 }
+
 div.product-mid {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -646,6 +658,7 @@ div.facebook-block {
     float: right;
     text-align: center;
 }
+
 div.ded_c {
     width: 100%;
     margin: 0px 0px 0px 0px;
@@ -659,7 +672,7 @@ div.product-highlights div.head {
     -webkit-border-radius: 5px 0 0 0;
     -khtml-border-radius: 5px 0 0 0;
     border-radius: 5px 0 0 0;
-    background: url("../images/vert-spirit.jpg") repeat-x 0 -120px ;
+    background: url("../images/vert-spirit.jpg") repeat-x 0 -120px;
 
     font-size: 17px;
     padding: 10px 10px 10px 10px;
@@ -808,7 +821,7 @@ section.offer-thumbnail.span12 div.offer-thumbnail-image-overlay {
     display: block;
     background-color: transparent;
     opacity: 0.16;
-    filter: alpha(opacity = 16);
+    filter: alpha(opacity=16);
     display: none;
 }
 
@@ -854,8 +867,8 @@ section.offer-thumbnail.span12 a.offer-thumbnail-link {
     bottom: 10px;
     right: 10px;
 }
-.btn-remove2
-{
+
+.btn-remove2 {
     background-image: url("../img/glyphicons-halflings.png");
     background-position: -312px 0;
     background-repeat: no-repeat;
@@ -865,6 +878,7 @@ section.offer-thumbnail.span12 a.offer-thumbnail-link {
     vertical-align: text-top;
     width: 14px;
 }
+
 section.offer-thumbnail.span12 a.offer-thumbnail-link:hover {
 
 }
@@ -906,7 +920,7 @@ section.offer-thumbnail.span12.offer-thumbnail-shop div.offer-thumbnail-image-ov
     display: block;
     background-color: #000000;
     opacity: 0.64;
-    filter: alpha(opacity = 64);
+    filter: alpha(opacity=64);
 }
 
 section.offer-thumbnail.span12.offer-thumbnail-shop a.offer-thumbnail-full-title {
@@ -954,7 +968,7 @@ section.offer-thumbnail.span4 div.offer-thumbnail-image-overlay {
     display: block;
     background-color: transparent;
     opacity: 0.64;
-    filter: alpha(opacity = 64);
+    filter: alpha(opacity=64);
 }
 
 section.offer-thumbnail.span4 div.offer-thumbnail-hover:hover a.offer-thumbnail-link {
@@ -1039,7 +1053,7 @@ section.offer-thumbnail.span4 p.offer-thumbnail-description {
 section.offer-thumbnail.span4.offer-thumbnail-expired div.offer-thumbnail-image-overlay {
     background-color: #ffffff;
     opacity: 0.8;
-    filter: alpha(opacity = 80);
+    filter: alpha(opacity=80);
 }
 
 section.offer-thumbnail.span4.offer-thumbnail-expired a.offer-thumbnail-short-title, section.offer-thumbnail.span4.offer-thumbnail-expired span.offer-thumbnail-merchant-name, section.offer-thumbnail.span4.offer-thumbnail-expired li.offer-thumbnail-buy-count {
@@ -1110,7 +1124,7 @@ section.offer-thumbnail.span6 div.offer-thumbnail-image-overlay {
     display: block;
     background-color: transparent;
     opacity: 0.64;
-    filter: alpha(opacity = 64);
+    filter: alpha(opacity=64);
 }
 
 section.offer-thumbnail.span6 div.offer-thumbnail-hover:hover a.offer-thumbnail-link {
@@ -1220,7 +1234,7 @@ section.offer-thumbnail.span6 p.offer-thumbnail-description {
 section.offer-thumbnail.span6.offer-thumbnail-expired div.offer-thumbnail-image-overlay {
     background-color: #ffffff;
     opacity: 0.8;
-    filter: alpha(opacity = 80);
+    filter: alpha(opacity=80);
 }
 
 section.offer-thumbnail.span6.offer-thumbnail-expired a.offer-thumbnail-short-title, section.offer-thumbnail.span6.offer-thumbnail-expired span.offer-thumbnail-merchant-name, section.offer-thumbnail.span6.offer-thumbnail-expired li.offer-thumbnail-buy-count {
@@ -1335,7 +1349,7 @@ section.offer-thumbnail.span6.offer-thumbnail-shop a.offer-thumbnail-full-title,
     background-image: -o-linear-gradient(top, #149bdf, #0480be);
     background-image: linear-gradient(top, #149bdf, #0480be);
     background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#149bdf', endColorstr = '#0480be', GradientType = 0);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#149bdf', endColorstr='#0480be', GradientType=0);
     -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
     -moz-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
@@ -1378,7 +1392,7 @@ section.offer-thumbnail.span6.offer-thumbnail-shop a.offer-thumbnail-full-title,
     background-image: -o-linear-gradient(top, #ee5f5b, #c43c35);
     background-image: linear-gradient(top, #ee5f5b, #c43c35);
     background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ee5f5b', endColorstr = '#c43c35', GradientType = 0);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ee5f5b', endColorstr='#c43c35', GradientType=0);
 }
 
 .progress-danger.progress-striped .bar {
@@ -1400,7 +1414,7 @@ section.offer-thumbnail.span6.offer-thumbnail-shop a.offer-thumbnail-full-title,
     background-image: -o-linear-gradient(top, #62c462, #57a957);
     background-image: linear-gradient(top, #62c462, #57a957);
     background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#62c462', endColorstr = '#57a957', GradientType = 0);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#62c462', endColorstr='#57a957', GradientType=0);
 }
 
 .progress-success.progress-striped .bar {
@@ -1422,7 +1436,7 @@ section.offer-thumbnail.span6.offer-thumbnail-shop a.offer-thumbnail-full-title,
     background-image: -o-linear-gradient(top, #5bc0de, #339bb9);
     background-image: linear-gradient(top, #5bc0de, #339bb9);
     background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#5bc0de', endColorstr = '#339bb9', GradientType = 0);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5bc0de', endColorstr='#339bb9', GradientType=0);
 }
 
 .progress-info.progress-striped .bar {
@@ -1545,7 +1559,7 @@ section.offer-thumbnail.span6.offer-thumbnail-shop a.offer-thumbnail-full-title,
     -khtml-border-radius: 23px;
     border-radius: 23px;
     opacity: 0.5;
-    filter: alpha(opacity = 50);
+    filter: alpha(opacity=50);
 }
 
 .carousel-control.right {
@@ -1557,7 +1571,7 @@ section.offer-thumbnail.span6.offer-thumbnail-shop a.offer-thumbnail-full-title,
     color: #ffffff;
     text-decoration: none;
     opacity: 0.9;
-    filter: alpha(opacity = 90);
+    filter: alpha(opacity=90);
 }
 
 .carousel-caption {
@@ -1858,12 +1872,12 @@ table#shopping-cart-table tbody tr td a.product-image {
 .col2-left-layout div.sidebar {
     width: 195px;
 }
-button.btn-checkout span span
-{
+
+button.btn-checkout span span {
     color: white;
 }
-form#newsletter-validate-detail .input-prepend .validation-advice
-{
+
+form#newsletter-validate-detail .input-prepend .validation-advice {
     width: 229px;
     margin-bottom: 10px;
     text-align: left;
@@ -1875,26 +1889,31 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     width: 100%;
     text-align: center;
 }
+
 .post {
     float: right;
     width: 100%;
     text-align: center;
 }
+
 .header-top {
     background-color: white;
     height: 70px;
 }
+
 #layout-header h1 {
     color: #025772;
-    font-family: 'Noticia Text',Arial,sans-serif;
+    font-family: 'Noticia Text', Arial, sans-serif;
     font-size: 1.2em;
 }
+
 .header-top .logo {
     left: 50%;
     margin-left: -550px;
     margin-top: -5px;
     position: absolute;
 }
+
 .header-top .menu {
     height: 32px;
     left: 50%;
@@ -1903,12 +1922,15 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     position: absolute;
     width: 340px;
 }
+
 .header-top .menu ul {
     list-style-type: none;
 }
+
 .header-top .menu ul li {
     float: left;
 }
+
 .header-top .menu ul li a:link, #layout-header .menu ul li a:visited {
     background-image: url("../images/header-menu.png");
     background-repeat: no-repeat;
@@ -1919,33 +1941,41 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     text-decoration: none;
     text-indent: -9999px;
 }
+
 .header-top .menu ul li a:hover {
     text-decoration: underline;
 }
+
 .header-top .menu ul li a.subscribe {
     background-position: 0 0;
     width: 60px;
 }
+
 .header-top .menu ul li a.api {
     background-position: -60px 0;
     width: 100px;
 }
+
 .header-top .menu ul li a.cairocubicles {
     background-position: -160px 0;
     width: 65px;
 }
+
 .header-top .menu ul li a.subscribe:hover {
     background-position: 0 -36px;
     width: 60px;
 }
+
 .header-top .menu ul li a.api:hover {
     background-position: -60px -36px;
     width: 100px;
 }
+
 .header-top .menu ul li a.cairocubicles:hover {
     background-position: -160px -36px;
     width: 65px;
 }
+
 .deal-count-box {
     background: url("../images/filter-badge.png") no-repeat scroll left top transparent;
     color: #383234;
@@ -1959,33 +1989,40 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     width: 200px;
     z-index: 9;
 }
+
 .deal-count {
-    font-family: "Myriad Pro","Gill Sans",Arial,sans-serif;
+    font-family: "Myriad Pro", "Gill Sans", Arial, sans-serif;
     font-size: 4em;
 }
+
 .deal-count-label {
     font-size: 0.8em;
     text-transform: uppercase;
 }
+
 .filter-options {
     color: black;
-    font-family: 'Duru Sans',Arial,sans-serif;
+    font-family: 'Duru Sans', Arial, sans-serif;
     height: 120px;
     margin: 0 auto;
     padding: 10px;
     position: relative;
     width: 1100px;
 }
+
 .deals-list {
     overflow: hidden;
     width: 100%;
 }
+
 .categories {
     width: 480px;
 }
+
 .categories ul li, .sort ul li {
     float: left;
 }
+
 .categories ul li img {
     float: left;
     height: 16px;
@@ -1995,7 +2032,7 @@ form#newsletter-validate-detail .input-prepend .validation-advice
 .btn-g {
     color: #FFFFFF;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-    background-color: #A8B04C!important;
+    background-color: #A8B04C !important;
     *background-color: #A8B04C;
     background-image: -moz-linear-gradient(top, #B3C02E, #A8B04C);
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#B3C02E), to(#A8B04C));
@@ -2008,6 +2045,7 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#B3C02E', endColorstr='#A8B04C', GradientType=0);
     filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
+
 .btn-g:hover,
 .btn-g:focus,
 .btn-g:active,
@@ -2018,6 +2056,7 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     background-color: #A8B04C;
     *background-color: #003bb3;
 }
+
 .sort h2 {
     background: url("../images/title-sort.png") no-repeat scroll 0 0 transparent;
     height: 43px;
@@ -2025,6 +2064,7 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     text-indent: -9999px;
     width: 139px;
 }
+
 .categories h2 {
     background: url("../images/title-categories.png") no-repeat scroll 0 0 transparent;
     height: 43px;
@@ -2032,33 +2072,42 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     text-indent: -9999px;
     width: 139px;
 }
+
 .sort {
     float: right;
     width: 300px;
 }
+
 .sort a:link {
     background-image: url("../images/sort.png");
     background-repeat: no-repeat;
     padding-left: 28px !important;
 }
+
 .sort a[data-sort="discount"] {
     background-position: 5px 0;
 }
+
 .sort a[data-sort="new"] {
     background-position: 5px -20px;
 }
+
 .sort a[data-sort="popular"] {
     background-position: 5px -40px;
 }
+
 .sort a[data-sort="saving"] {
     background-position: 5px -60px;
 }
+
 .sort a[data-sort="remaining"] {
     background-position: 5px -80px;
 }
+
 .deals-list-container .navigation {
     visibility: hidden;
 }
+
 .deal {
     background-color: white;
     border-radius: 5px 5px 5px 5px;
@@ -2071,10 +2120,11 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     position: relative;
     width: 340px;
 }
+
 .deal h3 {
     background-color: white;
     color: black;
-    font-family: Verdana,Tahoma,Arial,sans-serif;
+    font-family: Verdana, Tahoma, Arial, sans-serif;
     font-size: 15px;
     line-height: 20px;
     padding: 2px 12px;
@@ -2083,12 +2133,15 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     min-height: 40px;
     max-height: 40px;
 }
+
 .deal h3 {
     border-radius: 5px 5px 0 0;
 }
+
 .deal .photo img {
     padding-bottom: 10px;
 }
+
 .deal h3 a:link, .deal h3 a:visited {
     color: black;
     text-decoration: none;
@@ -2101,27 +2154,31 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     position: absolute;
     width: 400px;
 }
+
 .deal .price-info div {
     border-radius: 4px 4px 4px 4px;
     float: left;
-    font-family: 'Duru Sans',Arial,sans-serif;
+    font-family: 'Duru Sans', Arial, sans-serif;
     height: 50px;
     padding-left: 47px;
     padding-top: 18px;
     width: 65px;
 }
+
 .deal .price-info .title {
     color: white;
     display: block;
     font-size: 0.7em;
     text-transform: uppercase;
 }
+
 .deal .price-info .value {
     color: white;
     display: block;
     font-size: 1.3em;
     margin-top: 4px;
 }
+
 .deal .extra {
     background-color: white;
     border: 5px solid #C36D2C;
@@ -2139,73 +2196,92 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     width: 260px;
     height: 155px;
 }
+
 .deal .extra .countdown {
     float: left;
     margin-bottom: 10px;
     margin-left: 20px;
 }
+
 .deal .extra .countdown div {
     margin-top: 10px;
     width: 140px;
 }
+
 .deal .extra .countdown_row {
     clear: both;
     padding: 0 2px;
     text-align: center;
     width: 100%;
 }
+
 .deal .extra .countdown_show1 .countdown_section {
     width: 98%;
 }
+
 .deal .extra .countdown_show2 .countdown_section {
     width: 48%;
 }
+
 .deal .extra .countdown_show3 .countdown_section {
     width: 32.5%;
 }
+
 .deal .extra .countdown_show4 .countdown_section {
     width: 24.5%;
 }
+
 .deal .extra .countdown_show5 .countdown_section {
     width: 19.5%;
 }
+
 .deal .extra .countdown_show6 .countdown_section {
     width: 16.25%;
 }
+
 .deal .extra .countdown_show7 .countdown_section {
     width: 14%;
 }
+
 .deal .extra .countdown_section {
     display: block;
     float: left;
     font-size: 75%;
     text-align: center;
 }
+
 .deal .extra .countdown_amount {
     font-size: 5em;
     letter-spacing: -2px;
 }
+
 .deal .extra .countdown_descr {
     display: block;
     width: 100%;
 }
+
 .deal .extra .btns {
     float: left;
     margin-bottom: 10px;
     width: 95px;
 }
+
 .deal .extra .category img {
     margin-top: 10px;
 }
+
 .deal .extra .bought {
     clear: both;
 }
+
 .deal .extra a:link, .deal .extra a:visited {
     text-decoration: none;
 }
+
 .deal .extra a:hover {
     text-decoration: none;
 }
+
 #layout-deal .content {
     background: url("../images/bg-sidebar.png") repeat-y scroll right top white;
     border: 5px solid #E7E5CB;
@@ -2214,8 +2290,10 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     font-size: 12px;
     padding-bottom: 10px;
 }
+
 #layout-deal a:link {
 }
+
 #layout-deal .close-container {
     display: block;
     height: 100%;
@@ -2224,16 +2302,20 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     position: fixed;
     top: 200px;
 }
+
 #layout-deal .close {
     width: 50px;
 }
+
 #layout-deal h1.title a:link, #layout-deal h1.title a:visited {
     color: black;
     text-decoration: none;
 }
+
 #layout-deal h1.title a:hover {
     text-decoration: underline;
 }
+
 #layout-deal .content h1 {
     background-color: white;
     font-size: 22px;
@@ -2242,20 +2324,23 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     padding: 8px 40px;
     text-align: center;
 }
+
 #layout-deal .price-info {
     background: url("../images/deal-full-info.png") no-repeat scroll left top transparent;
     height: 80px;
     width: 960px;
 }
+
 #layout-deal .price-info div {
     color: white;
     float: left;
-    font-family: 'Duru Sans',Arial,sans-serif;
+    font-family: 'Duru Sans', Arial, sans-serif;
     font-size: 3em;
     padding-left: 100px;
     padding-top: 30px;
     width: 220px;
 }
+
 #layout-deal .content h2 {
     color: #C46C25;
     font-size: 18px;
@@ -2263,26 +2348,31 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     line-height: 1.5em;
     margin-bottom: 5px;
 }
+
 #layout-deal .desc {
     margin-right: 340px;
     padding-bottom: 10px;
     padding-left: 10px;
     padding-top: 10px;
 }
+
 #layout-deal .terms {
     float: left;
     margin-right: 15px;
     padding-left: 10px;
     width: 300px;
 }
+
 #layout-deal .highlights {
     float: left;
     padding-left: 10px;
     width: 300px;
 }
+
 #layout-deal .highlights, #layout-deal .terms {
     list-style-image: url("../images/bullet-list.png");
 }
+
 #layout-deal .content .sidebar {
     background-color: #E7E5CB;
     float: right;
@@ -2290,6 +2380,7 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     padding-right: 10px;
     width: 315px;
 }
+
 #layout-deal .content .buy {
     background: url("../images/buy-tip.png") no-repeat scroll left top transparent;
     height: 40px;
@@ -2299,30 +2390,34 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     text-transform: uppercase;
     width: 260px;
 }
+
 #layout-deal .content .buy a:link, #layout-deal .content .buy a:visited {
     color: white;
-    font-family: 'Duru Sans',Arial,sans-serif;
+    font-family: 'Duru Sans', Arial, sans-serif;
     font-size: 26px;
     font-weight: bold;
     text-decoration: none;
 }
+
 #layout-deal .content .buy a:hover {
     text-decoration: underline;
 }
+
 #layout-deal .countdown {
     background: url("../images/bg-countdown.png") no-repeat scroll left top transparent;
     color: #444444;
-    font-family: 'Duru Sans',Arial,sans-serif;
+    font-family: 'Duru Sans', Arial, sans-serif;
     height: 62px;
     line-height: 34px;
     margin-left: 23px;
     padding-top: 8px;
     width: 290px;
 }
+
 #layout-deal .bought_number {
     background: url("../images/bg-bought.png") no-repeat scroll left top transparent;
     color: white;
-    font-family: 'Duru Sans',Arial,sans-serif;
+    font-family: 'Duru Sans', Arial, sans-serif;
     font-size: 1.3em;
     font-weight: bold;
     height: 40px;
@@ -2331,17 +2426,21 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     text-align: center;
     width: 288px;
 }
+
 #layout-deal .view {
     float: right;
     margin-right: 4px;
 }
+
 #layout-deal .view img {
     width: 288px;
 }
+
 .sonic-loader {
     margin-top: 100px;
     text-align: center;
 }
+
 #infscr-loading {
     background-color: white;
     border: 5px solid #C36D2C;
@@ -2358,22 +2457,26 @@ form#newsletter-validate-detail .input-prepend .validation-advice
     text-align: center;
     width: 220px;
 }
+
 #infscr-loading em {
     display: inline-block;
-    font-family: 'Duru Sans',Arial,sans-serif;
+    font-family: 'Duru Sans', Arial, sans-serif;
     font-size: 0.8em;
     margin-top: 20px;
     text-transform: uppercase;
 }
+
 .facebook-like {
     position: fixed;
     right: 10px;
     top: 190px;
     width: 60px;
 }
+
 #cboxTitle {
     visibility: hidden;
 }
+
 #subscribe-form {
     padding: 20px;
 }
@@ -2381,7 +2484,67 @@ form#newsletter-validate-detail .input-prepend .validation-advice
 div.deal:hover .extra {
     display: block;
 }
-div.clr
-{
-    display: block;width: 100%;height: 5px;
+
+div.clr {
+    display: block;
+    width: 100%;
+    height: 5px;
+}
+
+button {
+    display: inline-block;
+    *display: inline;
+    padding: 4px 12px;
+    margin-bottom: 0;
+    *margin-left: .3em;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333333;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    *background-color: #e6e6e6;
+    background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+    background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+    background-repeat: repeat-x;
+    border: 1px solid #cccccc;
+    *border: 0;
+    border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    border-bottom-color: #b3b3b3;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    *zoom: 1;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+button span {
+    border: none !important;
+}
+
+.cart .totals {
+    border: 1px solid #d0cbc1;
+    background: #fff url(../images/bkg_block-title.gif) 0 0 repeat-x;
+    padding: 12px 15px;
+    margin: 0 0 0px;
+}
+
+.account-login .buttons-set {
+    background: url("../images/vert-spirit.jpg") repeat-x scroll 0 -120px #DEE5E8;
+}
+.account-login .content h2{
+    color: #444444;
+}
+.account-login .buttons-set a {
+    color: #FFFFFF;
 }

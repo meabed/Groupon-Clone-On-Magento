@@ -7,7 +7,7 @@ countryRegions = <?php echo $this->helper('directory')->getRegionJson() ?>
 <div class="main_checkout">
     <div class="main_header">
         <h1><?php echo Mage::helper('quickcheckout')->getQuickCheckoutTitle(); ?></h1>
-        <h2><?php echo Mage::helper('quickcheckout')->getQuickCheckoutContent() ?></h2>
+        <h3><?php echo Mage::helper('quickcheckout')->getQuickCheckoutContent() ?></h3>
         <?php if(!$this->isCustomerLoggedIn() && Mage::helper('quickcheckout')->getQuickCheckoutConfig('general/enable_login')): ?>
            
                     <?php echo $this->getChildHtml('osc-login'); ?>
