@@ -11,7 +11,9 @@ $_data = $this->getProducts($exclude);
 $_products = $_data['products'];
 ?>
 <?if(count($_data['products'])):?>
-<h2 class="more-deals">More <?php echo  $this->helper('deal')->getProductCategoryName($currentProduct);?> Deals</h2>
+    <div class="navbar-inner pull-left" style="width: 100%;padding: 0px;">
+        <h2 class="more-deals">More <?php echo  $this->helper('deal')->getProductCategoryName($currentProduct);?> Deals</h2>
+    </div>
 <?php endif;?>
 <?php
 $i = 1;
@@ -77,7 +79,9 @@ $_data = $this->getOtherProducts($exclude);
 $_products = $_data['products'];
 ?>
 <?if(count($_data['products'])):?>
-<h2 class="more-deals">More Daily Deals</h2>
+    <div class="navbar-inner pull-left" style="width: 100%;padding: 0px;">
+        <h2 class="more-deals">More Daily Deals</h2>
+    </div>
 <?php endif;?>
 <?php
 $i = 1;

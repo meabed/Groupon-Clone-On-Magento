@@ -161,7 +161,7 @@ button.btn-checkout.no-checkout span span { background-position:100% 100%; }
 p.control input.checkbox,
 p.control input.radio { margin-right:6px; }
 /* Form Highlight */
-input.input-text:focus,select:focus,textarea:focus { background-color:#edf7fd; }
+input.input-text:focus,select:focus,textarea:focus {  }
 /*.highlight { background:#efefef; }*/
 
 /* Form lists */
