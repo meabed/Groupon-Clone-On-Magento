@@ -304,6 +304,7 @@ div#os-container h3 {
     font-size: 15px;
     font-weight: normal;
     line-height: 22px;
+    margin-top: 0px;
 }
 
 div#os-container h3.product-name {
@@ -612,12 +613,7 @@ div.product-desc div.head {
 }
 
 div.product-company div.head {
-    -moz-border-radius: 0 5px 0 0;
-    -webkit-border-radius: 0 5px 0 0;
-    -khtml-border-radius: 0 5px 0 0;
-    border-radius: 0 5px 0 0;
     background: url("../images/vert-spirit.jpg") repeat-x 0 -240px;
-
     font-size: 17px;
     padding: 10px 10px 10px 10px;
 
@@ -626,12 +622,7 @@ div.product-company div.head {
 }
 
 div.product-fineprint div.head {
-    -moz-border-radius: 0 5px 0 0;
-    -webkit-border-radius: 0 5px 0 0;
-    -khtml-border-radius: 0 5px 0 0;
-    border-radius: 0 5px 0 0;
     background: url("../images/vert-spirit.jpg") repeat-x 0 0px;
-
     font-size: 17px;
     padding: 10px 10px 10px 10px;
 
@@ -672,10 +663,10 @@ div.ded_c {
 }
 
 div.product-highlights div.head {
-    -moz-border-radius: 5px 0 0 0;
-    -webkit-border-radius: 5px 0 0 0;
-    -khtml-border-radius: 5px 0 0 0;
-    border-radius: 5px 0 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    -khtml-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
     background: url("../images/vert-spirit.jpg") repeat-x 0 -120px;
 
     font-size: 17px;
@@ -2037,4 +2028,12 @@ button span {
 .account-login .content h2{
 }
 .account-login .buttons-set a {
+}
+.subtitle, .sub-title
+{
+    padding: 0px;
+}
+.page-title
+{
+    margin: 0 0 10px;
 }
