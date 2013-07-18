@@ -143,7 +143,7 @@ class Web_States_Adminhtml_StatesController extends Mage_Adminhtml_Controller_Ac
         $resource = Mage::getSingleton('core/resource');
         $write = $resource->getConnection('core_write');
         $regionName = $resource->getTableName('directory/country_region_name');
-        $write->delete($regionName, array('region_id =' . $editorId));
+        $write->delete($regionName, array('region_id =' . $editorId,'locale = "' . $locale.'"'));
 
         if ($value) {
             $write->insert($regionName, array('region_id' => $editorId, 'locale' => $locale, 'name' => trim($value)));
