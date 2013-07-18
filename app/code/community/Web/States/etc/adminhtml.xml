@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <cms>
+            <children>
+                <web_states module="web_states">
+                    <title>Country States</title>
+                    <sort_order>100</sort_order>
+                    <action>states/adminhtml_states</action>
+                </web_states>
+            </children>
+        </cms>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <web_states>
+                        <title>Country States</title>
+                        <sort_order>600</sort_order>
+                    </web_states>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

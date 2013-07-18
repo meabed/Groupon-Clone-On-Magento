@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <web_states_adminhtml_states_index>
+        <reference name="content">
+            <block type="web_states/adminhtml_states" name="web_states"/>
+        </reference>
+    </web_states_adminhtml_states_index>
+</layout>
