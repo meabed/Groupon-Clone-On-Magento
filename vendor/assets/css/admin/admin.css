@@ -1,0 +1,102 @@
+html.login, html.login body{ background-color:#888; }
+html.login form{ margin-bottom:0; }
+html.login div.modal{ position:relative;margin:48px auto;top:0;left:0; }
+#modal-recovery{ display:none; }
+.dropdown-menu{ display:none; }
+.container.top{ margin-top:60px; }
+.center{ text-align:center; }
+form.search{ margin:0 0; }
+.list-page h2 a{ float:right; }
+.crud-actions{ width:158px; }
+
+#footer {
+  margin:30px 0 30px 0;
+  background-color: #fff;
+  background-repeat: no-repeat;
+}
+
+body.login #footer hr {
+  display: none;
+}
+
+#footer p a {
+  font-weight: bold;
+}
+
+#footer p {
+  margin-bottom: 0;
+}
+#footer p.right {
+  float: right;
+}
+
+.navbar-fixed-top .brand {
+  color: #000000;
+  float: right;
+  font-weight: bold;
+  margin-left: 20px;
+  padding-left: 0;
+  padding-right: 0;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(255, 255, 255, 0.125);
+}
+
+.plain-form {
+  margin: 0 0;
+}
+
+.progress-form-file {
+  margin: 18px 0;
+  width: 260px;
+}
+
+.users-header a {
+  float: right;
+}
+
+.reset-margin{
+  margin: 0;
+}
+
+.pagination{
+  text-align: center;
+} 
+
+label{
+  margin: 0 20px;
+} 
+
+form label:first-child{
+  margin: 0 20px 0 12px;
+} 
+
+.container.login{margin-top: 60px;}
+.sidebar-nav {
+  padding: 9px 0;
+}
+
+.form-signin {
+  max-width: 300px;
+  padding: 19px 29px 29px;
+  margin: 0 auto 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+  font-size: 16px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
+}

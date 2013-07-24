@@ -5,6 +5,7 @@ class Web_States_Adminhtml_StatesController extends Mage_Adminhtml_Controller_Ac
     {
         $this->loadLayout()
             ->_setActiveMenu('cms/web_states');
+        Mage::helper('adminhtml')->setPageHelpUrl('https://github.com/Meabed/magento-regions-manager');
         return $this;
     }
 

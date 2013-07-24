@@ -51,8 +51,8 @@
                 <connection>
                     <host><![CDATA[localhost]]></host>
                     <username><![CDATA[root]]></username>
-                    <password><![CDATA[meabed.1234]]></password>
-                    <dbname><![CDATA[deals]]></dbname>
+                    <password><![CDATA[meabed]]></password>
+                    <dbname><![CDATA[dealgobb_dg_magento]]></dbname>
                     <initStatements><![CDATA[SET NAMES utf8]]></initStatements>
                     <model><![CDATA[mysql4]]></model>
                     <type><![CDATA[pdo_mysql]]></type>
