@@ -30,7 +30,7 @@ class Admin_products extends CI_Controller {
         $order_type = $this->input->get('order_type');
 
         //pagination settings
-        $config['per_page'] = 40;
+        $config['per_page'] = 40000;
         $config['base_url'] = site_url('admin/products');
         $config['use_page_numbers'] = TRUE;
         $config['num_links'] = 20;

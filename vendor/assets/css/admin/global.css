@@ -1,6 +1,7 @@
 @import url(bootstrap.css);
 @import url(admin.css);
 @import url(datepicker.css);
+@import url(jquery.dataTables.css);
 .long
 {
     width: 97%;

@@ -7,6 +7,10 @@
     <script src="<?php echo base_url(); ?>assets/js/jquery-1.7.1.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/bootstrap-datepicker.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/TableTools.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/ZeroClipboard.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/dataTables.bootstrap.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/admin.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/tinymce/tinymce.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/tinymce/jquery.tinymce.min.js"></script>
@@ -15,7 +19,7 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
-            <a class="brand" style="color: #ffffff">Vendor Portal</a>
+            <a class="brand" style="">Vendor Portal</a>
             <ul class="nav">
                 <li <?php if ($this->uri->segment(2) == 'products') {
                     echo 'class="active"';

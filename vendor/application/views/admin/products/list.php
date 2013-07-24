@@ -25,7 +25,7 @@
 
                 <?php
 
-                $attributes = array('class' => 'form-inline reset-margin', 'id' => 'myform','method'=>'get');
+                $attributes = array('class' => 'form-inline reset-margin', 'id' => 'myform', 'method' => 'get');
 
                 $options_vendor = array(0 => "all");
                 foreach ($vendors as $row) {
@@ -66,10 +66,10 @@ height: 26px;"'
 
             </div>
 
-            <table class="table table-striped table-bordered table-condensed">
+            <table id="oTable" class="table table-striped table-bordered table-condensed">
                 <thead>
                 <tr>
-                    <th class="header">#</th>
+                    <th class="header">ID</th>
                     <th class="yellow header headerSortDown">Name</th>
                     <th class="green header">Stock</th>
                     <th class="red header">Cost Price</th>
@@ -80,7 +80,7 @@ height: 26px;"'
                     <?php if (is_admin()): ?>
                         <th class="red header">vendor</th>
                     <?php endif; ?>
-                    <th class="red header">Actions</th>
+                    <th class="red header no-sort">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -96,11 +96,11 @@ height: 26px;"'
                     echo '<td>' . $row['end_date'] . '</td>';
                     echo '<td>' . $row['active'] . '</td>';
                     if (is_admin()):
-                    echo '<td>' . $row['vendor_name'] . '</td>';
-                     endif;
+                        echo '<td>' . $row['vendor_name'] . '</td>';
+                    endif;
                     echo '<td class="crud-actions">
-                  <a href="' . site_url("admin") . '/products/update/' . $row['id'] . '" class="btn btn-info">view & edit</a>
-                  <a href="' . site_url("admin") . '/products/delete/' . $row['id'] . '" class="btn btn-danger">delete</a>
+                  <a href="' . site_url("admin") . '/products/update/' . $row['id'] . '" class="btn btn-info">Edit</a>
+                  <a href="' . site_url("admin") . '/products/delete/' . $row['id'] . '" class="btn btn-danger">Delete</a>
                 </td>';
                     echo '</tr>';
                 }
@@ -112,3 +112,33 @@ height: 26px;"'
 
         </div>
     </div>
+    <script type="text/javascript">
+        sort = [
+            [0, 'asc'],
+            [1, 'asc']
+        ];
+        $(document).ready(function () {
+            $('#oTable').dataTable({
+                "aoColumnDefs": [
+                    {
+                        "bSortable": false,
+                        "aTargets": [ "no-sort" ]
+                    }
+                ],
+                "sDom": "<'row-fluid'<'span6'T><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+                "oTableTools": {
+                    "sSwfPath": "<?php echo base_url()?>/assets/copy_csv_xls_pdf.swf",
+                    "aButtons": [
+                        "copy",
+                        "print",
+                        {
+                            "sExtends": "collection",
+                            "sButtonText": 'Save <span class="caret" />',
+                            "aButtons": [ "csv", "xls", "pdf" ]
+                        }
+                    ]
+                }
+
+            });
+        });
+    </script>

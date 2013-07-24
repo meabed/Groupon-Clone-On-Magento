@@ -7,7 +7,6 @@ html.login div.modal{ position:relative;margin:48px auto;top:0;left:0; }
 .center{ text-align:center; }
 form.search{ margin:0 0; }
 .list-page h2 a{ float:right; }
-.crud-actions{ width:158px; }
 
 #footer {
   margin:30px 0 30px 0;
