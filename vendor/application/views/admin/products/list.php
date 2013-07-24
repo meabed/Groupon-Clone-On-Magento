@@ -48,8 +48,8 @@
 height: 26px;"'
                 );
                 if (is_admin()) {
-                    echo form_label('Filter by Vendor:', 'member_id');
-                    echo form_dropdown('member_id', $options_vendor, $vendor_selected, 'class="span2"');
+                    echo form_label('Filter by Vendor:', 'vendor_id');
+                    echo form_dropdown('vendor_id', $options_vendor, $vendor_selected, 'class="span2"');
                 }
                 echo form_label('Order by:', 'order');
                 echo form_dropdown('order', $options_products, $order, 'class="span2"');

@@ -23,7 +23,7 @@ if (!function_exists('is_auth')) {
         $row = $CI->Users_model->getMemberByUsername($user);
         if (($id == $row['id']) && ($row['username'] == $user) && ($row['active'] == 1)) {
             return $row;
-        }else{
+        } else {
             //$CI->session->destroy();
         }
         return false;
@@ -34,5 +34,18 @@ if (!function_exists('getUID')) {
     {
         $CI =& get_instance();
         return $id = $CI->session->userdata('id');
+    }
+}
+if (!function_exists('getPath')) {
+
+    function getPath($path = '', $depth = 0)
+    {
+        $arr = explode('/', $path);
+        $max = count($arr) - 1 - $depth;
+
+        for ($i = 0; $i <= $max; $i++) {
+            $nArr[] = $arr[$i];
+        }
+        return join('/', $nArr);
     }
 }

@@ -45,13 +45,34 @@
 | the active record class
 */
 
+$path = getPath( dirname(__FILE__),3);
+if (file_exists($path . '/app/etc/local.xml')) {
+
+    $xml = simplexml_load_file($path . '/app/etc/local.xml');
+
+    $tblprefix = $xml->global->resources->db->table_prefix;
+    $dbhost = $xml->global->resources->default_setup->connection->host;
+    $dbuser = $xml->global->resources->default_setup->connection->username;
+    $dbpass = $xml->global->resources->default_setup->connection->password;
+    $dbname = $xml->global->resources->default_setup->connection->dbname;
+
+} else {
+    exit('Failed to open app/etc/local.xml');
+}
+
+
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '127.0.0.1';
-$db['default']['username'] = 'root';
-$db['default']['password'] = 'meabed';
-$db['default']['database'] = 'vendors';
+//$db['default']['hostname'] = '127.0.0.1';
+//$db['default']['username'] = 'root';
+//$db['default']['password'] = 'meabed';
+//$db['default']['database'] = 'vendors';
+
+$db['default']['hostname'] = $dbhost;
+$db['default']['username'] = $dbuser;
+$db['default']['password'] = $dbpass;
+$db['default']['database'] = $dbname;
 
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';

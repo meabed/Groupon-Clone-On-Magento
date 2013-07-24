@@ -35,7 +35,7 @@
            
             <?php
            
-            $attributes = array('class' => 'form-inline reset-margin', 'id' => 'myform','method');
+            $attributes = array('class' => 'form-inline reset-margin', 'id' => 'myform','method','method'=>'get');
            
             //save the columns names in a array that we will use as filter         
             $options_vendors = array();    

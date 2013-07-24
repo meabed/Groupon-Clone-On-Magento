@@ -29,14 +29,14 @@ class Admin_users extends CI_Controller {
     {
 
         //all the posts sent by the view
-        $search_string = $this->input->post('search_string');        
-        $order = $this->input->post('order'); 
-        $order_type = $this->input->post('order_type'); 
+        $search_string = $this->input->get('search_string');
+        $order = $this->input->get('order');
+        $order_type = $this->input->get('order_type');
 
         //pagination settings
         $config['per_page'] = 5;
 
-        $config['base_url'] = base_url().'admin/users';
+        $config['base_url'] = site_url('admin/users');
         $config['use_page_numbers'] = TRUE;
         $config['num_links'] = 20;
         $config['full_tag_open'] = '<ul>';
