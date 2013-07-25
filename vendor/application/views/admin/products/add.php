@@ -139,7 +139,7 @@
 
         <?php
         echo '<div class="control-group">';
-        echo '<label for="vendor_id" class="control-label">vendor</label>';
+        echo '<label for="vendor_id" class="control-label">Vendor</label>';
         echo '<div class="controls">';
         //echo form_dropdown('vendor_id', $options_vendor, '', 'class="span2"');
 
@@ -184,21 +184,12 @@
 
     tinymce.init({
         selector: "textarea",
-// ===========================================
-// INCLUDE THE PLUGIN
-// ===========================================
         plugins: [
             "advlist autolink lists link image charmap print preview anchor",
             "searchreplace visualblocks code fullscreen",
             "insertdatetime media table contextmenu paste jbimages"
         ],
-// ===========================================
-// PUT PLUGIN'S BUTTON on the toolbar
-// ===========================================
         toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image jbimages",
-// ===========================================
-// SET RELATIVE_URLS to FALSE (This is required for images to display properly)
-// ===========================================
         relative_urls: false
     });
 
