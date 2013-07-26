@@ -11,7 +11,14 @@
             <?php echo ucfirst($this->uri->segment(2)); ?>
         </li>
     </ul>
-
+    <?php if(is_admin()):?>
+    <div class="page-header users-header">
+        <h2>
+            <?php echo ucfirst($this->uri->segment(2)); ?>
+            <a href="<?php echo site_url("admin") . '/' . $this->uri->segment(2); ?>/uploadcsv" class="btn btn-success">Upload CSV Used Vouchers</a>
+        </h2>
+    </div>
+    <?php endif;?>
     <div class="row">
         <div class="span12 columns">
             <div class="well">
@@ -81,16 +88,16 @@ height: 26px;"'
                     $code[count($code)-1]='******';
                     echo '<tr>';
                     echo '<td>' . $row['order_increment_id'] . '</td>';
-                    echo '<td>' . $row['created_at'] . '</td>';
+                    echo '<td>' . getDateGMT($row['created_at']) . '</td>';
                     echo '<td>' . join('-',$code) . '</td>';
-                    echo '<td>' . $row['status'] . '</td>';
-                    echo '<td>' . $row['status'] . '</td>';
-                    echo '<td>' . $row['status'] . '</td>';
+                    echo '<td>' . $row['product_name'] . '</td>';
+                    echo '<td>' . $row['customer_firstname'] .' '.$row['customer_lastname']. '</td>';
+                    echo '<td>' . ucwords($row['status']) . '</td>';
                     if (is_admin()):
                         echo '<td>' . $row['vendor_name'] . '</td>';
                     endif;
                     echo '<td class="crud-actions">
-                  <a href="' . site_url("admin") . '/vouchers/update/' . $row['entity_id'] . '" class="btn btn-info">Edit</a>
+                  <a href="' . site_url("admin") . '/vouchers/used/' . $row['entity_id'] . '" class="btn btn-info">Mark as USED</a>
                 </td>';
                     echo '</tr>';
                 }

@@ -20,7 +20,6 @@ class Admin_vouchers extends CI_Controller {
     */
     public function index()
     {
-
         //all the posts sent by the view
         $vendor_id = $this->input->get('vendor_id');
         $search_string = $this->input->get('search_string');

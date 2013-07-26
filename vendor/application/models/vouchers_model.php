@@ -25,9 +25,15 @@ class Vouchers_model extends CI_Model {
 	    
 		$this->db->select('deal_voucher.*');
 		$this->db->select('membership.name as vendor_name');
+		$this->db->select('o.customer_firstname as customer_firstname');
+		$this->db->select('o.customer_lastname as customer_lastname');
+		$this->db->select('i.name as product_name');
 		$this->db->from('deal_voucher');
+        $this->db->join('sales_flat_order as o', 'deal_voucher.order_id = o.entity_id', 'left');
+        $this->db->join('sales_flat_order_item as i', 'deal_voucher.order_id = i.order_id', 'left');
 
-		if($member_id != null && $member_id != 0){
+
+        if($member_id != null && $member_id != 0){
 			$this->db->where('vendor_id', $member_id);
 		}
 

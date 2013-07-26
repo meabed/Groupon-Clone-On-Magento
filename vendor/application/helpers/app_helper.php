@@ -49,3 +49,23 @@ if (!function_exists('getPath')) {
         return join('/', $nArr);
     }
 }
+
+if (!function_exists('initMage')) {
+
+    function initMage($code = '')
+    {
+        $path = getPath(dirname(__FILE__), 3);
+        if (file_exists($path . '/app/Mage.php')) {
+            include_once($path . '/app/Mage.php');
+            Mage::app($code);
+        }
+    }
+}
+
+if (!function_exists('getDateGMT')) {
+
+    function getDateGMT($date = '',$format = 'Y-m-d h:i:s A')
+    {
+        return date($format,strtotime("+4 hours",strtotime($date)));
+    }
+}
