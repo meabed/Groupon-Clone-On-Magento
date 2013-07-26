@@ -1,5 +1,5 @@
 <?php
-class Admin_products extends CI_Controller {
+class Admin_vouchers extends CI_Controller {
  
     /**
     * Responsable for auto load the model
@@ -29,7 +29,7 @@ class Admin_products extends CI_Controller {
 
         //pagination settings
         $config['per_page'] = 40000;
-        $config['base_url'] = site_url('admin/products');
+        $config['base_url'] = site_url('admin/vouchers');
         $config['use_page_numbers'] = TRUE;
         $config['num_links'] = 20;
         $config['full_tag_open'] = '<ul>';
@@ -109,21 +109,21 @@ class Admin_products extends CI_Controller {
             //fetch vendors data into arrays
             $data['vendors'] = $this->vendors_model->get_vendors();
 
-            $data['count_products']= $this->products_model->count_products($vendor_id, $search_string, $order);
-            $config['total_rows'] = $data['count_products'];
+            $data['count_vouchers']= $this->vouchers_model->count_vouchers($vendor_id, $search_string, $order);
+            $config['total_rows'] = $data['count_vouchers'];
 
             //fetch sql data into arrays
             if($search_string){
                 if($order){
-                    $data['products'] = $this->products_model->get_products($vendor_id, $search_string, $order, $order_type, $config['per_page'],$limit_end);        
+                    $data['vouchers'] = $this->vouchers_model->get_vouchers($vendor_id, $search_string, $order, $order_type, $config['per_page'],$limit_end);        
                 }else{
-                    $data['products'] = $this->products_model->get_products($vendor_id, $search_string, '', $order_type, $config['per_page'],$limit_end);           
+                    $data['vouchers'] = $this->vouchers_model->get_vouchers($vendor_id, $search_string, '', $order_type, $config['per_page'],$limit_end);           
                 }
             }else{
                 if($order){
-                    $data['products'] = $this->products_model->get_products($vendor_id, '', $order, $order_type, $config['per_page'],$limit_end);        
+                    $data['vouchers'] = $this->vouchers_model->get_vouchers($vendor_id, '', $order, $order_type, $config['per_page'],$limit_end);        
                 }else{
-                    $data['products'] = $this->products_model->get_products($vendor_id, '', '', $order_type, $config['per_page'],$limit_end);        
+                    $data['vouchers'] = $this->vouchers_model->get_vouchers($vendor_id, '', '', $order_type, $config['per_page'],$limit_end);        
                 }
             }
 
@@ -143,9 +143,9 @@ class Admin_products extends CI_Controller {
 
             //fetch sql data into arrays
             $data['vendors'] = $this->vendors_model->get_vendors();
-            $data['count_products']= $this->products_model->count_products();
-            $data['products'] = $this->products_model->get_products('', '', '', $order_type, $config['per_page'],$limit_end);        
-            $config['total_rows'] = $data['count_products'];
+            $data['count_vouchers']= $this->vouchers_model->count_vouchers();
+            $data['vouchers'] = $this->vouchers_model->get_vouchers('', '', '', $order_type, $config['per_page'],$limit_end);        
+            $config['total_rows'] = $data['count_vouchers'];
 
         }//!isset($vendor_id) && !isset($search_string) && !isset($order)
 
@@ -153,7 +153,7 @@ class Admin_products extends CI_Controller {
         $this->pagination->initialize($config);   
 
         //load the view
-        $data['main_content'] = 'admin/products/list';
+        $data['main_content'] = 'admin/vouchers/list';
         $this->load->view('includes/template', $data);  
 
     }//index
@@ -200,7 +200,7 @@ class Admin_products extends CI_Controller {
                     $data_to_store['vendor_id']= getUID();
                 }
                 //if the insert has returned true then we show the flash message
-                if($this->products_model->store_product($data_to_store)){
+                if($this->vouchers_model->store_product($data_to_store)){
                     $data['flash_message'] = TRUE; 
                 }else{
                     $data['flash_message'] = FALSE; 
@@ -212,7 +212,7 @@ class Admin_products extends CI_Controller {
         //fetch vendors data to populate the select field
         $data['vendors'] = $this->vendors_model->get_vendors();
         //load the view
-        $data['main_content'] = 'admin/products/add';
+        $data['main_content'] = 'admin/vouchers/add';
         $this->load->view('includes/template', $data);  
     }       
 
@@ -263,12 +263,12 @@ class Admin_products extends CI_Controller {
                     $data_to_store['vendor_id']= getUID();
                 }
                 //if the insert has returned true then we show the flash message
-                if($this->products_model->update_product($id, $data_to_store) == TRUE){
+                if($this->vouchers_model->update_product($id, $data_to_store) == TRUE){
                     $this->session->set_flashdata('flash_message', 'updated');
                 }else{
                     $this->session->set_flashdata('flash_message', 'not_updated');
                 }
-                redirect('admin/products/update/'.$id.'');
+                redirect('admin/vouchers/update/'.$id.'');
 
             }
         }
@@ -276,18 +276,18 @@ class Admin_products extends CI_Controller {
         //the code below wel reload the current data
 
         //product data 
-        $data['product'] = $this->products_model->get_product_by_id($id);
+        $data['product'] = $this->vouchers_model->get_product_by_id($id);
         if($data['product'][0]['vendor_id'] != getUID())
         {
             if(!is_admin())
             {
-                redirect('admin/products');
+                redirect('admin/vouchers');
             }
         }
         //fetch vendors data to populate the select field
         $data['vendors'] = $this->vendors_model->get_vendors();
         //load the view
-        $data['main_content'] = 'admin/products/edit';
+        $data['main_content'] = 'admin/vouchers/edit';
         $this->load->view('includes/template', $data);            
 
     }//update
@@ -300,17 +300,17 @@ class Admin_products extends CI_Controller {
     {
         //product id 
         $id = $this->uri->segment(4);
-        $p = $this->products_model->get_product_by_id($id);
+        $p = $this->vouchers_model->get_product_by_id($id);
 
         if(isset($p[0]) && $p[0]['vendor_id'] != getUID())
         {
             if(!is_admin())
             {
-                redirect('admin/products');
+                redirect('admin/vouchers');
             }
         }
-        $this->products_model->delete_product($id);
-        redirect('admin/products');
+        $this->vouchers_model->delete_product($id);
+        redirect('admin/vouchers');
     }//edit
 
 }

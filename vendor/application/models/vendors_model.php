@@ -1,18 +1,17 @@
 <?php
 class vendors_model extends CI_Model {
- 
+
     /**
     * Responsable for auto load the database
     * @return void
     */
     public function __construct()
     {
-        $this->load->database();
     }
 
     /**
     * Get product by his is
-    * @param int $product_id 
+    * @param int $product_id
     * @return array
     */
     public function get_vendor_by_id($id)
@@ -27,9 +26,9 @@ class vendors_model extends CI_Model {
     /**
     * Fetch vendors data from the database
     * possibility to mix search, filter and order
-    * @param string $search_string 
+    * @param string $search_string
     * @param strong $order
-    * @param string $order_type 
+    * @param string $order_type
     * @param int $limit_start
     * @param int $limit_end
     * @return array
@@ -116,6 +115,6 @@ class vendors_model extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->delete('membership');
 	}
- 
+
 }
 ?>	

@@ -35,9 +35,6 @@ class User extends CI_Controller
      */
     function validate_credentials()
     {
-
-        $this->load->model('Users_model');
-
         $username = $this->input->post('username');
         $password = $this->__encrip_password($this->input->post('password'));
 
@@ -86,8 +83,6 @@ class User extends CI_Controller
         if ($this->form_validation->run() == false) {
             $this->load->view('admin/signup_form');
         } else {
-            $this->load->model('Users_model');
-
             if ($query = $this->Users_model->create_member()) {
                 $this->load->view('admin/signup_successful');
             } else {

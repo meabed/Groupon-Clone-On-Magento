@@ -15,7 +15,6 @@ class Admin_users extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('vendors_model');
         if(!is_admin()){
             redirect('admin/login');
         }
