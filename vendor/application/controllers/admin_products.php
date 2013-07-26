@@ -175,8 +175,9 @@ class Admin_products extends CI_Controller {
             $this->form_validation->set_rules('sell_price', 'sell_price', 'required|numeric');
             $this->form_validation->set_rules('start_date', 'Start Date', 'required');
             $this->form_validation->set_rules('end_date', 'End Date', 'required');
-
-            $this->form_validation->set_rules('vendor_id', 'vendor_id', 'required');
+            if(is_admin()){
+                $this->form_validation->set_rules('vendor_id', 'vendor_id', 'required');
+            }
             $this->form_validation->set_error_delimiters('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><strong>', '</strong></div>');
 
             //if the form has passed through the validation
@@ -194,8 +195,12 @@ class Admin_products extends CI_Controller {
                     'cost_price' => $this->input->post('cost_price'),
                     'sell_price' => $this->input->post('sell_price'),          
                     'active' => $this->input->post('active'),
-                    'vendor_id' => $this->input->post('vendor_id')
                 );
+                if(is_admin()){
+                    $data_to_store['vendor_id']= $this->input->post('vendor_id');
+                }else{
+                    $data_to_store['vendor_id']= getUID();
+                }
                 //if the insert has returned true then we show the flash message
                 if($this->products_model->store_product($data_to_store)){
                     $data['flash_message'] = TRUE; 
@@ -225,24 +230,40 @@ class Admin_products extends CI_Controller {
         //if save button was clicked, get the data sent via post
         if ($this->input->server('REQUEST_METHOD') === 'POST')
         {
-            //form validation
+            $this->form_validation->set_rules('name', 'Name', 'required');
             $this->form_validation->set_rules('description', 'description', 'required');
-            $this->form_validation->set_rules('stock', 'stock', 'required|numeric');
+            $this->form_validation->set_rules('fine_print', 'Fine Print', 'required');
+            $this->form_validation->set_rules('highlight', 'Highlight', 'required');
             $this->form_validation->set_rules('cost_price', 'cost_price', 'required|numeric');
             $this->form_validation->set_rules('sell_price', 'sell_price', 'required|numeric');
-            $this->form_validation->set_rules('vendor_id', 'vendor_id', 'required');
+            $this->form_validation->set_rules('start_date', 'Start Date', 'required');
+            $this->form_validation->set_rules('end_date', 'End Date', 'required');
+            if(is_admin()){
+                $this->form_validation->set_rules('vendor_id', 'vendor_id', 'required');
+            }
             $this->form_validation->set_error_delimiters('<div class="alert alert-error"><a class="close" data-dismiss="alert">×</a><strong>', '</strong></div>');
+
             //if the form has passed through the validation
             if ($this->form_validation->run())
             {
-    
                 $data_to_store = array(
+                    'name' => $this->input->post('name'),
+                    'short_name' => $this->input->post('short_name'),
                     'description' => $this->input->post('description'),
+                    'fine_print' => $this->input->post('fine_print'),
+                    'highlight' => $this->input->post('highlight'),
                     'stock' => $this->input->post('stock'),
+                    'start_date' => $this->input->post('start_date'),
+                    'end_date' => $this->input->post('end_date'),
                     'cost_price' => $this->input->post('cost_price'),
-                    'sell_price' => $this->input->post('sell_price'),          
-                    'vendor_id' => $this->input->post('vendor_id')
+                    'sell_price' => $this->input->post('sell_price'),
+                    'active' => $this->input->post('active'),
                 );
+                if(is_admin()){
+                    $data_to_store['vendor_id']= $this->input->post('vendor_id');
+                }else{
+                    $data_to_store['vendor_id']= getUID();
+                }
                 //if the insert has returned true then we show the flash message
                 if($this->products_model->update_product($id, $data_to_store) == TRUE){
                     $this->session->set_flashdata('flash_message', 'updated');
@@ -251,15 +272,20 @@ class Admin_products extends CI_Controller {
                 }
                 redirect('admin/products/update/'.$id.'');
 
-            }//validation run
-
+            }
         }
-
         //if we are updating, and the data did not pass trough the validation
         //the code below wel reload the current data
 
         //product data 
         $data['product'] = $this->products_model->get_product_by_id($id);
+        if($data['product'][0]['vendor_id'] != getUID())
+        {
+            if(!is_admin())
+            {
+                redirect('admin/products');
+            }
+        }
         //fetch vendors data to populate the select field
         $data['vendors'] = $this->vendors_model->get_vendors();
         //load the view
@@ -276,6 +302,15 @@ class Admin_products extends CI_Controller {
     {
         //product id 
         $id = $this->uri->segment(4);
+        $p = $this->products_model->get_product_by_id($id);
+
+        if(isset($p[0]) && $p[0]['vendor_id'] != getUID())
+        {
+            if(!is_admin())
+            {
+                redirect('admin/products');
+            }
+        }
         $this->products_model->delete_product($id);
         redirect('admin/products');
     }//edit

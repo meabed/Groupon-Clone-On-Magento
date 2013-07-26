@@ -142,6 +142,7 @@
             </div>
 
             <?php
+            if(is_admin()):
             echo '<div class="control-group">';
             echo '<label for="vendor_id" class="control-label">Vendor</label>';
             echo '<div class="controls">';
@@ -150,6 +151,8 @@
             echo form_dropdown('vendor_id', $options_vendor, $product['vendor_id'], 'class="span2"');
 
             echo '</div>';
+            echo '</div>';
+            endif;
             ?>
             <div class="form-actions">
                 <button class="btn btn-primary" type="submit">Save changes</button>
