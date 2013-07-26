@@ -112,6 +112,8 @@
         ];
         $(document).ready(function () {
             $('#oTable').dataTable({
+                "iDisplayLength": 100,
+                "aLengthMenu": [[100, 200, 500, -1], [100, 200, 500, "All"]],
                 "aoColumnDefs": [
                     {
                         "bSortable": false,

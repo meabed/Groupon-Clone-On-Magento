@@ -40,7 +40,6 @@ class Products_model extends CI_Model {
         {
             $member_id = getUID();
         }
-	    
 		$this->db->select('products.*');
 		$this->db->select('products.description');
 		$this->db->select('products.stock');
@@ -55,7 +54,7 @@ class Products_model extends CI_Model {
 		}
 
 		if($search_string){
-			$this->db->like('description', $search_string);
+			$this->db->like('products.name', $search_string);
 		}
 
 		$this->db->join('membership', 'products.vendor_id = membership.id', 'left');

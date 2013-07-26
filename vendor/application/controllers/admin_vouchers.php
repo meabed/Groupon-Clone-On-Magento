@@ -70,7 +70,7 @@ class Admin_vouchers extends CI_Controller {
         //if any filter post was sent but we are in some page, we must load the session data
 
         //filtered && || paginated
-        if($vendor_id !== false && $search_string !== false && $order !== false || $this->uri->segment(3) == true){ 
+        if( $search_string !== false  || $this->uri->segment(3) == true){
            
             /*
             The comments here are the same for line 79 until 99

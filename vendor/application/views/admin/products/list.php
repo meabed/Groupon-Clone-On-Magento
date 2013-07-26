@@ -50,15 +50,14 @@ height: 26px;"'
                 if (is_admin()) {
                     echo form_label('Filter by Vendor:', 'vendor_id');
                     echo form_dropdown('vendor_id', $options_vendor, $vendor_selected, 'class="span2"');
+                    echo form_label('Order by:', 'order');
+                    echo form_dropdown('order', $options_products, $order, 'class="span2"');
+
+                    $options_order_type = array('Asc' => 'Asc', 'Desc' => 'Desc');
+                    echo form_dropdown('order_type', $options_order_type, $order_type_selected, 'class="span1"');
                 }
-                echo form_label('Order by:', 'order');
-                echo form_dropdown('order', $options_products, $order, 'class="span2"');
 
-                $data_submit = array('name' => 'mysubmit', 'class' => 'btn btn-primary', 'value' => 'Go');
-
-                $options_order_type = array('Asc' => 'Asc', 'Desc' => 'Desc');
-                echo form_dropdown('order_type', $options_order_type, $order_type_selected, 'class="span1"');
-
+                $data_submit = array('name' => 'mysubmit', 'class' => 'btn btn-primary pull-right', 'value' => 'Go');
                 echo form_submit($data_submit);
 
                 echo form_close();
@@ -119,6 +118,11 @@ height: 26px;"'
         ];
         $(document).ready(function () {
             $('#oTable').dataTable({
+                "iDisplayLength": 100,
+                "aLengthMenu": [
+                    [100, 200, 500, -1],
+                    [100, 200, 500, "All"]
+                ],
                 "aoColumnDefs": [
                     {
                         "bSortable": false,

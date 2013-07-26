@@ -11,14 +11,14 @@
             <?php echo ucfirst($this->uri->segment(2)); ?>
         </li>
     </ul>
-    <?php if(is_admin()):?>
-    <div class="page-header users-header">
-        <h2>
-            <?php echo ucfirst($this->uri->segment(2)); ?>
-            <a href="<?php echo site_url("admin") . '/' . $this->uri->segment(2); ?>/uploadcsv" class="btn btn-success">Upload CSV Used Vouchers</a>
-        </h2>
-    </div>
-    <?php endif;?>
+    <?php if (is_admin()): ?>
+        <div class="page-header users-header">
+            <h2>
+                <?php echo ucfirst($this->uri->segment(2)); ?>
+                <a href="<?php echo site_url("admin") . '/' . $this->uri->segment(2); ?>/uploadcsv" class="btn btn-success">Upload CSV Used Vouchers</a>
+            </h2>
+        </div>
+    <?php endif; ?>
     <div class="row">
         <div class="span12 columns">
             <div class="well">
@@ -50,15 +50,14 @@ height: 26px;"'
                 if (is_admin()) {
                     echo form_label('Filter by Vendor:', 'vendor_id');
                     echo form_dropdown('vendor_id', $options_vendor, $vendor_selected, 'class="span2"');
+                    echo form_label('Order by:', 'order');
+                    echo form_dropdown('order', $options_vouchers, $order, 'class="span2"');
+
+                    $options_order_type = array('Asc' => 'Asc', 'Desc' => 'Desc');
+                    echo form_dropdown('order_type', $options_order_type, $order_type_selected, 'class="span1"');
                 }
-                echo form_label('Order by:', 'order');
-                echo form_dropdown('order', $options_vouchers, $order, 'class="span2"');
 
-                $data_submit = array('name' => 'mysubmit', 'class' => 'btn btn-primary', 'value' => 'Go');
-
-                $options_order_type = array('Asc' => 'Asc', 'Desc' => 'Desc');
-                echo form_dropdown('order_type', $options_order_type, $order_type_selected, 'class="span1"');
-
+                $data_submit = array('name' => 'mysubmit', 'class' => 'btn btn-primary pull-right', 'value' => 'Go');
                 echo form_submit($data_submit);
 
                 echo form_close();
@@ -84,14 +83,14 @@ height: 26px;"'
                 <tbody>
                 <?php
                 foreach ($vouchers as $row) {
-                    $code = explode('-',$row['deal_voucher_code']);
-                    $code[count($code)-1]='******';
+                    $code = explode('-', $row['deal_voucher_code']);
+                    $code[count($code) - 1] = '******';
                     echo '<tr>';
                     echo '<td>' . $row['order_increment_id'] . '</td>';
                     echo '<td>' . getDateGMT($row['created_at']) . '</td>';
-                    echo '<td>' . join('-',$code) . '</td>';
+                    echo '<td>' . join('-', $code) . '</td>';
                     echo '<td>' . $row['product_name'] . '</td>';
-                    echo '<td>' . $row['customer_firstname'] .' '.$row['customer_lastname']. '</td>';
+                    echo '<td>' . $row['customer_firstname'] . ' ' . $row['customer_lastname'] . '</td>';
                     echo '<td>' . ucwords($row['status']) . '</td>';
                     if (is_admin()):
                         echo '<td>' . $row['vendor_name'] . '</td>';
@@ -116,6 +115,11 @@ height: 26px;"'
         ];
         $(document).ready(function () {
             $('#oTable').dataTable({
+                "iDisplayLength": 100,
+                "aLengthMenu": [
+                    [100, 200, 500, -1],
+                    [100, 200, 500, "All"]
+                ],
                 "aoColumnDefs": [
                     {
                         "bSortable": false,

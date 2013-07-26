@@ -71,7 +71,7 @@ class Admin_products extends CI_Controller {
         //if any filter post was sent but we are in some page, we must load the session data
 
         //filtered && || paginated
-        if($vendor_id !== false && $search_string !== false && $order !== false || $this->uri->segment(3) == true){ 
+        if($search_string !== false || $this->uri->segment(3) == true){
            
             /*
             The comments here are the same for line 79 until 99
@@ -87,7 +87,6 @@ class Admin_products extends CI_Controller {
                 $vendor_id = $this->session->userdata('vendor_selected');
             }
             $data['vendor_selected'] = $vendor_id;
-
             if($search_string){
                 $filter_session_data['search_string_selected'] = $search_string;
             }else{
