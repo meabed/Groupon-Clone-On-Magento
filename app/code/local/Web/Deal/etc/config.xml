@@ -53,6 +53,7 @@
             <adminhtml>
                 <rewrite>
                     <catalog_product_grid>Web_Deal_Block_Adminhtml_Catalog_Product_Grid</catalog_product_grid>
+                    <sales_order_grid>Web_Deal_Block_Adminhtml_Sales_Order_Grid</sales_order_grid>
                 </rewrite>
             </adminhtml>
         </blocks>
