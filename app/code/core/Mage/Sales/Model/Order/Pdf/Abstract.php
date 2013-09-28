@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Sales
- * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -728,6 +728,28 @@ abstract class Mage_Sales_Model_Order_Pdf_Abstract extends Varien_Object
     }
 
     /**
+     * Render item
+     *
+     * @param Varien_Object $item
+     * @param Zend_Pdf_Page $page
+     * @param Mage_Sales_Model_Order $order
+     * @param Mage_Sales_Model_Order_Pdf_Items_Abstract $renderer
+     *
+     * @return Mage_Sales_Model_Order_Pdf_Abstract
+     */
+    public function renderItem(Varien_Object $item, Zend_Pdf_Page $page, Mage_Sales_Model_Order $order, $renderer)
+    {
+        $renderer->setOrder($order)
+            ->setItem($item)
+            ->setPdf($this)
+            ->setPage($page)
+            ->setRenderedModel($this)
+            ->draw();
+
+        return $this;
+    }
+
+    /**
      * Draw Item process
      *
      * @param  Varien_Object $item
@@ -737,15 +759,24 @@ abstract class Mage_Sales_Model_Order_Pdf_Abstract extends Varien_Object
      */
     protected function _drawItem(Varien_Object $item, Zend_Pdf_Page $page, Mage_Sales_Model_Order $order)
     {
-        $type = $item->getOrderItem()->getProductType();
+        $orderItem = $item->getOrderItem();
+        $type = $orderItem->getProductType();
         $renderer = $this->_getRenderer($type);
-        $renderer->setOrder($order);
-        $renderer->setItem($item);
-        $renderer->setPdf($this);
-        $renderer->setPage($page);
-        $renderer->setRenderedModel($this);
 
-        $renderer->draw();
+        $this->renderItem($item, $page, $order, $renderer);
+
+        $transportObject = new Varien_Object(array('renderer_type_list' => array()));
+        Mage::dispatchEvent('pdf_item_draw_after', array(
+            'transport_object' => $transportObject,
+            'entity_item'      => $item
+        ));
+
+        foreach ($transportObject->getRendererTypeList() as $type) {
+            $renderer = $this->_getRenderer($type);
+            if ($renderer) {
+                $this->renderItem($orderItem, $page, $order, $renderer);
+            }
+        }
 
         return $renderer->getPage();
     }
@@ -759,9 +790,7 @@ abstract class Mage_Sales_Model_Order_Pdf_Abstract extends Varien_Object
      */
     protected function _setFontRegular($object, $size = 7)
     {
-        //$font = Zend_Pdf_Font::fontWithPath(Mage::getBaseDir() . '/lib/LinLibertineFont/LinLibertine_Re-4.4.1.ttf');
-        $font = Zend_Pdf_Font::fontWithPath(Mage::getBaseDir(). '/lib/Fonts/times.ttf');
-        //$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES);
+        $font = Zend_Pdf_Font::fontWithPath(Mage::getBaseDir() . '/lib/LinLibertineFont/LinLibertine_Re-4.4.1.ttf');
         $object->setFont($font, $size);
         return $font;
     }
@@ -775,10 +804,7 @@ abstract class Mage_Sales_Model_Order_Pdf_Abstract extends Varien_Object
      */
     protected function _setFontBold($object, $size = 7)
     {
-        //$font = Zend_Pdf_Font::fontWithPath(Mage::getBaseDir() . '/lib/LinLibertineFont/LinLibertine_Bd-2.8.1.ttf');
-        $font = Zend_Pdf_Font::fontWithPath(Mage::getBaseDir(). '/lib/Fonts/times.ttf');
-        //$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES);
-
+        $font = Zend_Pdf_Font::fontWithPath(Mage::getBaseDir() . '/lib/LinLibertineFont/LinLibertine_Bd-2.8.1.ttf');
         $object->setFont($font, $size);
         return $font;
     }
@@ -792,10 +818,7 @@ abstract class Mage_Sales_Model_Order_Pdf_Abstract extends Varien_Object
      */
     protected function _setFontItalic($object, $size = 7)
     {
-        //$font = Zend_Pdf_Font::fontWithPath(Mage::getBaseDir() . '/lib/LinLibertineFont/LinLibertine_It-2.8.2.ttf');
-        $font = Zend_Pdf_Font::fontWithPath(Mage::getBaseDir(). '/lib/Fonts/times.ttf');
-        //$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_TIMES);
-
+        $font = Zend_Pdf_Font::fontWithPath(Mage::getBaseDir() . '/lib/LinLibertineFont/LinLibertine_It-2.8.2.ttf');
         $object->setFont($font, $size);
         return $font;
     }

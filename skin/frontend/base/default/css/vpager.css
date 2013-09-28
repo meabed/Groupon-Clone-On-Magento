@@ -1,0 +1,22 @@
+div.category-products{
+	-webkit-transition: all 300ms ease-in 200ms; /* property duration timing-function delay */
+    -moz-transition: all 300ms ease-in 200ms;
+    -o-transition: all 300ms ease-in 200ms;
+    transition: all 300ms ease-in 200ms;
+}
+div.page-loading{
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+
+    /* IE 5-7 */
+    filter: alpha(opacity=50);
+
+    /* Netscape */
+    -moz-opacity: 0.5;
+
+    /* Safari 1.x */
+    -khtml-opacity: 0.5;
+
+    /* Good browsers */
+    opacity: 0.5;
+    background: transparent url("../images/pager-anim.gif") repeat-x 0 0;
+}

@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Vinagento_All>
+            <version>1.0.0</version>
+        </Vinagento_All>
+    </modules>
+    <global>
+        <resources>
+            <vgall_setup>
+                <setup>
+                    <module>Vinagento_All</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </vgall_setup>
+            <vgall_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </vgall_write>
+            <vgall_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </vgall_read>
+        </resources>
+        <models>
+            <vgall>
+                <class>Vinagento_All_Model</class>
+            </vgall>
+        </models>
+
+        <helpers>
+            <vgall>
+                <class>Vinagento_All_Helper</class>
+            </vgall>
+        </helpers>
+    </global>
+
+    <adminhtml>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <vgall>
+                                            <title>Vinagento - All</title>
+                                        </vgall>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <vgall_upds>
+                        <type>singleton</type>
+                        <class>vgall/feed_updates</class>
+                        <method>feedMew</method>
+                    </vgall_upds>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+    </adminhtml>
+</config>

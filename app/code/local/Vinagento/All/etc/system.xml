@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <vgall translate="label" module="vgall">
+            <label>Vinagento Extensions</label>
+            <sort_order>300</sort_order>
+        </vgall>
+    </tabs>
+</config>
