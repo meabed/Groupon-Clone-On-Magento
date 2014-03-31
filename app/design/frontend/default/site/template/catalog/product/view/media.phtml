@@ -38,13 +38,11 @@
 <?php if (count($this->getGalleryImages()) > 0): ?>
 <div class="product-img-box">
     <ul class="product-slider">
-
         <li>
             <a  href="javascript:void(0)" title="<?php echo $this->getProduct()->getName(); ?>"><img src="<?php echo $this->getSkinUrl('images/deals-loader.gif'); ?>" class="lazy" data-src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image' )->constrainOnly(TRUE)
                 ->keepAspectRatio(false)
                 ->keepFrame(true)->resize(690,300); ?>"  alt="<?php echo $this->getProduct()->getName(); ?>" /></a>
         </li>
-
     </ul>
 </div>
 <?php endif; ?>

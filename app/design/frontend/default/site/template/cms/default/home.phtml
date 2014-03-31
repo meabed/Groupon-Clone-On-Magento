@@ -15,14 +15,13 @@ foreach ($_products as $_product):
     $sec_diff = ($end_date - $toDate);
     $time = Mage::helper('deal')->secondsToTime($sec_diff);
     ?>
-    <div id="deal-<?php echo $_product->getId();?>" class="deal">
+    <div id="deal-<?php echo $_product->getId();?>" class="deal div<?php echo $i%3;?>">
         <h3>
             <a class="view" href="<?php echo $url;?>"><?php echo $_product->getShortName();?></a>
         </h3>
-
         <div class="pre photo"><a href="<?php echo $url;?>"><img class="lazy" src="<?php echo $this->getSkinUrl('images/deals-loader.gif'); ?>" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->constrainOnly(TRUE)
                     ->keepAspectRatio(false)
-                    ->keepFrame(true)->resize(320, 205); ?>""></a></div>
+                    ->keepFrame(true)->resize(320, 205); ?>"></a></div>
 
         <div class="price-info">
             <div><span class="title">Discount</span><span class="value"> <?php echo $discount;?>%</span></div>

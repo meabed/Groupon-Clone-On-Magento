@@ -22,7 +22,7 @@ foreach ($_products as $_product):
 
         <div class="pre photo"><a href="<?php echo $url;?>"><img class="lazy" src="<?php echo $this->getSkinUrl('images/deals-loader.gif'); ?>" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->constrainOnly(TRUE)
                     ->keepAspectRatio(false)
-                    ->keepFrame(true)->resize(320, 205); ?>""></a></div>
+                    ->keepFrame(true)->resize(320, 205); ?>"></a></div>
 
         <div class="price-info">
             <div><span class="title">Discount</span><span class="value"> <?php echo $discount;?>%</span></div>
