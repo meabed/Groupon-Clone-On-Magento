@@ -13,13 +13,13 @@
         </em_emadmin_adminhtml_sales_order>
         </rewrite>
 		
-        <blocks>
-            <adminhtml>
-                <rewrite>
-                    <sales_order_grid>EM_DeleteOrder_Block_Adminhtml_Sales_Order_Grid</sales_order_grid>
-                </rewrite>
-            </adminhtml>
-        </blocks>		
+        <!--<blocks>-->
+            <!--<adminhtml>-->
+                <!--<rewrite>-->
+                    <!--<sales_order_grid>EM_DeleteOrder_Block_Adminhtml_Sales_Order_Grid</sales_order_grid>-->
+                <!--</rewrite>-->
+            <!--</adminhtml>-->
+        <!--</blocks>		-->
     </global>
 	<admin>
         <routers>

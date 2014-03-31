@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * Class Web_Deal_Block_Catalog_Product_View
+ * @property int $ordered_qty
+ * @property string $highlights
+ * @property string $fineprint
+ */
 class Web_Deal_Block_Catalog_Product_View extends Mage_Catalog_Block_Product_View
 {
     protected $_info;
@@ -15,7 +22,8 @@ class Web_Deal_Block_Catalog_Product_View extends Mage_Catalog_Block_Product_Vie
     }
     public function getPriceCurrency($price = 0)
     {
-        return Mage::helper('core')->currency($price, false).' '. Mage::app()->getStore()->getCurrentCurrencyCode() ;
+        //return Mage::helper('core')->currency($price, true);
+        return Mage::app()->getStore()->getCurrentCurrency()->formatPrecision($price,0);
     }
     public function getParentCat()
     {

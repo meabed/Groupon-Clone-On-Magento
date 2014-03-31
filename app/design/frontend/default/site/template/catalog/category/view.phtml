@@ -1,12 +1,15 @@
 <?php
+/** @var Web_Deal_Block_Home $this */
 $_data = $this->getProducts();
 $_products = $_data['products'];
 /* @var Mage_Catalog_Model_Product $_product */
 $i = 0;
 foreach ($_products as $_product):
     Mage::register('product', $_product,true);
+    /** @var Web_Deal_Block_Catalog_Product_View $_block */
     $_block = Mage::getBlockSingleton('Web_Deal_Block_Catalog_Product_View');
     $_block->getDealInfo();
+    /** @var Mage_Catalog_Model_Category $cat */
     $cat = $_block->getParentCat();
     $url = $this->helper('deal')->getFullProductUrl($_product);
     $discount = (int) (($_product->getOriginalPrice() - $_product->getPrice()) / $_product->getOriginalPrice() * 100);

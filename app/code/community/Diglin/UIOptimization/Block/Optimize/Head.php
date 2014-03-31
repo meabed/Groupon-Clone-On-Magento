@@ -12,7 +12,7 @@
  *
  * @category    Diglin
  * @package     Diglin_UIOptimization
- * @copyright   Copyright (c) 2011-2012 Diglin (http://www.diglin.com)
+ * @copyright   Copyright (c) 2011-2013 Diglin (http://www.diglin.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 class Diglin_UIOptimization_Block_Optimize_Head extends Mage_Page_Block_Html_Head 
@@ -164,6 +164,7 @@ class Diglin_UIOptimization_Block_Optimize_Head extends Mage_Page_Block_Html_Hea
                     'quiet' => true,// quiet will allow to get the content as array mixed null, or, if the 'quiet' option is set to true, an array with keys "success" (bool), "statusCode" (int), "content" (string), and "headers" (array).
                     'files' => array($info['orgskin_path']),
                     'encodeMethod' => '',
+                    'rewriteCssUris' =>  false,
                     'minifiers' => array(Diglin_Minify::TYPE_CSS => array($minifier, $method))
                 );
                 $results = Diglin_Minify::serve('Files', $options);

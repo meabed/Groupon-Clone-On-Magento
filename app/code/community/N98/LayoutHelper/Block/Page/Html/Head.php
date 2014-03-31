@@ -21,7 +21,7 @@
  * @category N98
  * @package N98_LayoutHelper
  */
-class N98_LayoutHelper_Block_Page_Html_Head extends Mage_Page_Block_Html_Head
+class N98_LayoutHelper_Block_Page_Html_Head extends Diglin_UIOptimization_Block_Optimize_Head
 {
 
     /**

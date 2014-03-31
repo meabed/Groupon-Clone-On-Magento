@@ -31,7 +31,7 @@
  * @package    Mage_Adminhtml
  * @author      Magento Core Team <core@magentocommerce.com>
  */
-class EM_DeleteOrder_Block_Adminhtml_Sales_Order_Grid extends Mage_Adminhtml_Block_Sales_Order_Grid
+class EM_DeleteOrder_Block_Adminhtml_Sales_Order_Grid extends Web_Deal_Block_Adminhtml_Sales_Order_Grid
 {
 
     

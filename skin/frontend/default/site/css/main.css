@@ -1,6 +1,6 @@
 ul, ol {
     list-style: none outside none;
-    margin: 0px;
+    margin: 0;
 }
 
 body {
@@ -92,16 +92,16 @@ div.subscribe-email {
     text-align: right;
     display: inline-block;
     width: 40%;
-    margin: 30px 0px 0px 0px;
+    margin: 30px 0 0 0;
 }
 
 div.top_menu {
     background: #FBFFF8;
     background: url("../images/header-bg.png") repeat-x scroll 0 -157px #F4F1E0;
     padding: 3px 5px;
-    -webkit-box-shadow: #999 0px -3px 3px;
-    -moz-box-shadow: #999 0px -3px 3px;
-    box-shadow: #999 0px -3px 3px;
+    -webkit-box-shadow: #999 0 -3px 3px;
+    -moz-box-shadow: #999 0 -3px 3px;
+    box-shadow: #999 0 -3px 3px;
 }
 
 div.sub_menu {
@@ -110,7 +110,7 @@ div.sub_menu {
 }
 
 ul.nav-pills {
-    margin: 0px;
+    margin: 0;
 }
 
 .nav-pills > .active > a, .nav-pills > .active > a:hover {
@@ -124,7 +124,7 @@ ul.nav-pills {
 
 .sub_menu .nav-tabs {
     border-bottom: none;
-    margin: 15px 0px 0px 15px;
+    margin: 15px 0 0 15px;
 }
 
 .nav-tabs > li > a, .nav-pills > li > a {
@@ -304,7 +304,7 @@ div#os-container h3 {
     font-size: 15px;
     font-weight: normal;
     line-height: 22px;
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 div#os-container h3.product-name {
@@ -316,9 +316,9 @@ div#os-container h3.product-name {
     -webkit-border-radius: 8px 8px 0 0;
     -moz-border-radius: 8px 8px 0 0;
     border-radius: 8px 8px 0 0;
-    -webkit-box-shadow: #666 0px 0px 8px;
-    -moz-box-shadow: #666 0px 0px 8px;
-    box-shadow: #666 0px 0px 8px;
+    -webkit-box-shadow: #666 0 0 8px;
+    -moz-box-shadow: #666 0 0 8px;
+    box-shadow: #666 0 0 8px;
 
 }
 
@@ -327,9 +327,9 @@ section.offer-thumbnail, div.account-login .col2-set .col-1, div.account-login .
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
-    -webkit-box-shadow: #666 0px 0px 4px;
-    -moz-box-shadow: #666 0px 0px 4px;
-    box-shadow: #666 0px 0px 4px;
+    -webkit-box-shadow: #666 0 0 4px;
+    -moz-box-shadow: #666 0 0 4px;
+    box-shadow: #666 0 0 4px;
 
 }
 
@@ -337,9 +337,9 @@ div.footer {
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
-    -webkit-box-shadow: #666 0px 0px 8px;
-    -moz-box-shadow: #666 0px 0px 8px;
-    box-shadow: #666 0px 0px 8px;
+    -webkit-box-shadow: #666 0 0 8px;
+    -moz-box-shadow: #666 0 0 8px;
+    box-shadow: #666 0 0 8px;
     background: white;
 }
 
@@ -347,17 +347,17 @@ div.footer {
     background: url("../images/vert-spirit.jpg") 0 0 repeat-x;
     color: #ffffff;
 
-    -moz-border-radius: 5px 5px 0px 0px;
-    -webkit-border-radius: 5px 5px 0px 0px;
-    -khtml-border-radius: 5px 5px 0px 0px;
-    border-radius: 5px 5px 0px 0px;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    -khtml-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
 
     font-size: 17px;
     font-weight: normal;
     min-height: 56px;
     max-height: 113px;
     padding: 2px 12px 5px 12px;
-    margin: 0px;
+    margin: 0;
 
 }
 
@@ -398,7 +398,7 @@ div.product-view div.product-name h1 span {
 }
 
 .product-essential {
-    padding: 0px;
+    padding: 0;
     background: none;
 }
 
@@ -409,10 +409,10 @@ div.product-view div.product-name h1 span {
 .product-deal-detail {
     background: none repeat scroll 0 0 #FFFFFF;
 
-    -moz-border-radius: 0px 0px 5px 5px;
-    -webkit-border-radius: 0px 0px 5px 5px;
-    -khtml-border-radius: 0px 0px 5px 5px;
-    border-radius: 0px 0px 5px 5px;
+    -moz-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+    -khtml-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
 
     border-top: 1px solid #EAE9E2;
 
@@ -472,10 +472,10 @@ div.product-top {
 .product-deal-buynow .buy-price {
     background-color: #B7E3FC;
 
-    -moz-border-radius: 5px 0px 0px 5px;
-    -webkit-border-radius: 5px 0px 0px 5px;
-    -khtml-border-radius: 5px 0px 0px 5px;
-    border-radius: 5px 0px 0px 5px;
+    -moz-border-radius: 5px 0 0 5px;
+    -webkit-border-radius: 5px 0 0 5px;
+    -khtml-border-radius: 5px 0 0 5px;
+    border-radius: 5px 0 0 5px;
     font-weight: bold;
     color: #942068;
     background-image: -moz-linear-gradient(center top, #940057, #942068);
@@ -538,8 +538,8 @@ div.product-highlights {
 
 div.product-options {
     background-color: transparent;
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     border: none;
 }
 
@@ -623,7 +623,7 @@ div.product-company div.head {
 }
 
 div.product-fineprint div.head {
-    background: url("../images/vert-spirit.jpg") repeat-x 0 0px;
+    background: url("../images/vert-spirit.jpg") repeat-x 0 0;
     font-size: 17px;
     padding: 10px 10px 10px 10px;
 
@@ -650,14 +650,14 @@ div.product-mid {
 
 div.facebook-block {
     width: 100%;
-    margin: 0px 0px 0px 5px;
+    margin: 0 0 0 5px;
     float: right;
     text-align: center;
 }
 
 div.ded_c {
     width: 100%;
-    margin: 0px 0px 0px 0px;
+    margin: 0 0 0 0;
     float: right;
     text-align: center;
 
@@ -703,7 +703,7 @@ div.details ul li {
 }
 
 .row, [class*="span"] {
-    margin-left: 0px;
+    margin-left: 0;
 }
 
 article.row {
@@ -740,14 +740,14 @@ div.product_sidebar .blocktitle {
     font-size: 17px;
     font-weight: normal;
     min-height: 30px;
-    padding: 12px 12px 0px 12px;
-    margin: 0px;
+    padding: 12px 12px 0 12px;
+    margin: 0;
     text-align: center;
 
 }
 
 div.side_deal .deal_name {
-    padding: 3px 0px;
+    padding: 3px 0;
 }
 
 div.side_deal .deal_name a:hover {
@@ -770,15 +770,15 @@ div.side_deal .deal_link a i {
 div.product_sidebar .side_products {
     padding: 10px;
 
-    -moz-border-radius: 0px 0px 5px 5px;
-    -webkit-border-radius: 0px 0px 5px 5px;
-    -khtml-border-radius: 0px 0px 5px 5px;
-    border-radius: 0px 0px 5px 5px;
+    -moz-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+    -khtml-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
     background: #ffffff;
 }
 
 div.side_deal {
-    padding: 0px 0px 8px 0px;
+    padding: 0 0 8px 0;
 
 }
 
@@ -1186,9 +1186,9 @@ div.product_sidebar div.facebook-block {
 
 #offer-sales-bar.sticky {
     position: fixed;
-    left: 0px;
-    top: 0px;
-    right: 0px;
+    left: 0;
+    top: 0;
+    right: 0;
 }
 
 #deal-show-vitals-share {
@@ -1255,7 +1255,7 @@ div.product_sidebar div.facebook-block {
 }
 
 .bottom-spacer-0 {
-    margin-bottom: 0px !important;
+    margin-bottom: 0 !important;
 }
 
 .bottom-spacer-10 {
@@ -2041,7 +2041,7 @@ button span {
     border: 1px solid #d0cbc1;
     background: #fff url(../images/bkg_block-title.gif) 0 0 repeat-x;
     padding: 12px 15px;
-    margin: 0 0 0px;
+    margin: 0 0 0;
 }
 
 .account-login .buttons-set {
@@ -2054,7 +2054,7 @@ button span {
 }
 
 .subtitle, .sub-title {
-    padding: 0px;
+    padding: 0;
 }
 
 .page-title {

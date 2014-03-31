@@ -1,5 +1,6 @@
 <?php $_helper = $this->helper('catalog/output'); ?>
 <?php $_product = $this->getProduct();
+/** @var Web_Deal_Block_Catalog_Product_View $this */
 $this->getDealInfo();
 ?>
 <script type="text/javascript">
@@ -119,16 +120,6 @@ $this->getDealInfo();
                             src="http://www.facebook.com/plugins/likebox.php?id=182345975128091&amp;width=358&amp;connections=24&amp;stream=false&amp;header=true&amp;height=460">
 
                     </iframe>
-                </div>
-                <div class="ded_c">
-                    <div class="details">
-                        <?php
-                        $block = Mage::getModel('cms/block')->load('ded_complience');
-                        if ($block) {
-                            echo $block->getContent();
-                        }
-                        ?>
-                    </div>
                 </div>
             </div>
         </form>

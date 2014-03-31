@@ -7,11 +7,11 @@
     </modules>
     <global>
         <blocks>
-            <page>
-                <rewrite>
-                    <html_head>N98_LayoutHelper_Block_Page_Html_Head</html_head>
-                </rewrite>
-            </page>
+            <!--<page>-->
+                <!--<rewrite>-->
+                    <!--<html_head>N98_LayoutHelper_Block_Page_Html_Head</html_head>-->
+                <!--</rewrite>-->
+            <!--</page>-->
             <customer>
                 <rewrite>
                     <account_navigation>N98_LayoutHelper_Block_Customer_Account_Navigation</account_navigation>
