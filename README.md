@@ -1,7 +1,7 @@
 Groupon Clone Built On Magento!
 =========================
 
-Magento ver. 1.7.0.2 + Few custom modules + complete custom theme and layout.
+Magento ver. 1.9.0.1 + Few custom modules + complete custom theme and layout.
 
 You can find demo here
 > Demo www.flowercloud.us
