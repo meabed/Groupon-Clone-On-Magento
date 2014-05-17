@@ -19,7 +19,7 @@
  *
  * @category    Varien
  * @package     js
- * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 if(typeof Product=='undefined') {
@@ -133,14 +133,17 @@ Product.Zoom.prototype = {
         this.imageZoom = this.floorZoom+(v*(this.ceilingZoom-this.floorZoom));
 
         if (overSize) {
-            if (this.imageDim.width > this.containerDim.width) {
+            if (this.imageDim.width > this.imageDim.height) {
                 this.imageEl.style.width = (this.imageZoom*this.containerDim.width)+'px';
-            } else if (this.imageDim.height > this.containerDim.height) {
+            } else {
                 this.imageEl.style.height = (this.imageZoom*this.containerDim.height)+'px';
             }
-
-            if(this.containerDim.ratio){
-                this.imageEl.style.height = (this.imageZoom*this.containerDim.width*this.containerDim.ratio)+'px'; // for safari
+            if (this.containerDim.ratio) {
+                if (this.imageDim.width > this.imageDim.height) {
+                    this.imageEl.style.height = (this.imageZoom*this.containerDim.width*this.containerDim.ratio)+'px'; // for safari
+                } else {
+                    this.imageEl.style.width = (this.imageZoom*this.containerDim.height*this.containerDim.ratio)+'px'; // for safari
+                }
             }
         } else {
             this.slider.setDisabled();
@@ -365,7 +368,8 @@ Product.Config.prototype = {
         var attributeId = element.id.replace(/[a-z]*/, '');
         var options = this.getAttributeOptions(attributeId);
         this.clearSelect(element);
-        element.options[0] = new Option(this.config.chooseText, '');
+        element.options[0] = new Option('', '');
+        element.options[0].innerHTML = this.config.chooseText;
 
         var prevConfig = false;
         if(element.prevSetting){
@@ -561,7 +565,7 @@ Product.OptionsPrice.prototype = {
         this.productOldPrice    = config.productOldPrice;
         this.priceInclTax       = config.priceInclTax;
         this.priceExclTax       = config.priceExclTax;
-        this.skipCalculate      = config.skipCalculate;//@deprecated after 1.5.1.0
+        this.skipCalculate      = config.skipCalculate; /** @deprecated after 1.5.1.0 */
         this.duplicateIdSuffix  = config.idSuffix;
         this.specialTaxPrice    = config.specialTaxPrice;
         this.tierPrices         = config.tierPrices;
@@ -745,28 +749,58 @@ Product.OptionsPrice.prototype = {
             };
         }.bind(this));
 
-        for (var i = 0; i < this.tierPrices.length; i++) {
-            $$('.price.tier-' + i).each(function (el) {
-                var price = this.tierPrices[i] + parseFloat(optionPrices);
-                el.innerHTML = this.formatPrice(price);
-            }, this);
-            $$('.price.tier-' + i + '-incl-tax').each(function (el) {
-                var price = this.tierPricesInclTax[i] + parseFloat(optionPrices);
-                el.innerHTML = this.formatPrice(price);
-            }, this);
-            $$('.benefit').each(function (el) {
-                var parsePrice = function (html) {
-                    return parseFloat(/\d+\.?\d*/.exec(html));
-                };
-                var container = $(this.containers[3]) ? this.containers[3] : this.containers[0];
-                var price = parsePrice($(container).innerHTML);
-                var tierPrice = $$('.price.tier-' + i);
-                tierPrice = tierPrice.length ? parseInt(tierPrice[0].innerHTML, 10) : 0;
-                var $percent = Selector.findChildElements(el, ['.percent.tier-' + i]);
-                $percent.each(function (el) {
-                    el.innerHTML = Math.ceil(100 - ((100 / price) * tierPrice));
-                });
-            }, this);
+        if (typeof(skipTierPricePercentUpdate) === "undefined" && typeof(this.tierPrices) !== "undefined") {
+            for (var i = 0; i < this.tierPrices.length; i++) {
+                $$('.benefit').each(function(el) {
+                    var parsePrice = function(html) {
+                        var format = this.priceFormat;
+                        var decimalSymbol = format.decimalSymbol === undefined ? "," : format.decimalSymbol;
+                        var regexStr = '[^0-9-' + decimalSymbol + ']';
+                        //remove all characters except number and decimal symbol
+                        html = html.replace(new RegExp(regexStr, 'g'), '');
+                        html = html.replace(decimalSymbol, '.');
+                        return parseFloat(html);
+                    }.bind(this);
+
+                    var updateTierPriceInfo = function(priceEl, tierPriceDiff, tierPriceEl, benefitEl) {
+                        if (typeof(tierPriceEl) === "undefined") {
+                            //tierPrice is not shown, e.g., MAP, no need to update the tier price info
+                            return;
+                        }
+                        var price = parsePrice(priceEl.innerHTML);
+                        var tierPrice = price + tierPriceDiff;
+
+                        tierPriceEl.innerHTML = this.formatPrice(tierPrice);
+
+                        var $percent = Selector.findChildElements(benefitEl, ['.percent.tier-' + i]);
+                        $percent.each(function(el) {
+                            el.innerHTML = Math.ceil(100 - ((100 / price) * tierPrice));
+                        });
+                    }.bind(this);
+
+                    var tierPriceElArray = $$('.tier-price.tier-' + i + ' .price');
+                    if (this.showBothPrices) {
+                        var containerExclTax = $(this.containers[3]);
+                        var tierPriceExclTaxDiff = this.tierPrices[i];
+                        var tierPriceExclTaxEl = tierPriceElArray[0];
+                        updateTierPriceInfo(containerExclTax, tierPriceExclTaxDiff, tierPriceExclTaxEl, el);
+                        var containerInclTax = $(this.containers[2]);
+                        var tierPriceInclTaxDiff = this.tierPricesInclTax[i];
+                        var tierPriceInclTaxEl = tierPriceElArray[1];
+                        updateTierPriceInfo(containerInclTax, tierPriceInclTaxDiff, tierPriceInclTaxEl, el);
+                    } else if (this.showIncludeTax) {
+                        var container = $(this.containers[0]);
+                        var tierPriceInclTaxDiff = this.tierPricesInclTax[i];
+                        var tierPriceInclTaxEl = tierPriceElArray[0];
+                        updateTierPriceInfo(container, tierPriceInclTaxDiff, tierPriceInclTaxEl, el);
+                    } else {
+                        var container = $(this.containers[0]);
+                        var tierPriceExclTaxDiff = this.tierPrices[i];
+                        var tierPriceExclTaxEl = tierPriceElArray[0];
+                        updateTierPriceInfo(container, tierPriceExclTaxDiff, tierPriceExclTaxEl, el);
+                    }
+                }, this);
+            }
         }
 
     },

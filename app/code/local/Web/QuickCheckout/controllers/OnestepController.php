@@ -316,7 +316,7 @@ class Web_QuickCheckout_OnestepController extends Mage_Checkout_OnepageControlle
                  if($this->getOnepage()->getQuote()->getPayment()->getCheckoutRedirectUrl()){
                      Mage::getSingleton('checkout/session')->setRBR(false);
                  }
-                $result['test']   = $this->getQuote()->getPayment()->getMethod();
+                //$result['test']   = $this->getQuote()->getPayment()->getMethod();
                 $result['review'] = $this->_getReviewHtml();
             }
             catch (Exception $e) {

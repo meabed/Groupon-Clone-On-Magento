@@ -1,0 +1,271 @@
+<?xml version="1.0"?>
+<config>
+	<!-- Headers Tabs, mageworld la ten dat bat ky -->
+	<tabs>
+        <mageworld translate="label" module="credit">
+            <label>Mage World</label>
+            <sort_order>300</sort_order>
+        </mageworld>
+    </tabs>
+	<!-- Headers Tabs has a number of sections. -->
+    <sections>
+        <credit translate="label" module="credit">
+            <label>Credit</label>
+            <tab>mageworld</tab><!-- Tham chieu den ten bat ky mageworld o tren -->
+            <frontend_type>text</frontend_type>
+            <sort_order>100</sort_order><!-- vi tri so voi cac section khac -->
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+			<!-- pop-open box with the title "General". -->
+            <groups>                
+                <config translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+					<!-- add fieldsss. -->
+                    <fields>						
+						<enabled translate="label">
+                            <label>Enable:</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <credit_money_rate translate="label">
+                            <label>Credits/Monetary Rate</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Format x/y (x credits / y monetary units)</comment>
+                        </credit_money_rate>
+                    </fields>
+                </config>
+				<options translate="label">
+                    <label>Options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                    	<max_credit_to_checkout translate="label">
+                            <label>Max Credit To Checkouts</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter 0 or leave the field empty if not require</comment>
+                        </max_credit_to_checkout>
+                	</fields>
+                </options>
+                <options_send_credit translate="label">
+                    <label>Options For Send Credit</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                    	<allow_send_credit_to_friend translate="label">
+                            <label>Allow Sending Credit To Friends</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </allow_send_credit_to_friend>
+                        <max_recipients translate="label">
+                            <label>Max friend to send credit</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>credit/system_config_entier</backend_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Default value : 3</comment>
+                        </max_recipients>
+                        <max_credit_to_send translate="label">
+                            <label>Max credit to each send for friend</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter 0 or leave the field empty if not require</comment>
+                        </max_credit_to_send>
+                    </fields>
+                </options_send_credit>
+				<mail_info translate="label">
+                    <label>Email</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                    	<enable_send_email_to_sender translate="label">
+                            <label>Allow Sending An Email To Sender</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_send_email_to_sender>
+                        <enable_send_email_to_recipient translate="label">
+                            <label>Allow Sending An Email To Recipients</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_send_email_to_recipient>
+                    	<email_sender>
+                        	<label>Email Sender</label>
+                        	<source_model>adminhtml/system_config_source_email_identity</source_model> 
+                            <frontend_type>select</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </email_sender>
+                        <sender_template>
+                        	<label>Email Template Send To Sender</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model> 
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sender_template>
+                        <recipient_template>
+                        	<label>Email Template For Recipients</label>
+                        	<source_model>adminhtml/system_config_source_email_template</source_model> 
+                            <frontend_type>select</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </recipient_template>
+					</fields>
+				</mail_info>
+				<capcha translate="label">
+                    <label>Capcha</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                    	<capcha_enabled>
+                    		<label>Enable Capcha</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                    	</capcha_enabled>
+						<background_image translate="label">
+                            <label>Background Image</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">mw_credit/capcha</upload_dir>
+                            <base_url type="media" scope_info="1">mw_credit/capcha</base_url>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </background_image>
+                        <image_width translate="label">
+                            <label>Capcha Image Width (px)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Default value : 255</comment>
+                        </image_width>
+                        <image_height translate="label">
+                            <label>Capcha Image Height (px)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Default value : 50</comment>
+                        </image_height>
+                        <perturbation translate="label">
+                            <label>Perturbation</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Default value : 0.7</comment>
+                        </perturbation>
+                        <code_length translate="label">
+                            <label>Code length (px)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Default value : 7</comment>
+                        </code_length>                        
+                        <use_transparent_text translate="label">
+                            <label>Use Transparent Text</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_transparent_text>
+                        <text_transparency_percentage translate="label">
+                            <label>Text Transparency Percentage</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>100 = completely transparent</comment>
+                        </text_transparency_percentage>
+                        <num_lines translate="label">
+                            <label>Number Of Line</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enter 0 or leave the field empty if not require</comment>
+                        </num_lines>
+                	</fields>
+                </capcha>
+                <author_information translate="label">
+                    <label>Author Information</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>50</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment>The Credit Extension is developed and supported by &lt;a href="http://www.mage-world.com/"&gt;www.Mage-World.com&lt;/a&gt;.
+							 If you need any support or have any question, please contact us at &lt;a href="mailto:support@mage-world.com"&gt;support@mage-world.com.&lt;/a&gt;
+                    </comment>
+                </author_information>
+				
+            </groups>
+        </credit>
+    </sections>
+</config>

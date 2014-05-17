@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Paypal
- * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -99,6 +99,7 @@ class Mage_Paypal_Model_Api_Nvp extends Mage_Paypal_Model_Api_Abstract
         'PAYFLOWCOLOR'   => 'payflowcolor',
         'LOCALECODE'     => 'locale_code',
         'PAL'            => 'pal',
+        'USERSELECTEDFUNDINGSOURCE' => 'funding_source',
 
         // transaction info
         'TRANSACTIONID'   => 'transaction_id',
@@ -229,6 +230,7 @@ class Mage_Paypal_Model_Api_Nvp extends Mage_Paypal_Model_Api_Abstract
         'GIROPAYCANCELURL', 'GIROPAYSUCCESSURL', 'BANKTXNPENDINGURL',
         'PAGESTYLE', 'HDRIMG', 'HDRBORDERCOLOR', 'HDRBACKCOLOR', 'PAYFLOWCOLOR', 'LOCALECODE',
         'BILLINGTYPE', 'SUBJECT', 'ITEMAMT', 'SHIPPINGAMT', 'TAXAMT', 'REQBILLINGADDRESS',
+        'USERSELECTEDFUNDINGSOURCE'
     );
     protected $_setExpressCheckoutResponse = array('TOKEN');
 
@@ -489,7 +491,7 @@ class Mage_Paypal_Model_Api_Nvp extends Mage_Paypal_Model_Api_Abstract
      * @var array
      */
     protected $_doReferenceTransactionRequest = array('REFERENCEID', 'PAYMENTACTION', 'AMT', 'ITEMAMT', 'SHIPPINGAMT',
-        'TAXAMT', 'INVNUM', 'NOTIFYURL'
+        'TAXAMT', 'INVNUM', 'NOTIFYURL', 'CURRENCYCODE',
     );
 
     protected $_doReferenceTransactionResponse = array('BILLINGAGREEMENTID', 'TRANSACTIONID');
@@ -541,6 +543,13 @@ class Mage_Paypal_Model_Api_Nvp extends Mage_Paypal_Model_Api_Abstract
      * @var bool
      */
     protected $_rawResponseNeeded = false;
+
+    /**
+     * API call HTTP headers
+     *
+     * @var array
+     */
+    protected $_headers = array();
 
     /**
      * API endpoint getter
@@ -630,11 +639,6 @@ class Mage_Paypal_Model_Api_Nvp extends Mage_Paypal_Model_Api_Abstract
         $this->_prepareExpressCheckoutCallRequest($this->_doExpressCheckoutPaymentRequest);
         $request = $this->_exportToRequest($this->_doExpressCheckoutPaymentRequest);
         $this->_exportLineItems($request);
-
-        if ($this->getAddress()) {
-            $request = $this->_importAddresses($request);
-            $request['ADDROVERRIDE'] = 1;
-        }
 
         $response = $this->call(self::DO_EXPRESS_CHECKOUT_PAYMENT, $request);
         $this->_importFromResponse($this->_paymentInformationResponse, $response);
@@ -941,7 +945,7 @@ class Mage_Paypal_Model_Api_Nvp extends Mage_Paypal_Model_Api_Abstract
         try {
             $http = new Varien_Http_Adapter_Curl();
             $config = array(
-                'timeout'    => 30,
+                'timeout'    => 60,
                 'verifypeer' => $this->_config->verifyPeer
             );
 
@@ -952,7 +956,13 @@ class Mage_Paypal_Model_Api_Nvp extends Mage_Paypal_Model_Api_Abstract
                 $config['ssl_cert'] = $this->getApiCertificate();
             }
             $http->setConfig($config);
-            $http->write(Zend_Http_Client::POST, $this->getApiEndpoint(), '1.1', array(), $this->_buildQuery($request));
+            $http->write(
+                Zend_Http_Client::POST,
+                $this->getApiEndpoint(),
+                '1.1',
+                $this->_headers,
+                $this->_buildQuery($request)
+            );
             $response = $http->read();
         } catch (Exception $e) {
             $debugData['http_error'] = array('error' => $e->getMessage(), 'code' => $e->getCode());
@@ -966,6 +976,7 @@ class Mage_Paypal_Model_Api_Nvp extends Mage_Paypal_Model_Api_Abstract
 
         $debugData['response'] = $response;
         $this->_debug($debugData);
+        $response = $this->_postProcessResponse($response);
 
         // handle transport error
         if ($http->getErrno()) {
@@ -1013,31 +1024,105 @@ class Mage_Paypal_Model_Api_Nvp extends Mage_Paypal_Model_Api_Abstract
     /**
      * Handle logical errors
      *
-     * @param array
+     * @param array $response
+     * @throws Mage_Core_Exception
      */
     protected function _handleCallErrors($response)
     {
+        $errors = $this->_extractErrorsFromResponse($response);
+        $errorsCount = count($errors);
+
+        if (!$errorsCount) {
+            return;
+        }
+
+        $exceptionCode = 0;
+
+        if ($errorsCount == 1 && $this->_isProcessableError($errors[0]['code'])) {
+            $exceptionCode = $errors[0]['code'];
+            $exceptionClass = 'Mage_Paypal_Model_Api_ProcessableException';
+        } else {
+            $exceptionClass = 'Mage_Core_Exception';
+        }
+
+        $errorMessages = array();
+
+        foreach ($errors as $error) {
+            $errorMessages[] = $error['message'];
+            $this->_callErrors[] = $error['code'];
+        }
+
+        $errorMessages = implode(' ', array_values($errorMessages));
+        $exceptionLogMessage = sprintf('PayPal NVP gateway errors: %s Correlation ID: %s. Version: %s.',
+            $errors,
+            isset($response['CORRELATIONID']) ? $response['CORRELATIONID'] : '',
+            isset($response['VERSION']) ? $response['VERSION'] : ''
+        );
+
+        $exception = new $exceptionClass($exceptionLogMessage, $exceptionCode);
+        Mage::logException($exception);
+
+        $exception->setMessage(Mage::helper('paypal')->__('PayPal gateway has rejected request. %s', $errorMessages));
+
+        throw $exception;
+    }
+
+    /**
+     * Format error message from error code, short error message and long error message
+     *
+     * @param string $errorCode
+     * @param string $shortErrorMessage
+     * @param string $longErrorMessage
+     * @return string
+     */
+    protected function _formatErrorMessage($errorCode, $shortErrorMessage, $longErrorMessage)
+    {
+        $longErrorMessage  = preg_replace('/\.$/', '', $longErrorMessage);
+        $shortErrorMessage = preg_replace('/\.$/', '', $shortErrorMessage);
+
+        return $longErrorMessage ? sprintf('%s (#%s: %s).', $longErrorMessage, $errorCode, $shortErrorMessage)
+            : sprintf('#%s: %s.', $errorCode, $shortErrorMessage);
+    }
+
+
+    /**
+     * Check whether PayPal error can be processed
+     *
+     * @param int $errorCode
+     * @return bool
+     */
+    protected function _isProcessableError($errorCode)
+    {
+        $processableErrorsList = $this->getProcessableErrors();
+
+        if (!$processableErrorsList || !is_array($processableErrorsList)) {
+            return false;
+        }
+
+        return in_array($errorCode, $processableErrorsList);
+    }
+
+    /**
+     * Extract errors from PayPal's response and return them in array
+     *
+     * @param array $response
+     * @return array
+     */
+    protected function _extractErrorsFromResponse($response)
+    {
         $errors = array();
+
         for ($i = 0; isset($response["L_ERRORCODE{$i}"]); $i++) {
-            $longMessage = isset($response["L_LONGMESSAGE{$i}"])
-                ? preg_replace('/\.$/', '', $response["L_LONGMESSAGE{$i}"]) : '';
-            $shortMessage = preg_replace('/\.$/', '', $response["L_SHORTMESSAGE{$i}"]);
-            $errors[] = $longMessage
-                ? sprintf('%s (#%s: %s).', $longMessage, $response["L_ERRORCODE{$i}"], $shortMessage)
-                : sprintf('#%s: %s.', $response["L_ERRORCODE{$i}"], $shortMessage);
-            $this->_callErrors[] = $response["L_ERRORCODE{$i}"];
+            $errorCode = $response["L_ERRORCODE{$i}"];
+            $errorMessage = $this->_formatErrorMessage($errorCode, $response["L_SHORTMESSAGE{$i}"],
+                $response["L_LONGMESSAGE{$i}"]);
+            $errors[] = array (
+                'code'    => $errorCode,
+                'message' => $errorMessage
+            );
         }
-        if ($errors) {
-            $errors = implode(' ', $errors);
-            $e = Mage::exception('Mage_Core', sprintf('PayPal NVP gateway errors: %s Correlation ID: %s. Version: %s.',
-                $errors,
-                isset($response['CORRELATIONID']) ? $response['CORRELATIONID'] : '',
-                isset($response['VERSION']) ? $response['VERSION'] : ''
-            ));
-            Mage::logException($e);
-            $e->setMessage(Mage::helper('paypal')->__('PayPal gateway has rejected request. %s', $errors));
-            throw $e;
-        }
+
+        return $errors;
     }
 
     /**
@@ -1146,18 +1231,8 @@ class Mage_Paypal_Model_Api_Nvp extends Mage_Paypal_Model_Api_Abstract
             Varien_Object_Mapper::accumulateByMap($data, $shippingAddress, $this->_shippingAddressMap);
             $this->_applyStreetAndRegionWorkarounds($shippingAddress);
             // PayPal doesn't provide detailed shipping name fields, so the name will be overwritten
-            $firstName = $data['SHIPTONAME'];
-            $lastName = null;
-            if (isset($data['FIRSTNAME']) && $data['LASTNAME']) {
-                $firstName = $data['FIRSTNAME'];
-                $lastName = $data['LASTNAME'];
-            }
             $shippingAddress->addData(array(
-                'prefix'     => null,
-                'firstname'  => $firstName,
-                'middlename' => null,
-                'lastname'   => $lastName,
-                'suffix'     => null,
+                'firstname'  => $data['SHIPTONAME'],
             ));
             $this->setExportedShippingAddress($shippingAddress);
         }
@@ -1178,9 +1253,8 @@ class Mage_Paypal_Model_Api_Nvp extends Mage_Paypal_Model_Api_Abstract
         // attempt to fetch region_id from directory
         if ($address->getCountryId() && $address->getRegion()) {
             $regions = Mage::getModel('directory/country')->loadByCode($address->getCountryId())->getRegionCollection()
-                ->addRegionCodeFilter($address->getRegion())
-                ->setPageSize(1)
-            ;
+                ->addRegionCodeOrNameFilter($address->getRegion())
+                ->setPageSize(1);
             foreach ($regions as $region) {
                 $address->setRegionId($region->getId());
                 $address->setExportedKeys(array_merge($address->getExportedKeys(), array('region_id')));
@@ -1462,5 +1536,32 @@ class Mage_Paypal_Model_Api_Nvp extends Mage_Paypal_Model_Api_Abstract
                 unset($requestFields[$key]);
             }
         }
+    }
+
+    /**
+     * Additional response processing.
+     * Hack to cut off length from API type response params.
+     *
+     * @param  array $response
+     * @return array
+     */
+    protected function _postProcessResponse($response)
+    {
+        foreach ($response as $key => $value) {
+            $pos = strpos($key, '[');
+
+            if ($pos === false) {
+                continue;
+            }
+
+            unset($response[$key]);
+
+            if ($pos !== 0) {
+                $modifiedKey = substr($key, 0, $pos);
+                $response[$modifiedKey] = $value;
+            }
+        }
+
+        return $response;
     }
 }

@@ -6,18 +6,18 @@
         </Web_QuickCheckout>
     </modules>
     <frontend>
-	<secure_url>
-	    <checkout_onestep>/checkout/onestep</checkout_onestep>
-	</secure_url>
-	<routers>
-	    <checkout>
-		<args>
-		    <modules>
-			<Web_QuickCheckout before="Mage_Checkout">Web_QuickCheckout</Web_QuickCheckout> 
-		    </modules>
-		</args>
-	    </checkout>
-	</routers>
+        <secure_url>
+            <checkout_onestep>/checkout/onestep</checkout_onestep>
+        </secure_url>
+        <routers>
+            <checkout>
+                <args>
+                    <modules>
+                        <Web_QuickCheckout before="Mage_Checkout">Web_QuickCheckout</Web_QuickCheckout>
+                    </modules>
+                </args>
+            </checkout>
+        </routers>
         <layout>
             <updates>
                 <quickcheckout>
@@ -25,8 +25,8 @@
                 </quickcheckout>
             </updates>
         </layout>
-	<events>
-	    <checkout_controller_quickcheckout_save_order_after>
+        <events>
+            <checkout_controller_quickcheckout_save_order_after>
                 <observers>
                     <giftmessage>
                         <type>model</type>
@@ -34,8 +34,8 @@
                         <method>checkoutEventCreateGiftMessage</method>
                     </giftmessage>
                 </observers>
-	    </checkout_controller_quickcheckout_save_order_after>
-	</events>
+            </checkout_controller_quickcheckout_save_order_after>
+        </events>
         <translate>
             <modules>
                 <Web_QuickCheckout>
@@ -48,63 +48,17 @@
     </frontend>
     <admin>
         <routers>
-	    <quickcheckoutadmin>
-		<use>admin</use>
-		<args>
-		    <module>Web_QuickCheckout</module>
-		    <frontName>quickcheckoutadmin</frontName>
-		</args>
-	    </quickcheckoutadmin>
+            <quickcheckoutadmin>
+                <use>admin</use>
+                <args>
+                    <module>Web_QuickCheckout</module>
+                    <frontName>quickcheckoutadmin</frontName>
+                </args>
+            </quickcheckoutadmin>
         </routers>
     </admin>
-     <adminhtml>
-	<menu>
-	    <Web_Extensions>
-		<title>Web Extensions</title>
-		<sort_order>71</sort_order>
-		<children>
-		    <quickcheckout module="quickcheckout">
-			<title>QuickCheckout</title>
-			<sort_order>71</sort_order>
-			<children>
-			    <settings translate="title">
-			      <title>Settings</title>
-			      <sort_order>2</sort_order>
-			      <action>adminhtml/system_config/edit/section/quickcheckout/</action>
-			    </settings>
-			</children>
-		    </quickcheckout>
-		</children>
-	     </Web_Extensions>
-	</menu>
-	<acl>
-	    <resources>
-		<all>
-		    <title>Allow Everything</title>
-		</all>
-		<admin>
-		    <children>
-			<Web_Extensions>
-			    <title>Web Extensions</title>
-			    <sort_order>71</sort_order>
-			    <action>adminhtml/system_config/edit/section/quickcheckout/</action>
-			</Web_Extensions>
-			<system>
-			    <children>
-				<config>
-				    <children>
-					<quickcheckout translate="title" module="quickcheckout">
-					    <title>QuickCheckout Section</title>
-					</quickcheckout>
-				    </children>
-				</config>
-			    </children>
-			</system>
-		    </children>
-		</admin>
-	    </resources>
-	</acl>
-	<layout>
+    <adminhtml>
+        <layout>
             <updates>
                 <quickcheckout module="quickcheckout">
                     <file>quickcheckout.xml</file>
@@ -113,7 +67,7 @@
         </layout>
     </adminhtml>
     <global>
-    
+
         <models>
             <quickcheckout>
                 <class>Web_QuickCheckout_Model</class>
@@ -124,19 +78,23 @@
                 <class>Web_QuickCheckout_Block</class>
             </quickcheckout>
         </blocks>
-	<fieldsets>
-    		<sales_convert_quote>
-    			<quickcheckout_comment><to_order>quickcheckout_comment</to_order></quickcheckout_comment>
-			<quickcheckout_heard><to_order>quickcheckout_heard</to_order></quickcheckout_heard>
-    		</sales_convert_quote>
-    	</fieldsets>
+        <fieldsets>
+            <sales_convert_quote>
+                <quickcheckout_comment>
+                    <to_order>quickcheckout_comment</to_order>
+                </quickcheckout_comment>
+                <quickcheckout_heard>
+                    <to_order>quickcheckout_heard</to_order>
+                </quickcheckout_heard>
+            </sales_convert_quote>
+        </fieldsets>
         <helpers>
             <quickcheckout>
                 <class>Web_QuickCheckout_Helper</class>
             </quickcheckout>
         </helpers>
         <resources>
-	    <quickcheckout_setup>
+            <quickcheckout_setup>
                 <setup>
                     <module>Web_QuickCheckout</module>
                 </setup>
@@ -144,7 +102,7 @@
                     <use>core_setup</use>
                 </connection>
             </quickcheckout_setup>
-	    <quickcheckout_write>
+            <quickcheckout_write>
                 <connection>
                     <use>core_write</use>
                 </connection>
@@ -153,49 +111,56 @@
                 <connection>
                     <use>core_read</use>
                 </connection>
-            </quickcheckout_read>	
+            </quickcheckout_read>
         </resources>
-	<events>
-	    <controller_action_predispatch_checkout_onepage_index>
-		<observers>
-		    <web_quickcheckout_observer>
-			<type>singleton</type>
-			<class>quickcheckout/observer</class>
-			<method>QuickCheckoutRedirect</method>
-		    </web_quickcheckout_observer>
-		</observers>
-	    </controller_action_predispatch_checkout_onepage_index>
-	    <adminhtml_controller_action_predispatch_start>
-		<observers>
-		  <web_quickcheckout_event>
-		    <type>singleton</type>
-		    <class>Web_QuickCheckout_Controller_Event</class>
-		    <method>customTheme</method>
-		  </web_quickcheckout_event>
-		</observers>
-	    </adminhtml_controller_action_predispatch_start>
-	</events>
+        <events>
+            <controller_action_predispatch_checkout_onepage_index>
+                <observers>
+                    <web_quickcheckout_observer>
+                        <type>singleton</type>
+                        <class>quickcheckout/observer</class>
+                        <method>QuickCheckoutRedirect</method>
+                    </web_quickcheckout_observer>
+                </observers>
+            </controller_action_predispatch_checkout_onepage_index>
+            <adminhtml_controller_action_predispatch_start>
+                <observers>
+                    <web_quickcheckout_event>
+                        <type>singleton</type>
+                        <class>Web_QuickCheckout_Controller_Event</class>
+                        <method>customTheme</method>
+                    </web_quickcheckout_event>
+                </observers>
+            </adminhtml_controller_action_predispatch_start>
+        </events>
     </global>
     <default>
-	<quickcheckout>
-	    <general>
-		<active>1</active>
-		<title><![CDATA[Quick Checkout]]></title>
-		<enable_content>1</enable_content>
-		<content><![CDATA[Enter the required options for checkout process]]></content>
-		<label_comments><![CDATA[Enter Any Special Comments]]></label_comments>
-		<enable_newsletter>1</enable_newsletter><enable_comments>1</enable_comments>
-		<enable_cartupdate>1</enable_cartupdate><enable_coupon>1</enable_coupon>
-		<enable_login>1</enable_login><enable_register>1</enable_register>
-		<update_country>1</update_country><update_zip>1</update_zip><update_state>1</update_state>
-	    </general>
-	    <css_style>
-		<admin><![CDATA[quickcheckout]]></admin>
-		<agreement>200</agreement>
-	    </css_style>
-	    <quickheared>
-		<enable_quickheared>1</enable_quickheared><label_quickheared><![CDATA[Which Source Lead You To Us]]></label_quickheared><options_quickheared><![CDATA[Google,Magazine Advertising,Newspaper,Friend]]></options_quickheared>
-	    </quickheared>
-	</quickcheckout>
+        <quickcheckout>
+            <general>
+                <active>1</active>
+                <title><![CDATA[Quick Checkout]]></title>
+                <enable_content>1</enable_content>
+                <content><![CDATA[Enter the required options for checkout process]]></content>
+                <label_comments><![CDATA[Enter Any Special Comments]]></label_comments>
+                <enable_newsletter>1</enable_newsletter>
+                <enable_comments>1</enable_comments>
+                <enable_cartupdate>1</enable_cartupdate>
+                <enable_coupon>1</enable_coupon>
+                <enable_login>1</enable_login>
+                <enable_register>1</enable_register>
+                <update_country>1</update_country>
+                <update_zip>1</update_zip>
+                <update_state>1</update_state>
+            </general>
+            <css_style>
+                <admin><![CDATA[quickcheckout]]></admin>
+                <agreement>200</agreement>
+            </css_style>
+            <quickheared>
+                <enable_quickheared>1</enable_quickheared>
+                <label_quickheared><![CDATA[Which Source Lead You To Us]]></label_quickheared>
+                <options_quickheared><![CDATA[Google,Magazine Advertising,Newspaper,Friend]]></options_quickheared>
+            </quickheared>
+        </quickcheckout>
     </default>
 </config>

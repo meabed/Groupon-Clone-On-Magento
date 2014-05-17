@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<config>
-    <modules>
-        <Webkul_Customerprofile>
-            <active>true</active>
-            <codePool>local</codePool>
-        </Webkul_Customerprofile>
-    </modules>
-</config>

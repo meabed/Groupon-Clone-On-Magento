@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Weee
- * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -39,6 +39,8 @@ class Mage_Weee_Model_Total_Invoice_Weee extends Mage_Sales_Model_Order_Invoice_
 
         $totalTax = 0;
         $baseTotalTax = 0;
+        $weeeInclTax = 0;
+        $baseWeeeInclTax = 0;
 
         foreach ($invoice->getAllItems() as $item) {
             $orderItem = $item->getOrderItem();
@@ -48,8 +50,21 @@ class Mage_Weee_Model_Total_Invoice_Weee extends Mage_Sales_Model_Order_Invoice_
                 continue;
             }
 
+            $weeeRowDiscountAmount = $orderItem->getDiscountAppliedForWeeeTax();
+            $weeeDiscountAmount = $invoice->roundPrice(
+                $weeeRowDiscountAmount / $orderItemQty * $item->getQty(),
+                'regular', true
+            );
+            $baseWeeeRowDiscountAmount = $orderItem->getBaseDiscountAppliedForWeeeTax();
+            $baseWeeeDiscountAmount = $invoice->roundPrice(
+                $baseWeeeRowDiscountAmount / $orderItemQty * $item->getQty(),
+                'base', true
+            );
             $weeeTaxAmount = $item->getWeeeTaxAppliedAmount() * $item->getQty();
             $baseWeeeTaxAmount = $item->getBaseWeeeTaxAppliedAmount() * $item->getQty();
+
+            $weeeTaxAmountInclTax = Mage::helper('weee')->getWeeeTaxInclTax($item) * $item->getQty();
+            $baseWeeeTaxAmountInclTax = Mage::helper('weee')->getBaseWeeeTaxInclTax($item) * $item->getQty();
 
             $item->setWeeeTaxAppliedRowAmount($weeeTaxAmount);
             $item->setBaseWeeeTaxAppliedRowAmount($baseWeeeTaxAmount);
@@ -61,6 +76,9 @@ class Mage_Weee_Model_Total_Invoice_Weee extends Mage_Sales_Model_Order_Invoice_
                 $one['base_row_amount_incl_tax'] = $one['base_amount_incl_tax'] * $item->getQty();
                 $one['row_amount_incl_tax'] = $one['amount_incl_tax'] * $item->getQty();
 
+                $one['weee_discount'] = $weeeDiscountAmount;
+                $one['base_weee_discount'] = $baseWeeeDiscountAmount;
+
                 $newApplied[] = $one;
             }
             Mage::helper('weee')->setApplied($item, $newApplied);
@@ -68,8 +86,11 @@ class Mage_Weee_Model_Total_Invoice_Weee extends Mage_Sales_Model_Order_Invoice_
             $item->setWeeeTaxRowDisposition($item->getWeeeTaxDisposition() * $item->getQty());
             $item->setBaseWeeeTaxRowDisposition($item->getBaseWeeeTaxDisposition() * $item->getQty());
 
-            $totalTax += $weeeTaxAmount;
-            $baseTotalTax += $baseWeeeTaxAmount;
+            $totalTax += $weeeTaxAmount - $weeeDiscountAmount;
+            $baseTotalTax += $baseWeeeTaxAmount - $baseWeeeDiscountAmount;
+
+            $weeeInclTax += $weeeTaxAmountInclTax;
+            $baseWeeeInclTax += $baseWeeeTaxAmountInclTax;
         }
 
         /*
@@ -98,6 +119,11 @@ class Mage_Weee_Model_Total_Invoice_Weee extends Mage_Sales_Model_Order_Invoice_
 
             $invoice->setTaxAmount($invoice->getTaxAmount() + $totalTax);
             $invoice->setBaseTaxAmount($invoice->getBaseTaxAmount() + $baseTotalTax);
+        }
+
+        if (!$invoice->isLast()) {
+            $invoice->setSubtotalInclTax($invoice->getSubtotalInclTax() + $weeeInclTax);
+            $invoice->setBaseSubtotalInclTax($invoice->getBaseSubtotalInclTax() + $baseWeeeInclTax);
         }
 
         $invoice->setGrandTotal($invoice->getGrandTotal() + $totalTax);

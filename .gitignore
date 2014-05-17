@@ -1,5 +1,5 @@
-var/
-media/
+/var/
+/media/
 # Compiled source #
 ###################
 *.com

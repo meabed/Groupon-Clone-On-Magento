@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Web_States>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Directory/>
+
+            </depends>
+        </Web_States>
+    </modules>
+</config>

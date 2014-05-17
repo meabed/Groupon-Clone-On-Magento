@@ -22,6 +22,17 @@
                 </deal>
             </updates>
         </layout>
+        <events>
+            <checkout_cart_save_before>
+                <observers>
+                    <disable_add_expired_products>
+                        <type>model</type>
+                        <class>Web_Deal_Model_Observer</class>
+                        <method>disableAddToCart</method>
+                    </disable_add_expired_products>
+                </observers>
+            </checkout_cart_save_before>
+        </events>
     </frontend>
     <global>
         <helpers>
@@ -39,6 +50,12 @@
             <deal>
                 <class>Web_Deal_Block</class>
             </deal>
+            <adminhtml>
+                <rewrite>
+                    <catalog_product_grid>Web_Deal_Block_Adminhtml_Catalog_Product_Grid</catalog_product_grid>
+                    <sales_order_grid>Web_Deal_Block_Adminhtml_Sales_Order_Grid</sales_order_grid>
+                </rewrite>
+            </adminhtml>
         </blocks>
         <models>
             <deal>
@@ -66,6 +83,7 @@
                 </connection>
             </deal_read>
         </resources>
+
     </global>
     <admin>
         <routers>
@@ -107,4 +125,16 @@
             </updates>
         </layout>
     </adminhtml>
+    <crontab>
+        <jobs>
+            <Web_Voucher_autorenew>
+                <schedule>
+                    <cron_expr>5 0 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>Web_Deal_Model_Observer::renewDeal</model>
+                </run>
+            </Web_Voucher_autorenew>
+        </jobs>
+    </crontab>
 </config>

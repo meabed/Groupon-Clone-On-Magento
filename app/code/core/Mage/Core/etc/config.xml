@@ -21,14 +21,14 @@
  *
  * @category    Mage
  * @package     Mage_Core
- * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 -->
 <config>
     <modules>
         <Mage_Core>
-            <version>1.6.0.2</version>
+            <version>1.6.0.4</version>
         </Mage_Core>
     </modules>
     <global>
@@ -146,6 +146,22 @@
                 <writer_model>Zend_Log_Writer_Stream</writer_model>
             </core>
         </log>
+        <url_rewrite>
+            <model>core/url_rewrite</model>
+        </url_rewrite>
+        <request_rewrite>
+            <model>core/url_rewrite_request</model>
+        </request_rewrite>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <security_domain_policy>
+                        <class>Mage_Core_Model_Domainpolicy</class>
+                        <method>addDomainPolicyHeader</method>
+                    </security_domain_policy>
+                </observers>
+            </controller_action_predispatch>
+        </events>
     </global>
     <frontend>
         <routers>
@@ -209,6 +225,14 @@
                     </synchronize_notification>
                 </observers>
             </show_synchronize_message>
+            <clean_cache_by_tags>
+                <observers>
+                    <clean_cache_observer>
+                        <class>core/observer</class>
+                        <method>cleanCacheByTags</method>
+                    </clean_cache_observer>
+                </observers>
+            </clean_cache_by_tags>
         </events>
     </adminhtml>
     <install>
@@ -227,7 +251,7 @@
             <package>
                 <area>frontend</area>
                 <default_theme>default</default_theme>
-                <name>default</name>
+                <name>rwd</name>
                 <theme>default</theme>
                 <translate>default</translate>
             </package>
@@ -274,6 +298,7 @@
                     <compiled_css_secure_folder>css_secure</compiled_css_secure_folder>
                     <compiled_js_folder>js</compiled_js_folder>
                 </allowed_resources>
+                <ignored_resources>.svn,.htaccess</ignored_resources>
             </media_storage_configuration>
         </system>
         <trans_email>
@@ -363,6 +388,8 @@
             </url>
             <security>
                 <use_form_key>1</use_form_key>
+                <domain_policy_backend>2</domain_policy_backend>
+                <domain_policy_frontend>2</domain_policy_frontend>
             </security>
         </admin>
         <general>

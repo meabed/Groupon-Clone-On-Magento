@@ -1,174 +1,179 @@
 <?php
-$_product = $this->getProduct();
-$_order = $this->getOrder();
 $_voucher = $this->getVoucher();
+$_order = $this->getOrder();
 $home_url = Mage::helper('core/url')->getHomeUrl();
-$price = (int)$_product->getPrice();
-$dealPrice = (int)$_product->getDealPrice();
 $currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
-?>
-<style type="text/css">
-    
-    :focus {
-        outline: 0 !important;
-    }
+if ($_voucher->getProductId() > 1):
+    $_product = $this->getProduct();
+    $price = (int)$_product->getPrice();
+    $dealPrice = (int)$_product->getDealPrice();
+    ?>
+    <style type="text/css">
 
-    a:visited {
-        color: #143EA7 !important;
-        cursor: pointer !important;
-        text-decoration: none !important;
-    }
+        :focus {
+            outline: 0 !important;
+        }
 
-    a:hover {
-        text-decoration: underline !important;
-    }
-</style>
-<table cellspacing="0" border="0"
-       style="font-size: 100%; font-family:Arial; border-collapse: separate; outline: 0; border: 0; border-spacing: 0; background: transparent; padding: 0; margin: 0 auto;"
-       cellpadding="0">
-    <tbody style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background: transparent;">
-    <tr style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background: transparent;">
-        <td valign="top" width="590"
-            style="font-weight: normal; font-size: 100%; font-family:Arial; outline: 0; width: 586px; padding: 3px; background: transparent; border: 0; text-align: left; margin: 0;">
-            <table cellspacing="0" border="0" cellpadding="0"
-                   style="font-size: 100%; font-family:Arial; border-collapse: separate; outline: 0; border: 0; border-spacing: 0; padding: 0; margin: 0;">
-                <tr>
-                    <td colspan="2" style="height: 40px;">
+        a:visited {
+            color: #143EA7 !important;
+            cursor: pointer !important;
+            text-decoration: none !important;
+        }
+
+        a:hover {
+            text-decoration: underline !important;
+        }
+    </style>
+    <table cellspacing="0" border="0"
+           style="font-size: 100%; font-family:Arial; border-collapse: separate; outline: 0; border: 0; border-spacing: 0; background: transparent; padding: 0; margin: 0 auto;"
+           cellpadding="0">
+        <tbody style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background: transparent;">
+        <tr style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background: transparent;">
+            <td valign="top" width="680"
+                style="font-weight: normal; font-size: 100%; font-family:Arial; outline: 0; width: 680px; padding: 3px; background: transparent; border: 0; text-align: left; margin: 0;">
+                <table cellspacing="0" border="0" cellpadding="0"
+                       style="font-size: 100%; font-family:Arial; border-collapse: separate; outline: 0; border: 0; border-spacing: 0; padding: 0; margin: 0;width: 680px;">
+                    <tr>
+                        <td colspan="2" style="height: 40px;">
                         <span style="color: #1f2178; cursor:pointer;" onclick="javascript:window.print()">
-                            <img src="<?php echo $this->getSkinUrl('images/print_en.jpg')?>" border="0" height="16"
-                                 alt="Print" width="16"
-                                 style="margin: 0; padding: 0 5px 0 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background: transparent;"/>
+                            <i class="icon-print"></i>
                             Print this voucher
                         </span>
-
-                        <img src="<?php echo $this->getSkinUrl('images/pdf_en.jpg')?>" border="0" height="16"
+                            <!--<img src="<?php echo $this->getSkinUrl('images/pdf_en.jpg')?>" border="0" height="16"
                              alt="Print" width="17"
                              style="margin: 0; padding: 0 5px 0 20px; border: 0; outline: 0; font-size: 100%; font-family:Arial; background: transparent;"/>
-                        <a href="/renderPDF/printVoucher?voucherId=190985" style="color: #1f2178;">Download PDF</a>
+                        <a href="/renderPDF/printVoucher?voucherId=190985" style="color: #1f2178;">Download PDF</a>-->
 
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <table cellspacing="0" border="0" cellpadding="0"
-                               style="font-size: 100%; font-family:Arial; border-collapse: separate; outline: 0; border: 1px dashed #aaa; border-spacing: 0; padding: 0; margin: 0;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <table cellspacing="0" border="0" cellpadding="0"
+                                   style="font-size: 100%; font-family:Arial; border-collapse: separate; outline: 0; border: 1px dashed #aaa; border-spacing: 0; padding: 0; margin: 0;width: 680px">
 
-                            <tr style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background-color: #185a97;">
-                                <td style="width: 330px; border-bottom: 1px dashed #aaa; padding: 5px 5px 5px 15px;">
-                                    <img src="<?php echo $this->getSkinUrl('images/logo_small_en.jpg')?>" border="0"
-                                         height="44"
-                                         alt="Saveit - <?php echo $home_url;?>" width="316"
-                                         style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background: transparent;"/>
-                                </td>
-                                <td style="width: 230px; text-align: right; border-bottom: 1px dashed #aaa;">
-                                    <span style="border: 1px solid #aaa; background-color: #fff; font-weight: bold; font-family:Arial; padding: 6px 10px; margin-right: 15px;">Voucher Code: <?php echo $_voucher->getDealVoucherCode();?></span>
-                                </td>
-                            </tr>
+                                <tr style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background-color: #C6E9FC;">
+                                    <td style="width: 320px; border-bottom: 1px dashed #aaa; padding: 5px 5px 5px 15px;">
+                                        <img src="<?php echo $this->getSkinUrl('img/logo.png') ?>" border="0" alt="<?php echo $home_url; ?>"
+                                             width="250" height="75"
+                                             style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background: transparent;"/>
+                                    </td>
+                                    <td style="width: 230px; text-align: right; border-bottom: 1px dashed #aaa;">
+                                        <span
+                                            style="border: 1px solid #aaa; background-color: #fff; font-weight: bold; font-family:Arial; padding: 6px 10px; margin-right: 15px;float: right;margin-top: 23px">Voucher Code: <?php echo $_voucher->getDealVoucherCode(
+                                            ); ?></span>
+                                    </td>
+                                </tr>
 
-                            <tr>
-                                <td colspan="2">
-                                    <table cellspacing="0" border="0" cellpadding="0"
-                                           style="font-size: 100%; font-family:Arial; border-collapse: separate; outline: 0; border: 0; border-spacing: 0; padding: 0; margin: 0;">
-                                        <tr>
-                                            <td style="padding: 15px;">
+                                <tr>
+                                    <td colspan="2">
+                                        <table cellspacing="0" border="0" cellpadding="0"
+                                               style="font-size: 100%; font-family:Arial; border-collapse: separate; outline: 0; border: 0; border-spacing: 0; padding: 0; margin: 0;">
+                                            <tr>
+                                                <td style="padding: 15px; width:325px">
 
-                                                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize(246, 165);?>"
-                                                     border="0" height="165"
-                                                     alt="A stunning full day sailing adventure around the breathtaking mountains and magnificent bays of Fujairah!"
-                                                     width="246"
-                                                     style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background: transparent;"/>
+                                                    <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize(325, 165); ?>"
+                                                         border="0" height="165" width="325"
+                                                         style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; font-family:Arial; background: transparent;"/>
 
-                                            </td>
-                                            <td style="padding: 5px 15px 0 0; vertical-align: top;">
-                                                <h2 style="font-size: 14px; font-family:Arial;">Voucher
-                                                    for <?php echo $_product->getName();?></h2>
+                                                </td>
+                                                <td style="padding: 5px 15px 0 0; vertical-align: top;" rowspan="2">
+                                                    <br>
 
-                                                <p>A stunning full day sailing adventure around the breathtaking
-                                                    mountains and magnificent bays of Fujairah!</p>
+                                                    <h2 style="font-size: 14px; font-family:Arial; line-height: 22px;"><?php echo $_product->getVoucherTitle(
+                                                        ); ?></h2>
+                                                    <!--<p><?php //echo $_product->getShortDescription();?></p>-->
+                                                    <br>
 
-                                                <p style="font-weight: bold; font-size: 20px; font-family:Arial; margin: 0;">
-                                                    Voucher Value: <?php echo $price . ' ' . $currency_code;?></p>
+                                                    <p style="font-weight: bold; font-size: 20px; font-family:Arial; margin: 0;">
+                                                        Voucher
+                                                        Value: <?php echo (int)$_product->getOriginalPrice() . ' ' . $currency_code; ?></p>
 
-                                                <p style="font-weight: bold; font-family:Arial; margin: 0;">Voucher is
-                                                    valid from 01-05-2011 to 31-10-2011</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2" style="padding: 0 15px;"><?php echo $_product->getMerchantName();?> <br/><?php echo $_product->getMerchantAddress();?> <br> Tel: <?php echo $_product->getMerchantPhone();?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2">
-                                                <table cellspacing="0" border="0"
-                                                       style="font-size: 100%; font-family:Arial; border-collapse: separate; outline: 0; border-top: 1px dashed #aaa; border-bottom: 1px dashed #aaa; border-spacing: 0; background: #edf4fa; padding: 15px; margin: 20px 0;"
-                                                       cellpadding="0">
-                                                    <tr>
-                                                        <td width="260"
-                                                            style="vertical-align: top; padding: 0 10px 0 10px;">
-                                                            <h2 style="margin: 0; padding: 0 0 10px;">Highlights</h2>
-                                                            <span><ul>
-                                                                <?php $list = explode("\n", $_product->getHighlights());
-                                                                foreach ($list as $item):?>
-                                                                    <li><?php echo trim($item);?></li>
-                                                                    <?php endforeach;?>
-                                                            </ul></span>
-                                                        </td>
-                                                        <td width="310" style="vertical-align: top;">
-                                                            <h2 style="margin: 0; padding: 0 0 10px;">The fine
-                                                                print</h2>
+                                                    <p style="font-weight: bold; font-family:Arial; margin: 0;">Voucher is
+                                                        valid
+                                                        till    <?php echo date('d, M Y', strtotime($_order->getVoucherDate())); ?></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 0 15px;" colspan='2'>
+                                                    <?php if ($_product->getCompanyName()): ?>
+                                                        <strong>To use or book your voucher contact <?php echo $_product->getCompanyName(); ?>:</strong><br>
+                                                    <?php endif; ?>
+                                                    <br/>
+                                                    <?php if ($_product->getCompanyAddress()): ?>
+                                                        <?php echo $_product->getCompanyAddress(); ?> <br>
+                                                    <?php endif; ?>
+                                                    <?php if ($_product->getCompanyEmail()): ?>
+                                                        <strong><?php echo $_product->getCompanyEmail(); ?></strong> <br>
+                                                    <?php endif; ?>
+                                                    <?php if ($_product->getCompanyContact()): ?>
+                                                        Tel: <strong><?php echo $_product->getCompanyContact(); ?></strong><br/>
+                                                    <?php endif; ?>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table cellspacing="0" border="0"
+                                                           style="font-size: 100%; font-family:Arial; border-collapse: separate; outline: 0; border-top: 1px dashed #aaa; border-bottom: 1px dashed #aaa; border-spacing: 0; background: #edf4fa; padding: 15px; margin: 20px 0;width: 100%"
+                                                           cellpadding="0">
+                                                        <tr>
+                                                            <td width="570"
+                                                                style="vertical-align: top; padding: -1 10px 0 10px;">
+                                                                <h2 style="margin: 0; padding: 0 0 10px;">The Fine Print</h2>
                                                             <span>
-                                                                <ul>
-                                                                    <?php $list = explode("\n", $_product->getBuyTerms());
+                                                                <ul style="list-style:inside disc;">
+                                                                    <?php $list = explode("\n", $_product->getFinePrint());
                                                                     foreach ($list as $item):?>
-                                                                        <li><?php echo trim($item);?></li>
-                                                                        <?php endforeach;?>
-                                                                    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('product_terms')->toHtml()?>
-                                                                </ul>
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                        <tr>
+                                                                        <li><?php echo trim($item); ?></li>
+                                                                    <?php endforeach; ?>
+                                                                </ul></span>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
 
-                                            <td style="padding: 0 15px 15px 15px;">
-                                                <b>This is how you use it:</b>
-                                                <ul style="margin: 0pt; padding: 10px 0 0 18px;">
-                                                    <li style="list-style: decimal outside none; margin: 0pt; padding: 0pt;">
-                                                        Print out the voucher
-                                                    </li>
-                                                    <li style="list-style: decimal outside none; margin: 0pt; padding: 0pt;">
-                                                        Make an appointment with the provider
-                                                    </li>
-                                                    <li style="list-style: decimal outside none; margin: 0pt; padding: 0pt;">
-                                                        Dont forget to bring your voucher
-                                                    </li>
-                                                    <li style="list-style: decimal outside none; margin: 0pt; padding: 0pt;">
-                                                        Use your voucher and enjoy
-                                                    </li>
-
-                                                </ul>
-                                            </td>
-                                            <td style="text-align: right; vertical-align: bottom; padding: 15px;"></td>
-                                        </tr>
-                                        <tr>
+                                                <td style="padding: 0 15px 15px 15px;" colspan='2'>
+                                                    <b>How to use this voucher:</b>
+                                                    <ul style="margin: 0pt; padding: 10px 0 0 18px;">
+                                                        <?php if ($_product->getCompanyName()): ?>
+                                                            <li style="list-style: decimal outside none; margin: 0pt; padding: 0pt;">
+                                                                Call and make an appointment with <?php echo $_product->getCompanyName(); ?>.
+                                                            </li>
+                                                        <?php endif; ?>
+                                                        <?php if ($_product->getCompanyEmail()): ?>
+                                                            <li style="list-style: decimal outside none; margin: 0pt; padding: 0pt;">
+                                                                If required email a copy of this voucher to <?php echo $_product->getCompanyEmail(); ?>
+                                                            </li>
+                                                        <?php endif; ?>
+                                                        <li style="list-style: decimal outside none; margin: 0pt; padding: 0pt;">
+                                                            Dont forget to bring your voucher before visiting <?php echo $_product->getCompanyName(); ?>.
+                                                        </li>
+                                                        <li style="list-style: decimal outside none; margin: 0pt; padding: 0pt;">
+                                                            Enjoy the experience!
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                <td style="text-align: right; vertical-align: bottom; padding: 15px;"></td>
+                                            </tr>
+                                            <!--<tr>
                                             <td colspan="2">
                                                 <img src="<?php echo $this->getSkinUrl('images/voucher_footer_en.png')?>"
                                                      border="0" height="" alt="" width=""
                                                      style="margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; background: transparent;"/>
                                             </td>
-                                        </tr>
+                                        </tr>-->
 
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+<? endif; ?>

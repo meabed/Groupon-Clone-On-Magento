@@ -111,9 +111,7 @@
                 <resourceModel>voucher_mysql4</resourceModel>
             </voucher>
             <voucher_mysql4>
-                <class>
-                    Web_Voucher_Model_Mysql4
-                </class>
+                <class>Web_Voucher_Model_Mysql4</class>
                 <entities>
                     <vouchers>
                         <table>deal_voucher</table>

@@ -61,7 +61,7 @@ Default layout, loads most of the pages
                 <action method="addItem"><type>skin_css</type><name>css/main.css</name></action>
                 <action method="addItem"><type>skin_css</type><name>css/anythingslider.css</name></action>
                 <action method="addItem"><type>skin_js</type><name>js/bootstrap.min.js</name></action>
-                <action method="addItem"><type>skin_js</type><name>js/jquery.anythingslider.min.js</name></action>
+                <!--<action method="addItem"><type>skin_js</type><name>js/jquery.anythingslider.min.js</name></action>-->
                 <action method="addItem"><type>skin_js</type><name>js/timer.js</name></action>
 
                 <action method="addItem"><type>js</type><name>lib/ds-sleight.js</name><params/><if>lt IE 7</if></action>
@@ -81,7 +81,7 @@ Default layout, loads most of the pages
                     <label>Navigation Bar</label>
                     <block type="deal/html_topmenu" name="catalog.topnav" template="page/html/topmenu.phtml"/>
                 </block>
-                <block type="deal/subscribe" name="top.subscribe" as="topSubscribe" translate="label" template="page/html/email.subscribe.phtml" />
+                <block type="newsletter/subscribe" name="top.subscribe" as="topSubscribe" translate="label" template="page/html/email.subscribe.phtml" />
 
                 <block type="page/html_wrapper" name="top.container" as="topContainer" translate="label">
                     <label>Page Header</label>

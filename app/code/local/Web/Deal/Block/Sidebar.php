@@ -18,6 +18,7 @@ class Web_Deal_Block_Sidebar extends Mage_Core_Block_Template
     {
         if($this->_category){
             $this->_catproducts = Mage::getModel('catalog/product')->getCollection()
+
                 ->addAttributeToSelect('*')
               //->addAttributeToFilter('main_deal',array('eq'=>'1'))
                 ->addAttributeToFilter('start_date',array('to'=>Mage::getModel('core/date')->date('Y-m-d H:i:s')))
@@ -27,7 +28,10 @@ class Web_Deal_Block_Sidebar extends Mage_Core_Block_Template
                 ->addCategoryFilter($this->_category)
                 ->addAttributeToFilter('entity_id',array('nin'=>$ex))
                 ->addAttributeToFilter('status', array('eq' => Mage_Catalog_Model_Product_Status::STATUS_ENABLED))
-                ->load();
+                ->getAllIds();
+//            $this->_catproducts = Mage::getModel('catalog/product')->getCollection()
+//                                    ->addFieldToFilter('entity_id',array('in'=>array_unique($this->_catproductsIds)))
+//                                    ->load();
         }
 
 
@@ -49,7 +53,7 @@ class Web_Deal_Block_Sidebar extends Mage_Core_Block_Template
         {
             $qtyData[$qty->getSku()] = (int) $qty->getOrderedQty();
         }*/
-        return array('products'=>$this->_catproducts);
+        return array('products'=>array_unique($this->_catproducts));
     }
     public function getOtherProducts($ex = array())
     {
@@ -67,8 +71,11 @@ class Web_Deal_Block_Sidebar extends Mage_Core_Block_Template
             ->addAttributeToFilter('status', array('eq' => Mage_Catalog_Model_Product_Status::STATUS_ENABLED))
             ->addAttributeToFilter('entity_id',array('nin'=>$ex))
             ->addAttributeToFilter('category_id', array('in' => $catIds))
+            ->getAllIds();
 
-            ->load();
-        return array('products'=>$this->_products);
+//        $this->_products = Mage::getModel('catalog/product')->getCollection()
+//            ->addFieldToFilter('entity_id',array('in'=>array_unique($this->_productsIds)))
+//            ->load();
+        return array('products'=>array_unique($this->_products));
     }
 }

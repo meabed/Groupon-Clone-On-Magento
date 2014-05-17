@@ -24,6 +24,15 @@
  * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
  * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
+                     <host><![CDATA[localhost]]></host>
+                    <username><![CDATA[root]]></username>
+                    <password><![CDATA[meabed]]></password>
+                    <dbname><![CDATA[mageme]]></dbname>
+                    <initStatements><![CDATA[SET NAMES utf8]]></initStatements>
+                    <model><![CDATA[mysql4]]></model>
+                    <type><![CDATA[pdo_mysql]]></type>
+                    <pdoType><![CDATA[]]></pdoType>
+                    <active>1</active>
 -->
 <config>
     <global>
@@ -41,9 +50,9 @@
             <default_setup>
                 <connection>
                     <host><![CDATA[localhost]]></host>
-                    <username><![CDATA[dealgobb_tariq]]></username>
-                    <password><![CDATA[PimplyForeGeneraApathy]]></password>
-                    <dbname><![CDATA[dealgobb_dg_magento]]></dbname>
+                    <username><![CDATA[root]]></username>
+                    <password><![CDATA[meabed]]></password>
+                    <dbname><![CDATA[dg]]></dbname>
                     <initStatements><![CDATA[SET NAMES utf8]]></initStatements>
                     <model><![CDATA[mysql4]]></model>
                     <type><![CDATA[pdo_mysql]]></type>

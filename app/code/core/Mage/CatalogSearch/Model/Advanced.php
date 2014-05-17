@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_CatalogSearch
- * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -62,9 +62,16 @@ class Mage_CatalogSearch_Model_Advanced extends Mage_Core_Model_Abstract
     /**
      * Current search engine
      *
-     * @var object | Mage_CatalogSearch_Model_Resource_Fulltext_Engine
+     * @var object|Mage_CatalogSearch_Model_Resource_Fulltext_Engine
      */
-    protected $_engine = null;
+    protected $_engine;
+
+    /**
+     * Found products collection
+     *
+     * @var Mage_CatalogSearch_Model_Resource_Advanced_Collection
+     */
+    protected $_productCollection;
 
     /**
      * Initialize resource model
@@ -156,6 +163,9 @@ class Mage_CatalogSearch_Model_Advanced extends Mage_Core_Model_Abstract
                 continue;
             }
             $value = $values[$attribute->getAttributeCode()];
+            if (!is_array($value)) {
+                $value = trim($value);
+            }
 
             if ($attribute->getAttributeCode() == 'price') {
                 $value['from'] = isset($value['from']) ? trim($value['from']) : '';

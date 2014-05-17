@@ -1,0 +1,18 @@
+<?php 
+/**
+ *
+ * @category   MW
+ * @package    MW_Credit
+ * @author Mage World <support@mage-world.com>
+ */
+ ?>
+<?php $order = Mage::registry('current_order');?>
+<?php if(!$order) $order = $this->getParentBlock()->getOrder();?>
+<?php $credit = Mage::helper('credit')->getCreditByOrder($order)?>
+<?php if($credit):?>
+	<?php $money = Mage::helper('credit')->exchangeCreditToMoney($credit);?>
+	<tr class="rewardpoints">
+	    <td style="text-align: right;" class="a-right" colspan="4">Credit</td>
+	    <td style="text-align: right;" class="a-right"><span class="price"><?php echo Mage::helper('credit')->formatMoney($money)?></span></td>
+	</tr>
+<?php endif;?>

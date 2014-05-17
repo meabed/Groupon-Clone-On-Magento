@@ -20,7 +20,7 @@
  *
  * @category    Mage
  * @package     Mage_Connect
- * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -367,6 +367,11 @@ final class Maged_Controller
      */
     public function connectInstallPackageUploadAction()
     {
+        if (!$this->_validateFormKey()) {
+            echo "No file was uploaded";
+            return;
+        }
+
         if (!$_FILES) {
             echo "No file was uploaded";
             return;
@@ -766,11 +771,30 @@ final class Maged_Controller
     }
 
     /**
+     * Add domain policy header according to admin area settings
+     */
+    protected function _addDomainPolicyHeader()
+    {
+        if (class_exists('Mage') && Mage::isInstalled()) {
+            /** @var Mage_Core_Model_Domainpolicy $domainPolicy */
+            $domainPolicy = Mage::getModel('core/domainpolicy');
+            if ($domainPolicy) {
+                $policy = $domainPolicy->getBackendPolicy();
+                if ($policy) {
+                    header('X-Frame-Options: ' . $policy);
+                }
+            }
+        }
+    }
+
+    /**
      * Dispatch process
      */
     public function dispatch()
     {
         header('Content-type: text/html; charset=UTF-8');
+
+        $this->_addDomainPolicyHeader();
 
         $this->setAction();
 
@@ -991,9 +1015,9 @@ final class Maged_Controller
     {
         return array(
             'major'     => '1',
-            'minor'     => '7',
+            'minor'     => '9',
             'revision'  => '0',
-            'patch'     => '0',
+            'patch'     => '1',
             'stability' => '',
             'number'    => '',
         );
@@ -1089,5 +1113,28 @@ final class Maged_Controller
         }
 
         return $messagesMap[$type];
+    }
+
+    /**
+     * Validate Form Key
+     *
+     * @return bool
+     */
+    protected function _validateFormKey()
+    {
+        if (!($formKey = $_REQUEST['form_key']) || $formKey != $this->session()->getFormKey()) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Retrieve Session Form Key
+     *
+     * @return string
+     */
+    public function getFormKey()
+    {
+        return $this->session()->getFormKey();
     }
 }
