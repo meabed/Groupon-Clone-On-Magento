@@ -4,20 +4,23 @@ class Web_Deal_Block_Html_Topmenu extends Mage_Core_Block_Template
 {
     protected $_subcats;
 
+    /**
+     *
+     *
+     * @author Mohamed Meabed <mo.meabed@gmail.com>
+     *
+     */
     public function _construct()
     {
-        if (
-            Mage::getSingleton('cms/page')->getIdentifier() == 'home' &&
-            Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms'
-        ) {
+        if (Mage::getSingleton('cms/page')->getIdentifier() == 'home' && Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms') {
             //return;
         }
+
         $currentCategory = Mage::registry('current_category');
         if ($currentCategory) {
             $currentCategory = $currentCategory->getId();
         }
 
-        $array = array();
         $collection = Mage::helper('deal')->getActiveCategories(null);
         $cats = $collection->load();
         $i = 0;

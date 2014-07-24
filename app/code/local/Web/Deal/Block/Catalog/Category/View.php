@@ -4,6 +4,13 @@ class Web_Deal_Block_Catalog_Category_View extends Mage_Catalog_Block_Category_V
 {
     protected $_products;
 
+    /**
+     *
+     *
+     * @author Mohamed Meabed <mo.meabed@gmail.com>
+     *
+     * @return array
+     */
     public function getProducts()
     {
         $currentCategory = Mage::registry('current_category');

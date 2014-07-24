@@ -10,6 +10,12 @@ class Web_Deal_Block_Catalog_Product_View extends Mage_Catalog_Block_Product_Vie
 {
     protected $_info;
 
+    /**
+     *
+     *
+     * @author Mohamed Meabed <mo.meabed@gmail.com>
+     *
+     */
     public function getDealInfo()
     {
         $this->highlights = explode("\n", $this->getProduct()->getHighlights());

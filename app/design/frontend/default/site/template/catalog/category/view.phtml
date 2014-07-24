@@ -12,6 +12,9 @@ foreach ($_products as $_product):
     /** @var Mage_Catalog_Model_Category $cat */
     $cat = $_block->getParentCat();
     $url = $this->helper('deal')->getFullProductUrl($_product);
+    if ($_product->getOriginalPrice() == 0) {
+        $_product->setOriginalPrice(1);
+    }
     $discount = (int) (($_product->getOriginalPrice() - $_product->getPrice()) / $_product->getOriginalPrice() * 100);
     $end_date = strtotime($_product->getEndDate());
     $toDate = time();
