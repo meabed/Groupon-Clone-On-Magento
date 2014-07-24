@@ -3,7 +3,8 @@ $installer = $this;
 
 $installer->startSetup();
 
-  $installer->run("
+$installer->run(
+    "
     DROP TABLE IF EXISTS {$this->getTable('deal_voucher')};
     CREATE TABLE {$this->getTable('deal_voucher')} (
     `entity_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -28,6 +29,7 @@ $installer->startSetup();
   ADD CONSTRAINT `FK_DEAL_VOUCHER_CORE_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `core_store` (`store_id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_DEAL_VOUCHER_CATALOG_PRODUCT_ENTITY` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_DEAL_VOUCHER_SALES_FLAT_ORDER_ENTITY_ID` FOREIGN KEY (`order_id`) REFERENCES `sales_flat_order` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-  ");
+  "
+);
 
-  $installer->endSetup();
+$installer->endSetup();

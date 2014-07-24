@@ -35,6 +35,15 @@
         </events>
     </frontend>
     <global>
+        <page>
+            <layouts>
+                <custom_layout_page >
+                    <label>Deal Listing Page</label>
+                    <template>page/1column-product-list.phtml</template>
+                    <layout_handle>column-product-list</layout_handle>
+                </custom_layout_page>
+            </layouts>
+        </page>
         <helpers>
             <deal>
                 <class>Web_Deal_Helper</class>

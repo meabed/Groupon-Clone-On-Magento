@@ -4,29 +4,33 @@ $_products = $_data['products'];
 /* @var Mage_Catalog_Model_Product $_product */
 $i = 0;
 foreach ($_products as $_product):
-    Mage::register('product', $_product,true);
+    Mage::register('product', $_product, true);
     $_block = Mage::getBlockSingleton('Web_Deal_Block_Catalog_Product_View');
     $_block->getDealInfo();
     $cat = $_block->getParentCat();
     $url = $this->helper('deal')->getFullProductUrl($_product);
-    $discount = (int) (($_product->getOriginalPrice() - $_product->getPrice()) / $_product->getOriginalPrice() * 100);
+    if ($_product->getOriginalPrice() == 0) {
+        $_product->setOriginalPrice(1);
+    }
+    $discount = (int)(($_product->getOriginalPrice() - $_product->getPrice()) / $_product->getOriginalPrice() * 100);
     $end_date = strtotime($_product->getEndDate());
     $toDate = time();
     $sec_diff = ($end_date - $toDate);
     $time = Mage::helper('deal')->secondsToTime($sec_diff);
     ?>
-    <div id="deal-<?php echo $_product->getId();?>" class="deal div<?php echo $i%3;?>">
+    <div id="deal-<?php echo $_product->getId(); ?>" class="deal div<?php echo $i % 3; ?>">
         <h3>
-            <a class="view" href="<?php echo $url;?>"><?php echo $_product->getShortName();?></a>
+            <a class="view" href="<?php echo $url; ?>"><?php echo $_product->getShortName(); ?></a>
         </h3>
-        <div class="pre photo"><a href="<?php echo $url;?>"><img class="lazy" src="<?php echo $this->getSkinUrl('images/deals-loader.gif'); ?>" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->constrainOnly(TRUE)
+
+        <div class="pre photo"><a href="<?php echo $url; ?>"><img class="lazy" src="<?php echo $this->getSkinUrl('images/deals-loader.gif'); ?>" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->constrainOnly(true)
                     ->keepAspectRatio(false)
                     ->keepFrame(true)->resize(320, 205); ?>"></a></div>
 
         <div class="price-info">
-            <div><span class="title">Discount</span><span class="value"> <?php echo $discount;?>%</span></div>
-            <div><span class="title">Value</span><span class="value"><?php echo $_block->getPriceCurrency($_product->getOriginalPrice());?></span></div>
-            <div><span class="title">Price</span><span class="value"> <?php echo $_block->getPriceCurrency($_product->getPrice());?></span></div>
+            <div><span class="title">Discount</span><span class="value"> <?php echo $discount; ?>%</span></div>
+            <div><span class="title">Value</span><span class="value"><?php echo $_block->getPriceCurrency($_product->getOriginalPrice()); ?></span></div>
+            <div><span class="title">Price</span><span class="value"> <?php echo $_block->getPriceCurrency($_product->getPrice()); ?></span></div>
         </div>
 
 
@@ -34,23 +38,32 @@ foreach ($_products as $_product):
 
             <div class="btns">
                 <a href="javascript:void(0);" class="btn btn-g" style="margin-top:30px"><i class="icon-shopping-cart icon-white"></i> Buy </a>
+
                 <div class="clr"></div>
-                <a href="<?php echo $url;?>" class="btn btn-g btn-small" style=""><i class="icon-eye-open icon-white"></i> View </a>
+                <a href="<?php echo $url; ?>" class="btn btn-g btn-small" style=""><i class="icon-eye-open icon-white"></i> View </a>
 
             </div>
 
             <div class="countdown">
-                Remaining
-                <div id="remaining-<?php echo $sec_diff;?>>" class="hasCountdown"><span class="countdown_row countdown_show3"><span class="countdown_section"><span class="countdown_amount"><?php echo $time['d'];?></span><br>Days</span><span class="countdown_section"><span class="countdown_amount"><?php echo $time['h'];?></span><br>Hours</span><span class="countdown_section"><span class="countdown_amount"><?php echo $time['m'];?></span><br>Minutes</span></span></div>
+                <?php echo $this->__('Remaining'); ?>
+                <div id="remaining-<?php echo $sec_diff; ?>>" class="hasCountdown">
+                    <span class="countdown_row countdown_show3">
+                        <span class="countdown_section"><span class="countdown_amount"><?php echo $time['d']; ?></span>
+                            <br><?php echo $this->__('Days'); ?></span><span class="countdown_section">
+                            <span class="countdown_amount"><?php echo $time['h']; ?></span><br>
+                            <?php echo $this->__('Hours'); ?></span><span class="countdown_section">
+                            <span class="countdown_amount"><?php echo $time['m']; ?></span>
+                            <br><?php echo $this->__('Minutes'); ?></span></span>
+                </div>
             </div>
 
-            <div class="bought"><?php echo $_block->ordered_qty;?> bought this deal
+            <div class="bought"><?php echo $_block->ordered_qty; ?> <?php echo $this->__('bought this deal'); ?>
                 <div class="clr"></div>
 
                 <a href="javascript:void(0);" class="btn btn-g btn-small"><i class="icon-heart icon-white"></i></a>
                 <a href="javascript:void(0);" class="btn btn-g btn-small"><i class="icon-share icon-white"></i></a>
 
-                <a href="<?php echo $cat->getUrl();?>" class="btn btn-g btn-small"><i class="icon-tag icon-white"></i> <?php echo $cat->getName();?> </a>
+                <a href="<?php echo $cat->getUrl(); ?>" class="btn btn-g btn-small"><i class="icon-tag icon-white"></i> <?php echo $cat->getName(); ?> </a>
 
             </div>
 

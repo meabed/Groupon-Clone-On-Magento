@@ -1,4 +1,5 @@
 <?php
+
 class Web_Voucher_Block_Adminhtml_Voucher_Edit extends Mage_Adminhtml_Block_Widget_Form_Container
 {
     public function __construct()

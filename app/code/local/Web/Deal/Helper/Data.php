@@ -1,10 +1,12 @@
 <?php
+
 class Web_Deal_Helper_Data extends Mage_Core_Helper_Abstract
 {
-    public static function getFullProductUrl(Mage_Catalog_Model_Product $product,
-                                             Mage_Catalog_Model_Category $category = null,
-                                             $mustBeIncludedInNavigation = true)
-    {
+    public static function getFullProductUrl(
+        Mage_Catalog_Model_Product $product,
+        Mage_Catalog_Model_Category $category = null,
+        $mustBeIncludedInNavigation = true
+    ) {
         $currentCategory = Mage::registry('current_category');
         $catIds = $product->getCategoryIds();
         $url = Mage::getModel('core/url_rewrite')->getCollection()
@@ -83,10 +85,10 @@ class Web_Deal_Helper_Data extends Mage_Core_Helper_Abstract
         return $diff . $s;
 
     }
+
     public function getActiveCategories($mainCat = null)
     {
-        if($mainCat == null)
-        {
+        if ($mainCat == null) {
             $catCookie = Mage::getModel('core/cookie')->get('main_cat');
             $mainCat = empty($catCookie) ? (int)Mage::getStoreConfig('deal/config/main_cat') : Mage::getModel('core/cookie')->get('main_cat');
         }
@@ -94,10 +96,11 @@ class Web_Deal_Helper_Data extends Mage_Core_Helper_Abstract
             ->addAttributeToSelect('name')
             ->addFilter('parent_id', $mainCat)
             ->addFilter('level', '3')
-            ->addAttributeToFilter('include_in_menu',array('eq'=>1))
-            ->addAttributeToFilter('is_active',array('eq'=>1));
+            ->addAttributeToFilter('include_in_menu', array('eq' => 1))
+            ->addAttributeToFilter('is_active', array('eq' => 1));
         return $cats;
     }
+
     public function getCompany($key = '')
     {
         if ($key) {
@@ -107,6 +110,7 @@ class Web_Deal_Helper_Data extends Mage_Core_Helper_Abstract
         }
         return $block->getContent();
     }
+
     public function isProductExpired($pid = null)
     {
         $fromDateTime = Mage::getModel('core/date')->date();
@@ -114,17 +118,18 @@ class Web_Deal_Helper_Data extends Mage_Core_Helper_Abstract
             ->addFieldToFilter('entity_id', array('eq' => $pid))
             ->addAttributeToFilter('end_date', array('gteq' => $fromDateTime))
             ->getSize();
-        if($product > 0)
-        {
+        if ($product > 0) {
             return false;
         }
         return true;
     }
-    public function secondsToTime($inputSeconds) {
+
+    public function secondsToTime($inputSeconds)
+    {
 
         $secondsInAMinute = 60;
-        $secondsInAnHour  = 60 * $secondsInAMinute;
-        $secondsInADay    = 24 * $secondsInAnHour;
+        $secondsInAnHour = 60 * $secondsInAMinute;
+        $secondsInADay = 24 * $secondsInAnHour;
 
         // extract days
         $days = floor($inputSeconds / $secondsInADay);
@@ -143,10 +148,10 @@ class Web_Deal_Helper_Data extends Mage_Core_Helper_Abstract
 
         // return the final array
         $obj = array(
-            'd' => (int) $days,
-            'h' => (int) $hours,
-            'm' => (int) $minutes,
-            's' => (int) $seconds,
+            'd' => (int)$days,
+            'h' => (int)$hours,
+            'm' => (int)$minutes,
+            's' => (int)$seconds,
         );
         return $obj;
     }

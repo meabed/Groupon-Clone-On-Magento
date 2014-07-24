@@ -1,4 +1,5 @@
 <?php
+
 class Web_Voucher_Block_VoucherInfo extends Mage_Core_Block_Template
 {
     protected function _prepareLayout()
@@ -7,6 +8,7 @@ class Web_Voucher_Block_VoucherInfo extends Mage_Core_Block_Template
             $headBlock->setTitle($this->__('Voucher - %s', $this->getVoucher()->getDealVoucherCode()));
         }
     }
+
     public function getVoucher()
     {
         return Mage::registry('current_voucher');

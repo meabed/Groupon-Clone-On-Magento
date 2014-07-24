@@ -1,4 +1,5 @@
 <?php
+
 class Web_Voucher_Block_History extends Mage_Core_Block_Template
 {
     public function __construct()
@@ -8,18 +9,18 @@ class Web_Voucher_Block_History extends Mage_Core_Block_Template
         $ordersTable = Mage::getSingleton('core/resource')->getTableName('sales/order');
         $productTable = Mage::getResourceModel('catalog/product_flat')->getFlatTableName(1);
         $vouchers = Mage::getModel('voucher/vouchers')
-                ->getCollection();
+            ->getCollection();
         $vouchers->getSelect()
-                ->joinLeft(array('product' => $productTable), 'main_table.product_id = product.entity_id', array('name'));
+            ->joinLeft(array('product' => $productTable), 'main_table.product_id = product.entity_id', array('name'));
         $vouchers->getSelect()
-                ->joinLeft(array('orders' => $ordersTable), 'main_table.order_id=orders.entity_id', array('orders.customer_firstname', 'orders.customer_lastname', 'order_status' => 'orders.status'))
-                ->where('orders.customer_id = ' . Mage::getSingleton('customer/session')->getCustomer()->getId())
-                ->where('main_table.customer_id = ' . Mage::getSingleton('customer/session')->getCustomer()->getId())
-                ->order(array('main_table.created_at desc','main_table.order_id desc'));
-        $vouchers->addFieldToFilter('orders.status',array('eq'=>'complete')); // VD
+            ->joinLeft(array('orders' => $ordersTable), 'main_table.order_id=orders.entity_id', array('orders.customer_firstname', 'orders.customer_lastname', 'order_status' => 'orders.status'))
+            ->where('orders.customer_id = ' . Mage::getSingleton('customer/session')->getCustomer()->getId())
+            ->where('main_table.customer_id = ' . Mage::getSingleton('customer/session')->getCustomer()->getId())
+            ->order(array('main_table.created_at desc', 'main_table.order_id desc'));
+        $vouchers->addFieldToFilter('orders.status', array('eq' => 'complete')); // VD
         //echo $vouchers->getSelect()->__toString();
         $this->setVouchers($vouchers);
-        
+
         Mage::app()->getFrontController()->getAction()->getLayout()->getBlock('root')->setHeaderTitle(Mage::helper('voucher')->__('My Vouchers'));
     }
 
@@ -28,7 +29,7 @@ class Web_Voucher_Block_History extends Mage_Core_Block_Template
         parent::_prepareLayout();
 
         $pager = $this->getLayout()->createBlock('page/html_pager', 'sales.voucher.history.pager')
-                ->setCollection($this->getVouchers());
+            ->setCollection($this->getVouchers());
         $this->setChild('pager', $pager);
         $this->getVouchers()->load();
         return $this;

@@ -1,23 +1,23 @@
 <?xml version="1.0"?>
-	<config>
-		<acl>
-			<resources>
-				<admin>
-					<children>
-						<system>
-							<children>
-								<config>
-									<children>
-										<deal translate="title" module="deal">
-											<title>Deal Section</title>
-											<sort_order>10</sort_order>
-										</deal>
-									</children>
-								</config>
-							</children>
-						</system>
-					</children>
-				</admin>
-			</resources>
-		</acl>
-	</config>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <deal translate="title" module="deal">
+                                        <title>Deal Section</title>
+                                        <sort_order>10</sort_order>
+                                    </deal>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

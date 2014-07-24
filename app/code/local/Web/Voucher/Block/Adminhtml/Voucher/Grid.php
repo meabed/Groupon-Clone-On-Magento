@@ -1,4 +1,5 @@
 <?php
+
 class Web_Voucher_Block_Adminhtml_Voucher_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
     public function __construct()
@@ -25,7 +26,7 @@ class Web_Voucher_Block_Adminhtml_Voucher_Grid extends Mage_Adminhtml_Block_Widg
         $collection->getSelect()
             ->joinLeft(array('payment' => $paymentTable), 'main_table.order_id=payment.parent_id', array('method'));
         $collection->getSelect()
-            ->joinLeft(array('address' => $addressTable), 'orders.billing_address_id=address.entity_id', array('caddress'=>'CONCAT(address.street,"\n",address.city,"\n",address.telephone)'));
+            ->joinLeft(array('address' => $addressTable), 'orders.billing_address_id=address.entity_id', array('caddress' => 'CONCAT(address.street,"\n",address.city,"\n",address.telephone)'));
         $collection->getSelect()
             ->joinLeft(array('product' => $productTable), 'main_table.product_id = product.entity_id', array('name'));
         $this->setCollection($collection);
@@ -37,98 +38,134 @@ class Web_Voucher_Block_Adminhtml_Voucher_Grid extends Mage_Adminhtml_Block_Widg
 
     protected function _prepareColumns()
     {
-        $this->addColumn('entity_id', array(
-            'header' => Mage::helper('voucher')->__('ID'),
-            'align' => 'right',
-            'width' => '50px',
-            'index' => 'entity_id',
-        ));
+        $this->addColumn(
+            'entity_id',
+            array(
+                'header' => Mage::helper('voucher')->__('ID'),
+                'align'  => 'right',
+                'width'  => '50px',
+                'index'  => 'entity_id',
+            )
+        );
 
-        $this->addColumn('deal_voucher_code', array(
-            'header' => Mage::helper('voucher')->__('Code'),
-            'align' => 'left',
-            'width' => '110px',
-            'index' => 'deal_voucher_code',
-        ));
-        $this->addColumn('order_increment_id', array(
-            'header' => Mage::helper('voucher')->__('Order ID'),
-            'align' => 'left',
-            'width' => '80px',
-            'index' => 'order_increment_id',
-        ));
-        $this->addColumn('product_name', array(
-            'header' => Mage::helper('voucher')->__('Product Name'),
-            'align' => 'left',
-            'index' => 'name'
-        ));
-        $this->addColumn('billing_name', array(
-            'header' => Mage::helper('voucher')->__('Bill to Name'),
-            'align' => 'left',
-            'index' => 'billing_name'
-        ));
-        $this->addColumn('caddress', array(
-            'header' => Mage::helper('voucher')->__('Address'),
-            'align' => 'left',
-            'index' => 'caddress',
-            'filter' => false,
-        ));
-        $this->addColumn('created_at', array(
-            'header' => Mage::helper('voucher')->__('Creation Time'),
-            'align' => 'left',
-            'width' => '120px',
-            'type' => 'date',
-            'default' => '--',
-            'index' => 'created_at',
-            'filter_index' => 'main_table.created_at',
+        $this->addColumn(
+            'deal_voucher_code',
+            array(
+                'header' => Mage::helper('voucher')->__('Code'),
+                'align'  => 'left',
+                'width'  => '110px',
+                'index'  => 'deal_voucher_code',
+            )
+        );
+        $this->addColumn(
+            'order_increment_id',
+            array(
+                'header' => Mage::helper('voucher')->__('Order ID'),
+                'align'  => 'left',
+                'width'  => '80px',
+                'index'  => 'order_increment_id',
+            )
+        );
+        $this->addColumn(
+            'product_name',
+            array(
+                'header' => Mage::helper('voucher')->__('Product Name'),
+                'align'  => 'left',
+                'index'  => 'name'
+            )
+        );
+        $this->addColumn(
+            'billing_name',
+            array(
+                'header' => Mage::helper('voucher')->__('Bill to Name'),
+                'align'  => 'left',
+                'index'  => 'billing_name'
+            )
+        );
+        $this->addColumn(
+            'caddress',
+            array(
+                'header' => Mage::helper('voucher')->__('Address'),
+                'align'  => 'left',
+                'index'  => 'caddress',
+                'filter' => false,
+            )
+        );
+        $this->addColumn(
+            'created_at',
+            array(
+                'header'       => Mage::helper('voucher')->__('Creation Time'),
+                'align'        => 'left',
+                'width'        => '120px',
+                'type'         => 'date',
+                'default'      => '--',
+                'index'        => 'created_at',
+                'filter_index' => 'main_table.created_at',
 
-        ));
+            )
+        );
 
-        $this->addColumn('updated_at', array(
-            'header' => Mage::helper('voucher')->__('Update Time'),
-            'align' => 'left',
-            'width' => '120px',
-            'type' => 'date',
-            'default' => '--',
-            'index' => 'updated_at',
-            'filter_index' => 'main_table.updated_at',
-        ));
+        $this->addColumn(
+            'updated_at',
+            array(
+                'header'       => Mage::helper('voucher')->__('Update Time'),
+                'align'        => 'left',
+                'width'        => '120px',
+                'type'         => 'date',
+                'default'      => '--',
+                'index'        => 'updated_at',
+                'filter_index' => 'main_table.updated_at',
+            )
+        );
 
 
-        $this->addColumn('status', array(
+        $this->addColumn(
+            'status',
+            array(
 
-            'header' => Mage::helper('voucher')->__('Status'),
-            'align' => 'left',
-            'width' => '80px',
-            'index' => 'status',
-            'type' => 'options',
-            'options' => Mage::getModel('voucher/vouchers')->getStatuses()
-        ));
-        $this->addColumn('method', array(
+                'header'  => Mage::helper('voucher')->__('Status'),
+                'align'   => 'left',
+                'width'   => '80px',
+                'index'   => 'status',
+                'type'    => 'options',
+                'options' => Mage::getModel('voucher/vouchers')->getStatuses()
+            )
+        );
+        $this->addColumn(
+            'method',
+            array(
 
-            'header' => Mage::helper('voucher')->__('Method'),
-            'align' => 'left',
-            'width' => '80px',
-            'index' => 'method',
-            'filter_index' => 'method'
+                'header'       => Mage::helper('voucher')->__('Method'),
+                'align'        => 'left',
+                'width'        => '80px',
+                'index'        => 'method',
+                'filter_index' => 'method'
 
-        ));
-        $this->addColumn('order_status', array(
+            )
+        );
+        $this->addColumn(
+            'order_status',
+            array(
 
-            'header' => Mage::helper('voucher')->__('Order Status'),
-            'align' => 'left',
-            'width' => '80px',
-            'index' => 'order_status',
-            'filter_index' => 'orders.status'
+                'header'       => Mage::helper('voucher')->__('Order Status'),
+                'align'        => 'left',
+                'width'        => '80px',
+                'index'        => 'order_status',
+                'filter_index' => 'orders.status'
 
-        ));
+            )
+        );
 
-        $this->addColumn('is_sent', array(
-            'header' => Mage::helper('voucher')->__('Sent'),
-            'align' => 'left',
-            'width' => '20px',
-            'index' => 'is_sent',
+        $this->addColumn(
+            'is_sent',
+            array(
+                'header' => Mage::helper('voucher')->__('Sent'),
+                'align'  => 'left',
+                'width'  => '20px',
+                'index'  => 'is_sent',
 
-        ));
+            )
+        );
         return parent::_prepareColumns();
     }
 
@@ -143,27 +180,36 @@ class Web_Voucher_Block_Adminhtml_Voucher_Grid extends Mage_Adminhtml_Block_Widg
         //                                                            'confirm' => Mage::helper('voucher')->__('Are you sure?')
         //                                                       ));
         //array_unshift($statuses, array('label' => '', 'value' => ''));
-        $this->getMassactionBlock()->addItem('status', array(
-            'label' => Mage::helper('voucher')->__('Change status'),
-            'url' => $this->getUrl('*/*/massStatus', array('_current' => true)),
-            'additional' => array(
-                'visibility' => array(
-                    'name' => 'status',
-                    'type' => 'select',
-                    'class' => 'required-entry',
-                    'label' => Mage::helper('voucher')->__('Status'),
-                    'values' => Mage::getSingleton('voucher/vouchers')->getStatuses()
+        $this->getMassactionBlock()->addItem(
+            'status',
+            array(
+                'label'      => Mage::helper('voucher')->__('Change status'),
+                'url'        => $this->getUrl('*/*/massStatus', array('_current' => true)),
+                'additional' => array(
+                    'visibility' => array(
+                        'name'   => 'status',
+                        'type'   => 'select',
+                        'class'  => 'required-entry',
+                        'label'  => Mage::helper('voucher')->__('Status'),
+                        'values' => Mage::getSingleton('voucher/vouchers')->getStatuses()
+                    )
                 )
             )
-        ));
-        $this->getMassactionBlock()->addItem('is_sent', array(
-            'label' => Mage::helper('voucher')->__('Send'),
-            'url' => $this->getUrl('*/*/massSend', array('_current' => true)),
-        ));
-        $this->getMassactionBlock()->addItem('print', array(
-            'label' => Mage::helper('voucher')->__('Download'),
-            'url' => $this->getUrl('*/*/massPrint', array('_current' => true)),
-        ));
+        );
+        $this->getMassactionBlock()->addItem(
+            'is_sent',
+            array(
+                'label' => Mage::helper('voucher')->__('Send'),
+                'url'   => $this->getUrl('*/*/massSend', array('_current' => true)),
+            )
+        );
+        $this->getMassactionBlock()->addItem(
+            'print',
+            array(
+                'label' => Mage::helper('voucher')->__('Download'),
+                'url'   => $this->getUrl('*/*/massPrint', array('_current' => true)),
+            )
+        );
         return $this;
     }
 

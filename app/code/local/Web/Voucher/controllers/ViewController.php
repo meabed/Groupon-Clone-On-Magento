@@ -1,4 +1,5 @@
 <?php
+
 class Web_Voucher_ViewController extends Mage_Core_Controller_Front_Action
 {
     protected $_cookieCheckActions = array('downloadadmin');
@@ -20,10 +21,12 @@ class Web_Voucher_ViewController extends Mage_Core_Controller_Front_Action
             $this->_getSession()->setNoReferer(true);
         }
     }
+
     protected function _getSession()
     {
         return Mage::getSingleton('customer/session');
     }
+
     public function indexAction()
     {
         if ($this->_loadValidVoucher()) {
@@ -75,12 +78,10 @@ class Web_Voucher_ViewController extends Mage_Core_Controller_Front_Action
             ->getFirstItem()
             ->getId();
         $voucher = Mage::getModel('voucher/vouchers')->load($voucherId);
-        if($voucher)
-        {
-            $cS = strtoupper(md5(strtoupper($voucher->getDealVoucherCode()).'213@#$%^$DFSfwer@!#'.$voucher->getOrderId()));
+        if ($voucher) {
+            $cS = strtoupper(md5(strtoupper($voucher->getDealVoucherCode()) . '213@#$%^$DFSfwer@!#' . $voucher->getOrderId()));
         }
-        if($cS == $auth)
-        {
+        if ($cS == $auth) {
             $order = Mage::getModel('sales/order')->load($voucher->getOrderId());
             $product = Mage::getModel('catalog/product')->load($voucher->getProductId());
             Mage::register('current_voucher', $voucher);
@@ -89,19 +90,19 @@ class Web_Voucher_ViewController extends Mage_Core_Controller_Front_Action
         }
         $this->loadLayout();
         $c = $this->getLayout()->getOutput();
-        $mediaDir = Mage::getBaseDir('media').DS.'vouchers'.DS;
-        $fname = $mediaDir.$auth.'.html';
-        if(!file_exists($fname))
-        {
-            $rs = file_put_contents($mediaDir.$auth.'.html',$c);
-            if($rs)
-            {
-                echo $fname;exit();
-            }else{
-                return ;
+        $mediaDir = Mage::getBaseDir('media') . DS . 'vouchers' . DS;
+        $fname = $mediaDir . $auth . '.html';
+        if (!file_exists($fname)) {
+            $rs = file_put_contents($mediaDir . $auth . '.html', $c);
+            if ($rs) {
+                echo $fname;
+                exit();
+            } else {
+                return;
             }
         }
-        echo $fname;exit();
+        echo $fname;
+        exit();
     }
 
     protected function _canViewVoucher($voucher)
@@ -133,19 +134,22 @@ class Web_Voucher_ViewController extends Mage_Core_Controller_Front_Action
             $productImage = Zend_Pdf_Image::imageWithPath(Mage::getBaseDir() . '/media/catalog/product' . $_product->getVoucherImage());
             //$footerImageHeight = $footerImage->getPixelHeight();  //VD
             //$footerImageWidth = $footerImage->getPixelWidth();  //VD
-            $logoImageHeight = 75;  //VDEdit
-            $logoImageWidth = 250;  //VDEdit
+            $logoImageHeight = 75; //VDEdit
+            $logoImageWidth = 250; //VDEdit
             $tableWidth = 568;
             $startPoint = ($pageWidth - $tableWidth) / 2;
             $endPoint = $startPoint + $tableWidth;
             $botPoint = 10;
             $topPoint = $pageHeight - 30;
             $page->setLineWidth('0.3')
-                ->setLineDashingPattern(array(3,
-                3,
-                3,
-                3
-            ))
+                ->setLineDashingPattern(
+                    array(
+                        3,
+                        3,
+                        3,
+                        3
+                    )
+                )
                 ->drawLine($startPoint, $topPoint, $startPoint, $botPoint)
                 ->drawLine($endPoint, $topPoint, $endPoint, $botPoint)
                 ->drawLine($startPoint, $topPoint, $endPoint, $topPoint)
@@ -162,17 +166,23 @@ class Web_Voucher_ViewController extends Mage_Core_Controller_Front_Action
             $page->drawImage($productImage, $startPoint + 7, $topPoint - 55 - $productImage->getPixelHeight(), $startPoint + 7 + 246, $topPoint - 55 - $productImage->getPixelHeight() + 165);
 
             $page->setFillColor(Zend_Pdf_Color_Html::color('#FFFFFF'))
-                ->setLineDashingPattern(array(1,
-                0,
-                1,
-                0
-            ))
+                ->setLineDashingPattern(
+                    array(
+                        1,
+                        0,
+                        1,
+                        0
+                    )
+                )
                 ->drawRectangle(($endPoint - 205), ($topPoint - 10), ($endPoint - 15), ($topPoint + 10))
-                ->setLineDashingPattern(array(0,
-                1000,
-                0,
-                1000
-            ))
+                ->setLineDashingPattern(
+                    array(
+                        0,
+                        1000,
+                        0,
+                        1000
+                    )
+                )
                 ->setFillColor(Zend_Pdf_Color_Html::color('#EDF4FA'))
                 ->drawRectangle($startPoint + 0.3, $pageHeight - $logoImageHeight - 235, $endPoint, $pageHeight - $logoImageHeight - 235 - 325);
             $style = new Zend_Pdf_Style();
@@ -213,9 +223,13 @@ class Web_Voucher_ViewController extends Mage_Core_Controller_Front_Action
             while ($i < $word_count) {
                 /* if adding a new word isn't wider than $max_width,
             we add the word */
-                if ($this->widthForStringUsingFontSize($wrappedLine . ' ' . $words[$i]
-                    , $style->getFont()
-                    , $style->getFontSize()) < $max_width
+                if ($this->widthForStringUsingFontSize(
+                        $wrappedLine . ' ' . $words[$i]
+                        ,
+                        $style->getFont()
+                        ,
+                        $style->getFontSize()
+                    ) < $max_width
                 ) {
                     if (!empty($wrappedLine)) {
                         $wrappedLine .= ' ';

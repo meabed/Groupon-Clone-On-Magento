@@ -1,11 +1,12 @@
 <?php
+
 class Web_Voucher_Adminhtml_VoucherController extends Mage_Adminhtml_Controller_Action
 {
 
     protected function _initAction()
     {
         $this->loadLayout()
-                ->_setActiveMenu('sales/vouchers');
+            ->_setActiveMenu('sales/vouchers');
         //->_addBreadcrumb(Mage::helper('adminhtml')->__('Items Manager'), Mage::helper('adminhtml')->__('Voucher Manager'));
         return $this;
     }
@@ -35,7 +36,7 @@ class Web_Voucher_Adminhtml_VoucherController extends Mage_Adminhtml_Controller_
             $this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
 
             $this->_addContent($this->getLayout()->createBlock('voucher/adminhtml_voucher_edit'))
-                    ->_addLeft($this->getLayout()->createBlock('voucher/adminhtml_voucher_edit_tabs'));
+                ->_addLeft($this->getLayout()->createBlock('voucher/adminhtml_voucher_edit_tabs'));
 
             $this->renderLayout();
         } else {
@@ -49,8 +50,8 @@ class Web_Voucher_Adminhtml_VoucherController extends Mage_Adminhtml_Controller_
         $fileName = 'vouchers.csv';
 
         $content = $this->getLayout()
-                ->createBlock('voucher/adminhtml_voucher_grid')
-                ->getCsv();
+            ->createBlock('voucher/adminhtml_voucher_grid')
+            ->getCsv();
 
         $this->_prepareDownloadResponse($fileName, $content);
 
@@ -64,16 +65,16 @@ class Web_Voucher_Adminhtml_VoucherController extends Mage_Adminhtml_Controller_
                 $voucherModel = Mage::getModel('voucher/vouchers');
 
                 $voucherModel->setId($this->getRequest()->getParam('id'))
-                        ->setDealVoucherCode($postData['deal_voucher_code'])
-                        ->setStatus($postData['status'])
-                        ->setUpdatedAt(now())
-                        ->save();
+                    ->setDealVoucherCode($postData['deal_voucher_code'])
+                    ->setStatus($postData['status'])
+                    ->setUpdatedAt(now())
+                    ->save();
 
                 Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('adminhtml')->__('Item was successfully saved'));
                 Mage::getSingleton('adminhtml/session')->setVoucherData(false);
                 $this->_redirect('*/*/');
                 return;
-            } catch (Exception $e) {
+            } catch ( Exception $e ) {
                 Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
                 Mage::getSingleton('adminhtml/session')->setVoucherData($this->getRequest()->getPost());
                 $this->_redirect('*/*/edit', array('id' => $this->getRequest()->getParam('id')));
@@ -82,6 +83,7 @@ class Web_Voucher_Adminhtml_VoucherController extends Mage_Adminhtml_Controller_
         }
         $this->_redirect('*/*/');
     }
+
     public function massSendAction()
     {
         $voucherIds = $this->getRequest()->getParam('voucher');
@@ -91,19 +93,20 @@ class Web_Voucher_Adminhtml_VoucherController extends Mage_Adminhtml_Controller_
             try {
                 $voucherModel = Mage::getModel('voucher/vouchers');
                 foreach ($voucherIds as $voucherId) {
-                        $voucher = $voucherModel->load($voucherId);
-                        Mage::getModel('voucher/observer')->_sendVoucherEmail($voucher);
-                        //$voucher->setIsSent($voucher->getIsSent()+1)->save();
+                    $voucher = $voucherModel->load($voucherId);
+                    Mage::getModel('voucher/observer')->_sendVoucherEmail($voucher);
+                    //$voucher->setIsSent($voucher->getIsSent()+1)->save();
                 }
                 $this->_getSession()->addSuccess(
                     $this->__('Total of %d vouchers(s) email(s) were successfully sent', count($voucherIds))
                 );
-            } catch (Exception $e) {
+            } catch ( Exception $e ) {
                 $this->_getSession()->addError($e->getMessage());
             }
         }
         $this->_redirect('*/*/index');
     }
+
     public function massPrintAction()
     {
         $voucherIds = $this->getRequest()->getParam('voucher');
@@ -114,9 +117,9 @@ class Web_Voucher_Adminhtml_VoucherController extends Mage_Adminhtml_Controller_
                 $voucherModel = Mage::getModel('voucher/vouchers');
                 foreach ($voucherIds as $voucherId) {
                     $voucher = $voucherModel->load($voucherId);
-                    $auth = strtoupper(md5(strtoupper($voucher->getDealVoucherCode()).'213@#$%^$DFSfwer@!#'.$voucher->getOrderId()));
-                    $url = Mage::getUrl('voucher/view/downloadadmin',array('code'=>$voucher->getDealVoucherCode(),'auth'=> $auth));
-                    $opts = array('http' => array('header'=> 'Cookie: ' . $_SERVER['HTTP_COOKIE']."\r\n"));
+                    $auth = strtoupper(md5(strtoupper($voucher->getDealVoucherCode()) . '213@#$%^$DFSfwer@!#' . $voucher->getOrderId()));
+                    $url = Mage::getUrl('voucher/view/downloadadmin', array('code' => $voucher->getDealVoucherCode(), 'auth' => $auth));
+                    $opts = array('http' => array('header' => 'Cookie: ' . $_SERVER['HTTP_COOKIE'] . "\r\n"));
                     $context = stream_context_create($opts);
                     $contents = file_get_contents($url, false, $context);
                     $urlx = $contents;
@@ -126,17 +129,17 @@ class Web_Voucher_Adminhtml_VoucherController extends Mage_Adminhtml_Controller_
                     //var_dump($http_response_header);
                     //exit;
                     $urls[] = $urlx;
-                   // Mage::getModel('voucher/observer')->_sendVoucherEmail($voucher);
+                    // Mage::getModel('voucher/observer')->_sendVoucherEmail($voucher);
                     //$voucher->setIsSent($voucher->getIsSent()+1)->save();
                 }
-                $string = join(' ',array_unique($urls));
-                $fname = Mage::getBaseDir('media').DS.'vouchers'.DS.md5($string).'.pdf';
-                $cmd = Mage::getBaseDir('lib').DS.'wkhtmltopdf '.$string.' '.$fname;
+                $string = join(' ', array_unique($urls));
+                $fname = Mage::getBaseDir('media') . DS . 'vouchers' . DS . md5($string) . '.pdf';
+                $cmd = Mage::getBaseDir('lib') . DS . 'wkhtmltopdf ' . $string . ' ' . $fname;
                 $r = exec($cmd);
                 $this->_getSession()->addSuccess(
-                    $this->__('Total of %d vouchers(s) generated  <a target="_blank" href="' .''.'/media/vouchers/' .md5($string).'.pdf">Download</a>' , count($voucherIds))
+                    $this->__('Total of %d vouchers(s) generated  <a target="_blank" href="' . '' . '/media/vouchers/' . md5($string) . '.pdf">Download</a>', count($voucherIds))
                 );
-            } catch (Exception $e) {
+            } catch ( Exception $e ) {
                 $this->_getSession()->addError($e->getMessage());
             }
         }
@@ -152,15 +155,15 @@ class Web_Voucher_Adminhtml_VoucherController extends Mage_Adminhtml_Controller_
             try {
                 foreach ($voucherIds as $voucherId) {
                     $web = Mage::getSingleton('voucher/vouchers')
-                            ->load($voucherId)
-                            ->setStatus($this->getRequest()->getParam('status'))
-                            ->setUpdatedAt(now())
-                            ->save();
+                        ->load($voucherId)
+                        ->setStatus($this->getRequest()->getParam('status'))
+                        ->setUpdatedAt(now())
+                        ->save();
                 }
                 $this->_getSession()->addSuccess(
                     $this->__('Total of %d record(s) were successfully updated', count($voucherIds))
                 );
-            } catch (Exception $e) {
+            } catch ( Exception $e ) {
                 $this->_getSession()->addError($e->getMessage());
             }
         }

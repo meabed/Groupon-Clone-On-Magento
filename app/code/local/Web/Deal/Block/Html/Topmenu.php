@@ -1,4 +1,5 @@
 <?php
+
 class Web_Deal_Block_Html_Topmenu extends Mage_Core_Block_Template
 {
     protected $_subcats;

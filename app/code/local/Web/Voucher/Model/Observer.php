@@ -1,4 +1,5 @@
 <?php
+
 class Web_Voucher_Model_Observer
 {
     protected $_order;
@@ -31,7 +32,7 @@ class Web_Voucher_Model_Observer
                 $s = strtoupper(md5(uniqid(rand(), true)));
                 $start = rand(0, strlen($s) - 7);
                 //$this->_voucherCode = strtoupper($this->_order->getProtectCode() . '-' . substr($s, $start, 6));
-                $this->_voucherCode = strtoupper(substr($this->_order->getIncrementId(),-5) . '-' . substr($s, $start, 6));
+                $this->_voucherCode = strtoupper(substr($this->_order->getIncrementId(), -5) . '-' . substr($s, $start, 6));
                 $m = Mage::getModel('voucher/vouchers')
                     ->setDealVoucherCode($this->_voucherCode)
                     ->setStoreId($storeId)
@@ -72,58 +73,60 @@ class Web_Voucher_Model_Observer
             $itemIds[] = $itemId;
         }
         $itemIds = array_unique($itemIds);
-        if(empty($itemIds))
-        {
+        if (empty($itemIds)) {
             return;
         }
         //Mage::log($itemIds);
         //        Mage::log(end($itemIds));
         if (count($itemIds) > $nProducts) {
-            for ($j = 0; $j < $nProducts ; $j++) {
+            for ($j = 0; $j < $nProducts; $j++) {
                 $cartHelper->getCart()->removeItem($itemIds[$j])->save();
             }
         }
     }
+
     public function sendVoucherOnStatusChange(Varien_Event_Observer $observer)
     {
         $order = $observer->getDataObject();
         $incrementId = $order->getIncrementId();
-        if(!in_array($order->getStatus(),explode(',',Mage::getStoreConfig('voucher_options/configs/order_status_admin'))) ){
+        if (!in_array($order->getStatus(), explode(',', Mage::getStoreConfig('voucher_options/configs/order_status_admin')))) {
             return;
         }
-        $vouchers = Mage::getModel('voucher/vouchers')->getCollection()->addFieldToFilter('order_increment_id',$incrementId);
-        foreach ($vouchers as $voucher)
-        {
-            $this->_sendVoucherEmail($voucher,$order);
+        $vouchers = Mage::getModel('voucher/vouchers')->getCollection()->addFieldToFilter('order_increment_id', $incrementId);
+        foreach ($vouchers as $voucher) {
+            $this->_sendVoucherEmail($voucher, $order);
         }
     }
+
     public function senOrderVouchersEamil($observer)
     {
         $incrementId = Mage::getSingleton('checkout/session')->getLastRealOrderId();
         $order = Mage::getModel('sales/order')->loadByIncrementId($incrementId);
-        if(!in_array($order->getStatus(),explode(',',Mage::getStoreConfig('voucher_options/configs/order_status'))) ){
+        if (!in_array($order->getStatus(), explode(',', Mage::getStoreConfig('voucher_options/configs/order_status')))) {
             return;
         }
-        $vouchers = Mage::getModel('voucher/vouchers')->getCollection()->addFieldToFilter('order_increment_id',$incrementId);
-        foreach ($vouchers as $voucher)
-        {
-            $this->_sendVoucherEmail($voucher,$order);
+        $vouchers = Mage::getModel('voucher/vouchers')->getCollection()->addFieldToFilter('order_increment_id', $incrementId);
+        foreach ($vouchers as $voucher) {
+            $this->_sendVoucherEmail($voucher, $order);
         }
 
     }
-    public function _sendVoucherEmail($voucher = false,$order=false)
+
+    public function _sendVoucherEmail($voucher = false, $order = false)
     {
         //return ;
-        if($this->_productId){
+        if ($this->_productId) {
             $_product = Mage::getModel('catalog/product')->load($this->_productId);
-        }else if ($voucher){
-            $_product = Mage::getModel('catalog/product')->load($voucher->getProductId());
-            if(!$order){
-                $order = Mage::getModel('sales/order')->load($voucher->getOrderId());
+        } else {
+            if ($voucher) {
+                $_product = Mage::getModel('catalog/product')->load($voucher->getProductId());
+                if (!$order) {
+                    $order = Mage::getModel('sales/order')->load($voucher->getOrderId());
+                }
+                $this->_order = $order;
+                $this->_voucherId = $voucher->getId();
+                $this->_voucherCode = $voucher->getDealVoucherCode();
             }
-            $this->_order = $order;
-            $this->_voucherId = $voucher->getId();
-            $this->_voucherCode = $voucher->getDealVoucherCode();
         }
 
         if (!$this->_productPrice) {
@@ -138,39 +141,42 @@ class Web_Voucher_Model_Observer
         $templateId = Mage::getStoreConfig('voucher_options/configs/email_template');
         $senderName = Mage::getStoreConfig('trans_email/ident_support/name');
         $senderEmail = Mage::getStoreConfig('trans_email/ident_support/email');
-        $sender = array('name' => $senderName,
-            'email' => $senderEmail);
+        $sender = array(
+            'name'  => $senderName,
+            'email' => $senderEmail
+        );
         $recepientEmail = $customerEmail;
         $recepientName = $customerName;
 
         $storeId = Mage::app()->getStore()->getId();
         $highlightsHtml = '';
-        foreach (explode("\n",$_product->getHighlights()) as $item){
-            $highlightsHtml .='<li>'.$item.'</li>';
+        foreach (explode("\n", $_product->getHighlights()) as $item) {
+            $highlightsHtml .= '<li>' . $item . '</li>';
         }
         $fineprintHtml = '';
-        foreach (explode("\n",$_product->getFinePrint()) as $item){
-            $fineprintHtml .='<li>'.$item.'</li>';
+        foreach (explode("\n", $_product->getFinePrint()) as $item) {
+            $fineprintHtml .= '<li>' . $item . '</li>';
         }
 
-        $vars = array('customerName' => $customerName,
+        $vars = array(
+            'customerName'  => $customerName,
             'customerEmail' => $customerEmail,
-            'voucherCode' => $this->_voucherCode,
-            'productPrice' => $this->_productPrice,
-            'productName' => $this->_productName,
-            'product' => $_product,
-            'highlights' => $highlightsHtml,
-            'fineprint' => $fineprintHtml,
-            'company'=> Mage::helper('deal')->getCompany($_product->getCompany()),
-            );
+            'voucherCode'   => $this->_voucherCode,
+            'productPrice'  => $this->_productPrice,
+            'productName'   => $this->_productName,
+            'product'       => $_product,
+            'highlights'    => $highlightsHtml,
+            'fineprint'     => $fineprintHtml,
+            'company'       => Mage::helper('deal')->getCompany($_product->getCompany()),
+        );
         $translate = Mage::getSingleton('core/translate');
         $mail = Mage::getSingleton('core/email_template')
             ->sendTransactional($templateId, $sender, $recepientEmail, $recepientName, $vars, $storeId);
         if ($mail->getSentSuccess()) {
             $nSent = 0;
-            if($voucher){
-                $nSent = $voucher->getIsSent()+1;
-            }else{
+            if ($voucher) {
+                $nSent = $voucher->getIsSent() + 1;
+            } else {
                 $nSent = 1;
             }
             Mage::getModel('voucher/vouchers')->load($this->_voucherId)

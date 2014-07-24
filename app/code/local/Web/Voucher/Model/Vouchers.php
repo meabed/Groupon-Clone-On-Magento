@@ -1,4 +1,5 @@
 <?php
+
 class Web_Voucher_Model_Vouchers extends Mage_Core_Model_Abstract
 {
     const STATUS_USED = 'used';
@@ -22,12 +23,12 @@ class Web_Voucher_Model_Vouchers extends Mage_Core_Model_Abstract
     public function getStatuses()
     {
         return array(
-            self::STATUS_ACTIVE => self::STATUS_ACTIVE,
+            self::STATUS_ACTIVE   => self::STATUS_ACTIVE,
             self::STATUS_CANCELED => self::STATUS_CANCELED,
-            self::STATUS_USED => self::STATUS_USED,
-            self::STATUS_EXPIRED => self::STATUS_EXPIRED,
+            self::STATUS_USED     => self::STATUS_USED,
+            self::STATUS_EXPIRED  => self::STATUS_EXPIRED,
             self::STATUS_REDEEMED => self::STATUS_REDEEMED,
-            self::STATUS_FRAUD => self::STATUS_FRAUD
+            self::STATUS_FRAUD    => self::STATUS_FRAUD
         );
     }
 }
