@@ -11,7 +11,7 @@ class Web_Deal_Block_Catalog_Product_View extends Mage_Catalog_Block_Product_Vie
     protected $_info;
 
     /**
-     *
+     * Get main deals info
      *
      * @author Mohamed Meabed <mo.meabed@gmail.com>
      *
