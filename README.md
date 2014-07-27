@@ -5,6 +5,8 @@ Magento ver. 1.9.0.1 + Few custom modules + complete custom theme and layout.
 
 ####You can find demo here  http://groupon.io
 
+> This project will be maintained for more couple of years "end of 2016"
+
 Features:
 =========
 - Very flexible and configurable.
@@ -22,8 +24,9 @@ Installation:
 - Admin username : admin
 - Admin password : 123456aa
 
-Pipeline:
+TODO Pipeline:
 ======
+- Voucher Template with "HTML2PDF"
 - Responsive theme based on latest magento 1.9
 - More code comments and doc-blocks
 - Detailed How-to and FAQ's
