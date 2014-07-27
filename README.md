@@ -3,8 +3,7 @@ Groupon Clone Built On Magento!
 
 Magento ver. 1.9.0.1 + Few custom modules + complete custom theme and layout.
 
-You can find demo here
-> Demo www.flowercloud.us
+####You can find demo here  http://groupon.io
 
 Features:
 =========
@@ -31,6 +30,7 @@ Pipeline:
 
 Usage notes:
 ======
+- Change permissions of " media, var " folders to 775
 - Change store url based on your installation Domain, please follow [ http://www.magentocommerce.com/wiki/1_-_installation_and_configuration/update_site_url_in_core_config_data ]
 - If you get Error "Warning: include(Mage/Googlecheckout/Helper/Data.php)", please follow [ http://www.magentocommerce.com/knowledge-base/entry/ce-18-later-release-notes#11810-changes-upgrade-issue ]
 - Changes admin ( name / email / password ) [ System => Permission => Users ]
