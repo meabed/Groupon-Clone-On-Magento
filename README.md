@@ -18,7 +18,7 @@ Installation:
 =============
 - Copy the files to your web server.
 - Create directory var in your document root with 777 permissions
-- Restore the database ( deals.sql.gz.backup )
+- Restore the database ( database.backup.sql.tgz )
 - Admin username : admin
 - Admin password : 123456aa
 
