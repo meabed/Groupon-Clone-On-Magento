@@ -23,6 +23,12 @@ Installation:
 - Admin username : admin
 - Admin password : 123456aa
 
+Pipeline:
+======
+- Responsive theme based on latest magento 1.9
+- More code comments and doc-blocks
+- Detailed How-to and FAQ's
+
 Usage notes:
 ======
 - Change store url based on your installation Domain, please follow [ http://www.magentocommerce.com/wiki/1_-_installation_and_configuration/update_site_url_in_core_config_data ]
